@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h2 {
+      color: #4CAF50;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    blockquote {
+      font-style: italic;
+      color: #555;
+      background-color: #f0f0f0;
+      padding: 1rem;
+      border-left: 5px solid #4CAF50;
+      border-radius: 6px;
+      margin-top: 1.5rem;
+    }
+
+    .email-highlight {
+      font-weight: bold;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Thanks, {{ username }}!</h2>
+    <p>We've received your message and will be in touch soon.</p>
+    <p>Your message:</p>
+    <blockquote>{{ message }}</blockquote>
+    <p>We’ll reach out to you at <span class="email-highlight">{{ email }}</span>.</p>
+  </div>
+</body>
+</html>

@@ -27,12 +27,13 @@ def submit():
     email = request.form['email']
     message = request.form['message']
 
-    return f"""
-    <h2>Thanks, {name}!</h2>
-    <p>We've received your message:</p>
-    <blockquote>{message}</blockquote>
-    <p>We'll reach out to you at <strong>{email}</strong>.</p>
-    """
+    return render_template('feedback.html', username = name, message=message, email=email)
+    # return f"""
+    # <h2>Thanks, {name}!</h2>
+    # <p>We've received your message:</p>
+    # <blockquote>{message}</blockquote>
+    # <p>We'll reach out to you at <strong>{email}</strong>.</p>
+    # """
 
 @app.route('/greet', methods=['GET', "POST"])
 def greet():
