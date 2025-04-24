@@ -7,6 +7,11 @@ app = Flask(__name__)
 def home():
     return render_template('form.html')
 
+# this is essentially a rest API
+@app.route('/user/<name>')
+def user(name):
+    return f"Hello {name}!"
+
 @app.route('/about')
 def about():
     return render_template('/about.html', name='Lannon', passion='data apps')
