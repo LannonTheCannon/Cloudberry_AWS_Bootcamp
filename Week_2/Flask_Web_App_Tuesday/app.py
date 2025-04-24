@@ -7,10 +7,15 @@ app = Flask(__name__)
 def home():
     return render_template('form.html')
 
+@app.route('/form2')
+def form2():
+    return render_template("form2.html", )
+
 # this is essentially a rest API
 @app.route('/user/<name>')
 def user(name):
-    return f"Hello {name}!"
+    # return f"Hello {name}!"
+    return render_template('user.html', username=name)
 
 @app.route('/about')
 def about():
@@ -28,6 +33,13 @@ def submit():
     <blockquote>{message}</blockquote>
     <p>We'll reach out to you at <strong>{email}</strong>.</p>
     """
+
+@app.route('/greet', methods=['GET', "POST"])
+def greet():
+    if request.method == "POST":
+        name = request.form['name']
+        return render_template('user.html', username = name)
+    return render_template('form.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
