@@ -22,8 +22,18 @@ class Task(db.Model):
 # Home Run
 @app.route('/')
 def home():
-    tasks = Task.query.order_by(Task.id).all()  # Fetches every Task row, ordered by ID
-    return render_template('todo.html', tasks=tasks)  # Passes this list into your todo.html
+    # Read the filter from query string (default = 'all')
+    status = request.args.get('filter', 'all')
+
+    # Choose the query based on status
+    if status == 'pending':
+        tasks = Task.query.filter_by(completed=False).order_by(Task.id).all()
+    elif status == 'completed':
+        tasks = Task.query.filter_by(completed=True).order_by(Task.id).all()
+    else:
+        tasks = Task.query.order_by(Task.id).all()
+
+    return render_template('todo.html', tasks=tasks, active_filter=status)  # Passes this list into your todo.html
     # The template loops over tasks and displays
     # title, due date, and completion state
 

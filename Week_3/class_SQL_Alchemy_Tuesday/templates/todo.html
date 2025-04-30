@@ -127,6 +127,20 @@
       opacity: 0.6;
     }
 
+    .filters a {
+      color: var(--text-light);
+      text-decoration: none;
+      padding: 0.25rem 0.5rem;
+    }
+    .filters a.active {
+      color: var(--primary);
+      font-weight: 600;
+      border-bottom: 2px solid var(--primary);
+    }
+    .filters a:hover {
+      color: var(--primary-light);
+    }
+
     .task-info {
       display: flex;
       flex-direction: column;
@@ -185,6 +199,15 @@
         <button type="submit">Add Task</button>
       </form>
       <button class="clear-all" onclick="location.href='{{ url_for('clear_all') }}'">Clear All</button>
+    </div>
+
+    <div class="filters" style="margin-bottom:1rem; text-align:center;">
+      <a href="{{ url_for('home', filter='all') }}"
+         class="{{ 'active' if active_filter=='all' else '' }}">All</a> |
+      <a href="{{ url_for('home', filter='pending') }}"
+         class="{{ 'active' if active_filter=='pending' else '' }}">Pending</a> |
+      <a href="{{ url_for('home', filter='completed') }}"
+         class="{{ 'active' if active_filter=='completed' else '' }}">Completed</a>
     </div>
 
     <ul>
