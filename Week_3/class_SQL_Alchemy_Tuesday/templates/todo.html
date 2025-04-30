@@ -170,6 +170,14 @@
       <h1>TaskFlow</h1>
     </header>
 
+    <!-- Controls bar (Add + Clear)
+      1) Form
+        * Submits a POST to your /add rout
+        * Two inputs: text for the task title, date for due date
+      2) Clear All Button
+        * uses a JS location.href to hit your /clear_all route
+    -->
+
     <div class="controls">
       <form action="{{ url_for('add_task') }}" method="post">
         <input type="text" name="task" placeholder="What’s next on your agenda?" required>
