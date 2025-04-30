@@ -42,6 +42,7 @@
     .header {
       text-align: center;
       margin-bottom: 2rem;
+      position: relative;
     }
     .header h1 {
       font-size: 2.5rem;
@@ -50,6 +51,23 @@
       background: linear-gradient(90deg, var(--primary), var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+
+    .logout-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0;
+      background: var(--danger);
+      color: #fff;
+      padding: 0.3rem 0.6rem;
+      border-radius: 0.25rem;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .logout-btn:hover {
+      opacity: 0.8;
     }
 
     /* CONTROLS BAR */
@@ -179,9 +197,12 @@
 </head>
 <body>
 
+  <!-- inside <body>… -->
   <div class="container">
     <header class="header">
       <h1>TaskFlow</h1>
+      <!-- logout button -->
+      <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
     </header>
 
     <!-- Controls bar (Add + Clear)
