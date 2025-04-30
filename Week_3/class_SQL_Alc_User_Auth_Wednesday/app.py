@@ -19,10 +19,19 @@ db = SQLAlchemy(app)
 # Define the Task table model
 class Task(db.Model):
     __tablename__ = 'task'
-    id         = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title      = db.Column(db.String(100), nullable=False)
-    due_date   = db.Column(db.Date, nullable=True)
-    completed  = db.Column(db.Boolean, default=False, nullable=False)
+    id            = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title         = db.Column(db.String(100), nullable=False)
+    due_date      = db.Column(db.Date, nullable=True)
+    completed     = db.Column(db.Boolean, default=False, nullable=False)
+    password_hash = db.Column(db.String(128))
+
+    # Create Password
+    def set_password(self, pw):
+        self.password_hash = generate_password_hash(pw)
+
+    def check_password(self, pw):
+        return check_password_hash(self.password_hash, pw)
+
 
 # Home Run
 @app.route('/')
