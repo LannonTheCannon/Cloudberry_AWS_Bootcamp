@@ -1,80 +1,126 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, flash, g
 from flask_sqlalchemy import SQLAlchemy
-from flask import session, flash, g
-from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
+from datetime import datetime
 
 app = Flask(__name__)
-# Add a secret key!
-app.secret_key = "My-Super-Secret-Key"
+app.secret_key = "replace-with-a-secure-random-key"
 
-# Configure where the db and where it will be located
+# Database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///alc_db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Initializing the ORM
 db = SQLAlchemy(app)
 
-# Define the Task table model
-class Task(db.Model):
-    __tablename__ = 'task'
-    id            = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title         = db.Column(db.String(100), nullable=False)
-    due_date      = db.Column(db.Date, nullable=True)
-    completed     = db.Column(db.Boolean, default=False, nullable=False)
-    password_hash = db.Column(db.String(128))
+# Models
+class User(db.Model):
+    __tablename__ = 'user'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
 
-    # Create Password
     def set_password(self, pw):
         self.password_hash = generate_password_hash(pw)
 
     def check_password(self, pw):
         return check_password_hash(self.password_hash, pw)
 
+class Task(db.Model):
+    __tablename__ = 'task'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(100), nullable=False)
+    due_date = db.Column(db.Date, nullable=True)
+    completed = db.Column(db.Boolean, default=False, nullable=False)
 
-# Home Run
+# Authentication helpers
+@app.before_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+    g.user = User.query.get(user_id) if user_id else None
+
+def login_required(view):
+    @wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('login'))
+        return view(**kwargs)
+    return wrapped_view
+
+# Auth routes
+@app.route('/register', methods=['GET','POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        if not username or not password:
+            flash('Username and password are required.')
+        elif User.query.filter_by(username=username).first():
+            flash('Username already taken.')
+        else:
+            user = User(username=username)
+            user.set_password(password)
+            db.session.add(user)
+            db.session.commit()
+            flash('Registration successful. Please log in.')
+            return redirect(url_for('login'))
+    return render_template('auth.html', action='Register')
+
+@app.route('/login', methods=['GET','POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter_by(username=username).first()
+        if user is None or not user.check_password(password):
+            flash('Invalid credentials.')
+        else:
+            session.clear()
+            session['user_id'] = user.id
+            return redirect(url_for('home'))
+    return render_template('auth.html', action='Log In')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
+
+# To-do routes
 @app.route('/')
+@login_required
 def home():
-    # Read the filter from query string (default = 'all')
     status = request.args.get('filter', 'all')
-
-    # Choose the query based on status
     if status == 'pending':
         tasks = Task.query.filter_by(completed=False).order_by(Task.id).all()
     elif status == 'completed':
         tasks = Task.query.filter_by(completed=True).order_by(Task.id).all()
     else:
         tasks = Task.query.order_by(Task.id).all()
+    return render_template('todo.html', tasks=tasks, active_filter=status)
 
-    return render_template('todo.html', tasks=tasks, active_filter=status)  # Passes this list into your todo.html
-    # The template loops over tasks and displays
-    # title, due date, and completion state
-
-# The function to add new items to the database
 @app.route('/add', methods=['POST'])
+@login_required
 def add_task():
-    title        = request.form.get('task')  # Reads the form task and due_date from the POST body
+    title = request.form.get('task')
     due_date_str = request.form.get('due_date')
-    due_date     = None  # Coverts the data string into a date object or leaves it at none
+    due_date = None
     if due_date_str:
         due_date = datetime.strptime(due_date_str, '%Y-%m-%d').date()
-
-    new_task = Task(title=title, due_date=due_date)  # Instantiates Task(), adds it to the session,
-    # then commits (writing to SQLITE)
+    new_task = Task(title=title, due_date=due_date)
     db.session.add(new_task)
     db.session.commit()
     return redirect(url_for('home'))
 
-# A function or contract that completes items on the
-@app.route('/complete/<int:task_id>')  # Fetches that row by its primary key
+@app.route('/complete/<int:task_id>')
+@login_required
 def complete_task(task_id):
     task = Task.query.get_or_404(task_id)
     task.completed = True
-    db.session.commit() # commits, then redirects to refresh the list
+    db.session.commit()
     return redirect(url_for('home'))
 
-@app.route('/delete/<int:task_id>')  # Retrieves the row, deletes it from the session, commits, then return you to home
+@app.route('/delete/<int:task_id>')
+@login_required
 def delete_task(task_id):
     task = Task.query.get_or_404(task_id)
     db.session.delete(task)
@@ -82,13 +128,14 @@ def delete_task(task_id):
     return redirect(url_for('home'))
 
 @app.route('/clear_all')
+@login_required
 def clear_all():
-    Task.query.delete()  # Inserts a bulk DELETE FROM task, wiping the table clean
+    Task.query.delete()
     db.session.commit()
     return redirect(url_for('home'))
 
-# Create the table on startup
+# App entry point
 if __name__ == '__main__':
-    with app.app_context(): # This lets the app know which app its bound to
-        db.create_all() # issues a CREATE TABLE for every model
-    app.run(debug=True) # starts the built-in server on porto 5000 with a hot ass reload
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
