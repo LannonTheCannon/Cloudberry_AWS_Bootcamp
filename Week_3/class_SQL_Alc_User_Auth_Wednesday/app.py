@@ -6,6 +6,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 
 app = Flask(__name__)
+# Add a secret key!
+app.secret_key = "My-Super-Secret-Key"
 
 # Configure where the db and where it will be located
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///alc_db.sqlite3'
