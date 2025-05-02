@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash, g
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
@@ -124,25 +124,47 @@ def complete_task(task_id):
     db.session.commit()
     return redirect(url_for('home'))
 
-@app.route('/api/tasks/<int:task_id>', methods=['POST'])
+# @app.route('/api/tasks/<int:task_id>', methods=['POST'])
+# @login_required
+# def api_update_task(task_id):
+#     task = Task.query.get_or_404(task_id)
+#     data = request.get_json() or {}
+#
+#     task.title = data.get('title', task.title)
+#     due = data.get('due_date', '')
+#     task.due_date = (
+#         datetime.strptime(due, '%Y-%m-%d').date()
+#         if due else None
+#     )
+#
+#     db.session.commit()
+#     return jsonify({
+#         "id": task.id,
+#         "title": task.title,
+#         "due_date": task.due_date.isoformat() if task.due_date else ""
+#     })
+
+# … (your imports and existing code) …
+
+@app.route('/edit/<int:task_id>', methods=['GET', 'POST'])
 @login_required
-def api_update_task(task_id):
+def edit_task(task_id):
     task = Task.query.get_or_404(task_id)
-    data = request.get_json() or {}
 
-    task.title = data.get('title', task.title)
-    due = data.get('due_date', '')
-    task.due_date = (
-        datetime.strptime(due, '%Y-%m-%d').date()
-        if due else None
-    )
+    if request.method == 'POST':
+        # pull updated values from the form
+        task.title = request.form['title']
+        due_str = request.form.get('due_date', '')
+        task.due_date = (
+            datetime.strptime(due_str, '%Y-%m-%d').date()
+            if due_str else None
+        )
+        db.session.commit()
+        return redirect(url_for('home'))
 
-    db.session.commit()
-    return jsonify({
-        "id": task.id,
-        "title": task.title,
-        "due_date": task.due_date.isoformat() if task.due_date else ""
-    })
+    # GET → render the edit form
+    return render_template('edit_task.html', task=task)
+
 
 @app.route('/delete/<int:task_id>')
 @login_required
