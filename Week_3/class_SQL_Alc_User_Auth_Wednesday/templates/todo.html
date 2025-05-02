@@ -163,6 +163,7 @@
       display: flex;
       flex-direction: column;
       gap: 0.25rem;
+      flex: 1;
     }
     .task-info .text {
       font-size: 1rem;
@@ -197,21 +198,11 @@
 </head>
 <body>
 
-  <!-- inside <body>… -->
   <div class="container">
     <header class="header">
       <h1>TaskFlow</h1>
-      <!-- logout button -->
       <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
     </header>
-
-    <!-- Controls bar (Add + Clear)
-      1) Form
-        * Submits a POST to your /add rout
-        * Two inputs: text for the task title, date for due date
-      2) Clear All Button
-        * uses a JS location.href to hit your /clear_all route
-    -->
 
     <div class="controls">
       <form action="{{ url_for('add_task') }}" method="post">
@@ -234,17 +225,28 @@
     <ul>
       {% if tasks %}
         {% for task in tasks %}
-          <li class="{{ 'done' if task.completed else '' }}">
+          <li data-task-id="{{ task.id }}" class="{{ 'done' if task.completed else '' }}">
             <div class="task-info">
-              <span class="text">{{ task.title }}</span>
+              <!-- Read-only view -->
+              <span class="text view-only">{{ task.title }}</span>
               {% if task.due_date %}
-                <span class="due">Due: {{ task.due_date }}</span>
+                <span class="due view-only">Due: {{ task.due_date }}</span>
               {% endif %}
+
+              <!-- Inline edit form -->
+              <form class="edit-form" style="display:none; gap:0.5rem; align-items:center;" onsubmit="return false;">
+                <input type="text" name="title" value="{{ task.title }}" required style="flex:2; padding:0.5rem;">
+                <input type="date" name="due_date" value="{{ task.due_date and task.due_date.isoformat() }}" style="flex:1; padding:0.5rem;">
+                <button type="button" class="save-btn" style="flex:none; padding:0.5rem;">💾</button>
+                <button type="button" class="cancel-btn" style="flex:none; padding:0.5rem;">✖️</button>
+              </form>
             </div>
+
             <div class="actions">
               {% if not task.completed %}
                 <a href="{{ url_for('complete_task', task_id=task.id) }}"
                    class="complete" title="Mark Completed">✔️</a>
+                <a href="#" class="edit-btn" title="Edit Task">✏️</a>
               {% endif %}
               <a href="{{ url_for('delete_task', task_id=task.id) }}"
                  class="delete" title="Delete Task">🗑️</a>
@@ -261,6 +263,63 @@
       {% endif %}
     </ul>
   </div>
+
+  <script>
+  document.querySelectorAll('li[data-task-id]').forEach(li => {
+    const id      = li.dataset.taskId;
+    const viewEls = li.querySelectorAll('.view-only');
+    const form    = li.querySelector('.edit-form');
+    const editBtn = li.querySelector('.edit-btn');
+    const cancel  = li.querySelector('.cancel-btn');
+    const save    = li.querySelector('.save-btn');
+
+    // Enter edit mode
+    editBtn?.addEventListener('click', e => {
+      e.preventDefault();
+      viewEls.forEach(el => el.style.display = 'none');
+      form.style.display = 'flex';
+    });
+
+    // Cancel edit
+    cancel?.addEventListener('click', () => {
+      form.style.display = 'none';
+      viewEls.forEach(el => el.style.display = '');
+    });
+
+    // Save edit
+    save?.addEventListener('click', async () => {
+      const payload = {
+        title: form.title.value.trim(),
+        due_date: form.due_date.value
+      };
+      const resp = await fetch(`/api/tasks/${id}`, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      });
+      if (!resp.ok) return alert('Update failed');
+      const json = await resp.json();
+      // Update view
+      li.querySelector('.text.view-only').textContent = json.title;
+      const dueEl = li.querySelector('.due.view-only');
+      if (json.due_date) {
+        if (dueEl) {
+          dueEl.textContent = 'Due: ' + json.due_date;
+        } else {
+          const span = document.createElement('span');
+          span.className = 'due view-only';
+          span.textContent = 'Due: ' + json.due_date;
+          li.querySelector('.task-info').appendChild(span);
+        }
+      } else {
+        dueEl?.remove();
+      }
+      // Exit edit mode
+      form.style.display = 'none';
+      viewEls.forEach(el => el.style.display = '');
+    });
+  });
+  </script>
 
 </body>
 </html>
