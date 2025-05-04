@@ -1,0 +1,31 @@
+<!-- File: templates/layout.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>My Portfolio</title>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <nav class="bg-white shadow">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="/" class="text-xl font-bold">My Portfolio</a>
+      <div>
+        <a href="/" class="px-3">Home</a>
+        <a href="#projects" class="px-3">Projects</a>
+        <a href="#contact" class="px-3">Contact</a>
+      </div>
+    </div>
+  </nav>
+  <main class="container mx-auto px-4 py-8">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="bg-white shadow mt-16">
+    <div class="container mx-auto px-4 py-4 text-center">
+      &copy; {{ year }} Your Name
+    </div>
+  </footer>
+</body>
+</html>

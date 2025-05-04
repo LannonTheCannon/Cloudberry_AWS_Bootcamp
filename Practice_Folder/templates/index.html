@@ -1,0 +1,26 @@
+<!-- File: templates/index.html -->
+{% extends "layout.html" %}
+{% block content %}
+<header class="text-center mb-12">
+  <h1 class="text-4xl font-bold">Hello, I'm Lannon</h1>
+  <p class="mt-4 text-gray-600">A full-stack developer passionate about AI and data.</p>
+</header>
+
+<section id="projects" class="mb-12">
+  <h2 class="text-2xl font-bold mb-4">Projects</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {% for project in projects %}
+    <div class="bg-white rounded-lg shadow p-6">
+      <h3 class="text-xl font-semibold mb-2">{{ project.title }}</h3>
+      <p class="text-gray-600 mb-4">{{ project.description }}</p>
+      <a href="{{ project.url }}" class="text-blue-500 hover:underline">View project</a>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="text-2xl font-bold mb-4">Contact</h2>
+  <p>Feel free to reach out via <a href="https://www.linkedin.com/in/lannon-khau/" class="text-blue-500 hover:underline">LinkedIn</a>.</p>
+</section>
+{% endblock %}
