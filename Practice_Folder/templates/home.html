@@ -1,0 +1,26 @@
+<!-- templates/home.html -->
+
+<!-- includes a really nice animated name right at the forefront with animations
+and a text underneath. Gradient looks well done -->
+
+{% extends 'layout.html' %}
+{% block content %}
+<section class="h-screen flex items-center justify-center hero-bg text-center">
+  <div class="max-w-2xl px-6 fade-in">
+    <h1 class="
+      text-6xl font-extrabold mb-4
+      bg-clip-text text-transparent
+      bg-gradient-to-r from-brand via-fun to-pink-500
+      animate-text
+      -webkit-text-fill-color
+    ">
+      Lannon Khau
+    </h1>
+    <p class="text-xl mb-6">Crafting AI-powered experiences & data insights.</p>
+    <a href="/projects"
+       class="px-8 py-3 bg-brand text-white rounded-full hover:bg-fun transition">
+      Explore Projects
+    </a>
+  </div>
+</section>
+{% endblock %}

@@ -1,42 +1,52 @@
 <!DOCTYPE html>
-<html lang="en" class="transition-colors duration-300" x-data>
+<html lang="en" x-data class="dark:bg-gray-900 bg-white text-gray-900 dark:text-gray-100 scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lannon Khau | Portfolio</title>
 
-  <!-- Link your compiled Tailwind CSS -->
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
   <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
 
-  <!-- Alpine.js for interactivity -->
-  <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-
-  <title>My Portfolio</title>
+  <!-- Alpine.js -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- Optional: main.js -->
+  <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
-
-  <!-- Navbar with Dark Mode toggle -->
-  <nav class="bg-white dark:bg-gray-800 shadow">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="/" class="text-xl font-bold">My Portfolio</a>
-      <button @click="document.documentElement.classList.toggle('dark')"
-              aria-label="Toggle Dark Mode"
-              class="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-        🌓
+<body class="font-sans">
+  <!-- Navbar -->
+  <nav class="fixed w-full bg-white dark:bg-gray-800 z-50 shadow-md">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold tracking-tight">Lannon Khau</a>
+      <div class="space-x-4 hidden md:flex">
+        <a href="/projects" class="hover:text-brand transition">Projects</a>
+        <a href="/contact" class="hover:text-brand transition">Contact</a>
+        <button @click="document.documentElement.classList.toggle('dark')" aria-label="Toggle dark mode">
+          🌓
+        </button>
+      </div>
+      <button class="md:hidden" @click="open = !open" aria-label="Menu">
+        <span x-show="!open">☰</span>
+        <span x-show="open">✕</span>
       </button>
     </div>
   </nav>
+  <div x-data="{ open: false }" class="md:hidden mt-16 bg-white dark:bg-gray-800">
+    <a href="/projects" class="block px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">Projects</a>
+    <a href="/contact"  class="block px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">Contact</a>
+  </div>
 
-  <!-- Main content -->
-  <main class="container mx-auto px-4 py-8">
+  <main class="pt-24">
     {% block content %}{% endblock %}
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-white dark:bg-gray-800 shadow mt-16">
-    <div class="container mx-auto px-4 py-4 text-center">
-      &copy; {{ year }} Lannon Khau
-    </div>
+  <footer class="mt-16 py-8 text-center text-sm text-gray-500 dark:text-gray-400">
+    &copy; {{ year }} Lannon Khau. All rights reserved.
   </footer>
-
 </body>
 </html>

@@ -1,17 +1,11 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./templates/**/*.html",
-    "./static/js/**/*.js"   // if you add any JS files
-  ],
+  content: ['./templates/**/*.html'],
+  darkMode: 'class',
   theme: {
     extend: {
-      colors: {
-        brand: "#4f46e5", // your primary accent
-        fun:   "#f472b6", // your playful secondary
-      }
+      colors: { brand:'rgb(67,7,174)', fun:'rgb(255,255,255)' },
+      fontFamily:{ sans:['Poppins','sans-serif'] },
     }
   },
-  darkMode: "class",
   plugins: []
-}
+};
