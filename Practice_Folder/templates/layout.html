@@ -1,31 +1,42 @@
-<!-- File: templates/layout.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="transition-colors duration-300" x-data>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Tailwind via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Link your compiled Tailwind CSS -->
+  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+
+  <!-- Alpine.js for interactivity -->
+  <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
   <title>My Portfolio</title>
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <nav class="bg-white shadow">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
+
+  <!-- Navbar with Dark Mode toggle -->
+  <nav class="bg-white dark:bg-gray-800 shadow">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
       <a href="/" class="text-xl font-bold">My Portfolio</a>
-      <div>
-        <a href="/" class="px-3">Home</a>
-        <a href="#projects" class="px-3">Projects</a>
-        <a href="#contact" class="px-3">Contact</a>
-      </div>
+      <button @click="document.documentElement.classList.toggle('dark')"
+              aria-label="Toggle Dark Mode"
+              class="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+        🌓
+      </button>
     </div>
   </nav>
+
+  <!-- Main content -->
   <main class="container mx-auto px-4 py-8">
     {% block content %}{% endblock %}
   </main>
-  <footer class="bg-white shadow mt-16">
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-gray-800 shadow mt-16">
     <div class="container mx-auto px-4 py-4 text-center">
-      &copy; {{ year }} Your Name
+      &copy; {{ year }} Lannon Khau
     </div>
   </footer>
+
 </body>
 </html>

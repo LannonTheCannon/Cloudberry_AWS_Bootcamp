@@ -1,0 +1,22 @@
+/* Entry-point for Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom utilities */
+@layer utilities {
+  /* Sliding gradient keyframes */
+  @keyframes text {
+    0%, 100% { background-position: 0% center; }
+    50%      { background-position: 100% center; }
+  }
+  /* Utility to apply the sliding gradient */
+  .animate-text {
+    background-size: 200% auto;
+    animation: text 4s linear infinite;
+  }
+  /* Safari fix for clipped text */
+  .-webkit-text-fill-color {
+    -webkit-text-fill-color: transparent;
+  }
+}
