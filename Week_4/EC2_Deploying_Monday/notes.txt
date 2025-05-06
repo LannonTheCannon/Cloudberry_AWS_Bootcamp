@@ -1,0 +1,17 @@
+1) Designing Data-Intensive Applications - Martin Kapp
+
+2) Change source-typefrom anywhere to custom use your own
+
+3) sudo apt update && sudo apt upgrade -y
+
+4) run sudo apt install python3-pip
+
+5) set up the venv
+    sudo apt install python -ython3 -y
+
+6) whats the diff between terminal and ubuntu?
+
+7) you're logging into an EC2 instance from the dir where you added your PEM file
+  - From there we opened ubuntu from our terminal and created a public key from
+  the private key we got from AWS. Then, we cloned our repo from github, and
+  finally reconfigure the IP that we can find on the AWS website?
