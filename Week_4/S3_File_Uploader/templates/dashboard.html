@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DataForge Dashboard</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2d3436;
+      font-size: 36px;
+      font-weight: 700;
+    }
+
+    form.upload-form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 40px;
+    }
+
+    input[type="file"] {
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .upload-btn {
+      background-color: #0984e3;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .upload-btn:hover {
+      background-color: #74b9ff;
+    }
+
+    .flash-message {
+      text-align: center;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .flash-success {
+      background-color: #dff9fb;
+      color: #00b894;
+    }
+
+    .flash-danger {
+      background-color: #ffeaa7;
+      color: #d63031;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #0984e3;
+      color: white;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    tr:hover {
+      background-color: #f1f2f6;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-left: 5px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .preview-btn {
+      background-color: #00b894;
+      color: white;
+    }
+
+    .preview-btn:hover {
+      background-color: #55efc4;
+    }
+
+    .delete-btn {
+      background-color: #d63031;
+      color: white;
+    }
+
+    .delete-btn:hover {
+      background-color: #ff7675;
+    }
+
+    .no-files {
+      text-align: center;
+      font-size: 18px;
+      color: #636e72;
+      margin-top: 20px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>DataForge Dashboard</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash-message flash-{{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form class="upload-form" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file">
+      <button class="upload-btn" type="submit">Upload File</button>
+    </form>
+
+    {% if files %}
+    <table>
+      <thead>
+        <tr>
+          <th>Filename</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for file in files %}
+        <tr>
+          <td>{{ file }}</td>
+          <td>
+            <a href="{{ url_for('preview_file', filename=file) }}" class="btn preview-btn">Preview</a>
+            <a href="{{ url_for('delete_file', filename=file) }}" class="btn delete-btn">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <div class="no-files">No files uploaded yet.</div>
+    {% endif %}
+  </div>
+</body>
+</html>

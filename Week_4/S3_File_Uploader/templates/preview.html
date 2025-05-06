@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Preview - {{ filename }}</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      width: 90%;
+      margin: 40px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+      box-sizing: border-box;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #2d3436;
+      margin-bottom: 30px;
+    }
+
+    .back-btn {
+      display: block;
+      width: fit-content;
+      margin: 30px auto;
+      background-color: #0984e3;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #74b9ff;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
+
+    table.dataframe {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    table.dataframe th, table.dataframe td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+
+    table.dataframe th {
+      background-color: #0984e3;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    table.dataframe tr:nth-child(even) {
+      background-color: #f5f6fa;
+    }
+
+    table.dataframe tr:hover {
+      background-color: #dff9fb;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Preview: {{ filename }}</h1>
+
+    <h2>First Few Rows</h2>
+    <div class="table-container">
+      {{ preview|safe }}
+    </div>
+
+    <h2>Summary Statistics</h2>
+    <div class="table-container">
+      {{ describe|safe }}
+    </div>
+
+    <a href="{{ url_for('dashboard') }}" class="back-btn">← Back to Dashboard</a>
+  </div>
+</body>
+</html>
