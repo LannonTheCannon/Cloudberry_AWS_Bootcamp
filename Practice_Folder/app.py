@@ -5,7 +5,7 @@ app.secret_key = 'replace-with-secure-key'
 
 # Data stub
 projects = [
-    { 'id': 1, 'title': 'Project One', 'description': 'An AI chatbot demo.', 'url': '#', 'tags': ['python','ai'] },
+    { 'id': 1, 'title': 'Project One', 'description': 'An AI chatbot demo.', 'url': 'https://data-forge-lite.streamlit.app', 'tags': ['python','ai'] },
     { 'id': 2, 'title': 'Project Two', 'description': 'Interactive data viz.', 'url': '#', 'tags': ['javascript','visualization'] },
 ]
 
