@@ -1,0 +1,4 @@
+1) RDS
+
+- web apps always need a reliable, scalable database
+-

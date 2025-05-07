@@ -29,4 +29,18 @@
     50%    { background-position:100% center; }
   }
   .-webkit-text-fill-color { -webkit-text-fill-color: transparent; }
+
+  #stats { opacity: 0; transform: translateY(20px); animation: fadeIn 0.8s ease-out forwards 0.3s; }
+  @keyframes fadeIn { to { opacity:1; transform: translateY(0); } }
+
+  .fade-word {
+  @apply inline-block transition-opacity duration-500;
+  }
+
+  /* 3D Tilt Card Utility */
+  .tilt-card {
+  @apply transform-gpu transition-transform duration-300 ease-out;
+  }
+
+
 }

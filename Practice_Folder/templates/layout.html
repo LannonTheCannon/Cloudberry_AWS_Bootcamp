@@ -1,52 +1,45 @@
 <!DOCTYPE html>
-<html lang="en" x-data class="dark:bg-gray-900 bg-white text-gray-900 dark:text-gray-100 scroll-smooth">
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Lannon Khau | Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <title>{% block title %}Lannon Khau Portfolio{% endblock %}</title>
 
-  <!-- Tailwind CSS -->
-  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+  <!-- Google Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap"
+    rel="stylesheet"
+  />
 
-  <!-- Alpine.js -->
-  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <!-- Optional: main.js -->
-  <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <!-- Tailwind-generated CSS -->
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/main.css') }}"
+  />
+
+  <!-- AOS for scroll-triggered animations -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/aos@2/dist/aos.css"
+  />
+
+  {% block head %}{% endblock %}
 </head>
-<body class="font-sans">
-  <!-- Navbar -->
-  <nav class="fixed w-full bg-white dark:bg-gray-800 z-50 shadow-md">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="/" class="text-2xl font-bold tracking-tight">Lannon Khau</a>
-      <div class="space-x-4 hidden md:flex">
-        <a href="/projects" class="hover:text-brand transition">Projects</a>
-        <a href="/contact" class="hover:text-brand transition">Contact</a>
-        <button @click="document.documentElement.classList.toggle('dark')" aria-label="Toggle dark mode">
-          🌓
-        </button>
-      </div>
-      <button class="md:hidden" @click="open = !open" aria-label="Menu">
-        <span x-show="!open">☰</span>
-        <span x-show="open">✕</span>
-      </button>
-    </div>
-  </nav>
-  <div x-data="{ open: false }" class="md:hidden mt-16 bg-white dark:bg-gray-800">
-    <a href="/projects" class="block px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">Projects</a>
-    <a href="/contact"  class="block px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">Contact</a>
-  </div>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased">
 
-  <main class="pt-24">
-    {% block content %}{% endblock %}
-  </main>
+  {% block content %}{% endblock %}
 
-  <footer class="mt-16 py-8 text-center text-sm text-gray-500 dark:text-gray-400">
-    &copy; {{ year }} Lannon Khau. All rights reserved.
-  </footer>
+  <!-- AOS init -->
+  <script src="https://unpkg.com/aos@2/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true, duration: 800 });
+  </script>
+
+  {% block scripts %}
+  <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/rotator.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/tilt.js') }}"></script>
+  {% endblock %}
 </body>
 </html>
