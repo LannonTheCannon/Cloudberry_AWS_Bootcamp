@@ -1,15 +1,111 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session, g
+from flask import (
+    Flask, render_template, request, redirect,
+    url_for, flash, session, g
+)
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+from functools import wraps
+
+#
+# ─── APP & DB SETUP ─────────────────────────────────────────────────────────────
+#
 
 app = Flask(__name__)
 app.secret_key = 'SuperSecretKey'
 
-# Data stub
+# SQLite database for auth
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portfolio_auth.sqlite3'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+#
+# ─── MODELS ─────────────────────────────────────────────────────────────────────
+#
+
+class User(db.Model):
+    __tablename__ = 'user'
+    id            = db.Column(db.Integer, primary_key=True)
+    username      = db.Column(db.String(80), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
+
+    def set_password(self, pw):
+        self.password_hash = generate_password_hash(pw)
+
+    def check_password(self, pw):
+        return check_password_hash(self.password_hash, pw)
+
+#
+# ─── AUTH HELPERS ───────────────────────────────────────────────────────────────
+#
+
+@app.before_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+    g.user  = User.query.get(user_id) if user_id else None
+
+def login_required(view):
+    @wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            # redirect to login, preserving next=...
+            return redirect(url_for('login', next=request.path))
+        return view(**kwargs)
+    return wrapped_view
+
+#
+# ─── AUTH ROUTES ────────────────────────────────────────────────────────────────
+#
+
+@app.route('/register', methods=['GET','POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        if not username or not password:
+            flash('Username and password are required.')
+        elif User.query.filter_by(username=username).first():
+            flash('Username already taken.')
+        else:
+            user = User(username=username)
+            user.set_password(password)
+            db.session.add(user)
+            db.session.commit()
+            flash('Registration successful. Please log in.')
+            return redirect(url_for('login'))
+    return render_template('auth.html', action='Register')
+
+@app.route('/login', methods=['GET','POST'])
+def login():
+    next_page = request.args.get('next') or request.form.get('next')
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user     = User.query.filter_by(username=username).first()
+        if user is None or not user.check_password(password):
+            flash('Invalid credentials.')
+        else:
+            session.clear()
+            session['user_id'] = user.id
+            # send them back to where they wanted to go
+            return redirect(next_page or url_for('home'))
+
+    return render_template('auth.html', action='Log In', next=next_page)
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
+
+#
+# ─── PORTFOLIO DATA & ROUTES ──────────────────────────────────────────────────
+#
+
 projects = [
     {
         'id': 1,
         'title': 'Data Forge Lite',
         'description': 'An AI-powered Streamlit app that lets users explore and clean datasets with mind maps, natural language queries, and dynamic visual storytelling — all without writing code.',
-        'url': 'https://data-forge-lite.streamlit.app',
+        'url': '/data-forge-lite',
         'tags': ['python', 'AI', 'streamlit', 'data science']
     },
     {
@@ -19,7 +115,6 @@ projects = [
         'url': 'https://lannoncan.pythonanywhere.com',
         'tags': ['python', 'flask', 'sqlite', 'tailwindcss', 'html']
     },
-
 ]
 
 @app.route('/')
@@ -33,13 +128,30 @@ def show_projects():
 @app.route('/contact', methods=['GET','POST'])
 def contact():
     if request.method == 'POST':
-        name = request.form.get('name')
-        email = request.form.get('email')
+        name    = request.form.get('name')
+        email   = request.form.get('email')
         message = request.form.get('message')
         # Here you'd send email or store message
         flash('Thanks for your message!', 'success')
         return redirect(url_for('contact'))
     return render_template('contact.html')
 
+#
+# ─── PROTECTED STREAMLIT GATE ─────────────────────────────────────────────────
+#
+
+@app.route('/data-forge-lite')
+@login_required
+def data_forge_lite():
+    # user is logged in, pass through
+    return redirect("https://data-forge-lite.streamlit.app")
+
+#
+# ─── APP ENTRYPOINT ────────────────────────────────────────────────────────────
+#
+
 if __name__ == '__main__':
+    # create auth tables if they don't exist
+    with app.app_context():
+        db.create_all()
     app.run(host='0.0.0.0', port=5000, debug=True)

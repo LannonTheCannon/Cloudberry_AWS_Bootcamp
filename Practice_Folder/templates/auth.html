@@ -12,6 +12,7 @@
       align-items: center;
       height: 100vh;
       margin: 0;
+      position: relative;
     }
     .card {
       background: #fff;
@@ -19,6 +20,7 @@
       border-radius: 0.5rem;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       width: 320px;
+      z-index: 1;
     }
     h1 {
       margin-bottom: 1rem;
@@ -64,9 +66,27 @@
     .toggle a:hover {
       text-decoration: underline;
     }
+    .home-btn {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-decoration: none;
+      color: #333;
+      font-size: 0.9rem;
+    }
+    .home-btn:hover {
+      background: #f9f9f9;
+    }
   </style>
 </head>
 <body>
+  <!-- Home button at top -->
+  <a href="{{ url_for('home') }}" class="home-btn">← Home</a>
+
   <div class="card">
     <h1>{{ action }}</h1>
 
@@ -81,16 +101,18 @@
     {% endwith %}
 
     <form method="post">
-      <input name="username"    type="text"     placeholder="Username" required>
-      <input name="password"    type="password" placeholder="Password" required>
+      <!-- Preserve redirect target -->
+      <input type="hidden" name="next" value="{{ next or '' }}">
+      <input name="username" type="text" placeholder="Username" required>
+      <input name="password" type="password" placeholder="Password" required>
       <button type="submit">{{ action }}</button>
     </form>
 
     <div class="toggle">
       {% if action == 'Log In' %}
-        Don’t have an account? <a href="{{ url_for('register') }}">Register</a>
+        Don’t have an account? <a href="{{ url_for('register') }}?next={{ next }}">Register</a>
       {% else %}
-        Already registered? <a href="{{ url_for('login') }}">Log In</a>
+        Already registered? <a href="{{ url_for('login') }}?next={{ next }}">Log In</a>
       {% endif %}
     </div>
   </div>
