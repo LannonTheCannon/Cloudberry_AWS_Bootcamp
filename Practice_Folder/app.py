@@ -111,7 +111,7 @@ projects = [
         'title': 'Data Forge Lite',
         'description': 'An AI-powered Streamlit app that lets users explore and clean datasets with mind maps, natural language queries, and dynamic visual storytelling — all without writing code.',
         'url': '/data-forge-lite',
-        'tags': ['python', 'AI', 'streamlit', 'data science']
+        'tags': ['python', 'AI', 'streamlit', 'data science', 'Healthy Science']
     },
     {
         'id': 2,
