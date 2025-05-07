@@ -99,8 +99,6 @@ def home():
         tasks = Task.query.order_by(Task.id).all()
     return render_template('todo.html', tasks=tasks, active_filter=status)
 
-
-
 @app.route('/add', methods=['POST'])
 @login_required
 def add_task():
@@ -164,7 +162,6 @@ def edit_task(task_id):
 
     # GET → render the edit form
     return render_template('edit_task.html', task=task)
-
 
 @app.route('/delete/<int:task_id>')
 @login_required
