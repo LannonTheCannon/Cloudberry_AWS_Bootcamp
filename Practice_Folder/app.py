@@ -12,14 +12,14 @@ projects = [
         'url': 'https://data-forge-lite.streamlit.app',
         'tags': ['python', 'AI', 'streamlit', 'data science']
     },
-
     {
         'id': 2,
-        'title': 'Data Forge Plus',
-        'description': 'An AI-powered Streamlit app that lets users explore and clean datasets with mind maps, natural language queries, and dynamic visual storytelling — all without writing code.',
-        'url': 'https://data-forge-lite.streamlit.app',
-        'tags': ['python', 'AI', 'streamlit', 'data science']
+        'title': 'Task Master Plus',
+        'description': 'A Flask & Tailwind CSS–powered task manager that lets users add, edit, update, and delete tasks—all persisted to an SQLite database.',
+        'url': 'https://task-master-plus.example.com',
+        'tags': ['python', 'flask', 'sqlite', 'tailwindcss', 'html']
     },
+    
 ]
 
 @app.route('/')
