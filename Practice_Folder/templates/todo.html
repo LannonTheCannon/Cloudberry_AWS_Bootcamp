@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TaskFlow • Your Ultimate Productivity Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* COLOR PALETTE */
+    :root {
+      --bg: #f0f2f5;
+      --card-bg: #ffffff;
+      --primary: #4f46e5;
+      --primary-light: #6366f1;
+      --accent: #f472b6;
+      --text-dark: #111827;
+      --text-light: #6b7280;
+      --danger: #ef4444;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    /* GLOBAL RESET */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 640px;
+    }
+
+    /* HEADER */
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .header p {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: var(--text-light);
+    }
+
+    /* CONTROLS BAR */
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .controls form {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 2fr 1fr auto;
+      gap: 0.75rem;
+    }
+    .controls input[type="text"],
+    .controls input[type="date"] {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      transition: border-color 0.2s;
+    }
+    .controls input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    .controls button,
+    .controls .clear-all {
+      padding: 0.75rem 1.25rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .controls button {
+      background: var(--primary);
+      color: #fff;
+    }
+    .controls button:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+    .controls .clear-all {
+      background: var(--danger);
+      color: #fff;
+    }
+    .controls .clear-all:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    /* TASK LIST */
+    ul {
+      list-style: none;
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card-bg);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 12px var(--shadow);
+      transition: transform 0.1s, box-shadow 0.2s;
+    }
+    li:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px var(--shadow);
+    }
+    li.done {
+      opacity: 0.6;
+    }
+
+    .task-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .task-info .text {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .task-info .due {
+      font-size: 0.875rem;
+      color: var(--text-light);
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .actions a {
+      font-size: 1.25rem;
+      text-decoration: none;
+      transition: color 0.2s, transform 0.1s;
+    }
+    .actions a.complete {
+      color: var(--accent);
+    }
+    .actions a.delete {
+      color: var(--danger);
+    }
+    .actions a:hover {
+      color: var(--primary);
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header class="header">
+      <h1>TaskFlow</h1>
+    </header>
+
+    <div class="controls">
+      <form action="/add" method="post">
+        <input type="text" name="task" placeholder="What’s next on your agenda?" required>
+        <input type="date" name="due_date" required>
+        <button type="submit">Add Task</button>
+      </form>
+      <button class="clear-all" onclick="location.href='/clear_all'">Clear All</button>
+    </div>
+
+    <ul>
+      {% if tasks %}
+        {% for task in tasks %}
+          <li class="{{ 'done' if task.completed else '' }}">
+            <div class="task-info">
+              <span class="text">{{ task.text }}</span>
+              <span class="due">Due: {{ task.due_date }}</span>
+            </div>
+            <div class="actions">
+              {% if not task.completed %}
+                <a href="/complete/{{ loop.index0 }}" class="complete" title="Mark Completed">✔️</a>
+              {% endif %}
+              <a href="/delete/{{ loop.index0 }}" class="delete" title="Delete Task">🗑️</a>
+            </div>
+          </li>
+        {% endfor %}
+      {% else %}
+        <li>
+          <div class="task-info">
+            <span class="text">No tasks yet.</span>
+            <span class="due">Add something above to get started.</span>
+          </div>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+
+</body>
+</html>

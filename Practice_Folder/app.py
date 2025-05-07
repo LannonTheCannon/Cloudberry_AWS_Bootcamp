@@ -16,10 +16,10 @@ projects = [
         'id': 2,
         'title': 'Task Master Plus',
         'description': 'A Flask & Tailwind CSS–powered task manager that lets users add, edit, update, and delete tasks—all persisted to an SQLite database.',
-        'url': 'https://task-master-plus.example.com',
+        'url': 'https://lannoncan.pythonanywhere.com',
         'tags': ['python', 'flask', 'sqlite', 'tailwindcss', 'html']
     },
-    
+
 ]
 
 @app.route('/')
