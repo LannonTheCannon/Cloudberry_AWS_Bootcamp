@@ -47,7 +47,6 @@ def login_required(view):
     @wraps(view)
     def wrapped_view(**kwargs):
         if g.user is None:
-            # redirect to login, preserving next=...
             return redirect(url_for('login', next=request.path))
         return view(**kwargs)
     return wrapped_view
@@ -71,11 +70,12 @@ def register():
             db.session.add(user)
             db.session.commit()
             flash('Registration successful. Please log in.')
-            return redirect(url_for('login'))
-    return render_template('auth.html', action='Register')
+            return redirect(url_for('login', next=request.args.get('next')))
+    return render_template('auth.html', action='Register', next=request.args.get('next'))
 
 @app.route('/login', methods=['GET','POST'])
 def login():
+    # Grab next from either the query string or the hidden form field
     next_page = request.args.get('next') or request.form.get('next')
     if request.method == 'POST':
         username = request.form['username']
@@ -86,9 +86,8 @@ def login():
         else:
             session.clear()
             session['user_id'] = user.id
-            # send them back to where they wanted to go
+            # Redirect to next_page if set, else home
             return redirect(next_page or url_for('home'))
-
     return render_template('auth.html', action='Log In', next=next_page)
 
 @app.route('/logout')
@@ -131,7 +130,6 @@ def contact():
         name    = request.form.get('name')
         email   = request.form.get('email')
         message = request.form.get('message')
-        # Here you'd send email or store message
         flash('Thanks for your message!', 'success')
         return redirect(url_for('contact'))
     return render_template('contact.html')
@@ -143,7 +141,7 @@ def contact():
 @app.route('/data-forge-lite')
 @login_required
 def data_forge_lite():
-    # user is logged in, pass through
+    # After login, immediately redirect to the Streamlit app
     return redirect("https://data-forge-lite.streamlit.app")
 
 #
@@ -151,7 +149,7 @@ def data_forge_lite():
 #
 
 if __name__ == '__main__':
-    # create auth tables if they don't exist
+    # create auth tables if they don’t exist
     with app.app_context():
         db.create_all()
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5002, debug=True)
