@@ -14,7 +14,13 @@ app = Flask(__name__)
 app.secret_key = 'SuperSecretKey'
 
 # SQLite database for auth
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portfolio_auth.sqlite3'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portfolio_auth.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    'mysql+pymysql://admin:Ismloao1117@'
+    'mydbinstance.carwykiaw.us-east-1.rds.amazonaws.com:3306'
+    'mydb'
+)
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
