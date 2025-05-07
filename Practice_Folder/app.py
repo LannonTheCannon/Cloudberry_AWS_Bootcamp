@@ -74,8 +74,16 @@ def logout():
 
 # Data stub
 projects = [
-    { 'id': 1, 'title': 'Project One', 'description': 'An AI chatbot demo.', 'url': 'https://data-forge-lite.streamlit.app', 'tags': ['python','ai'] },
-    { 'id': 2, 'title': 'Project Two', 'description': 'Interactive data viz.', 'url': 'https://data-forge-lite.streamlit.app', 'tags': ['javascript','visualization'] },
+    {
+        'id': 1,
+        'title': 'Data Forge Lite',
+        'description': 'An AI-powered Streamlit app that lets users explore and clean datasets with mind maps, natural language queries, and dynamic visual storytelling — all without writing code.',
+        'url': 'https://data-forge-lite.streamlit.app',
+        'tags': ['python', 'AI', 'streamlit', 'data science']
+    },
+
+    # { 'id': 2, 'title': 'Project Two', 'description': 'Interactive data viz.', 'url': 'https://data-forge-lite.streamlit.app', 'tags': ['javascript','visualization'] },
+
 ]
 
 @app.route('/')
