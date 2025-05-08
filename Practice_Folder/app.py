@@ -153,10 +153,8 @@ def data_forge_lite():
 # ─── ENTRYPOINT ────────────────────────────────────────────────────────────────
 
 if __name__ == '__main__':
-
-    # The hash for user '1'
+    from werkzeug.security import check_password_hash
     hash = "scrypt:32768:8:1$IfznKm3JrgRJakQc$a220e7ac804fd199d30e9360bceb95dc0b4b1711dce1db299979eb0fc2c5b4bed80d986340245192e26efdb7597625"
-
-    # Try with the password you think was used
-    check_password_hash(hash, "a")
+    result = check_password_hash(hash, "a")
+    print(f"[DEBUG] Password 'a' matches hash? {result}")
     app.run(host='0.0.0.0', port=5000, debug=True)
