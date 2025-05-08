@@ -34,6 +34,16 @@ class User(db.Model):
     def check_password(self, pw):
         return check_password_hash(self.password_hash, pw)
 
+@app.route('/debug-users-full')
+def debug_users_full():
+    users = User.query.all()
+    html = "<h2>Registered Users (w/ hashes)</h2><ul>"
+    for u in users:
+        html += f"<li><b>{u.username}</b>: {u.password_hash}</li>"
+    html += "</ul>"
+    return html
+
+
 # ─── HELPERS ─────────────────────────────────────────────────────────────────────
 
 @app.before_request
