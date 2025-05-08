@@ -79,7 +79,8 @@ def register():
         username = request.form['username'].strip()
         password = request.form['password'].strip()
 
-        app.logger.debug(f"[REGISTER] Username: {username}, Password: '{password}'")  # Keep for dev
+        # Log exact byte-level details for certainty
+        app.logger.debug(f"[REGISTER] Username: {username}, Password bytes: {list(password.encode())}")
 
         if not username or not password:
             flash('Username and password are required.')
@@ -93,6 +94,7 @@ def register():
             flash('Registration successful. Please log in.')
             return redirect(url_for('login', next=request.args.get('next')))
     return render_template('auth.html', action='Register', next=request.args.get('next'))
+
 
 @app.route('/login', methods=['GET','POST'])
 def login():
