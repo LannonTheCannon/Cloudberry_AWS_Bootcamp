@@ -155,9 +155,8 @@ def data_forge_lite():
 if __name__ == '__main__':
     from werkzeug.security import check_password_hash
 
-    if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
-        hash = "scrypt:32768:8:1$IfznKm3JrgRJakQc$a220e7ac804fd199d30e9360bceb95dc0b4b1711dce1db299979eb0fc2c5b4bed80d986340245192e26efdb7597625"
-        result = check_password_hash(hash, "a")
-        app.logger.debug(f"[HASH CHECK] Password 'a' matches hash? {result}")
+    hash = "scrypt:32768:8:1$IfznKm3JrgRJakQc$a220e7ac804fd199d30e9360bceb95dc0b4b1711dce1db299979eb0fc2c5b4bed80d986340245192e26efdb7597625"
+    result = check_password_hash(hash, "a")
+    app.logger.debug(f"[HASH CHECK] Password 'a' matches hash? {result}")
 
     app.run(host='0.0.0.0', port=5000, debug=True)
