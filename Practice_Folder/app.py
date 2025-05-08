@@ -21,8 +21,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portfolio_auth.sqlite3'
 #     'mydbinstance.carwyykiawaw.us-east-1.rds.amazonaws.com:3306/mydb'
 # )
 
-# :) LOOK AT ME IM MR. MEESEEKS
-
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
