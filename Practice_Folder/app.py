@@ -12,7 +12,8 @@ import logging
 app = Flask(__name__)
 app.secret_key = 'SuperSecretKey'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:Ismloao1117@mydbinstance.carwyykiawaw.us-east-1.rds.amazonaws.com:3306/mydb'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:Ismloao1117@mydbinstance.carwyykiawaw.us-east-1.rds.amazonaws.com:3306/mydb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///alc_db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -176,5 +177,7 @@ def data_forge_lite():
 # ─── ENTRYPOINT ────────────────────────────────────────────────────────────────
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)
+    with app.app_context():
+        db.create_all()
+    app.run(host='0.0.0.0', port=5001, debug=True, use_reloader=False)
 
