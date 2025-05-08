@@ -14,12 +14,12 @@ app = Flask(__name__)
 app.secret_key = 'SuperSecretKey'
 
 # SQLite database for auth
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portfolio_auth.sqlite3'
-app.config['SQLALCHEMY_DATABASE_URI'] = (
-    'mysql+pymysql://admin:Ismloao1117@'
-    'mydbinstance.carwyykiawaw.us-east-1.rds.amazonaws.com:3306/mydb'
-)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portfolio_auth.sqlite3'
 
+# app.config['SQLALCHEMY_DATABASE_URI'] = (
+#     'mysql+pymysql://admin:Ismloao1117@'
+#     'mydbinstance.carwyykiawaw.us-east-1.rds.amazonaws.com:3306/mydb'
+# )
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -111,7 +111,7 @@ projects = [
         'title': 'Data Forge Lite',
         'description': 'An AI-powered Streamlit app that lets users explore and clean datasets with mind maps, natural language queries, and dynamic visual storytelling — all without writing code.',
         'url': '/data-forge-lite',
-        'tags': ['python', 'AI', 'streamlit', 'data science', 'Healthy Science']
+        'tags': ['python', 'AI', 'streamlit', 'data science']
     },
     {
         'id': 2,
@@ -158,4 +158,10 @@ if __name__ == '__main__':
     # create auth tables if they don’t exist
     with app.app_context():
         db.create_all()
-    app.run(host='0.0.0.0', port=5000, debug=True)
+        if not User.query.filter_by(username='test').first():
+            u = User(username='test')
+            u.set_password('test123')
+            db.session.add(u)
+            db.session.commit()
+
+    app.run(host='0.0.0.0', port=5002, debug=True)
