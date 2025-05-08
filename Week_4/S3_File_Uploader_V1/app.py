@@ -47,7 +47,6 @@ s3_client = boto3.client('s3',
 # {% endwith %}
 # """
 
-
 @app.route('/', methods=['GET', 'POST'])
 def dashboard():
     if request.method == 'POST':
