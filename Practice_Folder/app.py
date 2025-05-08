@@ -34,7 +34,7 @@ class User(db.Model):
     def set_password(self, pw):
         self.password_hash = generate_password_hash(pw, method='pbkdf2:sha256')
         app.logger.debug(f"[SET PASSWORD] Raw: '{pw}' → Hash: {self.password_hash}")
-        
+
     def check_password(self, pw):
         return check_password_hash(self.password_hash, pw)
 
@@ -102,6 +102,7 @@ def register():
 @app.route('/login', methods=['GET','POST'])
 def login():
     next_page = request.args.get('next') or request.form.get('next')
+
     if request.method == 'POST':
         username = request.form['username'].strip()
         password = request.form['password'].strip()
@@ -121,7 +122,12 @@ def login():
         else:
             session.clear()
             session['user_id'] = user.id
-            return redirect(next_page or url_for('home'))
+
+            if not next_page or next_page == 'None':
+                next_page = url_for('home')
+
+            return redirect(next_page)
+
     return render_template('auth.html', action='Log In', next=next_page)
 
 @app.route('/logout')
