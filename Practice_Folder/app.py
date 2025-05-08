@@ -92,6 +92,7 @@ def register():
             user.set_password(password)
             db.session.add(user)
             db.session.commit()
+            db.session.expire_all()  # ← THIS LINE IS THE KEY
             flash('Registration successful. Please log in.')
             return redirect(url_for('login', next=request.args.get('next')))
     return render_template('auth.html', action='Register', next=request.args.get('next'))
