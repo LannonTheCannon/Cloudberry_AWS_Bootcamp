@@ -45,6 +45,16 @@ def debug_users_full():
     html += "</ul>"
     return html
 
+@app.route('/check-hash')
+def check_hash():
+    from werkzeug.security import check_password_hash
+    h = request.args.get('hash')
+    pw = request.args.get('pw')
+    if not h or not pw:
+        return "Usage: /check-hash?hash=...&pw=..."
+    match = check_password_hash(h, pw)
+    return f"<p>Password match? <b>{match}</b></p>"
+
 
 # ─── HELPERS ─────────────────────────────────────────────────────────────────────
 
@@ -73,6 +83,7 @@ def register():
         elif User.query.filter_by(username=username).first():
             flash('Username already taken.')
         else:
+            app.logger.debug(f"[REGISTER] Username: {username}, Password: '{password}'")
             user = User(username=username)
             user.set_password(password)
             db.session.add(user)
