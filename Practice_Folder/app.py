@@ -78,12 +78,14 @@ def register():
     if request.method == 'POST':
         username = request.form['username'].strip()
         password = request.form['password'].strip()
+
+        app.logger.debug(f"[REGISTER] Username: {username}, Password: '{password}'")  # Keep for dev
+
         if not username or not password:
             flash('Username and password are required.')
         elif User.query.filter_by(username=username).first():
             flash('Username already taken.')
         else:
-            app.logger.debug(f"[REGISTER] Username: {username}, Password: '{password}'")
             user = User(username=username)
             user.set_password(password)
             db.session.add(user)
