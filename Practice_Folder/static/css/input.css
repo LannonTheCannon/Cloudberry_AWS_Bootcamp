@@ -42,5 +42,13 @@
   @apply transform-gpu transition-transform duration-300 ease-out;
   }
 
+  @keyframes text-glow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  }
+  .animate-text-glow {
+    animation: text-glow 6s ease infinite;
+    background-size: 200% 200%;
+  }
 
 }
