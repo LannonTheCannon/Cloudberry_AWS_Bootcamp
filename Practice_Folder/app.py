@@ -11,6 +11,9 @@ import logging
 
 app = Flask(__name__)
 app.secret_key = 'SuperSecretKey'
+# # Database configuration
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///alc_db.sqlite3'
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:Ismloao1117@mydbinstance.carwyykiawaw.us-east-1.rds.amazonaws.com:3306/mydb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
