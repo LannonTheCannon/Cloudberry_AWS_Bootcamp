@@ -81,19 +81,29 @@ def register():
 
 @app.route('/login', methods=['GET','POST'])
 def login():
-    # Grab next from either the query string or the hidden form field
     next_page = request.args.get('next') or request.form.get('next')
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        user     = User.query.filter_by(username=username).first()
+        username = request.form['username'].strip()
+        password = request.form['password'].strip()
+
+        print(f"[DEBUG] Attempt login for username: '{username}' with password: '{password}'")
+
+        user = User.query.filter_by(username=username).first()
+
+        if user:
+            print(f"[DEBUG] Found user in DB: {user.username}")
+            print(f"[DEBUG] Stored hash: {user.password_hash}")
+            print(f"[DEBUG] Password match? {user.check_password(password)}")
+        else:
+            print(f"[DEBUG] No user found with username '{username}'")
+
         if user is None or not user.check_password(password):
             flash('Invalid credentials.')
         else:
             session.clear()
             session['user_id'] = user.id
-            # Redirect to next_page if set, else home
             return redirect(next_page or url_for('home'))
+
     return render_template('auth.html', action='Log In', next=next_page)
 
 @app.route('/logout')
