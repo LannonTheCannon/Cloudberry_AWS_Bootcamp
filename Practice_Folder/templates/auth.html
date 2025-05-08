@@ -1,98 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>{{ action }}</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #f0f2f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      position: relative;
-    }
-    .card {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      width: 320px;
-      z-index: 1;
-    }
-    h1 {
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-      color: #333;
-    }
-    .flash {
-      color: #e00;
-      margin-bottom: 1rem;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    input {
-      padding: 0.5rem;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 0.25rem;
-    }
-    button {
-      padding: 0.5rem;
-      font-size: 1rem;
-      background: #4f46e5;
-      color: white;
-      border: none;
-      border-radius: 0.25rem;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #6366f1;
-    }
-    .toggle {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      text-align: center;
-    }
-    .toggle a {
-      color: #4f46e5;
-      text-decoration: none;
-    }
-    .toggle a:hover {
-      text-decoration: underline;
-    }
-    .home-btn {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      background: #fff;
-      padding: 0.5rem 1rem;
-      border-radius: 0.25rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      text-decoration: none;
-      color: #333;
-      font-size: 0.9rem;
-    }
-    .home-btn:hover {
-      background: #f9f9f9;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <!-- Home button at top -->
-  <a href="{{ url_for('home') }}" class="home-btn">← Home</a>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center relative font-sans">
 
-  <div class="card">
-    <h1>{{ action }}</h1>
+  <!-- Home Button -->
+  <a href="{{ url_for('home') }}"
+     class="absolute top-4 left-4 text-gray-700 text-sm px-3 py-1 bg-white rounded shadow hover:bg-gray-50 transition">
+    ← Home
+  </a>
+
+  <!-- Auth Card -->
+  <div class="bg-white w-full max-w-sm rounded-xl shadow-md p-8">
+    <h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">{{ action }}</h1>
 
     {% with msgs = get_flashed_messages() %}
       {% if msgs %}
-        <div class="flash">
+        <div class="text-red-600 mb-4 space-y-1 text-sm">
           {% for m in msgs %}
             <div>{{ m }}</div>
           {% endfor %}
@@ -100,19 +28,30 @@
       {% endif %}
     {% endwith %}
 
-    <form method="post">
-      <!-- Preserve redirect target -->
+    <form method="post" class="space-y-4">
       <input type="hidden" name="next" value="{{ next or '' }}">
-      <input name="username" type="text" placeholder="Username" required>
-      <input name="password" type="password" placeholder="Password" required>
-      <button type="submit">{{ action }}</button>
+
+      <input name="username" type="text" placeholder="Username" required
+             class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+
+      <input name="password" type="password" placeholder="Password" required
+             class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+
+      <button type="submit"
+              class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition font-medium">
+        {{ action }}
+      </button>
     </form>
 
-    <div class="toggle">
+    <div class="mt-6 text-sm text-center text-gray-600">
       {% if action == 'Log In' %}
-        Don’t have an account? <a href="{{ url_for('register') }}?next={{ next }}">Register</a>
+        Don’t have an account?
+        <a href="{{ url_for('register') }}?next={{ next }}"
+           class="text-indigo-600 hover:underline">Register</a>
       {% else %}
-        Already registered? <a href="{{ url_for('login') }}?next={{ next }}">Log In</a>
+        Already registered?
+        <a href="{{ url_for('login') }}?next={{ next }}"
+           class="text-indigo-600 hover:underline">Log In</a>
       {% endif %}
     </div>
   </div>
