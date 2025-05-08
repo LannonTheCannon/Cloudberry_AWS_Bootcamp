@@ -33,6 +33,7 @@ class User(db.Model):
 
     def set_password(self, pw):
         self.password_hash = generate_password_hash(pw)
+        app.logger.debug(f"[SET PASSWORD] Raw: '{pw}' → Hash: {self.password_hash}")
 
     def check_password(self, pw):
         return check_password_hash(self.password_hash, pw)
