@@ -18,7 +18,11 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = 'SuperSecretKey'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///alc_db.sqlite3'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///alc_db.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    'mysql+pymysql://admin:Ismloao1117@'
+    'mydbinstance.carwyykiawaw.us-east-1.rds.amazonaws.com:3306/mydb'
+)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -220,6 +224,4 @@ def delete_file(filename):
 # ─── ENTRYPOINT ────────────────────────────────────────────────────────────────
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
     app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)
