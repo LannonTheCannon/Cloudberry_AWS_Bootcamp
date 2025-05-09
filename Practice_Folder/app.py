@@ -152,9 +152,24 @@ def logout():
 # ─── BASIC PAGES ────────────────────────────────────────────────────────────────
 
 projects = [
-    {'id':1,'title':'Data Forge Lite','description':'AI-powered Streamlit EDA tool','url':'/dashboard','tags':['python','AI','streamlit']},
-    {'id':2,'title':'Task Master Plus','description':'Task manager built with Flask','url':'https://lannoncan.pythonanywhere.com','tags':['flask','sqlite','tailwind']},
-    {'id':3,'title':'Data Forge Plus','description':'Your next big project','url':'https://data-forge-lite.streamlit.app','tags':['flask','API']},
+    {'id':1,
+     'title':'Data Forge Lite',
+     'description': """Data-Forge-Lite is a lightweight, AI-powered Streamlit app designed to help you clean, engineer, and explore your datasets with interactive mind maps and visual storytelling — all without needing to touch a single line of code.
+Built for data analysts, students, educators, and data explorers who want to wrangle their data like pros — and have fun doing it. """,
+     'url':'/dashboard',
+     'tags':['python','AI','streamlit']},
+
+    {'id':2,
+     'title':'Task Master Plus + ',
+     'description':'Task manager built with Flask',
+     'url':'https://lannoncan.pythonanywhere.com',
+     'tags':['flask','sqlite','tailwind']},
+
+    {'id':3,
+     'title':'Data Forge Plus',
+     'description':'Your next big project',
+     'url':'https://data-forge-lite.streamlit.app',
+     'tags':['flask','API']},
 ]
 
 @app.route('/')
