@@ -189,13 +189,15 @@ def dashboard():
         if f:
             key = f'uploads/{g.user.id}/{f.filename}'
             try:
+                # Upload to S3
                 s3_client.upload_fileobj(f, S3_BUCKET_NAME, key)
 
-                # # Optional: get file size safely
-                # f.seek(0, os.SEEK_END)
-                # size = f.tell()
-                # f.seek(0)  # Reset file pointer
+                # Rewind file to read its size (fixes "I/O on closed file")
+                f.seek(0, os.SEEK_END)
+                size = f.tell()
+                f.seek(0)
 
+                # Save metadata in DB
                 new_file = File(
                     user_id=g.user.id,
                     filename=f.filename,
