@@ -131,7 +131,7 @@ def logout():
 # ─── BASIC PAGES ────────────────────────────────────────────────────────────────
 
 projects = [
-    {'id':1,'title':'Data Forge Lite','description':'AI-powered Streamlit EDA tool','url':'/data-forge-lite','tags':['python','AI','streamlit']},
+    {'id':1,'title':'Data Forge Lite','description':'AI-powered Streamlit EDA tool','url':'/dashboard','tags':['python','AI','streamlit']},
     {'id':2,'title':'Task Master Plus','description':'Task manager built with Flask','url':'https://lannoncan.pythonanywhere.com','tags':['flask','sqlite','tailwind']},
     {'id':3,'title':'Data Forge Plus','description':'Your next big project','url':'https://data-forge-lite.streamlit.app','tags':['flask','API']},
 ]
