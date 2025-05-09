@@ -7,26 +7,25 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
 
-      <style>
-        @keyframes magmaCycle {
-          0%   { background-position:   0% 50%; }
-          100% { background-position: 200% 50%; }
-        }
+    <style>
+  @keyframes magmaGradient {
+    0%   { background-position: 0% 100%; }
+    50%  { background-position: 100% 0%; }
+    100% { background-position: 0% 100%; }
+  }
 
-        /* → fixed the ID here to match your HTML */
-        #magma-name span {
-          display: inline-block;
-          background: linear-gradient(
-            90deg,
-            #000004, #3b0f70, #8c2981, #de4968, #fe9f6d, #fcfdbf
-          ) no-repeat;
-          background-size: 200% 100%;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          animation: magmaCycle 4s linear infinite;
-          animation-delay: calc(var(--i) * -0.1s);
-        }
-      </style>
+  .text-magma {
+    /* Seaborn “magma” palette roughly approximated: */
+    background: linear-gradient(
+      270deg,
+      #000004, #3b0f70, #8c2981, #de4968, #fe9f6d, #fcfdbf
+    );
+    background-size: 200% 200%;
+    animation: magmaGradient 12s ease infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>
     <!-- Primary Meta Tags -->
     <!--
 		       <title>Meta Tags — Preview, Edit and Generate</title>
@@ -119,10 +118,10 @@
         <div class="flex w-full mx-auto text-left lg:mt-16">
           <div class="relative inline-flex items-center m-auto align-middle">
             <div class="max-w-3xl space-y-8 lg:text-center">
-            <h1 class="…">
-              <span id="magma-name">Lannon Khau</span>,
-              Full-Stack Developer …
-            </h1>
+              <h1 class="mb-4 text-4xl font-bold leading-none text-white lg:text-6xl">
+                <span class="text-magma">Lannon Khau</span>,
+                Full-Stack Developer and AI Enthusiast
+              </h1>
 
               <div class="flex w-full max-w-2xl gap-2 mt-6 lg:justify-center lg:mx-auto">
                 <div class="my-3 rounded-lg sm:mt-0">
@@ -360,14 +359,5 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
     <script src="{{ url_for('static', filename='js/rotator.js') }}"></script>
     <script src="{{ url_for('static', filename='js/tilt.js') }}"></script>
-      <script>
-        document.addEventListener('DOMContentLoaded', ()=> {
-          const container = document.getElementById('magma-name');
-          container.innerHTML = container.textContent
-            .split('')
-            .map((ch,i)=>`<span style="--i:${i}">${ch}</span>`)
-            .join('');
-        });
-      </script>
   </body>
 </html>
