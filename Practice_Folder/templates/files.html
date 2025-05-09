@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Uploaded Files</title>
+</head>
+<body>
+  <h1>Uploaded Files</h1>
+  <ul>
+    {% for file in files %}
+      <li>{{ file }}
+        <a href="{{ url_for('preview_file', filename=file) }}">Preview</a> |
+        <a href="{{ url_for('delete_file', filename=file) }}">Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{{ url_for('upload_file') }}">Upload Another File</a>
+</body>
+</html>
