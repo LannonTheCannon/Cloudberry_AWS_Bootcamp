@@ -127,7 +127,5 @@ def delete_file(filename):
         flash(f"Error deleting file: {str(e)}", 'danger')
     return redirect(url_for('dashboard'))
 
-
-
 if __name__ == '__main__':
     app.run(debug=True)

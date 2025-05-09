@@ -1,26 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
   <title>{{ action }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/output.css') }}"
+  />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/app.css') }}" />
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center relative font-sans">
+<body class="bg-gray-900 min-h-screen flex items-center justify-center font-sans">
 
   <!-- Home Button -->
   <a href="{{ url_for('home') }}"
-     class="absolute top-4 left-4 text-gray-700 text-sm px-3 py-1 bg-white rounded shadow hover:bg-gray-50 transition">
+     class="absolute top-4 left-4 text-gray-200 text-sm px-3 py-1 bg-gray-800 rounded shadow hover:bg-gray-700 transition">
     ← Home
   </a>
 
   <!-- Auth Card -->
-  <div class="bg-white w-full max-w-sm rounded-xl shadow-md p-8">
-    <h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">{{ action }}</h1>
+  <div class="bg-gray-800 w-full max-w-sm rounded-xl shadow-lg p-8">
+    <h1 class="text-2xl font-semibold text-white mb-6 text-center">{{ action }}</h1>
 
     {% with msgs = get_flashed_messages() %}
       {% if msgs %}
-        <div class="text-red-600 mb-4 space-y-1 text-sm">
+        <div class="text-red-500 mb-4 space-y-1 text-sm">
           {% for m in msgs %}
             <div>{{ m }}</div>
           {% endfor %}
@@ -32,26 +36,26 @@
       <input type="hidden" name="next" value="{{ next or '' }}">
 
       <input name="username" type="text" placeholder="Username" required
-             class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+             class="w-full bg-gray-700 text-white border border-gray-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-iris" />
 
       <input name="password" type="password" placeholder="Password" required
-             class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+             class="w-full bg-gray-700 text-white border border-gray-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-iris" />
 
       <button type="submit"
-              class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition font-medium">
+              class="w-full bg-iris hover:bg-slate text-white py-2 rounded transition font-medium">
         {{ action }}
       </button>
     </form>
 
-    <div class="mt-6 text-sm text-center text-gray-600">
+    <div class="mt-6 text-sm text-gray-400 text-center">
       {% if action == 'Log In' %}
         Don’t have an account?
         <a href="{{ url_for('register') }}?next={{ next }}"
-           class="text-indigo-600 hover:underline">Register</a>
+           class="text-iris hover:underline">Register</a>
       {% else %}
         Already registered?
         <a href="{{ url_for('login') }}?next={{ next }}"
-           class="text-indigo-600 hover:underline">Log In</a>
+           class="text-iris hover:underline">Log In</a>
       {% endif %}
     </div>
   </div>
