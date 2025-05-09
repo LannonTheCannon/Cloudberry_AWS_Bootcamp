@@ -1,183 +1,81 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>DataForge Dashboard</title>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f0f2f5;
-      margin: 0;
-      padding: 0;
-    }
+{% extends 'layout.html' %}
+{% block content %}
+<main class="relative min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+  <!-- Home button -->
+  <a href="{{ url_for('home') }}"
+     class="absolute top-6 left-6 inline-flex items-center px-3 py-1 bg-majorelly hover:bg-gov text-white text-sm font-medium rounded-full shadow-thick focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-iris">
+    ← Home
+  </a>
 
-    .container {
-      max-width: 900px;
-      margin: 50px auto;
-      background: white;
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-    }
+  <div class="max-w-4xl mx-auto bg-pearl dark:bg-bright rounded-2xl shadow-thick p-8">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white text-center mb-8">
+      DataForge Dashboard
+    </h1>
 
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #2d3436;
-      font-size: 36px;
-      font-weight: 700;
-    }
-
-    form.upload-form {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      margin-bottom: 40px;
-    }
-
-    input[type="file"] {
-      margin-bottom: 20px;
-      font-size: 16px;
-    }
-
-    .upload-btn {
-      background-color: #0984e3;
-      color: white;
-      border: none;
-      padding: 12px 25px;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .upload-btn:hover {
-      background-color: #74b9ff;
-    }
-
-    .flash-message {
-      text-align: center;
-      padding: 12px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      font-weight: bold;
-    }
-
-    .flash-success {
-      background-color: #dff9fb;
-      color: #00b894;
-    }
-
-    .flash-danger {
-      background-color: #ffeaa7;
-      color: #d63031;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    th, td {
-      padding: 15px;
-      text-align: left;
-      border-bottom: 1px solid #ccc;
-    }
-
-    th {
-      background-color: #0984e3;
-      color: white;
-      font-weight: 600;
-      font-size: 18px;
-    }
-
-    tr:hover {
-      background-color: #f1f2f6;
-    }
-
-    .btn {
-      padding: 8px 14px;
-      border: none;
-      border-radius: 6px;
-      font-size: 14px;
-      cursor: pointer;
-      margin-left: 5px;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .preview-btn {
-      background-color: #00b894;
-      color: white;
-    }
-
-    .preview-btn:hover {
-      background-color: #55efc4;
-    }
-
-    .delete-btn {
-      background-color: #d63031;
-      color: white;
-    }
-
-    .delete-btn:hover {
-      background-color: #ff7675;
-    }
-
-    .no-files {
-      text-align: center;
-      font-size: 18px;
-      color: #636e72;
-      margin-top: 20px;
-    }
-
-  </style>
-</head>
-
-<body>
-  <div class="container">
-    <h1>DataForge Dashboard</h1>
-
+    <!-- flash messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
-        {% for category, message in messages %}
-          <div class="flash-message flash-{{ category }}">
-            {{ message }}
-          </div>
-        {% endfor %}
+        <div class="space-y-4 mb-6">
+          {% for category, message in messages %}
+            <div class="px-4 py-2 rounded-lg font-medium
+                        {% if category=='success' %}bg-green-100 text-green-800
+                        {% elif category=='danger'  %}bg-red-100   text-red-800
+                        {% elif category=='warning' %}bg-yellow-100 text-yellow-800
+                        {% endif %}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
       {% endif %}
     {% endwith %}
 
-    <form class="upload-form" method="POST" enctype="multipart/form-data">
-      <input type="file" name="file">
-      <button class="upload-btn" type="submit">Upload File</button>
+    <!-- upload form -->
+    <form method="POST" enctype="multipart/form-data" class="flex flex-col items-center space-y-4 mb-8">
+      <input type="file" name="file" class="block w-full text-gray-700 dark:text-gray-200"/>
+      <button type="submit"
+              class="px-6 py-2 bg-majorelly hover:bg-gov text-white font-medium rounded-lg shadow-thick transition">
+        Upload File
+      </button>
     </form>
 
+    <!-- file list -->
     {% if files %}
-    <table>
-      <thead>
-        <tr>
-          <th>Filename</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for file in files %}
-        <tr>
-          <td>{{ file }}</td>
-          <td>
-            <a href="{{ url_for('preview_file', filename=file) }}" class="btn preview-btn">Preview</a>
-            <a href="{{ url_for('delete_file', filename=file) }}" class="btn delete-btn">Delete</a>
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+          <thead class="bg-majorelly">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                Filename
+              </th>
+              <th class="px-6 py-3 text-right text-xs font-semibold text-white uppercase tracking-wider">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white dark:bg-pearl divide-y divide-gray-200 dark:divide-gray-700">
+            {% for file in files %}
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                {{ file }}
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <a href="{{ url_for('preview_file', filename=file) }}"
+                   class="inline-block px-3 py-1 bg-shamrock hover:bg-herbs text-white rounded-md mr-2">
+                  Preview
+                </a>
+                <a href="{{ url_for('delete_file', filename=file) }}"
+                   class="inline-block px-3 py-1 bg-carnation hover:bg-fadedred text-white rounded-md">
+                  Delete
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     {% else %}
-      <div class="no-files">No files uploaded yet.</div>
+      <p class="text-center text-gray-500 dark:text-gray-400">No files uploaded yet.</p>
     {% endif %}
   </div>
-</body>
-</html>
+</main>
+{% endblock %}
