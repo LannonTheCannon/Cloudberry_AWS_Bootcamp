@@ -192,17 +192,17 @@ def dashboard():
                 # Upload to S3
                 s3_client.upload_fileobj(f, S3_BUCKET_NAME, key)
 
-                # Rewind file to read its size (fixes "I/O on closed file")
-                f.seek(0, os.SEEK_END)
-                size = f.tell()
-                f.seek(0)
+                # # Rewind file to read its size (fixes "I/O on closed file")
+                # f.seek(0, os.SEEK_END)
+                # size = f.tell()
+                # f.seek(0)
 
                 # Save metadata in DB
                 new_file = File(
                     user_id=g.user.id,
                     filename=f.filename,
                     s3_key=key,
-                    file_size=size,
+                    # file_size=size,
                     file_type=f.filename.split('.')[-1].lower()
                 )
                 db.session.add(new_file)
