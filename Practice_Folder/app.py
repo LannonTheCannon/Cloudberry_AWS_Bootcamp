@@ -31,10 +31,10 @@ app.logger.setLevel(logging.DEBUG)
 
 # ─── S3 CLIENT ─────────────────────────────────────────────────────────────────
 
-AWS_ACCESS_KEY_ID     = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_REGION            = os.getenv('AWS_REGION')
-S3_BUCKET_NAME        = 'dataforge-uploader-bucket'
+# AWS_ACCESS_KEY_ID     = os.getenv('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+# AWS_REGION            = os.getenv('AWS_REGION')
+# S3_BUCKET_NAME        = 'dataforge-uploader-bucket'
 
 # s3_client = boto3.client(
 #     's3',
@@ -43,6 +43,8 @@ S3_BUCKET_NAME        = 'dataforge-uploader-bucket'
 #     region_name           = AWS_REGION
 # )
 
+# boto3 automatically looks for those variables
+# lets you interact with the service and gives you seemless access to s3 bucket and resources
 s3_client = boto3.client("s3")
 
 # ─── MODELS ─────────────────────────────────────────────────────────────────────
@@ -62,22 +64,25 @@ class User(db.Model):
 
 # ─── DEBUG ROUTES ───────────────────────────────────────────────────────────────
 
-@app.route('/debug-users-full')
-def debug_users_full():
-    users = User.query.all()
-    html = "<h2>Registered Users (w/ hashes)</h2><ul>"
-    for u in users:
-        html += f"<li><b>{u.username}</b>: {u.password_hash}</li>"
-    html += "</ul>"
-    return html
+# @app.route('/debug-users-full')
+# def debug_users_full():
+#     users = User.query.all()
+#     html = "<h2>Registered Users (w/ hashes)</h2><ul>"
+#     for u in users:
+#         html += f"<li><b>{u.username}</b>: {u.password_hash}</li>"
+#     html += "</ul>"
+#     return html
 
 # ─── HELPERS ─────────────────────────────────────────────────────────────────────
 
+# checks to see if a user id is stored within the session
 @app.before_request
 def load_logged_in_user():
     user_id  = session.get('user_id')
     g.user   = User.query.get(user_id) if user_id else None
 
+# only an authenticated route can use them
+# A decorator in Python is essentially a function in Python
 def login_required(view):
     @wraps(view)
     def wrapped_view(**kwargs):
