@@ -160,7 +160,7 @@ projects = [
             "secure S3 uploads, and CSV previewing. Hosted on EC2 with file metadata stored in RDS. "
             "Built using AWS S3, RDS (MySQL), EC2, and Boto3."
         ),
-        'url': 'https://data-forge-lite.streamlit.app',  # update this if you have a unique URL
+        'url': '/dashboard', 
         'tags': [
             'Python', 'Flask', 'AWS S3', 'AWS RDS', 'AWS EC2',
             'Boto3', 'MySQL', 'CSV Preview', 'User Auth'
@@ -189,7 +189,7 @@ projects = [
             "and explore your datasets with interactive mind maps and visual storytelling — all without needing to "
             "touch a single line of code."
         ),
-        'url': '/dashboard',
+        'url': 'https://data-forge-lite.streamlit.app',
         'tags': [
             'Python', 'Streamlit', 'OpenAI', 'LangChain',
             'Interactive EDA', 'Custom AI Agents', 'Data Visualization',
