@@ -158,8 +158,7 @@ projects = [
      'url':'/dashboard',
      'tags': [
     'Python', 'Streamlit', 'OpenAI API', 'LangChain',
-    'Pandas', 'Plotly', 'LLM Agent', 'Data Cleaning', 'EDA',
-    'Mind Map', 'Tree Layout', 'AI Assistant', 'Data Wrangling'
+    'Pandas', 'Plotly', 'LLM Agent', 'Data Cleaning', 'EDA', 'Data Wrangling'
         ]},
 
     {'id':2,
