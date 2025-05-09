@@ -11,3 +11,4 @@ Werkzeug==3.1.3
 boto3
 dotenv
 pandas
+PyMySQL
