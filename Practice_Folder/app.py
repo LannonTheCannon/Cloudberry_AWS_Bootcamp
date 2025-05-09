@@ -152,26 +152,50 @@ def logout():
 # ─── BASIC PAGES ────────────────────────────────────────────────────────────────
 
 projects = [
-    {'id':1,
-     'title':'Data Forge Lite',
-     'description': """Data-Forge-Lite is a lightweight, AI-powered Streamlit app designed to help you clean, engineer, and explore your datasets with interactive mind maps and visual storytelling — all without needing to touch a single line of code.""",
-     'url':'/dashboard',
-     'tags': [
-    'Python', 'Streamlit', 'OpenAI API', 'LangChain',
-    'Pandas', 'Plotly', 'LLM Agent', 'Data Cleaning', 'EDA', 'Data Wrangling'
-        ]},
+    {
+        'id': 1,
+        'title': 'S3 File-Uploader',
+        'description': (
+            "A Flask-based file management system that enables user registration, "
+            "secure S3 uploads, and CSV previewing. Hosted on EC2 with file metadata stored in RDS. "
+            "Built using AWS S3, RDS (MySQL), EC2, and Boto3."
+        ),
+        'url': 'https://data-forge-lite.streamlit.app',  # update this if you have a unique URL
+        'tags': [
+            'Python', 'Flask', 'AWS S3', 'AWS RDS', 'AWS EC2',
+            'Boto3', 'MySQL', 'CSV Preview', 'User Auth'
+        ]
+    },
 
-    {'id':2,
-     'title':'Task Master Plus + ',
-     'description':'Task manager built with Flask',
-     'url':'https://lannoncan.pythonanywhere.com',
-     'tags':['flask','sqlite','tailwind']},
+    {
+        'id': 2,
+        'title': 'Task Master Plus',
+        'description': (
+            "A minimalist to-do list app with user authentication, task creation, editing, and filtering. "
+            "Built with Flask, Tailwind, and SQLite, featuring clean MVC architecture and session-based login."
+        ),
+        'url': 'https://lannoncan.pythonanywhere.com',
+        'tags': [
+            'Python', 'Flask', 'SQLite', 'Tailwind CSS', 'MVC',
+            'To-Do App', 'Authentication', 'CRUD'
+        ]
+    },
 
-    {'id':3,
-     'title':'Data Forge Plus',
-     'description':'Your next big project',
-     'url':'https://data-forge-lite.streamlit.app',
-     'tags':['flask','API']},
+    {
+        'id': 3,
+        'title': 'Data Forge Lite',
+        'description': (
+            "Data-Forge-Lite is a lightweight, AI-powered Streamlit app designed to help you clean, engineer, "
+            "and explore your datasets with interactive mind maps and visual storytelling — all without needing to "
+            "touch a single line of code."
+        ),
+        'url': '/dashboard',
+        'tags': [
+            'Python', 'Streamlit', 'OpenAI', 'LangChain',
+            'Interactive EDA', 'Custom AI Agents', 'Data Visualization',
+            'Plotly', 'Code Editor', 'Mind Mapping'
+        ]
+    }
 ]
 
 @app.route('/')
