@@ -11,6 +11,7 @@ import os
 from dotenv import load_dotenv
 import pandas as pd
 from io import BytesIO
+from datetime import datetime
 
 # ─── SETUP ──────────────────────────────────────────────────────────────────────
 
@@ -61,6 +62,19 @@ class User(db.Model):
 
     def check_password(self, pw):
         return check_password_hash(self.password_hash, pw)
+
+class File(db.Model):
+    __tablename__ = 'file'
+
+    id         = db.Column(db.Integer, primary_key=True)
+    user_id    = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    filename   = db.Column(db.String(255), nullable=False)
+    s3_key     = db.Column(db.String(512), nullable=False)
+    uploaded_at = db.Column(db.DateTime, default=datetime.utcnow)
+    file_size  = db.Column(db.Integer)  # in bytes
+    file_type  = db.Column(db.String(50))  # e.g., 'csv', 'xlsx'
+
+    user = db.relationship('User', backref='files')
 
 # ─── DEBUG ROUTES ───────────────────────────────────────────────────────────────
 
@@ -166,66 +180,100 @@ def data_forge_lite():
 
 # ─── S3 DASHBOARD ROUTES ────────────────────────────────────────────────────────
 
-@app.route('/dashboard', methods=['GET','POST'])
+@app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
     if request.method == 'POST':
         f = request.files.get('file')
+
         if f:
+            key = f'uploads/{g.user.id}/{f.filename}'
             try:
-                s3_client.upload_fileobj(f, S3_BUCKET_NAME, f'uploads/{f.filename}')
-                flash(f"Uploaded '{f.filename}' to S3!", 'success')
+                s3_client.upload_fileobj(f, S3_BUCKET_NAME, key)
+
+                # Optional: get file size safely
+                f.seek(0, os.SEEK_END)
+                size = f.tell()
+                f.seek(0)  # Reset file pointer
+
+                new_file = File(
+                    user_id=g.user.id,
+                    filename=f.filename,
+                    s3_key=key,
+                    file_size=size,
+                    file_type=f.filename.split('.')[-1].lower()
+                )
+                db.session.add(new_file)
+                db.session.commit()
+
+                flash(f"Uploaded '{f.filename}'!", 'success')
                 return redirect(url_for('dashboard'))
+
             except Exception as e:
-                flash(f"Upload error: {e}", 'danger')
-                return redirect(url_for('dashboard'))
-        flash("No file selected.", 'warning')
+                flash(f"File not saved to db: {e}", 'danger')
+
+        else:
+            flash("No file selected.", 'warning')
         return redirect(url_for('dashboard'))
 
-    # list existing
-    files = []
-    resp  = s3_client.list_objects_v2(Bucket=S3_BUCKET_NAME, Prefix='uploads/')
-    for obj in resp.get('Contents', []):
-        key = obj['Key']
-        if not key.endswith('/'):
-            files.append(key.split('uploads/')[1])
+    # Load files for this user from the database
+    files = File.query.filter_by(user_id=g.user.id).all()
     return render_template('dashboard.html', files=files)
+
 
 @app.route('/files')
 @login_required
 def list_files():
-    files = []
-    resp  = s3_client.list_objects_v2(Bucket=S3_BUCKET_NAME, Prefix='uploads/')
-    for obj in resp.get('Contents', []):
-        key = obj['Key']
-        if not key.endswith('/'):
-            files.append(key.split('uploads/')[1])
+    files = File.query.filter_by(user_id=g.user.id).all()
     return render_template('files.html', files=files)
 
-@app.route('/preview/<filename>')
+@app.route('/preview/<int:file_id>')
 @login_required
-def preview_file(filename):
+def preview_file(file_id):
+    # Fetch the file from the DB and verify ownership
+    file = File.query.get_or_404(file_id)
+    if file.user_id != g.user.id:
+        flash("Unauthorized access to file.", 'danger')
+        return redirect(url_for('dashboard'))
+
     try:
-        obj = s3_client.get_object(Bucket=S3_BUCKET_NAME, Key=f'uploads/{filename}')
+        obj = s3_client.get_object(Bucket=S3_BUCKET_NAME, Key=file.s3_key)
         df  = pd.read_csv(BytesIO(obj['Body'].read()))
         preview_html  = df.head().to_html(classes='data')
         describe_html = df.describe().to_html(classes='data')
+
         return render_template('preview.html',
-                               filename=filename,
+                               filename=file.filename,
                                preview=preview_html,
                                describe=describe_html)
+
     except Exception as e:
         flash(f"Preview error: {e}", 'danger')
         return redirect(url_for('dashboard'))
 
-@app.route('/delete/<filename>')
+@app.route('/delete/<int:file_id>')
 @login_required
-def delete_file(filename):
+def delete_file(file_id):
+    file = File.query.get_or_404(file_id)
+
+    # Security check: make sure the file belongs to the current user
+    if file.user_id != g.user.id:
+        flash("Unauthorized attempt to delete file.", 'danger')
+        return redirect(url_for('dashboard'))
+
     try:
-        s3_client.delete_object(Bucket=S3_BUCKET_NAME, Key=f'uploads/{filename}')
-        flash(f"Deleted '{filename}'!", 'success')
+        # Delete from S3
+        s3_client.delete_object(Bucket=S3_BUCKET_NAME, Key=file.s3_key)
+
+        # Delete from DB
+        db.session.delete(file)
+        db.session.commit()
+
+        flash(f"Deleted '{file.filename}'!", 'success')
+
     except Exception as e:
         flash(f"Delete error: {e}", 'danger')
+
     return redirect(url_for('dashboard'))
 
 # ─── ENTRYPOINT ────────────────────────────────────────────────────────────────

@@ -166,10 +166,10 @@
       <tbody>
         {% for file in files %}
         <tr>
-          <td>{{ file }}</td>
+          <td>{{ file.filename }}</td>
           <td>
-            <a href="{{ url_for('preview_file', filename=file) }}" class="btn preview-btn">Preview</a>
-            <a href="{{ url_for('delete_file', filename=file) }}" class="btn delete-btn">Delete</a>
+            <a href="{{ url_for('preview_file', filename=file.filename) }}" class="btn preview-btn">Preview</a>
+            <a href="{{ url_for('delete_file', filename=file.filename) }}" class="btn delete-btn">Delete</a>
           </td>
         </tr>
         {% endfor %}
