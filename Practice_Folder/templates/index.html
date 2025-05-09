@@ -5,6 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <style>
+  @keyframes magmaGradient {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .text-magma {
+    /* Seaborn “magma” palette roughly approximated: */
+    background: linear-gradient(
+      270deg,
+      #000004, #3b0f70, #8c2981, #de4968, #fe9f6d, #fcfdbf
+    );
+    background-size: 200% 200%;
+    animation: magmaGradient 8s ease infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>
     <!-- Primary Meta Tags -->
     <!--
 		       <title>Meta Tags — Preview, Edit and Generate</title>
@@ -31,7 +50,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
     <link rel="stylesheet" type="text/css" href="static/css/app.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <title>Lannon Khau || Portfolio</title>
+    <h1 class="mb-4 text-4xl font-bold leading-none text-white lg:text-6xl">
+      <span class="text-magma">Lannon Khau</span>,
+      Full-Stack Developer and AI Enthusiast
+    </h1>
   </head>
 
   <body class="bg-pearl">
