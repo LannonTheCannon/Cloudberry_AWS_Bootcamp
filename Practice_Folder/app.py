@@ -156,7 +156,11 @@ projects = [
      'title':'Data Forge Lite',
      'description': """Data-Forge-Lite is a lightweight, AI-powered Streamlit app designed to help you clean, engineer, and explore your datasets with interactive mind maps and visual storytelling — all without needing to touch a single line of code.""",
      'url':'/dashboard',
-     'tags':['python','AI','streamlit']},
+     'tags': [
+    'Python', 'Streamlit', 'OpenAI API', 'LangChain',
+    'Pandas', 'Plotly', 'LLM Agent', 'Data Cleaning', 'EDA',
+    'Mind Map', 'Tree Layout', 'AI Assistant', 'Data Wrangling'
+        ]},
 
     {'id':2,
      'title':'Task Master Plus + ',
