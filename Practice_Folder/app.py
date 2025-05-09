@@ -191,10 +191,10 @@ def dashboard():
             try:
                 s3_client.upload_fileobj(f, S3_BUCKET_NAME, key)
 
-                # Optional: get file size safely
-                f.seek(0, os.SEEK_END)
-                size = f.tell()
-                f.seek(0)  # Reset file pointer
+                # # Optional: get file size safely
+                # f.seek(0, os.SEEK_END)
+                # size = f.tell()
+                # f.seek(0)  # Reset file pointer
 
                 new_file = File(
                     user_id=g.user.id,
