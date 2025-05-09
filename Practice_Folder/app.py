@@ -193,7 +193,7 @@ projects = [
         'tags': [
             'Python', 'Streamlit', 'OpenAI', 'LangChain',
             'Interactive EDA', 'Custom AI Agents', 'Data Visualization',
-            'Plotly', 'Code Editor', 'Mind Mapping'
+            'Plotly'
         ]
     }
 ]
