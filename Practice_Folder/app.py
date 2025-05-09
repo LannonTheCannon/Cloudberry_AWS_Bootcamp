@@ -35,7 +35,7 @@ app.logger.setLevel(logging.DEBUG)
 # AWS_ACCESS_KEY_ID     = os.getenv('AWS_ACCESS_KEY_ID')
 # AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 # AWS_REGION            = os.getenv('AWS_REGION')
-# S3_BUCKET_NAME        = 'dataforge-uploader-bucket'
+S3_BUCKET_NAME        = 'dataforge-uploader-bucket'
 
 # s3_client = boto3.client(
 #     's3',
