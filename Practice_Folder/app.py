@@ -160,7 +160,7 @@ projects = [
             "secure S3 uploads, and CSV previewing. Hosted on EC2 with file metadata stored in RDS. "
             "Built using AWS S3, RDS (MySQL), EC2, and Boto3."
         ),
-        'url': '/dashboard', 
+        'url': '/dashboard',
         'tags': [
             'Python', 'Flask', 'AWS S3', 'AWS RDS', 'AWS EC2',
             'Boto3', 'MySQL', 'CSV Preview', 'User Auth'
@@ -261,7 +261,7 @@ def dashboard():
 
     # Load files for this user from the database
     files = File.query.filter_by(user_id=g.user.id).all()
-    return render_template('dashboard.html', files=files)
+    return render_template('dashboard.html', files=files, username=g.user.username)
 
 
 @app.route('/files')

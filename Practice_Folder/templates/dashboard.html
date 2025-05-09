@@ -133,12 +133,17 @@
       margin-top: 20px;
     }
 
+
+
   </style>
 </head>
 
 <body>
   <div class="container">
     <h1>DataForge Dashboard</h1>
+    <h2 style="text-align: center; font-weight: 400; color: #636e72; margin-top: -20px;">
+      Welcome, {{ username }} 👋
+    </h2>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
