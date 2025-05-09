@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const rotator = document.getElementById("rotator");
-  const words   = ["experiences", "workflows", "solutions", "interfaces"];
+  const words   = ["workflows", "solutions", "interfaces"];
   let   i       = 0;
 
   const rotate = () => {

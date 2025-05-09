@@ -1,0 +1,82 @@
+<!-- File: templates/index_old.html -->
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- Hero with animated gradient text -->
+<header class="relative text-center mb-16 overflow-hidden">
+  <h1 class="
+    text-5xl font-extrabold
+    bg-clip-text text-transparent
+    bg-gradient-to-r from-brand via-fun to-pink-500
+    animate-text
+    -webkit-text-fill-color
+  ">
+    Hello, I’m Lannon
+  </h1>
+  <p class="mt-4 text-gray-600 dark:text-gray-300">
+    A full-stack developer passionate about AI and data.
+  </p>
+</header>
+
+<!-- Alpine-powered filter bar -->
+<section x-data="{ filter: 'all' }" id="projects" class="mb-12">
+  <h2 class="text-2xl font-bold mb-4">Projects</h2>
+
+  <!-- Filter buttons -->
+  <div class="flex justify-center space-x-4 mb-6">
+    <button
+      @click="filter='all'"
+      :class="filter==='all'
+        ? 'bg-brand text-white'
+        : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200'"
+      class="px-4 py-2 rounded transition">
+      All
+    </button>
+    <button
+      @click="filter='python'"
+      :class="filter==='python'
+        ? 'bg-brand text-white'
+        : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200'"
+      class="px-4 py-2 rounded transition">
+      Python
+    </button>
+    <button
+      @click="filter='js'"
+      :class="filter==='js'
+        ? 'bg-brand text-white'
+        : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200'"
+      class="px-4 py-2 rounded transition">
+      JavaScript
+    </button>
+  </div>
+
+  <!-- Projects grid -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {% for project in projects %}
+    <div
+      x-show="filter==='all' || project.tag===filter"
+      class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform hover:scale-105 hover:shadow-2xl transition">
+      <h3 class="text-xl font-semibold mb-2">{{ project.title }}</h3>
+      <p class="text-gray-600 dark:text-gray-300 mb-4">{{ project.description }}</p>
+      <a href="{{ project.url }}"
+         class="inline-block px-4 py-2 bg-brand text-white rounded hover:bg-fun transition">
+        View project →
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Contact with hover-pulse link -->
+<section id="contact" class="mt-16 text-center">
+  <h2 class="text-2xl font-bold mb-4">Contact</h2>
+  <p class="text-gray-700 dark:text-gray-300">
+    Feel free to reach out via
+    <a href="https://www.linkedin.com/in/lannon-khau/"
+       class="text-brand hover:text-fun hover:underline animate-pulse">
+      LinkedIn
+    </a>.
+  </p>
+</section>
+
+{% endblock %}
