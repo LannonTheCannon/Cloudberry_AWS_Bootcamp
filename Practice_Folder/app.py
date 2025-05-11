@@ -19,16 +19,27 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = 'SuperSecretKey'
 
+def get_db_secret(secret_name, region_name='us-east-2'):
+    client = boto3.client('secretsmanager', region_name=region_name)
+    get_secret_value_response = client.get_secret_value(SecretId=secret_name)
+    secret = get_secret_value_response['SecretString']
+    return json.loads(secret)
+
+secret = get_db_secret('prod/rds/mydb')
+
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///alc_db.sqlite3'
-app.config['SQLALCHEMY_DATABASE_URI'] = (
-    'mysql+pymysql://admin:Ismloao1117@'
-    'mydbinstance.carwyykiawaw.us-east-1.rds.amazonaws.com:3306/mydb'
-)
+# app.config['SQLALCHEMY_DATABASE_URI'] = (
+#     'mysql+pymysql://admin:Ismloao1117@'
+#     'mydbinstance.carwyykiawaw.us-east-1.rds.amazonaws.com'
+# )
+app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{secret['username']}:{secret['password']}@{secret['host']}/{secret['dbname']}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 logging.basicConfig(level=logging.DEBUG)
 app.logger.setLevel(logging.DEBUG)
+
+
 
 # ─── S3 CLIENT ─────────────────────────────────────────────────────────────────
 
