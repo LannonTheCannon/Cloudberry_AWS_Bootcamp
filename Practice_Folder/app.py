@@ -39,6 +39,9 @@ db = SQLAlchemy(app)
 logging.basicConfig(level=logging.DEBUG)
 app.logger.setLevel(logging.DEBUG)
 
+@app.route("/whoami")
+def whoami():
+    return boto3.client("sts").get_caller_identity()
 
 
 # ─── S3 CLIENT ─────────────────────────────────────────────────────────────────
