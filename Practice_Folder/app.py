@@ -25,7 +25,7 @@ def get_db_secret(secret_name, region_name='us-east-2'):
     secret = get_secret_value_response['SecretString']
     return json.loads(secret)
 
-secret = get_db_secret('prod/rds/mydb')
+secret = get_db_secret('prod/rds/db')
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///alc_db.sqlite3'
 # app.config['SQLALCHEMY_DATABASE_URI'] = (
