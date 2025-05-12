@@ -33,6 +33,9 @@ secret = get_db_secret('prod/rds/db')
 #     'mysql+pymysql://admin:Ismloao1117@'
 #     'mydbinstance.carwyykiawaw.us-east-1.rds.amazonaws.com'
 # )
+
+# make changes test 123 
+
 app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{secret['username']}:{secret['password']}@{secret['host']}/{secret['dbname']}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
