@@ -347,7 +347,6 @@ def clean_file(file_id):
             "s3_key": file.s3_key,
             "user_id": g.user.id,
             "request_id": str(uuid.uuid4()),
-            "cleaning_mode": "default"
         }
 
         response = lambda_client.invoke(
