@@ -21,23 +21,29 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = 'SuperSecretKey'
 
-def get_db_secret(secret_name, region_name='us-east-1'):
-    client = boto3.client('secretsmanager', region_name=region_name)
-    get_secret_value_response = client.get_secret_value(SecretId=secret_name)
-    secret = get_secret_value_response['SecretString']
-    return json.loads(secret)
+try:
+    if os.environ.get("FLASK_ENV") == "production":
+        from utils.db_util import get_db_secret  # import only if needed
+        secret = get_db_secret("prod/rds/db")
+        app.config["SQLALCHEMY_DATABASE_URI"] = (
+            f"mysql+pymysql://{secret['username']}:{secret['password']}"
+            f"@{secret['host']}:{secret['port']}/{secret['dbname']}"
+        )
+    else:
+        raise RuntimeError("Development environment detected")
+except Exception as e:
+    print(f"🧯 Using SQLite fallback — reason: {e}")
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///alc_db.sqlite3'
 
-secret = get_db_secret('prod/rds/db')
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///alc_db.sqlite3'
 # app.config['SQLALCHEMY_DATABASE_URI'] = (
 #     'mysql+pymysql://admin:Ismloao1117@'
 #     'mydbinstance.carwyykiawaw.us-east-1.rds.amazonaws.com'
 # )
 
-# make changes test 123 
+# make changes test 123
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{secret['username']}:{secret['password']}@{secret['host']}/{secret['dbname']}"
+# app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{secret['username']}:{secret['password']}@{secret['host']}/{secret['dbname']}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
