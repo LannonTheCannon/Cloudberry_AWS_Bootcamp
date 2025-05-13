@@ -82,6 +82,8 @@ class File(db.Model):
     uploaded_at = db.Column(db.DateTime, default=datetime.utcnow)
     file_size  = db.Column(db.Integer)  # in bytes
     file_type  = db.Column(db.String(50))  # e.g., 'csv', 'xlsx'
+    cleaned = db.Column(db.Boolean, default=False)
+    cleaned_key = db.Column(db.String(512))
 
     user = db.relationship('User', backref='files')
 
@@ -344,7 +346,8 @@ def clean_file(file_id):
             "s3_bucket": S3_BUCKET_NAME,
             "s3_key": file.s3_key,
             "user_id": g.user.id,
-            "request_id": str(uuid.uuid4())  # for tracking
+            "request_id": str(uuid.uuid4()),
+            "cleaning_mode": "default"
         }
 
         response = lambda_client.invoke(
