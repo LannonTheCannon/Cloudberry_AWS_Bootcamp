@@ -13,6 +13,7 @@ import pandas as pd
 from io import BytesIO
 from datetime import datetime
 import json
+import uuid
 
 # ─── SETUP ──────────────────────────────────────────────────────────────────────
 
@@ -324,6 +325,42 @@ def delete_file(file_id):
 
     except Exception as e:
         flash(f"Delete error: {e}", 'danger')
+
+    return redirect(url_for('dashboard'))
+
+# ─── LAMBDA Functions ────────────────────────────────────────────────────────────────
+@app.route('/clean/<int:file_id>')
+@login_required
+def clean_file(file_id):
+    file = File.query.get_or_404(file_id)
+
+    if file.user_id != g.user.id:
+        flash("Unauthorized file access.", "danger")
+        return redirect(url_for('dashboard'))
+
+    try:
+        lambda_client = boto3.client('lambda')
+        payload = {
+            "s3_bucket": S3_BUCKET_NAME,
+            "s3_key": file.s3_key,
+            "user_id": g.user.id,
+            "request_id": str(uuid.uuid4())  # for tracking
+        }
+
+        response = lambda_client.invoke(
+            FunctionName='dataforge_etl_handler',
+            InvocationType='Event',  # Async so it doesn't block user
+            Payload=json.dumps(payload)
+        )
+
+        if response['StatusCode'] == 202:
+            flash(f"Started cleaning: {file.filename}. Please check back in a moment.", "success")
+        else:
+            flash("Failed to invoke Lambda function.", "danger")
+
+    except Exception as e:
+        app.logger.error(f"[Lambda Invoke Error] {e}")
+        flash(f"Error triggering Lambda: {e}", "danger")
 
     return redirect(url_for('dashboard'))
 
