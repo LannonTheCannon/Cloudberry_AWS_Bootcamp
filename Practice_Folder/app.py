@@ -339,7 +339,7 @@ def clean_file(file_id):
         return redirect(url_for('dashboard'))
 
     try:
-        lambda_client = boto3.client('lambda')
+        lambda_client = boto3.client('lambda', region_name='us-east-1')
         payload = {
             "s3_bucket": S3_BUCKET_NAME,
             "s3_key": file.s3_key,
