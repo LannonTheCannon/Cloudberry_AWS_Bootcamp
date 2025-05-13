@@ -126,20 +126,26 @@
       background-color: #ff7675;
     }
 
+    .clean-btn {
+      background-color: #6c5ce7;
+      color: white;
+    }
+
+    .clean-btn:hover {
+      background-color: #a29bfe;
+    }
+
     .no-files {
       text-align: center;
       font-size: 18px;
       color: #636e72;
       margin-top: 20px;
     }
-
-
-
   </style>
 </head>
 
 <body>
-    <!-- Home Button -->
+  <!-- Home Button -->
   <a href="{{ url_for('home') }}"
      class="absolute top-4 left-4 text-gray-200 text-sm px-3 py-1 bg-gray-800 rounded shadow hover:bg-gray-700 transition">
     ← Home
@@ -181,7 +187,7 @@
           <td>
             <a href="{{ url_for('preview_file', file_id=file.id) }}" class="btn preview-btn">Preview</a>
             <a href="{{ url_for('delete_file', file_id=file.id) }}" class="btn delete-btn">Delete</a>
-
+            <a href="{{ url_for('clean_file', file_id=file.id) }}" class="btn clean-btn">Clean Dataset</a>
           </td>
         </tr>
         {% endfor %}
