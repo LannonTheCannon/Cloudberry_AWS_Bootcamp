@@ -32,18 +32,9 @@ try:
     else:
         raise RuntimeError("Development environment detected")
 except Exception as e:
-    print(f"🧯 Using SQLite fallback — reason: {e}")
+    print(f"🛯 Using SQLite fallback — reason: {e}")
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///alc_db.sqlite3'
 
-
-# app.config['SQLALCHEMY_DATABASE_URI'] = (
-#     'mysql+pymysql://admin:Ismloao1117@'
-#     'mydbinstance.carwyykiawaw.us-east-1.rds.amazonaws.com'
-# )
-
-# make changes test 123
-
-# app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{secret['username']}:{secret['password']}@{secret['host']}/{secret['dbname']}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -54,15 +45,9 @@ app.logger.setLevel(logging.DEBUG)
 def whoami():
     return boto3.client("sts").get_caller_identity()
 
-
-# ─── S3 CLIENT ─────────────────────────────────────────────────────────────────
-
-S3_BUCKET_NAME        = 'dataforge-uploader-bucket'
-
-# boto3 automatically looks for those variables
-# lets you interact with the service and gives you seemless access to s3 bucket and resources
+# S3
+S3_BUCKET_NAME = 'dataforge-uploader-bucket'
 s3_client = boto3.client("s3")
-
 # ─── MODELS ─────────────────────────────────────────────────────────────────────
 
 class User(db.Model):
@@ -377,4 +362,4 @@ def clean_file(file_id):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)
+    app.run(host='0.0.0.0', port=5001, debug=True, use_reloader=False)
