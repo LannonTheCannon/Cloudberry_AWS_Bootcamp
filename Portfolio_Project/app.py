@@ -234,7 +234,7 @@ def dashboard():
     # return render_template('dashboard.html', files=files, username=g.user.username)
 
 
-@app.route('/home')
+@app.route('/')
 def home():
     # Hey Ninja, I want you to have access to a variable named projects and its
     # value is whatever my Python variable proejcts contains!
