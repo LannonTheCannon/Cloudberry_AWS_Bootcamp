@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+@layer base {
+  body {
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+/* Utilities */
+@layer utilities {
+  .fade-in-manual {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-bg {
+    background: linear-gradient(135deg, theme('colors.brand'), theme('colors.fun')) center/cover no-repeat;
+    animation: gradientBG 6s ease infinite;
+  }
+
+  @keyframes gradientBG {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .tilt-card {
+    @apply transform-gpu transition-transform duration-300 ease-out;
+  }
+
+  .fade-word {
+    @apply inline-block transition-opacity duration-500;
+  }
+}
