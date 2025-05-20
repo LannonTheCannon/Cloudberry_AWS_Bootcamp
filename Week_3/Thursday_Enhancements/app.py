@@ -66,7 +66,7 @@ def register():
             flash('Registration successful. Please log in.')
             return redirect(url_for('login'))
 
-    return render_template('auth.html', action='Register')
+    return render_template('register.html', action='Register')
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -80,7 +80,7 @@ def login():
             session.clear()
             session['user_id'] = user.id
             return redirect(url_for('home'))
-    return render_template('auth.html', action='Log In')
+    return render_template('register.html', action='Log In')
 
 @app.route('/logout')
 def logout():

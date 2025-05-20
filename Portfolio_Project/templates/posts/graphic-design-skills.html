@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en-US" style="scroll-behavior: smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Primary Meta Tags -->
+    <!--
+		       <title>Meta Tags — Preview, Edit and Generate</title>
+		      <meta name="title" content="Meta Tags — Preview, Edit and Generate">
+		<meta name="description" content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!">
+		-->
+    <!-- Open Graph / Facebook -->
+    <!--
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="#">
+		<meta property="og:title" content="Text">
+		<meta property="og:description" content="Text">
+		<meta property="og:image" content="#">
+		-->
+    <!-- Twitter -->
+    <!--
+		<meta property="twitter:card" content="summary_large_image">
+		<meta property="twitter:url" content="#">
+		<meta property="twitter:title" content="Text">
+		<meta property="twitter:description" content="Text">
+		<meta property="twitter:image" content="#">
+		-->
+    <link rel="stylesheet" type="text/css" href="/static/css/app.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>wickedtemplates.com || Tailwind CSS Landing Pages for your next project</title>
+  </head>
+  <body class="bg-pearl">
+    <header class="w-full text-gray-400 border-b bg-pearl border-cinder">
+      <div
+        x-data="{ open: false }"
+        class="flex flex-col w-full px-4 mx-auto bg-bunker md:items-center md:justify-between md:flex-row md:px-6 lg:px-16 max-w-7xl"
+      >
+        <div class="flex flex-row items-center justify-between py-2 lg:py-0">
+          <a href="../index.html" class="text-lg font-semibold rounded-lg focus:outline-none focus:shadow-outline">
+            <div class="inline-flex items-center">
+              <svg
+                class="w-12 h-12 text-majorelly"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="2048.00"
+                height="2048.00"
+                viewBox="0 0 2048.0 2048.0"
+              >
+                <g id="document" transform="matrix(1,0,0,1,1024.0,1024.0)">
+                  <path
+                    d="M324.531,275.738 L-116.188,275.738 C-326.063,275.738 -497.639,104.162 -497.639,-105.713 C-497.639,-315.587 -326.063,-487.164 -116.188,-487.164 C-1.29359,-487.164 105.942,-438.142 181.006,-347.758 C196.326,-329.375 225.432,-326.311 243.815,-341.63 C262.199,-356.95 265.263,-386.056 249.943,-404.44 C159.559,-513.207 27.8131,-576.016 -113.125,-576.016 C-375.085,-576.016 -584.96,-363.077 -584.96,-105.713 C-584.96,151.652 -372.021,364.59 -114.657,364.59 L326.063,364.59 C350.574,364.59 370.489,346.207 370.489,320.164 C370.489,294.121 349.042,275.738 324.531,275.738 Z M-358.234,-105.713 C-358.234,-238.991 -249.466,-349.29 -114.657,-349.29 C-42.6557,-349.29 26.2812,-317.119 72.2391,-261.97 C87.5584,-243.587 116.665,-240.523 135.048,-255.842 C153.432,-271.161 156.495,-300.268 141.176,-318.651 C78.3669,-395.248 -15.081,-439.674 -114.657,-439.674 C-298.488,-439.674 -447.086,-291.077 -447.086,-107.245 C-447.086,76.587 -298.488,225.184 -114.657,225.184 L226.488,225.184 C250.998,225.184 270.914,206.801 270.914,180.758 C270.914,154.716 252.53,136.332 226.488,136.332 L-116.188,136.332 C-249.466,137.864 -358.234,27.5652 -358.234,-105.713 Z M-114.657,1.52234 L-117.72,87.3105 L326.063,87.3105 C350.574,87.3105 370.489,68.9273 370.489,42.8845 C370.489,16.8416 352.106,1.52233 329.127,1.52233 L-114.657,1.52234 Z "
+                    fill="currentColor"
+                    fill-opacity="1.00"
+                  />
+                </g>
+              </svg>
+              Shadow
+            </div>
+          </a>
+          <button class="md:hidden focus:outline-none" @click="open = !open" aria-label="hidden">
+            <svg fill="#ffffff" viewBox="0 0 20 20" class="w-6 h-6">
+              <path
+                x-show="!open"
+                fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+                clip-rule="evenodd"
+              ></path>
+              <path
+                x-show="open"
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+                style="display: none"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <nav :class="{'flex': open, 'hidden': !open}" class="flex-col items-center flex-grow hidden px-5 md:pb-0 md:flex md:justify-end md:flex-row">
+          <a
+            title="All tailwind templates"
+            class="px-4 py-2 mt-2 text-base transition duration-500 ease-in-out transform bg-transparent rounded-lg text-magnesium lg:text-base md:mt-0 md:ml-auto hover:text-white focus:text-white hover:bg-pearl focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2"
+            href="../index.html"
+          >
+            Home</a
+          >
+
+          <a
+            title="Wicked templates documentation"
+            class="px-4 py-2 mt-2 text-base transition duration-500 ease-in-out transform bg-transparent rounded-lg text-magnesium lg:text-base md:mt-0 md:ml-4 hover:text-white focus:text-white hover:bg-pearl focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2"
+            href="../blog.html"
+            >Blog
+          </a>
+          <a
+            title="frequent questions and answers"
+            class="px-4 py-2 mt-2 text-base transition duration-500 ease-in-out transform bg-transparent rounded-lg lg:mr-auto text-magnesium lg:text-base md:mt-0 md:ml-4 hover:text-white focus:text-white hover:bg-pearl focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2"
+            href="./graphic-design-skills.html"
+            >Blog Post</a
+          >
+
+          <a
+            href="https://wicked-templates.gumroad.com/l/shadow-starter"
+            title="how it works"
+            class="px-8 py-2 mt-2 text-base text-white transition duration-500 ease-in-out transform rounded-lg bg-cinder md:mt-0 md:ml-4 focus:text-moody hover:bg-tuna focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 shadow-thick"
+          >
+            Buy for $29
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="bg-nero">
+      <div class="px-4 py-12 mx-auto">
+        <div class="max-w-4xl mx-auto lg:pt-24">
+          <div class="max-w-3xl mx-auto text-lg text-left">
+            <div class="space-y-8">
+              <h1 data-animate="title" class="py-10 text-4xl font-bold leading-none tracking-tighter text-center text-white lg:text-6xl">
+                5 tips to go from boring to extraordinary
+              </h1>
+
+              <a href="#" class="flex-shrink-0 w-full mx-auto mt-12 text-left group">
+                <div class="flex items-center justify-center mx-auto">
+                  <div>
+                    <img
+                      class="inline-block rounded-full h-9 w-9"
+                      src="https://d33wubrfki0l68.cloudfront.net/2f76102fd18a4e095eaed7a836a3f2183a982a4d/91dd4/images/avatar.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="ml-3">
+                    <p class="text-sm font-medium text-santa group-hover:text-white">Michael Andreuzza</p>
+                    <p class="text-xs font-medium text-santa group-hover:text-white">01 January 2021 . 5 min read</p>
+                  </div>
+                </div>
+              </a>
+              <p class="text-base text-center text-santa sm:text-lg md:mt-5 md:text-xl">
+                Quis semper vulputate aliquam venenatis egestas sagittis quisque orci. Donec commodo sit viverra aliquam porttitor.
+              </p>
+            </div>
+
+            <figure class="mt-12">
+              <img
+                class="w-full rounded-lg"
+                src="https://cdn.dribbble.com/users/108482/screenshots/14661067/media/7366d5e5cebd7bafc794028d5de998f6.png?compress=1&resize=1600x1200"
+                alt=""
+                width="1310"
+                height="873"
+              />
+              <figcaption class="mt-4 text-xs text-santa">
+                <span class="sr-only"> Sagittis scelerisque nulla cursus in enim consectetur quam. </span>
+                Sagittis scelerisque nulla cursus in enim consectetur quam.
+              </figcaption>
+            </figure>
+            <div class="my-24">
+              <ul role="list" class="text-base prose list-disc text-santa sm:text-lg md:mt-5 md:text-xl">
+                <li>Quis elit egestas venenatis mattis dignissim.</li>
+                <li>Cras cras lobortis vitae vivamus ultricies facilisis tempus.</li>
+                <li>Orci in sit morbi dignissim metus diam arcu pretium.</li>
+              </ul>
+            </div>
+            <p class="text-base text-santa sm:text-lg md:mt-5 md:text-xl">
+              Quis semper vulputate aliquam venenatis egestas sagittis quisque orci. Donec commodo sit viverra aliquam porttitor ultrices gravida eu. Tincidunt
+              leo, elementum mattis elementum ut nisl, justo, amet, mattis. Nunc purus, diam commodo tincidunt turpis. Amet, duis sed elit interdum dignissim.
+            </p>
+
+            <p class="text-base text-santa sm:text-lg md:mt-5 md:text-xl">
+              Id orci tellus laoreet id ac. Dolor, aenean leo, ac etiam consequat in. Convallis arcu ipsum urna nibh. Pharetra, euismod vitae interdum mauris
+              enim, consequat vulputate nibh. Maecenas pellentesque id sed tellus mauris, ultrices mauris. Tincidunt enim cursus ridiculus mi. Pellentesque nam
+              sed nullam sed diam turpis ipsum eu a sed convallis diam.
+            </p>
+            <blockquote class="p-12 my-24 shadow-thick rounded-xl bg-cinder">
+              <p class="text-base text-transparent bg-gradient-to-tr bg-clip-text from-majorelly via-fandango to-flamingo sm:text-lg md:text-xl lg:text-2xl">
+                "Sagittis scelerisque nulla cursus in enim consectetur quam. Dictum urna sed consectetur neque tristique pellentesque. Blandit amet, sed aenean
+                erat arcu morbi."
+              </p>
+            </blockquote>
+            <p class="text-base text-santa sm:text-lg md:mt-5 md:text-xl">
+              Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent
+              donec est. Odio penatibus risus viverra tellus varius sit neque erat velit.
+            </p>
+
+            <p class="text-base text-santa sm:text-lg md:mt-5 md:text-xl">
+              Purus morbi dignissim senectus mattis <a href="#">adipiscing</a>. Amet, massa quam varius orci dapibus volutpat cras. In amet eu ridiculus leo
+              sodales cursus tristique. Tincidunt sed tempus ut viverra ridiculus non molestie. Gravida quis fringilla amet eget dui tempor dignissim. Facilisis
+              auctor venenatis varius nunc, congue erat ac. Cras fermentum convallis quam.
+            </p>
+            <div class="grid grid-cols-2 my-12 gap-y-12 gap-x-6 lg:grid-cols-4">
+              <figure>
+                <img
+                  class="w-full rounded-lg"
+                  src="https://cdn.dribbble.com/users/1338391/screenshots/16047181/media/6f38a8cdac2f2b0705fb5d4666757821.jpg?compress=1&resize=1600x1200"
+                  alt=""
+                  width="1310"
+                  height="873"
+                />
+                <figcaption class="mt-4 text-xs text-santa">
+                  <span class="sr-only"> Sagittis scelerisque nulla cursus in enim consectetur quam. </span>
+                  Sagittis scelerisque nulla cursus in enim consectetur quam.
+                </figcaption>
+              </figure>
+              <figure>
+                <img
+                  class="w-full rounded-lg"
+                  src="https://cdn.dribbble.com/users/391632/screenshots/8084293/media/2b571a53988934ba61a669417e4a5258.png?compress=1&resize=1600x1200"
+                  alt=""
+                  width="1310"
+                  height="873"
+                />
+                <figcaption class="mt-4 text-xs text-santa">
+                  <span class="sr-only"> Sagittis scelerisque nulla cursus in enim consectetur quam. </span>
+                  Sagittis scelerisque nulla cursus in enim consectetur quam.
+                </figcaption>
+              </figure>
+              <figure>
+                <img
+                  class="w-full rounded-lg"
+                  src="https://cdn.dribbble.com/users/108482/screenshots/14661067/media/7366d5e5cebd7bafc794028d5de998f6.png?compress=1&resize=1600x1200"
+                  alt=""
+                  width="1310"
+                  height="873"
+                />
+                <figcaption class="mt-4 text-xs text-santa">
+                  <span class="sr-only"> Sagittis scelerisque nulla cursus in enim consectetur quam. </span>
+                  Sagittis scelerisque nulla cursus in enim consectetur quam.
+                </figcaption>
+              </figure>
+              <figure>
+                <img
+                  class="w-full rounded-lg"
+                  src="https://cdn.dribbble.com/users/602908/screenshots/10571570/media/ab17ab00fcbb638e803227ea46b8840b.jpg?compress=1&resize=1600x1200"
+                  alt=""
+                  width="1310"
+                  height="873"
+                />
+                <figcaption class="mt-4 text-xs text-santa">
+                  <span class="sr-only"> Sagittis scelerisque nulla cursus in enim consectetur quam. </span>
+                  Sagittis scelerisque nulla cursus in enim consectetur quam.
+                </figcaption>
+              </figure>
+            </div>
+            <p class="text-base text-santa sm:text-lg md:mt-5 md:text-xl">
+              Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent
+              donec est. Odio penatibus risus viverra tellus varius sit neque erat velit.
+            </p>
+          </div>
+          <div class="max-w-3xl mx-auto text-lg">
+            <div class="pt-12">
+              <span class="inline-flex justify-center w-full gap-3 lg:ml-auto md:justify-start md:w-auto">
+                <a class="transition duration-500 ease-in-out transform rounded-full text-santa hover:text-white">
+                  <span class="sr-only"> Facebook</span>
+                  <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                  </svg>
+                </a>
+                <a class="transition duration-500 ease-in-out transform rounded-full text-santa hover:text-white">
+                  <span class="sr-only"> twitter</span>
+                  <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                    <path
+                      d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+                    ></path>
+                  </svg>
+                </a>
+                <a class="transition duration-500 ease-in-out transform rounded-full text-santa hover:text-white">
+                  <span class="sr-only">Instagram</span>
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                  </svg>
+                </a>
+                <a class="transition duration-500 ease-in-out transform rounded-full text-santa hover:text-white">
+                  <span class="sr-only">Linkedin</span>
+                  <svg
+                    fill="currentColor"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="0"
+                    class="w-5 h-5"
+                    viewBox="0 0 24 24"
+                  >
+                    <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                    <circle cx="4" cy="4" r="2" stroke="none"></circle>
+                  </svg>
+                </a>
+                <a class="transition duration-500 ease-in-out transform rounded-full text-santa hover:text-white">
+                  <span class="sr-only">Email</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                  </svg>
+                </a>
+                <a class="transition duration-500 ease-in-out transform rounded-full text-santa hover:text-white">
+                  <span class="sr-only">Link</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                      fill-rule="evenodd"
+                      d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="relative w-full">
+      <div class="relative items-center w-full px-5 pb-24 mx-auto md:px-12 lg:px-20 max-w-7xl">
+        <div class="flex w-full mx-auto text-left border-t border-b border-tuna">
+          <div class="relative py-12 m-auto align-middle">
+            <div class="inline-flex items-start gap-24 space-y-8 lg:space-y-0 max-w-7xl">
+              <div class="text-left">
+                <h1 class="mb-4 text-4xl font-bold leading-none text-white lg:text-4xl">
+                  The best
+                  <span class="text-iris"> design inspiration </span>
+                  expertly curated for you.
+                </h1>
+                <div class="max-w-lg">
+                  <p class="mb-6 text-xl font-light text-santa lg:mb-0">
+                    Shadows is a blog on your browser and mobile app that instantly delivers relevant design stories and inspiration.
+                  </p>
+                </div>
+              </div>
+              <div class="w-full max-w-md space-y-8 lg:mx-auto">
+                <form class="mt-8 space-y-6 lg:mt-0" action="#" method="POST">
+                  <div class="relative px-3 py-2 border border-gray-300 rounded-xl focus-within:ring-1 focus-within:ring-majorelle focus-within:border-moody">
+                    <label for="name" class="absolute inline-block px-1 -mt-px text-xs font-medium text-white bg-cinder -top-2 left-2">Email</label>
+                    <input
+                      type="email"
+                      name="name"
+                      id="name"
+                      class="block w-full py-1 text-white bg-transparent border-0 placeholder-river focus:ring-0 sm:text-sm"
+                      placeholder="email@example.com"
+                    />
+                  </div>
+                  <div>
+                    <button
+                      type="submit"
+                      class="items-center block w-full px-8 py-3 mx-auto text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-majorelly lg:px-10 rounded-xl hover:bg-gov focus:outline-none focus:ring-2 focus:ring-offset-2"
+                    >
+                      Update me!
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="border-t border-tuna bg-cinder" aria-labelledby="footer-heading">
+      <h2 id="footer-heading" class="sr-only">Footer</h2>
+      <div class="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-12">
+        <div class="justify-center text-center lg:text-left lg:justify-start">
+          <div class="text-comet">
+            <span class="text-lg font-bold text-white lg:text-2xl"
+              ><div class="inline-flex items-center">
+                <svg
+                  class="w-12 h-12 text-majorelly"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  width="2048.00"
+                  height="2048.00"
+                  viewBox="0 0 2048.0 2048.0"
+                >
+                  <g id="document" transform="matrix(1,0,0,1,1024.0,1024.0)">
+                    <path
+                      d="M324.531,275.738 L-116.188,275.738 C-326.063,275.738 -497.639,104.162 -497.639,-105.713 C-497.639,-315.587 -326.063,-487.164 -116.188,-487.164 C-1.29359,-487.164 105.942,-438.142 181.006,-347.758 C196.326,-329.375 225.432,-326.311 243.815,-341.63 C262.199,-356.95 265.263,-386.056 249.943,-404.44 C159.559,-513.207 27.8131,-576.016 -113.125,-576.016 C-375.085,-576.016 -584.96,-363.077 -584.96,-105.713 C-584.96,151.652 -372.021,364.59 -114.657,364.59 L326.063,364.59 C350.574,364.59 370.489,346.207 370.489,320.164 C370.489,294.121 349.042,275.738 324.531,275.738 Z M-358.234,-105.713 C-358.234,-238.991 -249.466,-349.29 -114.657,-349.29 C-42.6557,-349.29 26.2812,-317.119 72.2391,-261.97 C87.5584,-243.587 116.665,-240.523 135.048,-255.842 C153.432,-271.161 156.495,-300.268 141.176,-318.651 C78.3669,-395.248 -15.081,-439.674 -114.657,-439.674 C-298.488,-439.674 -447.086,-291.077 -447.086,-107.245 C-447.086,76.587 -298.488,225.184 -114.657,225.184 L226.488,225.184 C250.998,225.184 270.914,206.801 270.914,180.758 C270.914,154.716 252.53,136.332 226.488,136.332 L-116.188,136.332 C-249.466,137.864 -358.234,27.5652 -358.234,-105.713 Z M-114.657,1.52234 L-117.72,87.3105 L326.063,87.3105 C350.574,87.3105 370.489,68.9273 370.489,42.8845 C370.489,16.8416 352.106,1.52233 329.127,1.52233 L-114.657,1.52234 Z "
+                      fill="currentColor"
+                      fill-opacity="1.00"
+                    />
+                  </g>
+                </svg>
+                Shadow
+              </div>
+            </span>
+            <p class="mx-auto ml-12 text-sm text-white lg:w-1/2 text-club">Wicked templates for wicked dev's</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <footer class="border-t border-tuna bg-cinder">
+      <div class="px-5 py-12 mx-auto max-w-7xl sm:px-6 md:flex md:items-center md:justify-between lg:px-20">
+        <div class="flex justify-center mb-8 space-x-6 md:order-last md:mb-0">
+          <a href="#" class="text-santa hover:text-white">
+            <span class="sr-only">Facebook</span>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill-rule="evenodd"
+                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </a>
+
+          <a href="#" class="text-santa hover:text-white">
+            <span class="sr-only">Instagram</span>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill-rule="evenodd"
+                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </a>
+
+          <a href="#" class="text-santa hover:text-white">
+            <span class="sr-only">Twitter</span>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+              />
+            </svg>
+          </a>
+
+          <a href="#" class="text-santa hover:text-white">
+            <span class="sr-only">GitHub</span>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </a>
+
+          <a href="#" class="text-santa hover:text-white">
+            <span class="sr-only">Dribbble</span>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill-rule="evenodd"
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <div class="mt-8 md:mt-0 md:order-1">
+          <p class="text-sm text-center text-santa">
+            Shadow ©
+
+            <span x-text="new Date().getFullYear()"></span>
+            <a href="https://wickedlabs.dev/" class="text-moody hover:text-white">Wicked Labs</a>
+            All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+  </body>
+</html>

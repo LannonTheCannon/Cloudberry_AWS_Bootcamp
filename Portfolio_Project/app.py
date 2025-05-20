@@ -10,23 +10,24 @@ from flask_sqlalchemy import SQLAlchemy
 import logging
 import os
 from datetime import datetime
+import pandas as pd
+import uuid
+from utils.flask_secrets import get_flask_secret
+from utils.s3_secrets import get_s3_config
 
 # ─── SETUP ──────────────────────────────────────────────────────────────────────
 
 app = Flask(__name__)
-app.secret_key = 'SuperSecretKey'
+app.secret_key = get_flask_secret()['secret_key']
 
 try:
     if os.environ.get("FLASK_ENV") == "production":
-        # from utils.db_secrets import get_db_secret  # import only if needed
-        # secret = get_db_secret("prod/rds/db")
-        # app.config["SQLALCHEMY_DATABASE_URI"] = (
-        #     f"mysql+pymysql://{secret['username']}:{secret['password']}"
-        #     f"@{secret['host']}:{secret['port']}/{secret['dbname']}"
-        # )
-        app.config['SQLALCHEMY_DATABASE_URI'] = (
-    'mysql+pymysql://admin:Ismloao1117@my-db-instance.ctoeck8ool8g.us-west-1.rds.amazonaws.com:3306/mydb'
-)
+        from utils.db_secrets import get_db_secret  # import only if needed
+        secret = get_db_secret("prod/rds/db")
+        app.config["SQLALCHEMY_DATABASE_URI"] = (
+            f"mysql+pymysql://{secret['username']}:{secret['password']}"
+            f"@{secret['host']}:{secret['port']}/{secret['dbname']}"
+        )
     else:
         raise RuntimeError("Development environment detected")
 
@@ -40,9 +41,10 @@ db = SQLAlchemy(app)
 logging.basicConfig(level=logging.DEBUG)
 app.logger.setLevel(logging.DEBUG)
 
-# Create an S3 Bucket first!
-# S3_BUCKET_NAME = 'dataforge-uploader-bucket'
-# s3_client = boto3.client("s3")
+
+S3_BUCKET_NAME = get_s3_config()["bucket_name"]
+
+s3_client = boto3.client("s3", region_name="us-west-1")
 
 # ─── MODELS ─────────────────────────────────────────────────────────────────────
 
@@ -59,29 +61,29 @@ class User(db.Model):
     def check_password(self, pw):
         return check_password_hash(self.password_hash, pw)
 
-# class File(db.Model):
-#     __tablename__ = 'file'
-#
-#     id         = db.Column(db.Integer, primary_key=True)
-#     user_id    = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-#     filename   = db.Column(db.String(255), nullable=False)
-#     s3_key     = db.Column(db.String(512), nullable=False)
-#     uploaded_at = db.Column(db.DateTime, default=datetime.utcnow)
-#     file_size  = db.Column(db.Integer)  # in bytes
-#     file_type  = db.Column(db.String(50))  # e.g., 'csv', 'xlsx'
-#     cleaned = db.Column(db.Boolean, default=False)
-#     cleaned_key = db.Column(db.String(512))
-#
-#     user = db.relationship('User', backref='files')
+class File(db.Model):
+    __tablename__ = 'file'
+
+    id         = db.Column(db.Integer, primary_key=True)
+    user_id    = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    filename   = db.Column(db.String(255), nullable=False)
+    s3_key     = db.Column(db.String(512), nullable=False)
+    uploaded_at = db.Column(db.DateTime, default=datetime.utcnow)
+    file_size  = db.Column(db.Integer)  # in bytes
+    file_type  = db.Column(db.String(50))  # e.g., 'csv', 'xlsx'
+    cleaned = db.Column(db.Boolean, default=False)
+    cleaned_key = db.Column(db.String(512))
+
+    user = db.relationship('User', backref='files')
 
 
 # ─── HELPERS ─────────────────────────────────────────────────────────────────────
 
 # checks to see if a user id is stored within the session
-# @app.before_request
-# def load_logged_in_user():
-#     user_id  = session.get('user_id')
-#     g.user   = User.query.get(user_id) if user_id else None
+@app.before_request
+def load_logged_in_user():
+    user_id  = session.get('user_id')
+    g.user   = User.query.get(user_id) if user_id else None
 
 # only an authenticated route can use them
 # A decorator in Python is essentially a function in Python
@@ -101,7 +103,13 @@ def register():
     if request.method == 'POST':
         username = request.form['username'].strip()
         password = request.form['password'].strip()
-        app.logger.debug(f"[REGISTER] Username: {username}, Password bytes: {list(password.encode())}")
+        confirm = request.form['confirm_password']
+
+        if password != confirm:
+            flash('Passwords do not match.')
+            return render_template('register.html', action='Sign Up')
+
+        # app.logger.debug(f"[REGISTER] Username: {username}, Password bytes: {list(password.encode())}")
 
         if not username or not password:
             flash('Username and password are required.')
@@ -113,9 +121,10 @@ def register():
             db.session.add(user)
             db.session.commit()
             flash('Registration successful. Please log in.')
-            return redirect(url_for('login'))
+            # return redirect(url_for('login'))
+            return render_template('login.html', action='Sign In')
 
-    return render_template('auth.html', action='Register', next=request.args.get('next'))
+    return render_template('register.html', action='Register', next=request.args.get('next'))
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -127,11 +136,11 @@ def login():
         if user and user.check_password(password):
             session.clear()
             session['user_id'] = user.id
-            return redirect(url_for('home'))   # ← now sends to home
+            return redirect(url_for('dashboard'))   # ← now sends to home
         else:
             flash('Invalid credentials.')
 
-    return render_template('auth.html', action='Log In', next=request.args.get('next'))
+    return render_template('register.html', action='Log In', next=request.args.get('next'))
 
 @app.route('/logout')
 def logout():
@@ -188,50 +197,130 @@ projects = [
     }
 ]
 
+# Top of your app.py
+posts = {
+    "graphic-design-skills": {
+        "title": "12 Graphic Design Skills You Need To Get Hired",
+        "content": "Here’s what you should know...",
+        "author": "Michael Andreuzza",
+        "preview": "A wonderful serenity has taken possession...",
+        "slug": "graphic-design-skills"
+    },
+    "ai-blog-future": {
+        "title": "The Future of AI-Driven Development",
+        "content": "LLMs are changing everything, from prototyping to production.",
+        "author": "Lannon Khau",
+        "preview": "What if AI could write your entire backend?",
+        "slug": "ai-blog-future"
+    }
+}
+
 # ─── S3 DASHBOARD ROUTES ────────────────────────────────────────────────────────
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    pass
-    # if request.method == 'POST':
-    #     f = request.files.get('file')
-    #
-    #     if f:
-    #         key = f'uploads/{g.user.id}/{f.filename}'
-    #         try:
-    #             # Upload to S3
-    #             s3_client.upload_fileobj(f, S3_BUCKET_NAME, key)
-    #
-    #             # # Rewind file to read its size (fixes "I/O on closed file")
-    #             # f.seek(0, os.SEEK_END)
-    #             # size = f.tell()
-    #             # f.seek(0)
-    #
-    #             # Save metadata in DB
-    #             new_file = File(
-    #                 user_id=g.user.id,
-    #                 filename=f.filename,
-    #                 s3_key=key,
-    #                 # file_size=size,
-    #                 file_type=f.filename.split('.')[-1].lower()
-    #             )
-    #             db.session.add(new_file)
-    #             db.session.commit()
-    #
-    #             flash(f"Uploaded '{f.filename}'!", 'success')
-    #             return redirect(url_for('dashboard'))
-    #
-    #         except Exception as e:
-    #             flash(f"File not saved to db: {e}", 'danger')
-    #
-    #     else:
-    #         flash("No file selected.", 'warning')
-    #     return redirect(url_for('dashboard'))
-    #
-    # # Load files for this user from the database
-    # files = File.query.filter_by(user_id=g.user.id).all()
-    # return render_template('dashboard.html', files=files, username=g.user.username)
+
+    if request.method == 'POST':
+        f = request.files.get('file')
+
+        if f:
+            key = f'uploads/{g.user.id}/{f.filename}'
+            try:
+                # Upload to S3
+                s3_client.upload_fileobj(f, S3_BUCKET_NAME, key)
+
+                # # Rewind file to read its size (fixes "I/O on closed file")
+                # f.seek(0, os.SEEK_END)
+                # size = f.tell()
+                # f.seek(0)
+
+                # Save metadata in DB
+                new_file = File(
+                    user_id=g.user.id,
+                    filename=f.filename,
+                    s3_key=key,
+                    # file_size=size,
+                    file_type=f.filename.split('.')[-1].lower()
+                )
+                db.session.add(new_file)
+                db.session.commit()
+
+                flash(f"Uploaded '{f.filename}'!", 'success')
+                return redirect(url_for('dashboard'))
+
+            except Exception as e:
+                flash(f"File not saved to db: {e}", 'danger')
+
+        else:
+            flash("No file selected.", 'warning')
+        return redirect(url_for('dashboard'))
+
+    # Load files for this user from the database
+    files = File.query.filter_by(user_id=g.user.id).all()
+    return render_template('dashboard.html', files=files, username=g.user.username)
+
+
+@app.route('/files')
+@login_required
+def list_files():
+    files = File.query.filter_by(user_id=g.user.id).all()
+    return render_template('files.html', files=files)
+
+@app.route('/preview/<int:file_id>')
+@login_required
+def preview_file(file_id):
+    # Fetch the file from the DB and verify ownership
+    file = File.query.get_or_404(file_id)
+    if file.user_id != g.user.id:
+        flash("Unauthorized access to file.", 'danger')
+        return redirect(url_for('dashboard'))
+
+    try:
+        obj = s3_client.get_object(Bucket=S3_BUCKET_NAME, Key=file.s3_key)
+        df  = pd.read_csv(BytesIO(obj['Body'].read()))
+        preview_html  = df.head().to_html(classes='data')
+        describe_html = df.describe().to_html(classes='data')
+
+        return render_template('preview.html',
+                               filename=file.filename,
+                               preview=preview_html,
+                               describe=describe_html)
+
+    except Exception as e:
+        flash(f"Preview error: {e}", 'danger')
+        return redirect(url_for('dashboard'))
+
+@app.route('/delete/<int:file_id>')
+@login_required
+def delete_file(file_id):
+    file = File.query.get_or_404(file_id)
+
+    # Security check: make sure the file belongs to the current user
+    if file.user_id != g.user.id:
+        flash("Unauthorized attempt to delete file.", 'danger')
+        return redirect(url_for('dashboard'))
+
+    try:
+        # Delete from S3
+        s3_client.delete_object(Bucket=S3_BUCKET_NAME, Key=file.s3_key)
+
+        # Delete from DB
+        db.session.delete(file)
+        db.session.commit()
+
+        flash(f"Deleted '{file.filename}'!", 'success')
+
+    except Exception as e:
+        flash(f"Delete error: {e}", 'danger')
+
+    return redirect(url_for('dashboard'))
+
+## -------------------------------------------------------------------------------------
+
+# ─── LAMBDA Functions ────────────────────────────────────────────────────────────────
+# --- Lambda Functions (Deprecated/Removed)
+# Lambda based file cleaning functionality no longer relevant to Data Forge
 
 
 @app.route('/')
@@ -244,8 +333,34 @@ def home():
 def show_projects():
     return render_template('projects.html', projects=projects)
 
-# with app.app_context():
-#     db.create_all()
+@app.route('/blog')
+def show_blog():
+    return render_template('blog.html', posts=posts)
+
+@app.route('/blog/<slug>')
+def blog_post(slug):
+    # Example data — usually from DB
+    posts = {
+        "graphic-design-skills": {
+            "title": "12 Graphic Design Skills You Need To Get Hired",
+            "content": "Here’s what you should know...",
+            "author": "Michael Andreuzza",
+        }
+    }
+
+    # post = posts.get(slug)
+    # if post:
+    #     return render_template("graphic-design-skills.html", post=post)
+    # else:
+    #     return "Not found", 404
+    try:
+        return render_template(f"posts/{slug}.html")
+    except TemplateNotFound:
+        abort(404)
+
+
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    with app.app_context():
+        db.create_all()
+    app.run(host='0.0.0.0', port=5010, debug=True)

@@ -128,7 +128,7 @@ def register():
             flash('Registration successful. Please log in.')
             return redirect(url_for('login'))
 
-    return render_template('auth.html', action='Register', next=request.args.get('next'))
+    return render_template('register.html', action='Register', next=request.args.get('next'))
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -144,7 +144,7 @@ def login():
         else:
             flash('Invalid credentials.')
 
-    return render_template('auth.html', action='Log In', next=request.args.get('next'))
+    return render_template('register.html', action='Log In', next=request.args.get('next'))
 
 @app.route('/logout')
 def logout():
