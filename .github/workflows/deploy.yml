@@ -2,7 +2,12 @@ name: 🚀 Deploy to EC2
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+  pull_request:
+    types: [closed]
+    branches:
+      - main
 
 jobs:
   deploy:
