@@ -26,7 +26,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           port: 22
           script: |
-            cd ${{ secrets.EC2_PATH }}
+            cd /home/lannoncan/Cloudberry_AWS_Bootcamp/Portfolio_Project
             git pull origin main
             sudo systemctl daemon-reexec
             sudo systemctl restart flaskapp
