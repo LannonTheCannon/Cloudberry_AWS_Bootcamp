@@ -1,4 +1,4 @@
-name: Deploy to EC2
+name: 🚀 Deploy to EC2
 
 on:
   push:
@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: 📥 Checkout repository
         uses: actions/checkout@v3
 
-      - name: Deploy via SSH using systemd
+      - name: 🚀 Deploy via SSH using systemd
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -21,8 +21,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           port: 22
           script: |
-            cd /home/lannoncan/Cloudberry_AWS_Bootcamp/Practice_Folder
+            cd ${{ secrets.EC2_PATH }}
             git pull origin main
-            source venv/bin/activate
             sudo systemctl daemon-reexec
             sudo systemctl restart flaskapp
