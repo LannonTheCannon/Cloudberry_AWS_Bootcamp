@@ -316,11 +316,6 @@ def delete_file(file_id):
 
     return redirect(url_for('dashboard'))
 
-@app.route('/clean/<int:file_id>')
-@login_required
-def clean_file(file_id):
-    return f"Placeholder for cleaning file {file_id}"
-
 ## -------------------------------------------------------------------------------------
 
 # ─── LAMBDA Functions ────────────────────────────────────────────────────────────────
