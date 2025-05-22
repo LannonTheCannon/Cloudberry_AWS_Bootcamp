@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }} – Lannon Khau</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="/static/favicon.ico" />
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
+
+  <!-- Nav -->
+  <header class="w-full px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold tracking-tight">
+      <a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
+    </h1>
+    <nav class="space-x-6 text-sm">
+      <a href="/projects" class="text-indigo-400 font-semibold">Projects</a>
+      <a href="/blog" class="hover:text-indigo-400">Blog</a>
+      <a href="/register" class="hover:text-indigo-400">Register</a>
+      <a href="/login" class="hover:text-indigo-400">Login</a>
+    </nav>
+  </header>
+
+  <!-- Project Header -->
+  <section class="px-6 md:px-20 py-16 max-w-4xl mx-auto">
+    <h2 class="text-4xl font-bold mb-4">{{ title }}</h2>
+    <p class="text-sm text-gray-400 mb-8">Built by {{ author }}</p>
+
+    <div class="prose prose-invert max-w-none leading-relaxed">
+      <p class="text-lg mb-6">
+        {{ description }}
+      </p>
+
+      <h3 class="text-2xl font-semibold mt-10 mb-3">🔍 Core Features</h3>
+      <ul class="list-disc list-inside text-gray-300 space-y-2">
+        <li>AI-powered dataset cleaning using OpenAI GPT-4o-mini</li>
+        <li>Automatic feature engineering pipeline powered by Lambda</li>
+        <li>Seamless file uploads to AWS S3 with per-user tracking</li>
+        <li>Live preview of raw and cleaned datasets</li>
+        <li>Streamlit-based mind map & EDA exploration (Data Forge Lite)</li>
+        <li>Supports concurrent job queuing and result visualization</li>
+      </ul>
+
+      <h3 class="text-2xl font-semibold mt-10 mb-3">🧠 Tech Stack</h3>
+      <ul class="list-disc list-inside text-gray-300 space-y-1">
+        {% for tech_name in tech %}
+          <li>{{ tech_name }}</li>
+        {% endfor %}
+      </ul>
+
+      <h3 class="text-2xl font-semibold mt-10 mb-3">🌐 Architecture Overview</h3>
+      <p>
+        Data Forge Plus runs on a Flask + AWS backend. Files are uploaded by users to an S3 bucket,
+        cleaned by a Lambda function using an OpenAI-powered agent pipeline, and results are stored in
+        a cleaned S3 prefix. RDS tracks user/file metadata. Users then click "Explore" to launch
+        the Streamlit-powered Data Forge Lite for visual exploration.
+      </p>
+
+      <h3 class="text-2xl font-semibold mt-10 mb-3">🚀 Status</h3>
+      <p>
+        <span class="text-green-400">✅ MVP complete</span> – fully deployed with EC2 + Gunicorn, RDS integration, and Lambda workflows tested. Currently adding CI/CD and multi-agent routing improvements.
+      </p>
+
+      <h3 class="text-2xl font-semibold mt-10 mb-3">🔗 Links</h3>
+      <ul class="list-disc list-inside text-indigo-400 space-y-2">
+        <li><a href="https://github.com/yourusername/data-forge-plus" target="_blank" class="hover:underline">GitHub Repository</a></li>
+        <li><a href="https://your-ec2-url.com" target="_blank" class="hover:underline">Live Demo (EC2)</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
+    &copy; 2025 Lannon Khau. Built with heart and Flask.
+  </footer>
+
+</body>
+</html>

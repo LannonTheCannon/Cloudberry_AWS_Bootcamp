@@ -43,7 +43,6 @@ app.logger.setLevel(logging.DEBUG)
 
 
 S3_BUCKET_NAME = get_s3_config()["bucket_name"]
-
 s3_client = boto3.client("s3", region_name="us-west-1")
 
 # ─── MODELS ─────────────────────────────────────────────────────────────────────
@@ -347,12 +346,6 @@ def blog_post(slug):
             "author": "Michael Andreuzza",
         }
     }
-
-    # post = posts.get(slug)
-    # if post:
-    #     return render_template("graphic-design-skills.html", post=post)
-    # else:
-    #     return "Not found", 404
     try:
         return render_template(f"posts/{slug}.html")
     except TemplateNotFound:

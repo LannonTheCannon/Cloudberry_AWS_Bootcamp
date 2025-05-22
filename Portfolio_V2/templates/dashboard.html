@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard – Lannon Khau</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="/static/favicon.ico" />
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
+
+  <!-- Nav -->
+  <header class="w-full px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold tracking-tight">
+      <a href="/" class="hover:text-indigo-400 transition">Data Forge Plus</a>
+    </h1>
+    <nav class="space-x-6 text-sm">
+      <a href="/projects" class="hover:text-indigo-400">Projects</a>
+      <a href="/blog" class="hover:text-indigo-400">Blog</a>
+      <a href="/about" class="hover:text-indigo-400">About</a>
+      <a href="/contact" class="hover:text-indigo-400">Contact</a>
+      <a href="/logout" class="text-red-400 hover:text-red-500">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Dashboard -->
+  <section class="px-6 md:px-20 py-16 max-w-5xl mx-auto w-full">
+    <h2 class="text-3xl font-bold mb-2">Welcome, {{ user.username }} 👋</h2>
+    <p class="text-gray-400 mb-8">Here's your personal dashboard. Manage datasets, launch AI jobs, or explore results.</p>
+
+    <form action="/dashboard" method="POST" enctype="multipart/form-data" class="mb-8 space-y-4">
+      <label class="block text-sm font-medium text-white">Upload a file</label>
+      <input type="file" name="file" required class="text-white bg-gray-800 border border-white/20 p-2 rounded-md w-full" />
+      <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded text-white">Upload</button>
+    </form>
+
+    <!-- Dataset Table -->
+    <div class="overflow-x-auto bg-white/5 border border-white/10 rounded-xl shadow-sm">
+      <table class="min-w-full table-auto text-sm text-left text-gray-300">
+        <thead class="text-gray-400 border-b border-white/10">
+          <tr>
+            <th class="px-4 py-3">Filename</th>
+            <th class="px-4 py-3">Uploaded Time</th>
+            <th class="px-4 py-3">Cleaning Status</th>
+            <th class="px-4 py-3">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for file in files %}
+          <tr class="border-t border-white/10 hover:bg-white/5 transition">
+            <td class="px-4 py-3 font-medium">{{ file.filename }}</td>
+            <td class="px-4 py-3 text-gray-400">{{ file.uploaded_at.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td class="px-4 py-3">
+              {% if file.cleaning %}
+                <div class="w-full bg-gray-700 rounded-full h-2.5">
+                  <div class="bg-indigo-500 h-2.5 rounded-full animate-pulse" style="width: 60%"></div>
+                </div>
+                <p class="text-xs text-indigo-300 mt-1">Cleaning in progress...</p>
+              {% elif file.cleaned %}
+                <span class="text-green-400">Cleaned</span>
+              {% else %}
+                <span class="text-yellow-400">Pending</span>
+              {% endif %}
+            </td>
+            <td class="px-4 py-3">
+              <div class="flex flex-wrap gap-3 items-center">
+                <a href="/preview/{{ file.id }}" class="text-indigo-400 hover:underline text-sm">Preview</a>
+                {% if not file.cleaned %}
+                  <a href="/clean/{{ file.id }}" class="text-yellow-400 hover:underline text-sm">Run Cleaning</a>
+                {% endif %}
+                {% if file.cleaned %}
+                  <a href="/explore/{{ file.id }}" class="text-green-400 hover:underline text-sm">Explore</a>
+                {% endif %}
+                <form action="/delete/{{ file.id }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this file?');">
+                  <button type="submit" class="text-red-400 hover:text-red-500 text-sm">Delete</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="4" class="px-4 py-6 text-center text-gray-500">No datasets uploaded yet.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
+    &copy; 2025 Lannon Khau. Data is power — clean it well.
+  </footer>
+
+</body>
+</html>
