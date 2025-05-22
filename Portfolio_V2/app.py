@@ -19,9 +19,19 @@ app = Flask(__name__)
 app.secret_key = 'MySecretKey'
 
 try:
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///port_db.sqlite3'
+    if os.environ.get("FLASK_ENV") == "production":
+        from utils.db_secrets import get_db_secret  # import only if needed
+        secret = get_db_secret("prod/rds/db")
+        app.config["SQLALCHEMY_DATABASE_URI"] = (
+            f"mysql+pymysql://{secret['username']}:{secret['password']}"
+            f"@{secret['host']}:{secret['port']}/{secret['dbname']}"
+        )
+    else:
+        raise RuntimeError("Development environment detected")
+
 except Exception as e:
-    print(f"Captain a {e} whale has struck our ship Starboard side!")
+    print(f"🛯 Using SQLite fallback — reason: {e}")
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///alc_db.sqlite3'
 
 db = SQLAlchemy(app)
 
