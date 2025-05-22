@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog – Lannon Khau</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="/static/favicon.ico" />
+  </head>
+  <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
+
+    <!-- Nav -->
+    <header class="w-full px-6 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold tracking-tight">
+        <a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
+      </h1>
+      <nav class="space-x-6 text-sm">
+        <a href="/about" class="hover:text-indigo-400">About</a>
+        <a href="/projects" class="hover:text-indigo-400">Projects</a>
+        <a href="/blog" class="text-indigo-400 font-semibold">Blog</a>
+        <a href="/contact" class="hover:text-indigo-400">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Blog Intro -->
+    <section class="flex flex-col items-center text-center mt-16 px-4">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">Words That Built My Code</h2>
+      <p class="text-gray-300 max-w-2xl">
+        Thoughts, breakdowns, and reflections on building systems, mastering mindset, and leveling up in tech.
+      </p>
+    </section>
+
+    <!-- Same head/nav as your current index.html -->
+    <section class="px-8 py-16 max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-10">Blog Posts</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for slug, post in posts.items() %}
+        <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:shadow-xl transition">
+          <h3 class="text-xl font-bold mb-2">{{ post.title }}</h3>
+          <p class="text-sm text-gray-400 mb-3">By {{ post.author }}</p>
+          <a href="{{ url_for('blog_post', slug=slug) }}" class="text-indigo-400 text-sm hover:underline">
+            Read More →
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
+      &copy; 2025 Lannon Khau. Writing code. Writing stories. Always building.
+    </footer>
+  </body>
+</html>
