@@ -68,7 +68,7 @@
                 {% if not file.cleaned %}
 <!--                  <a href="/clean/{{ file.id }}" class="text-yellow-400 hover:underline text-sm">Run Cleaning</a>-->
 
-                  <form method="POST" action="{{ url_for('clean_file', file_id=file.id }}}">
+                  <form method="POST" action="{{ url_for('clean_file', file_id=file.id) }}">
                     <button type="submit" class="btn btn-sm btn-primary">Run Cleaning</button>
                   </form>
                 {% endif %}
