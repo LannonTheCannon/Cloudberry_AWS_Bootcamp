@@ -343,7 +343,7 @@ def preview_file(file_id):
 
 # ---- AI Data Science Team Agent -----------------------------------#
 
-@app.route('/clean/<int:file_id>', method=["POST"])
+@app.route('/clean/<int:file_id>', methods=["POST"])
 @login_required
 def clean_file(file_id):
     file = File.query.get_or_404(file_id)
@@ -359,6 +359,7 @@ def clean_file(file_id):
         # Run AI pipeline
 
         df_cleaned = run_clean_pipeline(df)
+        # Hi there
 
         # Upload cleaned file
         buffer = BytesIO
@@ -377,8 +378,6 @@ def clean_file(file_id):
 
     except Exception as e:
         flash(f"Cleaning error: {e}", '')
-
-
 
 @app.route('/delete/<int:file_id>', methods=['POST'])
 @login_required
