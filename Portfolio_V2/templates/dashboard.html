@@ -66,7 +66,11 @@
               <div class="flex flex-wrap gap-3 items-center">
                 <a href="/preview/{{ file.id }}" class="text-indigo-400 hover:underline text-sm">Preview</a>
                 {% if not file.cleaned %}
-                  <a href="/clean/{{ file.id }}" class="text-yellow-400 hover:underline text-sm">Run Cleaning</a>
+<!--                  <a href="/clean/{{ file.id }}" class="text-yellow-400 hover:underline text-sm">Run Cleaning</a>-->
+
+                  <form method="POST" action="{{ url_for('clean_file', file_id=file.id }}}">
+                    <button type="submit" class="btn btn-sm btn-primary">Run Cleaning</button>
+                  </form>
                 {% endif %}
                 {% if file.cleaned %}
                   <a href="/explore/{{ file.id }}" class="text-green-400 hover:underline text-sm">Explore</a>
