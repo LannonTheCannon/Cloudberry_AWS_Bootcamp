@@ -11,7 +11,7 @@ from functools import wraps
 import boto3
 import pandas as pd
 from io import BytesIO
-import os 
+import os
 # from utils.s3_secrets import get_s3_config
 
 # ─── SETUP ──────────────────────────────────────────────────────────────────────
