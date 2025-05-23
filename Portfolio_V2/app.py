@@ -13,6 +13,7 @@ import pandas as pd
 from io import BytesIO
 import os
 from utils.ai_pipeline import run_clean_pipeline
+
 # from utils.s3_secrets import get_s3_config
 
 # ─── SETUP ──────────────────────────────────────────────────────────────────────
@@ -356,7 +357,11 @@ def clean_file(file_id):
         df = pd.read_csv(BytesIO(s3_obj['Body'].read()))
 
         # Run AI pipeline
+<<<<<<< HEAD
         df_cleaned = run_clean_pipeline(df)
+=======
+        df_cleaned = run_cleaning_pipeline(df)
+>>>>>>> 8c62c08 (Add AI cleaning button to dashboard)
 
         # Upload cleaned file
         buffer = BytesIO
