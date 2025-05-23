@@ -377,8 +377,10 @@ def clean_file(file_id):
     except Exception as e:
         flash(f"Cleaning error: {e}", "danger")
 
-    # ✅ Always return a response
+    # 🔁 This line must exist outside the try/except block too
     return redirect(url_for('dashboard'))
+
+
 @app.route('/delete/<int:file_id>', methods=['POST'])
 @login_required
 def delete(file_id):
