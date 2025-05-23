@@ -18,20 +18,21 @@ from io import BytesIO
 app = Flask(__name__)
 app.secret_key = 'MySecretKey'
 
-if os.environ.get("FLASK_ENV") == "production":
-    try:
-        from utils.db_secrets import get_db_secret
-        secret = get_db_secret("prod/rds/db")
+try:
+    if os.environ.get("FLASK_ENV") == "production":
+        from utils.db_secrets import get_db_secret  # import only if needed
+        print('prod environment dababy')
+        secret = get_db_secret("prod/rds/dababy")
         app.config["SQLALCHEMY_DATABASE_URI"] = (
             f"mysql+pymysql://{secret['username']}:{secret['password']}"
             f"@{secret['host']}:{secret['port']}/{secret['dbname']}"
         )
-    except Exception as e:
-        print(f"❌ Failed to load production DB secret: {e}")
-        raise
-else:
-    print("🌱 Development environment detected — using SQLite.")
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///alc_db.sqlite3"
+    else:
+        raise RuntimeError("Development environment detected")
+
+except Exception as e:
+    print(f"🛯 Using SQLite fallback — reason: {e}")
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///alc_db.sqlite3'
 
 db = SQLAlchemy(app)
 
