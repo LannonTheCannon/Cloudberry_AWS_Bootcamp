@@ -1,4 +1,4 @@
-name: 🚀 Deploy to EC2
+name: 🚀 Deploy to EC2 on PR Merge
 
 on:
   pull_request:
@@ -8,14 +8,16 @@ on:
 
 jobs:
   deploy:
-    name: SSH Deploy to EC2
+    name: SSH Deploy to EC2 via Systemd
     runs-on: ubuntu-latest
 
+    if: github.event.pull_request.merged == true
+
     steps:
-      - name: 📥 Checkout repository
+      - name: 📥 Checkout Code
         uses: actions/checkout@v3
 
-      - name: 🚀 Deploy via SSH using systemd
+      - name: 🚀 Deploy via SSH using Systemd
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -23,7 +25,8 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           port: 22
           script: |
-            cd /home/lannoncan/Cloudberry_AWS_Bootcamp/Portfolio_Project
+            cd ~/Cloudberry_AWS_Bootcamp/Portfolio_V2
             git pull origin main
-            sudo systemctl daemon-reexec
-            sudo systemctl restart flaskapp
+            source venv/bin/activate
+            pip install -r requirements.txt
+            sudo systemctl restart portfolio
