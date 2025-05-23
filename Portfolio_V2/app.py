@@ -12,6 +12,7 @@ import boto3
 import pandas as pd
 from io import BytesIO
 import os
+from utils.ai_pipeline import run_cleaning_pipeline
 # from utils.s3_secrets import get_s3_config
 
 # ─── SETUP ──────────────────────────────────────────────────────────────────────
@@ -338,6 +339,43 @@ def preview_file(file_id):
     except Exception as e:
         flash(f"Preview error: {e}", 'danger')
         return redirect(url_for('dashboard'))
+
+# ---- AI Data Science Team Agent -----------------------------------#
+
+@app.route('/clean/<int:file_id>', method=["POST"])
+@login_required
+def clean_file(file_id):
+    file = File.query.get_or_404(file_id)
+    if file.user_id != g.user.id:
+        flash('Unauthorized access to file.', 'danger')
+        return redirect(url_for('dashboard'))
+
+    try:
+        # Load from S3
+        s3_obj = s3_client.get_object(Bucket=S3_BUCKET_NAME, key=file.s3_key)
+        df = pd.read_csv(BytesIO(s3_obj['Body'].read()))
+
+        # Run AI pipeline
+        df_cleaned = run_cleaning_pipeline(df)
+
+        # Upload cleaned file
+        buffer = BytesIO
+        df_cleaned.to_csv(buffer, index=False)
+        buffer.seek(0)
+
+        cleaned_key = f"cleaned/{g.user.id}/{file.filename}"
+        s3_client.upload_fileobj(buffer, S3_BUCKET_NAME, cleaned_key)
+
+        # Update db
+        file.cleaned = True
+        file.cleaned_key = cleaned_key
+        db.session.commit()
+
+        flash("Cleaning complete!", "success")
+
+    except Exception as e:
+        flash(f"Cleaning error: {e}", '')
+
 
 
 @app.route('/delete/<int:file_id>', methods=['POST'])
