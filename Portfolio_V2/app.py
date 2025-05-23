@@ -353,16 +353,14 @@ def clean_file(file_id):
 
     try:
         # Load from S3
-        s3_obj = s3_client.get_object(Bucket=S3_BUCKET_NAME, key=file.s3_key)
+        s3_obj = s3_client.get_object(Bucket=S3_BUCKET_NAME, Key=file.s3_key)
         df = pd.read_csv(BytesIO(s3_obj['Body'].read()))
 
         # Run AI pipeline
-
         df_cleaned = run_clean_pipeline(df)
-        # Hi there
 
         # Upload cleaned file
-        buffer = BytesIO
+        buffer = BytesIO()
         df_cleaned.to_csv(buffer, index=False)
         buffer.seek(0)
 
@@ -377,8 +375,10 @@ def clean_file(file_id):
         flash("Cleaning complete!", "success")
 
     except Exception as e:
-        flash(f"Cleaning error: {e}", '')
+        flash(f"Cleaning error: {e}", "danger")
 
+    # ✅ Always return a response
+    return redirect(url_for('dashboard'))
 @app.route('/delete/<int:file_id>', methods=['POST'])
 @login_required
 def delete(file_id):
