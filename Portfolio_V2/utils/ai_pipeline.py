@@ -1,27 +1,52 @@
 import pandas as pd
 from ai_data_science_team import DataCleaningAgent, FeatureEngineeringAgent
+from langchain_openai import ChatOpenAI
+import boto3
+import json
 
+# Corrected secret name and region (match AWS console)
+def get_openai_api_key(secret_name="dev/openai/api_key", region_name="us-west-1"):
+    print(f"🔑 Loading secret: {secret_name}")
+    client = boto3.client("secretsmanager", region_name=region_name)
+    print(client)
+    try:
+        response = client.get_secret_value(SecretId=secret_name)
+        secret_dict = json.loads(response["SecretString"])
+        api_key = secret_dict.get("OPENAI_API_KEY")
 
+        if not api_key:
+            raise ValueError("❌ OPENAI_API_KEY not found in secret JSON.")
 
+        return api_key
+
+    except Exception as e:
+        print(f"❌ Secret load error: {e}")
+        return None
+
+# Core AI Cleaning Pipeline
 def run_clean_pipeline(df: pd.DataFrame) -> pd.DataFrame:
     try:
+        api_key = get_openai_api_key()
+        if not api_key:
+            raise RuntimeError("🛑 OpenAI API key could not be loaded from AWS Secrets Manager.")
+
+        llm = ChatOpenAI(
+            model='gpt-4o-mini',
+            openai_api_key=api_key
+        )
+
         # Step 1: Clean
-        cleaning_agent = DataCleaningAgent()
-        cleaning_agent.ivoke_agent(data_raw=df, user_interaction='Use default cleaning steps.')
+        cleaning_agent = DataCleaningAgent(model=llm)
+        cleaning_agent.invoke_agent(data_raw=df, user_instructions='Use default cleaning steps.')
         df_cleaned = cleaning_agent.get_data_cleaned()
 
         # Step 2: Feature Engineer
-        fe_agent = FeatureEngineeringAgent()
-        fe_agent.ivoke_agent(data_raw=df_cleaned, user_interaction='Use default feature engineering steps')
+        fe_agent = FeatureEngineeringAgent(model=llm)
+        fe_agent.invoke_agent(data_raw=df_cleaned, user_instructions='Use default feature engineering steps')
         df_final = fe_agent.get_data_engineered()
 
         return df_final
 
     except Exception as e:
-        print(f'AI Pipeline failed: {e}')
+        print(f'❌ AI Pipeline failed: {e}')
         raise
-
-
-
-
-# -------------------------------------------------------------------#
