@@ -386,22 +386,36 @@ def clean_file(file_id):
 def delete(file_id):
     file = File.query.get_or_404(file_id)
 
-    # Security Check: Make sure the file belongs to the current user
     if file.user_id != g.user.id:
         print("Unauthorized attempt to delete file.")
         return redirect(url_for('dashboard'))
 
     try:
+        # Delete raw file
         s3_client.delete_object(Bucket=S3_BUCKET_NAME, Key=file.s3_key)
+        print(f"🗑️ Deleted raw: {file.s3_key}")
+
+        # Delete cleaned file if exists
+        if file.cleaned_key:
+            s3_client.delete_object(Bucket=S3_BUCKET_NAME, Key=file.cleaned_key)
+            print(f"🗑️ Deleted cleaned: {file.cleaned_key}")
+
         db.session.delete(file)
         db.session.commit()
-
-        print(f"Deleted {file.filename}!", 'success')
+        print(f"✅ DB record removed for {file.filename}")
 
     except Exception as e:
         print(f'Delete Error: {e}', 'danger')
 
     return redirect(url_for('dashboard'))
+
+@app.route('/api/file/<int:file_id>')
+@login_required
+def get_file_info(file_id):
+    file = File.query.get_or_404(file_id)
+    if file.user_id != g.user.id:
+        return {"error": "unauthorized"}, 401
+    return {"cleaned_key": file.cleaned_key}
 
 if __name__ == '__main__':
     print("Running db.create_all()")

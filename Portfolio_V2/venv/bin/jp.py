@@ -1,4 +1,4 @@
-#!/Users/lannonkhau/Documents/Planet_Express/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/bin/python3
+#!/Users/lannonkhau/Documents/Planet_Express/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/bin/python
 
 import sys
 import json

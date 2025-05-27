@@ -6,6 +6,27 @@
   <title>Dashboard – Lannon Khau</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="/static/favicon.ico" />
+  <style>
+.loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #6366F1; /* Indigo spinner */
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 0.8s linear infinite;
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.clean-btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+</style>
 </head>
 <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
 
@@ -68,12 +89,23 @@
                 {% if not file.cleaned %}
 <!--                  <a href="/clean/{{ file.id }}" class="text-yellow-400 hover:underline text-sm">Run Cleaning</a>-->
 
-                  <form method="POST" action="{{ url_for('clean_file', file_id=file.id) }}">
-                    <button type="submit" class="btn btn-sm btn-primary">Run Cleaning</button>
-                  </form>
+                <form method="POST"
+                      action="{{ url_for('clean_file', file_id=file.id) }}"
+                      class="clean-form"
+                      onsubmit="return showLoader({{ file.id }})">
+                  <button type="submit" class="clean-btn bg-yellow-500 hover:bg-yellow-600 px-3 py-1 rounded text-sm">Run Cleaning 2</button>
+                </form>
+                <div id="loader-{{ file.id }}" class="loader" style="display:none;"></div>
+
                 {% endif %}
                 {% if file.cleaned %}
-                  <a href="/explore/{{ file.id }}" class="text-green-400 hover:underline text-sm">Explore</a>
+                  <a href="http://47.155.234.217:8502/?user={{ user.username }}&file_id={{ file.id }}"
+                     target="_blank"
+                     class="text-green-400 hover:underline text-sm">
+                     Explore
+                  </a>
+                {% else %}
+                  <span class="text-gray-400 text-sm">Explore</span>
                 {% endif %}
                 <form action="/delete/{{ file.id }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this file?');">
                   <button type="submit" class="text-red-400 hover:text-red-500 text-sm">Delete</button>
@@ -95,6 +127,29 @@
   <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
     &copy; 2025 Lannon Khau. Data is power — clean it well.
   </footer>
+
+<script>
+document.querySelectorAll('.clean-form').forEach(form => {
+  form.addEventListener('submit', function(e) {
+    const btn = form.querySelector('.clean-btn');
+    const loaderId = "loader-" + btn.form.action.split("/").pop(); // file ID from URL
+    const loader = document.getElementById(loaderId);
+
+    btn.disabled = true;
+    loader.style.display = 'inline-block';
+  });
+});
+
+function showLoader(fileId) {
+  const btn = document.querySelector(`#btn-${fileId}`) || document.querySelector(`form[action$="/${fileId}"] button`);
+  const loader = document.getElementById(`loader-${fileId}`);
+  if (btn && loader) {
+    btn.disabled = true;
+    loader.style.display = 'inline-block';
+  }
+  return true;
+}
+</script>
 
 </body>
 </html>
