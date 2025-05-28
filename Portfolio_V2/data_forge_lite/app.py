@@ -15,5 +15,5 @@ if file_id is None:
     st.stop()
 
 flask_api_url = f"http://localhost:5001/api/file/{file_id}"
-response = requests.get(flask_api_url)
+response = requests.get(flask_api_url, timeout=60)
 cleaned_key = response.json().get("cleaned_key")
