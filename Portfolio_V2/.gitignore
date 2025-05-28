@@ -1,0 +1,20 @@
+# Virtual environments
+venv/
+*/venv/
+
+# System files
+.DS_Store
+nohup.out
+flask.out
+*.log
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Streamlit temporary files
+.streamlit/
+
+# VSCode or IDE configs (optional)
+.vscode/
+.idea/venv/
