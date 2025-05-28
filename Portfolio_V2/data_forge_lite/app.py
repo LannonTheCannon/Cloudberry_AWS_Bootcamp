@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-import requests
 import boto3
+from security import safe_requests
 
 # ─── Query Params ───────────────────────────────────────────────
 query_params = st.query_params
@@ -15,5 +15,5 @@ if file_id is None:
     st.stop()
 
 flask_api_url = f"http://127.0.0.1:5001/api/file/{file_id}"
-response = requests.get(flask_api_url, timeout=60)
+response = safe_requests.get(flask_api_url, timeout=60)
 cleaned_key = response.json().get("cleaned_key")
