@@ -14,6 +14,7 @@ from sqlalchemy.orm import sessionmaker
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from utils.db_secrets import get_db_secret
 from utils.s3_secrets import get_s3_config
+from utils.openai_secret import get_openai_api_key
 
 from streamlit_flow import streamlit_flow
 from streamlit_flow.elements import StreamlitFlowNode, StreamlitFlowEdge
@@ -22,6 +23,9 @@ from streamlit_flow.layouts import ManualLayout, RadialLayout, TreeLayout
 
 # Node template (your custom classes)
 from node_template import BaseNode, ThemeNode, QuestionNode, TerminalNode
+
+import openai
+from langchain_openai import ChatOpenAI
 
 # Agents #────────────────────────────────────────────────────────
 # SETUP: Streamlit Page + Session State
@@ -132,6 +136,20 @@ for key in [
         else:
             st.session_state[key] = []
 
+
+# --- Get OpenAI API Key from AWS Secrets Manager ---
+OPENAI_API_KEY = get_openai_api_key()
+if not OPENAI_API_KEY:
+    st.error("❌ Failed to retrieve OpenAI API key from Secrets Manager.")
+    st.stop()
+
+# --- Set up OpenAI + LangChain clients ---
+client = openai.OpenAI(api_key=OPENAI_API_KEY)
+llm = ChatOpenAI(
+    model="gpt-4o-mini",
+    openai_api_key=OPENAI_API_KEY
+)
+
 if "expanded_nodes" not in st.session_state:
     st.session_state.expanded_nodes = set()
 
@@ -178,7 +196,7 @@ elif page == '🧠 Mind Mapping':
     st.session_state.df = df_final
     st.session_state.DATA_RAW = df_final
     st.session_state.df_preview = df_final.head()
-
+    dataset_name = file.filename.rsplit('.', 1)[0]
     numeric_summary = df_final.describe()
     # categorical_summary = df_final.describe(include=['object', 'category', 'bool'])
 
