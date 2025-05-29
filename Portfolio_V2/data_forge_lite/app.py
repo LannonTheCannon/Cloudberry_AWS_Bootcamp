@@ -22,6 +22,8 @@ from streamlit_flow.layouts import ManualLayout, RadialLayout, TreeLayout
 # Node template (your custom classes)
 from node_template import BaseNode, ThemeNode, QuestionNode, TerminalNode
 
+# Agents
+from ai_data_science_team.agents import DataCleaningAgent, FeatureEngineeringAgent
 # ────────────────────────────────────────────────────────
 # SETUP: Streamlit Page + Session State
 # ────────────────────────────────────────────────────────
@@ -172,7 +174,6 @@ if page == '📊 Cleaned Data Preview':
     st.write(df.describe())
 
 elif page == '🧠 Mind Mapping':
-
     # Save everything into session_state
     df_final = df
     st.session_state.df = df_final
