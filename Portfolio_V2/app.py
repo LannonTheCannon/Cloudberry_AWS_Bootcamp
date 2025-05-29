@@ -12,7 +12,10 @@ import boto3
 import pandas as pd
 from io import BytesIO
 import os
+import sys
 from utils.ai_pipeline import run_clean_pipeline
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 
 # from utils.s3_secrets import get_s3_config
 
