@@ -180,10 +180,6 @@ elif page == '🧠 Mind Mapping':
     st.session_state.DATA_RAW = df_final
     st.session_state.df_preview = df_final.head()
 
-    st.session_state.df_final = df_final
-    st.session_state.cleaning_code = data_cleaning_agent.get_data_cleaner_function()
-    st.session_state.feature_engineering_code = feature_engineering_agent.get_feature_engineer_function()
-
     numeric_summary = df_final.describe()
     # categorical_summary = df_final.describe(include=['object', 'category', 'bool'])
 
