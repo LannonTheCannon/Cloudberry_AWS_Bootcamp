@@ -65,14 +65,12 @@ matplotlib-inline==0.1.7
 multidict==6.4.4
 mypy_extensions==1.1.0
 narwhals==1.41.0
-numpy==2.0.0
 nvidia-nccl-cu12==2.26.5
 openai==1.82.0
 openpyxl==3.1.5
 orjson==3.10.18
 ormsgpack==1.10.0
 packaging==24.2
-pandas==2.1.1
 parso==0.8.4
 pexpect==4.9.0
 pillow==11.2.1
