@@ -12,9 +12,12 @@ NODE_TYPE_COLORS = {
 import numpy as np
 import random
 from streamlit_flow.elements import StreamlitFlowNode
-from .utils import cosine_similarity
-
 import numpy as np
+
+def cosine_similarity(a, b):
+    a = np.array(a)
+    b = np.array(b)
+    return np.dot(a,b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
 class BaseNode:
     def __init__(self, node_id, label, full_question, category, node_type, parent_id=None, color=None, metadata=None):
