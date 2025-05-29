@@ -22,9 +22,7 @@ from streamlit_flow.layouts import ManualLayout, RadialLayout, TreeLayout
 # Node template (your custom classes)
 from node_template import BaseNode, ThemeNode, QuestionNode, TerminalNode
 
-# Agents
-from ai_data_science_team.agents import DataCleaningAgent, FeatureEngineeringAgent
-# ────────────────────────────────────────────────────────
+# Agents #────────────────────────────────────────────────────────
 # SETUP: Streamlit Page + Session State
 # ────────────────────────────────────────────────────────
 st.set_page_config(page_title="Data Forge Lite", layout="wide")
