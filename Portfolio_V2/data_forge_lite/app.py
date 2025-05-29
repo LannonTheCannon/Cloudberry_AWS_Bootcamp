@@ -172,4 +172,98 @@ if page == '📊 Cleaned Data Preview':
     st.write(df.describe())
 
 elif page == '🧠 Mind Mapping':
-    st.write('hey im here!')
+
+    # Save everything into session_state
+    df_final = df
+    st.session_state.df = df_final
+    st.session_state.DATA_RAW = df_final
+    st.session_state.df_preview = df_final.head()
+
+    st.session_state.df_final = df_final
+    st.session_state.cleaning_code = data_cleaning_agent.get_data_cleaner_function()
+    st.session_state.feature_engineering_code = feature_engineering_agent.get_feature_engineer_function()
+
+    numeric_summary = df_final.describe()
+    # categorical_summary = df_final.describe(include=['object', 'category', 'bool'])
+
+    #############
+    numeric_cols = df_final.select_dtypes(include=[np.number]).columns.tolist()
+    categorical_cols = df_final.select_dtypes(include=['object', 'category', 'bool']).columns.tolist()
+
+    # Protect against weird columns
+    safe_categorical_cols = []
+    cat_cardinalities = {}
+    top_cats = {}
+
+    for col in categorical_cols:
+        try:
+            nunique = int(df_final[col].nunique())
+            top_values = df_final[col].value_counts().head(3).to_dict()
+
+            cat_cardinalities[col] = nunique
+            top_cats[col] = top_values
+            safe_categorical_cols.append(col)
+
+        except Exception as e:
+            st.warning(f"Skipping column `{col}` due to error: {e}")
+
+    # Now use only the safe columns
+    st.session_state.df_summary = numeric_summary
+    st.session_state.metadata_string = (
+        f"Columns: {list(df_final.columns)}\n"
+        f"Numeric columns: {numeric_cols}\n"
+        f"Categorical columns: {safe_categorical_cols} (cardinalities: {cat_cardinalities})\n"
+        f"Top categories: {top_cats}\n"
+        f"Row count: {len(df_final)}"
+    )
+    # st.write(st.session_state.metadata_string)
+
+    root_question = generate_root_summary_question(st.session_state.metadata_string)
+    if st.session_state.curr_state.nodes:
+        root_node = st.session_state.curr_state.nodes[0]
+        root_node.data["full_question"] = root_question
+        root_node.data["content"] = dataset_name
+        root_node.data["short_label"] = "ROOT"
+
+    st.title('🧠 Mind Mapping + Agentic Exploration')
+
+    if st.session_state.get("dataset_name"):
+        root_node = st.session_state.curr_state.nodes[0]
+        if root_node.data["content"] != st.session_state["dataset_name"]:
+            root_node.data["content"] = st.session_state["dataset_name"]
+
+    col1, col2 = st.columns([3, 1])
+
+    with col2:
+        if st.button("🔄 Reset Mind Map"):
+            dataset_label = st.session_state.get("dataset_name", "Dataset")
+            new_root = StreamlitFlowNode(
+                "S0",
+                (0, 0),
+                {
+                    "section_path": "S0",
+                    "short_label": "ROOT",
+                    "full_question": st.session_state.metadata_string,
+                    "content": dataset_label
+                },
+                "input",
+                "right",
+                style={"backgroundColor": COLOR_PALETTE[0]}
+            )
+            st.session_state.curr_state = StreamlitFlowState(nodes=[new_root], edges=[])
+            st.session_state.expanded_nodes = set()
+            st.session_state.clicked_questions = []
+            st.rerun()
+
+    # Render mind map
+    st.session_state.curr_state = streamlit_flow(
+        "mind_map",
+        st.session_state.curr_state,
+        layout=TreeLayout(direction="right"),
+        fit_view=True,
+        height=550,
+        get_node_on_click=True,
+        enable_node_menu=True,
+        enable_edge_menu=True,
+        show_minimap=False
+    )
