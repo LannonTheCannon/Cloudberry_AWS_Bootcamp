@@ -14,6 +14,14 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from utils.db_secrets import get_db_secret
 from utils.s3_secrets import get_s3_config
 
+from streamlit_flow import streamlit_flow
+from streamlit_flow.elements import StreamlitFlowNode, StreamlitFlowEdge
+from streamlit_flow.state import StreamlitFlowState
+from streamlit_flow.layouts import ManualLayout, RadialLayout, TreeLayout
+
+# Node template (your custom classes)
+from node_template import BaseNode, ThemeNode, QuestionNode, TerminalNode
+
 # ────────────────────────────────────────────────────────
 # SETUP: Streamlit Page + Session State
 # ────────────────────────────────────────────────────────
