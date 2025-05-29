@@ -1,6 +1,7 @@
 
 # Virtual environments
 venv/
+.DS_Store
 */venv/
 
 # System files
@@ -19,4 +20,3 @@ __pycache__/
 # VSCode or IDE configs (optional)
 .vscode/
 .idea/venv/
-
