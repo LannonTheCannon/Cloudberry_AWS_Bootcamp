@@ -10,11 +10,11 @@ file_id = query_params.get("file_id", [None])
 
 # Display a greeting
 st.title(f"Hello, {username} 👋")
-
+st.write('wait whats going on here?')
 if not file_id:
     st.warning("⚠️ No file ID provided.")
     st.stop()
-    
+
 st.write(f'Your butt file sir: {file_id}')
 
 # # ─── Query Params ───────────────────────────────────────────────
