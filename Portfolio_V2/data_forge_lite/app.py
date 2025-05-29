@@ -1,56 +1,86 @@
 import streamlit as st
 import pandas as pd
-import requests
 import boto3
+from io import BytesIO
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from utils.db_secrets import get_db_secret
+from utils.s3_secrets import get_s3_config
 
-# Get the username from the URL query parameters
-query_params = st.query_params
-username = query_params.get("user", ["Guest"])
-file_id = query_params.get("file_id", [None])
+# ─── Get RDS Credentials ─────────────────────────────────────────
+st.set_page_config(page_title="Data Forge Lite", layout="wide")
 
-# Display a greeting
-st.title(f"Hello, {username} 👋")
-st.write('wait whats going on here?')
-if not file_id:
-    st.warning("⚠️ No file ID provided.")
+try:
+    db = get_db_secret("prod/rds/dababy")
+    DB_URI = (
+        f"mysql+pymysql://{db['username']}:{db['password']}"
+        f"@{db['host']}:{db['port']}/{db['dbname']}"
+    )
+    engine = create_engine(DB_URI)
+    Session = sessionmaker(bind=engine)
+except Exception as e:
+    st.error(f"❌ Failed to connect to RDS: {e}")
     st.stop()
 
-st.write(f'Your butt file sir: {file_id}')
+# ─── Get S3 Client ───────────────────────────────────────────────
+try:
+    s3_config = get_s3_config("prod/s3")  # Adjust secret name if needed
+    s3 = boto3.client(
+        "s3",
+        aws_access_key_id=s3_config["aws_access_key_id"],
+        aws_secret_access_key=s3_config["aws_secret_access_key"],
+        region_name="us-west-2"
+    )
+    S3_BUCKET = s3_config["bucket_name"]
+except Exception as e:
+    st.error(f"❌ Failed to set up S3: {e}")
+    st.stop()
 
-# # ─── Query Params ───────────────────────────────────────────────
-# query_params = st.query_params
-# username = query_params.get("user", ["Guest"])[0]
-# file_id = query_params.get("file_id", [None])[0]
-#
-# st.title(f"Hi there, {username.capitalize()} 👋")
-#
-# if not file_id:
-#     st.warning("⚠️ No file ID provided.")
-#     st.stop()
-#
-# # ─── Fetch Cleaned File Key from Flask ───────────────────────────
-# flask_api_url = f"http://54.193.148.70:5001/api/file/{file_id}"
-#
-# try:
-#     response = requests.get(flask_api_url)
-#     response.raise_for_status()  # will raise HTTPError for bad status
-#     cleaned_key = response.json().get("cleaned_key")
-#
-#     if not cleaned_key:
-#         st.error("❌ Could not retrieve cleaned file key.")
-#         st.stop()
-# except Exception as e:
-#     st.error(f"❌ Failed to fetch file info: {e}")
-#     st.stop()
-#
-# # ─── Load from S3 ────────────────────────────────────────────────
-# try:
-#     bucket = "your-bucket-name"  # 🔁 Replace this with your actual S3 bucket name
-#     s3 = boto3.client("s3")
-#     obj = s3.get_object(Bucket=bucket, Key=cleaned_key)
-#     df = pd.read_csv(obj["Body"])
-#
-#     st.success("✅ Loaded!")
-#     st.dataframe(df)
-# except Exception as e:
-#     st.error(f"⚠️ Error loading dataset from S3: {e}")
+# ─── Parse query_params ──────────────────────────────────────────
+query_params = st.query_params
+file_id = query_params.get("file_id")
+
+if not file_id:
+    st.error("Missing file_id in URL")
+    st.stop()
+
+# ─── Define Lightweight File Model ───────────────────────────────
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
+
+Base = declarative_base()
+
+class File(Base):
+    __tablename__ = "file"
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("user.id"))
+    filename = Column(String(255))
+    s3_key = Column(String(255))
+    cleaned_key = Column(String(512))
+    cleaned = Column(Boolean)
+    uploaded_at = Column(DateTime)
+
+# ─── Pull File Metadata from RDS ─────────────────────────────────
+session = Session()
+file = session.query(File).get(int(file_id))
+
+if not file:
+    st.error("❌ File not found.")
+    st.stop()
+
+if not file.cleaned or not file.cleaned_key:
+    st.warning("⚠️ File has not been cleaned yet.")
+    st.stop()
+
+# ─── Download from S3 + Display ──────────────────────────────────
+try:
+    obj = s3.get_object(Bucket=S3_BUCKET, Key=file.cleaned_key)
+    df = pd.read_csv(BytesIO(obj['Body'].read()))
+
+    st.title(f"🧹 Cleaned File: {file.filename}")
+    st.dataframe(df, use_container_width=True)
+    st.subheader("Summary Statistics")
+    st.write(df.describe())
+
+except Exception as e:
+    st.error(f"❌ Failed to load data from S3: {e}")
