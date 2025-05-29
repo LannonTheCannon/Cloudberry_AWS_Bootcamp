@@ -5,7 +5,7 @@ import boto3
 
 # Get the username from the URL query parameters
 query_params = st.query_params
-username = query_params.get("user", ["Guest"])[0]
+username = query_params.get("user", ["Guest"])
 
 # Display a greeting
 st.title(f"Hello, {username} 👋")
