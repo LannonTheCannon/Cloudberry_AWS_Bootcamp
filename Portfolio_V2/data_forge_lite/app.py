@@ -6,9 +6,16 @@ import boto3
 # Get the username from the URL query parameters
 query_params = st.query_params
 username = query_params.get("user", ["Guest"])
+file_id = query_params.get("file_id", [None])
 
 # Display a greeting
 st.title(f"Hello, {username} 👋")
+
+if not file_id:
+    st.warning("⚠️ No file ID provided.")
+    st.stop()
+    
+st.write(f'Your butt file sir: {file_id}')
 
 # # ─── Query Params ───────────────────────────────────────────────
 # query_params = st.query_params
