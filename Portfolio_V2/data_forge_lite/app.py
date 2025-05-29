@@ -1,18 +1,33 @@
-import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-import streamlit as st
-import pandas as pd
+import sys
+import json
 import boto3
+import pandas as pd
 from io import BytesIO
-from sqlalchemy import create_engine
+import streamlit as st
+from sqlalchemy import create_engine, Column, Integer, String, Boolean, DateTime, ForeignKey
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+
+# --- Add parent dir to path to import utils ---
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from utils.db_secrets import get_db_secret
 from utils.s3_secrets import get_s3_config
 
-# ─── Get RDS Credentials ─────────────────────────────────────────
+# ────────────────────────────────────────────────────────
+# SETUP: Streamlit Page + Session State
+# ────────────────────────────────────────────────────────
 st.set_page_config(page_title="Data Forge Lite", layout="wide")
 
+# 1. Get query params
+query_params = st.query_params
+file_id = query_params.get("file_id")
+
+if not file_id:
+    st.error("❌ Missing file_id in URL")
+    st.stop()
+
+# 2. Connect to RDS
 try:
     db = get_db_secret("prod/rds/dababy")
     DB_URI = (
@@ -25,34 +40,24 @@ except Exception as e:
     st.error(f"❌ Failed to connect to RDS: {e}")
     st.stop()
 
-# ─── Get S3 Client ───────────────────────────────────────────────
+# 3. Connect to S3
 try:
-    s3_config = get_s3_config("prod/s3")  # Adjust secret name if needed
+    s3_config = get_s3_config("prod/s3")  # should contain correct bucket + credentials
     s3 = boto3.client(
         "s3",
-        aws_access_key_id=s3_config["aws_access_key_id"],
-        aws_secret_access_key=s3_config["aws_secret_access_key"],
-        region_name="us-west-2"
+        aws_access_key_id=s3_config.get("aws_access_key_id"),
+        aws_secret_access_key=s3_config.get("aws_secret_access_key"),
+        region_name="us-west-1"  # or change if needed
     )
     S3_BUCKET = s3_config["bucket_name"]
 except Exception as e:
-    st.error(f"❌ Failed to set up S3: {e}")
+    st.error(f"❌ Failed to connect to S3: {e}")
     st.stop()
 
-# ─── Parse query_params ──────────────────────────────────────────
-query_params = st.query_params
-file_id = query_params.get("file_id")
-
-if not file_id:
-    st.error("Missing file_id in URL")
-    st.stop()
-
-# ─── Define Lightweight File Model ───────────────────────────────
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
-
+# ────────────────────────────────────────────────────────
+# Load cleaned file metadata from RDS
+# ────────────────────────────────────────────────────────
 Base = declarative_base()
-
 class File(Base):
     __tablename__ = "file"
     id = Column(Integer, primary_key=True)
@@ -63,27 +68,44 @@ class File(Base):
     cleaned = Column(Boolean)
     uploaded_at = Column(DateTime)
 
-# ─── Pull File Metadata from RDS ─────────────────────────────────
 session = Session()
 file = session.query(File).get(int(file_id))
 
 if not file:
-    st.error("❌ File not found.")
+    st.error("❌ File not found in database.")
     st.stop()
 
 if not file.cleaned or not file.cleaned_key:
-    st.warning("⚠️ File has not been cleaned yet.")
+    st.warning("⚠️ This file has not been cleaned yet.")
     st.stop()
 
-# ─── Download from S3 + Display ──────────────────────────────────
+# ────────────────────────────────────────────────────────
+# Load the actual cleaned dataset from S3
+# ────────────────────────────────────────────────────────
 try:
     obj = s3.get_object(Bucket=S3_BUCKET, Key=file.cleaned_key)
     df = pd.read_csv(BytesIO(obj['Body'].read()))
+    st.session_state.df = df
+    st.session_state["DATA_RAW"] = df
+    st.session_state["dataset_name"] = file.filename
+except Exception as e:
+    st.error(f"❌ Failed to load data from S3: {e}")
+    st.stop()
 
+# ────────────────────────────────────────────────────────
+# UI NAVIGATION
+# ────────────────────────────────────────────────────────
+PAGE_OPTIONS = ['📊 Cleaned Data Preview', '🧠 Mind Mapping']
+page = st.sidebar.radio("Navigation", PAGE_OPTIONS)
+
+# ────────────────────────────────────────────────────────
+# PAGE: Cleaned Data Preview
+# ────────────────────────────────────────────────────────
+if page == '📊 Cleaned Data Preview':
     st.title(f"🧹 Cleaned File: {file.filename}")
     st.dataframe(df, use_container_width=True)
     st.subheader("Summary Statistics")
     st.write(df.describe())
 
-except Exception as e:
-    st.error(f"❌ Failed to load data from S3: {e}")
+elif page == '🧠 Mind Mapping':
+    pass
