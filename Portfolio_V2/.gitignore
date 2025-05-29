@@ -1,3 +1,4 @@
+
 # Virtual environments
 venv/
 */venv/
@@ -18,3 +19,4 @@ __pycache__/
 # VSCode or IDE configs (optional)
 .vscode/
 .idea/venv/
+

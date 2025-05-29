@@ -14,6 +14,6 @@ if file_id is None:
     st.warning("No file ID provided.")
     st.stop()
 
-flask_api_url = f"http://54.153.3.106:5001/api/file/{file_id}"
+flask_api_url = f"http://3.101.36.111:5001/api/file/{file_id}"
 response = requests.get(flask_api_url)
 cleaned_key = response.json().get("cleaned_key")
