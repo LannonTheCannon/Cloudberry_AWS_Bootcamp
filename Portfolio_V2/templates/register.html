@@ -22,55 +22,78 @@
     </nav>
   </header>
 
-  <!-- Register Form -->
-  <section class="px-6 md:px-20 py-16 max-w-md mx-auto w-full">
-    <h2 class="text-3xl font-bold mb-6 text-center">Create an Account</h2>
+  <!-- Register Card -->
+  <section class="relative flex flex-row justify-center items-center px-6 py-20 overflow-hidden">
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <div class="bg-red-500/10 text-red-400 px-4 py-3 rounded-lg mb-6">
-          {% for message in messages %}
-            <p>{{ message }}</p>
-          {% endfor %}
+    <!-- Card -->
+    <div class="tilt-card relative z-10 w-full max-w-md bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl space-y-6 transition-transform duration-300 ease-out will-change-transform">
+
+      <!-- Header Row -->
+      <div class="flex items-center justify-between">
+        <h2 class="text-3xl font-bold text-white tracking-wide font-mono">🪐 REGISTER</h2>
+        <span class="text-xs text-gray-400 font-mono border border-white/10 rounded px-2 py-1">ACCESS INIT</span>
+      </div>
+
+      <!-- Flash Messages -->
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="bg-red-500/10 text-red-400 px-4 py-3 rounded-lg">
+            {% for message in messages %}
+              <p>{{ message }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <!-- Form -->
+      <form method="POST" action="/register" class="space-y-5">
+
+        <div>
+          <label for="username" class="block mb-1 text-sm font-medium text-gray-200">Username</label>
+          <input type="text" id="username" name="username" required
+            value="{{ request.args.get('username', '') }}"
+            class="w-full px-4 py-2 bg-gray-900 text-white rounded-xl border border-white/10 focus:ring-2 focus:ring-indigo-500 focus:outline-none" />
         </div>
-      {% endif %}
-    {% endwith %}
 
-    <form method="POST" action="/register" class="space-y-6">
-      <div>
-        <label for="username" class="block mb-2 text-sm font-medium text-gray-200">Username</label>
-        <input type="text" id="username" name="username" required
-               value="{{ request.args.get('username', '') }}"
-               class="w-full px-4 py-2 bg-gray-800 text-white rounded-xl border border-white/10 focus:ring-2 focus:ring-indigo-500 focus:outline-none" />
+        <div>
+          <label for="password" class="block mb-1 text-sm font-medium text-gray-200">Password</label>
+          <input type="password" id="password" name="password" required
+            class="w-full px-4 py-2 bg-gray-900 text-white rounded-xl border border-white/10 focus:ring-2 focus:ring-indigo-500 focus:outline-none" />
+        </div>
+
+        <div>
+          <label for="confirm_password" class="block mb-1 text-sm font-medium text-gray-200">Confirm Password</label>
+          <input type="password" id="confirm_password" name="confirm_password" required
+            class="w-full px-4 py-2 bg-gray-900 text-white rounded-xl border border-white/10 focus:ring-2 focus:ring-indigo-500 focus:outline-none" />
+        </div>
+
+        <button type="submit"
+          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-xl font-semibold transition">
+          Request Authorization
+        </button>
+
+        <p class="text-center text-sm text-gray-400 mt-4">
+          Already verified?
+          <a href="/login" class="text-indigo-400 hover:underline">Return to Command</a>
+        </p>
+      </form>
+
+      <!-- Footer Metadata -->
+      <div class="pt-4 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between">
+        <span>PROTOCOL: INIT-REG</span>
+        <span>SECTOR: ONBOARD</span>
       </div>
+    </div>
 
-      <div>
-        <label for="password" class="block mb-2 text-sm font-medium text-gray-200">Password</label>
-        <input type="password" id="password" name="password" required
-               class="w-full px-4 py-2 bg-gray-800 text-white rounded-xl border border-white/10 focus:ring-2 focus:ring-indigo-500 focus:outline-none" />
-      </div>
-
-      <div>
-        <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-200">Confirm Password</label>
-        <input type="password" id="confirm_password" name="confirm_password" required
-               class="w-full px-4 py-2 bg-gray-800 text-white rounded-xl border border-white/10 focus:ring-2 focus:ring-indigo-500 focus:outline-none" />
-      </div>
-
-      <button type="submit"
-              class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-xl transition w-full">
-        Register
-      </button>
-
-      <p class="text-center text-sm text-gray-400 mt-4">
-        Already have an account?
-        <a href="/login" class="text-indigo-400 hover:underline">Sign In</a>
-      </p>
-    </form>
+    <!-- Optional Futuristic Image -->
+    <div class="absolute right-[-100px] top-1/2 -translate-y-1/2 z-0 pointer-events-none">
+      <img src="/static/images/space_ship.png" alt="Docking Sequence" class="max-w-sm opacity-30" />
+    </div>
   </section>
 
   <!-- Footer -->
   <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
-    &copy; 2025 Lannon Khau. Let’s build something brilliant.
+    &copy; 2025 Lannon Khau. Welcome aboard, cadet.
   </footer>
 
 </body>
