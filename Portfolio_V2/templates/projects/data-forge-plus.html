@@ -22,62 +22,91 @@
     </nav>
   </header>
 
-  <!-- Project Header -->
-  <section class="px-6 md:px-20 py-16 max-w-4xl mx-auto">
-    <h2 class="text-4xl font-bold mb-4">{{ title }}</h2>
-    <p class="text-sm text-gray-400 mb-8">Built by {{ author }}</p>
+    <!-- 📊 Data Forge Plus Overview -->
+<section class="px-6 md:px-20 py-20 max-w-5xl mx-auto leading-relaxed text-gray-300">
+  <h2 class="text-4xl font-extrabold mb-2 text-white">{{ title }}</h2>
+  <p class="text-sm text-gray-400 mb-8">Built by {{ author }}</p>
 
-    <div class="prose prose-invert max-w-none leading-relaxed">
-      <p class="text-lg mb-6">
-        {{ description }}
-      </p>
+  <!-- 🔥 Project Summary -->
+  <p class="mb-6 text-lg text-gray-300">
+    <span class="text-indigo-400 font-semibold">Data Forge Plus</span> is your personal AI-powered data scientist. It transforms messy, unstructured CSVs into clean, usable insight—no manual wrangling required. Upload up to five datasets, and watch as the system detects patterns, engineers features, and summarizes your data using real intelligence.
+  </p>
 
-      <!-- Wide Project Hero Image -->
-      <div class="w-full rounded-2xl overflow-hidden shadow-lg mb-8 border border-white/10">
-        <img
-          src="/static/images/hero.png"
-          alt="Data Forge Plus Screenshot"
-          class="w-full object-cover"
-        />
-      </div>
+  <!-- CTA Buttons -->
+  <div class="flex gap-4 mb-12">
+    <a href="/login" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl font-semibold text-white transition">🚀 Launch the Demo</a>
+    <a href="https://github.com/LannonTheCannon/Cloudberry_AWS_Bootcamp" target="_blank" class="text-indigo-400 hover:underline">📦 View Source on GitHub</a>
+  </div>
 
-      <h3 class="text-2xl font-semibold mt-10 mb-3">🔍 Core Features</h3>
-      <ul class="list-disc list-inside text-gray-300 space-y-2">
-        <li>AI-powered dataset cleaning using OpenAI GPT-4o-mini</li>
-        <li>Automatic feature engineering pipeline powered by Lambda</li>
-        <li>Seamless file uploads to AWS S3 with per-user tracking</li>
-        <li>Live preview of raw and cleaned datasets</li>
-        <li>Streamlit-based mind map & EDA exploration (Data Forge Lite)</li>
-        <li>Supports concurrent job queuing and result visualization</li>
-      </ul>
+  <!-- 🔍 Feature Overview -->
+  <div class="flex flex-col md:flex-row gap-10 items-start">
+    <!-- Floating Image -->
+    <div class="w-full md:w-1/3 rounded-xl overflow-hidden border border-white/10 shadow-lg">
+      <img src="/static/images/forge.png" alt="Data Forge Plus Screenshot" class="object-cover w-full h-auto" />
+    </div>
 
-      <h3 class="text-2xl font-semibold mt-10 mb-3">🧠 Tech Stack</h3>
-      <ul class="list-disc list-inside text-gray-300 space-y-1">
-        {% for tech_name in tech %}
-          <li>{{ tech_name }}</li>
-        {% endfor %}
-      </ul>
-
-      <h3 class="text-2xl font-semibold mt-10 mb-3">🌐 Architecture Overview</h3>
-      <p>
-        Data Forge Plus runs on a Flask + AWS backend. Files are uploaded by users to an S3 bucket,
-        cleaned by a Lambda function using an OpenAI-powered agent pipeline, and results are stored in
-        a cleaned S3 prefix. RDS tracks user/file metadata. Users then click "Explore" to launch
-        the Streamlit-powered Data Forge Lite for visual exploration.
-      </p>
-
-      <h3 class="text-2xl font-semibold mt-10 mb-3">🚀 Status</h3>
-      <p>
-        <span class="text-green-400">✅ MVP complete</span> – fully deployed with EC2 + Gunicorn, RDS integration, and Lambda workflows tested. Currently adding CI/CD and multi-agent routing improvements.
-      </p>
-
-      <h3 class="text-2xl font-semibold mt-10 mb-3">🔗 Links</h3>
-      <ul class="list-disc list-inside text-indigo-400 space-y-2">
-        <li><a href="https://github.com/LannonTheCannon/Cloudberry_AWS_Bootcamp" target="_blank" class="hover:underline">GitHub Repository</a></li>
-        <li><a href="/login" target="_blank" class="hover:underline">Live Demo (EC2)</a></li>
+    <!-- Feature Bullets -->
+    <div class="flex-1">
+      <h3 class="text-2xl font-semibold mb-4 text-white">🔍 What You Can Do</h3>
+      <ul class="list-disc list-inside space-y-4 text-gray-300">
+        <li><strong>AI-Powered Cleaning:</strong> Leverages GPT-4o-mini to analyze and fix messy, inconsistent datasets.</li>
+        <li><strong>Feature Engineering:</strong> Automatically creates new columns that enhance model performance.</li>
+        <li><strong>Upload and Track:</strong> Supports multi-file uploads (up to 5) with per-user logging via AWS S3 and RDS.</li>
+        <li><strong>Explore Visually:</strong> Use Data Forge Lite (Streamlit) to mind-map and preview datasets in real-time.</li>
+<!--        <li><strong>Code Suggestions:</strong> The conversational agent can provide wrangling code tailored to your dataset.</li>-->
+<!--        <li><strong>Asynchronous Execution:</strong> Runs data cleaning as background jobs, with results delivered on completion.</li>-->
       </ul>
     </div>
-  </section>
+  </div>
+
+  <!-- 🧠 Tech Stack + System Design -->
+  <div class="mt-20 grid md:grid-cols-2 gap-12">
+    <div>
+      <h3 class="text-2xl font-semibold mb-4">🧠 Tech Stack</h3>
+      <ul class="list-disc list-inside text-gray-300 space-y-2">
+        <li>Flask + Gunicorn (API layer)</li>
+        <li>AWS Lambda (serverless ETL)</li>
+        <li>S3 (raw & cleaned storage)</li>
+        <li>RDS (PostgreSQL user & file metadata)</li>
+        <li>Streamlit (exploration interface)</li>
+        <li>OpenAI API (GPT-4o-mini)</li>
+        <li>Tailwind CSS (styling + layout)</li>
+      </ul>
+    </div>
+    <div class="rounded-xl overflow-hidden border border-white/10 shadow-lg">
+      <img src="/static/images/hero.png" alt="Architecture Diagram" class="object-cover w-full h-auto" />
+    </div>
+  </div>
+
+  <!-- 🌐 How It Works -->
+  <div class="mt-20">
+    <h3 class="text-2xl font-semibold mb-4">🌐 How It Works</h3>
+    <p class="mb-4">
+      Once a user logs in, they can upload one or more CSV files to their personal S3 bucket. These files are processed by an OpenAI-powered agent pipeline running inside AWS Lambda, which performs both data cleaning and feature engineering. Cleaned results are stored separately, and metadata is logged in RDS.
+    </p>
+    <p class="mb-4">
+      Users can then enter “exploration mode” — launching Streamlit Lite — where they view a smart sample of the dataset, ask follow-up questions, and receive AI-curated insights or code recommendations.
+    </p>
+  </div>
+
+  <!-- 🚀 Status & Roadmap -->
+  <div class="mt-16">
+    <h3 class="text-2xl font-semibold mb-4">🚀 Current Status</h3>
+    <p class="mb-4">
+      <span class="text-green-400">✅ MVP Deployed</span> – EC2 with Gunicorn, user auth, Lambda cleaning, S3/RDS integration, and Streamlit preview working across environments.
+    </p>
+    <p class="mb-2"><span class="text-yellow-300">🔄 In Progress:</span> CI/CD pipeline + automated testing suite</p>
+    <p class="mb-2"><span class="text-yellow-300">🧠 Coming Soon:</span> Multi-agent pipelines (for EDA, forecasting, cleaning)</p>
+    <p class="mb-2"><span class="text-yellow-300">📊 On the Roadmap:</span> Custom insights dashboard for business users</p>
+  </div>
+
+  <!-- 💫 Closing Note -->
+  <div class="mt-16">
+    <h3 class="text-2xl font-semibold mb-4">💫 Why I Built This</h3>
+    <p>
+      I built Data Forge Plus to empower data explorers — not just engineers — to harness the power of AI. Whether you're a founder with a spreadsheet, a teacher with class data, or an analyst onboarding new sources, Data Forge helps you cut through noise and reach understanding faster. It’s fast, intuitive, and powered by the future of human-AI collaboration.
+    </p>
+  </div>
 
   <!-- Footer -->
   <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">

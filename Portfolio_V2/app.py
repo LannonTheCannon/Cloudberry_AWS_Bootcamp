@@ -103,27 +103,6 @@ projects = {
         "author": "Lannon Khau",
         "template": "data-forge-plus.html"
     },
-    "task-master-plus": {
-        "title": "Task Master Plus",
-        "description": "A minimalist productivity app designed to help users create, track, and complete goals using habit reinforcement and lightweight analytics.",
-        "tech": ["Flask", "Tailwind", "SQLite", "Chart.js"],
-        "author": "Lannon Khau",
-        "template": "task-master-plus.html"
-    },
-    "data-forge-lite": {
-        "title": "Data Forge Lite",
-        "description": "A public-facing demo of the Data Forge engine, running streamlined EDA visualizations for smaller datasets with zero-code interaction.",
-        "tech": ["Streamlit", "Pandas AI", "Plotly"],
-        "author": "Lannon Khau",
-        "template": "data-forge-lite.html"
-    },
-    "Quotability": {
-        "title": "Quoutability",
-        "description": "An AI powered quote app that also lets users have conversations with AI about what they've read.",
-        "tech": ["Streamlit", "Pandas AI", "Plotly"],
-        "author": "Lannon Khau",
-        "template": "data-forge-lite.html"
-    }
 }
 @app.route('/projects')
 def show_projects():
