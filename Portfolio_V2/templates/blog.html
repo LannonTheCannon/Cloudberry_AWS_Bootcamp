@@ -30,18 +30,20 @@
       </p>
     </section>
 
-    <!-- Same head/nav as your current index.html -->
+    <!-- Blog Posts Section -->
     <section class="px-8 py-16 max-w-6xl mx-auto">
       <h2 class="text-4xl font-bold text-center mb-10">Blog Posts</h2>
+
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {% for slug, post in posts.items() %}
-        <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:shadow-xl transition">
-          <h3 class="text-xl font-bold mb-2">{{ post.title }}</h3>
+        <a href="{{ url_for('blog_post', slug=slug) }}"
+           class="block bg-white/5 border border-white/10 rounded-xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+
+          <h3 class="text-xl font-bold mb-2 text-white">{{ post.title }}</h3>
           <p class="text-sm text-gray-400 mb-3">By {{ post.author }}</p>
-          <a href="{{ url_for('blog_post', slug=slug) }}" class="text-indigo-400 text-sm hover:underline">
-            Read More →
-          </a>
-        </div>
+          <p class="text-sm text-gray-300">{{ post.summary or "Click to read more..." }}</p>
+
+        </a>
         {% endfor %}
       </div>
     </section>
