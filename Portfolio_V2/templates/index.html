@@ -40,24 +40,29 @@
 
 
     <section class="relative flex-1 flex flex-col justify-center items-center text-center px-4 py-12 overflow-hidden">
-      <!-- Background spaceship -->
-      <div class="absolute inset-0 z-0 flex justify-center items-center pointer-events-none">
-        <img
-          src="/static/images/space_ship.png"
-          alt="Futuristic spaceship background"
-          class="max-w-[800px] opacity-20 blur-sm object-contain"
-        />
-      </div>
+
+              <!-- Data Forge Plus -->
+        <a href="/projects/data-forge-plus" class="block bg-white/5 border border-white/10 rounded-2xl p-5 hover:shadow-xl transition hover:border-indigo-500 hover:ring-1 hover:ring-indigo-300">
+          <div class="flex items-center mb-3 space-x-3">
+            <div class="w-12 h-12 bg-gray-700 rounded-xl overflow-hidden flex-shrink-0">
+              <img src="/static/images/space_commander.png" alt="Data Forge Plus Logo" class="object-cover w-full h-full" />
+            </div>
+            <h4 class="text-lg font-bold">Data Forge Plus</h4>
+          </div>
+          <p class="text-sm text-gray-300">An AI-powered dataset cleaner and exploration engine built on Flask, S3, Lambda, and Streamlit.</p>
+        </a>
 
       <!-- Foreground content -->
-      <div class="relative z-10 w-full max-w-4xl rounded-2xl overflow-hidden shadow-lg mb-8 border border-white/10 bg-white/5 backdrop-blur-sm">
+
+    </section>
+
+          <div class="relative z-10 w-full max-w-4xl rounded-2xl overflow-hidden shadow-lg mb-8 border border-white/10 bg-white/5 backdrop-blur-sm">
         <img
           src="/static/images/space_ship.png"
           alt="Data Forge Plus Screenshot"
           class="w-full object-cover"
         />
       </div>
-    </section>
 
 
     <!-- Featured Projects -->
