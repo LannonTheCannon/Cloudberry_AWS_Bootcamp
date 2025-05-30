@@ -3,16 +3,25 @@ import sys
 import json
 import boto3
 import pandas as pd
+import numpy as np
 from io import BytesIO
 import streamlit as st
 from sqlalchemy import create_engine, Column, Integer, String, Boolean, DateTime, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-
+import openai
+from langchain.chat_models import ChatOpenAI
+from langchain_community.chat_message_histories import StreamlitChatMessageHistory
+from ai_data_science_team.ds_agents import EDAToolsAgent
+from ai_data_science_team import PandasDataAnalyst, DataWranglingAgent, DataVisualizationAgent
+import plotly.graph_objects as go
+import plotly.io as pio
+from code_editor import code_editor
 # --- Add parent dir to path to import utils ---
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from utils.db_secrets import get_db_secret
 from utils.s3_secrets import get_s3_config
+# from utils.openai_secret import get_openai_api_key
 
 from streamlit_flow import streamlit_flow
 from streamlit_flow.elements import StreamlitFlowNode, StreamlitFlowEdge
@@ -83,6 +92,7 @@ if not file:
     st.error("❌ File not found in database.")
     st.stop()
 
+
 if not file.cleaned or not file.cleaned_key:
     st.warning("⚠️ This file has not been cleaned yet.")
     st.stop()
@@ -99,7 +109,6 @@ try:
 except Exception as e:
     st.error(f"❌ Failed to load data from S3: {e}")
     st.stop()
-
 
 # -------------- Session State Initialization -------------- #
 
@@ -133,9 +142,48 @@ for key in [
 
 if "expanded_nodes" not in st.session_state:
     st.session_state.expanded_nodes = set()
-
 if "seen_embeddings" not in st.session_state:
     st.session_state.seen_embeddings = []
+
+
+import traceback
+import boto3
+import json
+import logging
+
+def get_openai_api_key(secret_name="dev/openai/api_key", region_name="us-west-1"):
+    client = boto3.client("secretsmanager", region_name=region_name)
+
+    try:
+        response = client.get_secret_value(SecretId=secret_name)
+        secret_dict = json.loads(response["SecretString"])
+        return secret_dict["OPENAI_API_KEY"]
+    except Exception as e:
+        print("❌ Secret load error:")
+        traceback.print_exc()
+        return None
+
+
+
+# --- Get OpenAI API Key from AWS Secrets Manager ---
+@st.cache_resource(show_spinner=False)
+def load_openai_api_key():
+    return get_openai_api_key(secret_name="dev/openai/api_key")
+
+OPENAI_API_KEY = load_openai_api_key()
+OPENAI_API_KEY = "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"
+st.session_state["OPENAI_API_KEY"] = OPENAI_API_KEY
+
+if not OPENAI_API_KEY:
+    st.error("❌ PLEASE WORK! Failed to retrieve OpenAI API key from Secrets Manager.")
+    st.stop()
+
+# --- Set up OpenAI + LangChain clients ---
+client = openai.OpenAI(api_key=OPENAI_API_KEY)
+llm = ChatOpenAI(
+    model="gpt-4o-mini",
+    openai_api_key=OPENAI_API_KEY
+)
 
 
 # -------------- Utility Functions -------------- #
@@ -156,10 +204,165 @@ def generate_root_summary_question(metadata_string: str) -> str:
     except Exception:
         return "Overview of the dataset"
 
+def get_assistant_interpretation(user_input, metadata, valid_columns):
+    column_names = ', '.join(valid_columns)
+
+    prompt = f"""
+You are a visualization interpreter.
+
+Your job is to rephrase the user's request into a **precise and code-compatible** instruction. Use this format:
+
+→ "Create a [chart type] of the `[y_column]` on the y-axis ([aggregation]) and the `[x_column]` in the x-axis and make the chart [color]."
+
+---
+
+Rules:
+- DO NOT invent or guess column names. Use ONLY from this list:
+  {column_names}
+- NEVER say "average salary in USD" — instead say: "`salary_in_usd` on the y-axis (avg)"
+- Keep aggregation words like "avg", "sum", or "count" OUTSIDE of the column name.
+- Keep axis mappings clear and exact.
+- Mention the color explicitly at the end.
+- Avoid words like “visualize” or “illustrate.” Just say "Create a bar chart..."
+
+---
+
+📥 USER QUERY:
+{user_input}
+
+📊 METADATA:
+{metadata}
+
+✍️ Respond with just one sentence using the format shown above.
+"""
+
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4.1-mini",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant that rewrites data visualization queries into precise and code-friendly instructions."},
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=200,
+            temperature=0.2,
+        )
+        return response.choices[0].message.content
+
+    except Exception as e:
+        st.warning(f"Error in get_assistant_interpretation: {e}")
+        return "Could not interpret user request."
+
+def display_chat_history():
+    if "chat_artifacts" not in st.session_state:
+        st.session_state["chat_artifacts"] = {}
+
+    for i, msg in enumerate(msgs.messages):
+        role_label = "User" if msg.type == "human" else "Assistant"
+        with st.chat_message(msg.type):
+            st.markdown(f"**{role_label}:** {msg.content}")
+
+            if i in st.session_state["chat_artifacts"]:
+                for j, artifact in enumerate(st.session_state["chat_artifacts"][i]):
+                    unique_key = f"msg_{i}_artifact_{j}"
+                    editor_key = f"editor_code_{unique_key}"
+                    output_key = f"output_chart_{unique_key}"
+
+                    with st.expander(f"\U0001F4CE {artifact['title']}", expanded=True):
+                        tabs = st.tabs(["📊 Output", "📋 Data Preview", "💻 Code"])
+
+                        # --- Code Tab First, to capture edits and trigger updates ---
+                        with tabs[0]:
+                            output_obj = st.session_state.get(output_key, artifact.get("data"))
+                            render_type = artifact.get("render_type")
+
+                            if isinstance(output_obj, dict) and "data" in output_obj and "layout" in output_obj:
+                                output_obj = pio.from_json(json.dumps(output_obj))
+
+                            if render_type == "plotly":
+                                st.plotly_chart(
+                                    output_obj,
+                                    use_container_width=True,
+                                    config={
+                                        "displayModeBar": True,
+                                        "scrollZoom": True,
+                                        "displaylogo": False
+                                    },
+                                    key=f"plotly_{output_key}"
+                                )
+                            elif render_type == "dataframe":
+                                st.dataframe(output_obj, key=f"df_{output_key}")
+                            else:
+                                st.write(output_obj)
+                        with tabs[1]:
+                            df_preview = artifact.get("data_preview")
+                            if df_preview is not None:
+                                st.write("### Data‑Wrangler Output")
+                                st.dataframe(df_preview, use_container_width=True)
+                            else:
+                                st.write("_No data preview available._")
+
+                        with tabs[2]:
+                            code_before = st.session_state.get(editor_key, artifact.get("code", ""))
+                            editor_response = code_editor(
+                                code=code_before,
+                                lang="python",
+                                theme="dracula",
+                                height=300,
+                                # buttons=[
+                                #     {
+                                #         "name": "Run",
+                                #         "feather": "Play",
+                                #         "primary": True,
+                                #         "hasText": True,
+                                #         "showWithIcon": True,
+                                #         "commands": ["submit"],
+                                #         "style": {"bottom": "0.44rem", "right": "0.4rem"}
+                                #     }
+                                # ],
+                                key=f"code_editor_{unique_key}"
+                            )
+
+                            new_code = editor_response.get("text", "").strip()
+
+
+                            #
+                            #
+                            # # Only run if the code has changed
+                            # if new_code and new_code != st.session_state.get(editor_key):
+                            #     try:
+                            #         exec_globals = {
+                            #             "df": st.session_state.df,
+                            #             "pd": pd,
+                            #             "np": np,
+                            #             "sns": sns,
+                            #             "go": go,
+                            #             "plt": plt,
+                            #             "pio": pio,
+                            #             "st": st,
+                            #             "json": json
+                            #         }
+                            #         exec_locals = {}
+                            #         exec(new_code, exec_globals, exec_locals)
+                            #
+                            #         output_obj = exec_locals.get("fig") or \
+                            #                      exec_locals.get("output") or \
+                            #                      exec_locals.get("fig_dict")
+                            #
+                            #         if isinstance(output_obj, dict) and "data" in output_obj and "layout" in output_obj:
+                            #             output_obj = pio.from_json(json.dumps(output_obj))
+                            #
+                            #         artifact["data"] = output_obj
+                            #         artifact["render_type"] = "plotly" if isinstance(output_obj, go.Figure) else "dataframe"
+                            #         st.session_state[editor_key] = new_code
+                            #         st.session_state[output_key] = output_obj
+                            #
+                            #     except Exception as e:
+                            #         st.error(f"Error executing code: {e}")
+
 # ────────────────────────────────────────────────────────
 # UI NAVIGATION
-# ────────────────────────────────────────────────────────
-PAGE_OPTIONS = ['📊 Cleaned Data Preview', '🧠 Mind Mapping']
+# ───────────────────────────────────────────────────────
+PAGE_OPTIONS = ['📊 Cleaned Data Preview', '🧠 Mind Mapping', 'Data Analyst Agent']
 page = st.sidebar.radio("Navigation", PAGE_OPTIONS)
 
 # ────────────────────────────────────────────────────────
@@ -178,11 +381,7 @@ elif page == '🧠 Mind Mapping':
     st.session_state.df = df_final
     st.session_state.DATA_RAW = df_final
     st.session_state.df_preview = df_final.head()
-
-    st.session_state.df_final = df_final
-    st.session_state.cleaning_code = data_cleaning_agent.get_data_cleaner_function()
-    st.session_state.feature_engineering_code = feature_engineering_agent.get_feature_engineer_function()
-
+    dataset_name = file.filename.rsplit('.', 1)[0]
     numeric_summary = df_final.describe()
     # categorical_summary = df_final.describe(include=['object', 'category', 'bool'])
 
@@ -267,3 +466,131 @@ elif page == '🧠 Mind Mapping':
         enable_edge_menu=True,
         show_minimap=False
     )
+# Node click event
+    clicked_node_id = st.session_state.curr_state.selected_id
+
+    if clicked_node_id and clicked_node_id not in st.session_state.expanded_nodes:
+        clicked_obj = st.session_state.mindmap_nodes.get(clicked_node_id)
+
+        if clicked_obj:
+            # ✨ Log clicked node if not already recorded
+            already_logged = any(q["section"] == clicked_obj.node_id for q in st.session_state.clicked_questions)
+            if not already_logged:
+                st.session_state.clicked_questions.append({
+                        "section": clicked_obj.node_id,
+                        "short_label": clicked_obj.label,
+                        "node_type": clicked_obj.node_type,
+                        "full_question": clicked_obj.full_question
+                    })
+
+            # ✅ Expand children if needed
+            if clicked_obj.can_expand() and clicked_node_id not in st.session_state.expanded_nodes:
+                children = clicked_obj.get_children(openai_client=client, metadata_string=st.session_state.metadata_string) or []
+
+                for child in children:
+                    st.session_state.mindmap_nodes[child.node_id] = child
+                    st.session_state.curr_state.nodes.append(child.to_streamlit_node())
+                    st.session_state.curr_state.edges.append(
+                        StreamlitFlowEdge(
+                                f"{clicked_obj.node_id}-{child.node_id}",
+                                clicked_obj.node_id,
+                                child.node_id,
+                                animated=True
+                            )
+                        )
+                clicked_obj.mark_expanded()
+                st.session_state.expanded_nodes.add(clicked_node_id)
+
+            st.rerun()
+    # --- Always show the Clicked Questions Table, even if empty
+    st.write("## 🧠 Your Exploration Path")
+
+    if st.session_state.clicked_questions:
+            df_log = pd.DataFrame(st.session_state.clicked_questions)
+            df_log = df_log[["section", "short_label", "node_type", "full_question"]]
+            st.dataframe(df_log, use_container_width=True)
+    else:
+            st.info("Start clicking nodes on the mind map to populate your exploration path!")
+    
+elif page=='Data Analyst Agent':
+        st.subheader('Pandas Data Analyst Mode')
+        msgs = StreamlitChatMessageHistory(key="pandas_data_analyst_messages")
+        if len(msgs.messages) == 0:
+            pass
+            # msgs.add_ai_message("IMPORTANT: For best results use this formula -> Create a [chart] of the [field] on the y-axis (aggregation) and the [field] on the x-axis and make the chart [color].")
+        if 'pandas_data_analyst' not in st.session_state:
+            model = ChatOpenAI(model='gpt-4.1-mini',
+                               api_key=st.session_state['OPENAI_API_KEY'])
+            st.session_state.pandas_data_analyst = PandasDataAnalyst(
+                model=model,
+                data_wrangling_agent=DataWranglingAgent(model=model,
+                                                        log=True,
+                                                        n_samples=100),
+                data_visualization_agent=DataVisualizationAgent(
+                    model=model,
+                    log=True,
+                    log_path="logs",
+                    overwrite=False,  # ✅ Ensures every chart gets a separate file
+                    n_samples=100,
+                    bypass_recommended_steps=False)
+            )
+        question = st.chat_input('Ask a question about your dataset!')
+        interpretation = get_assistant_interpretation(
+            question,
+            st.session_state['metadata_string'],
+            st.session_state.df.columns  # ✅ pass real column names
+        )
+        # print(interpretation)
+
+        if question:
+            msgs.add_user_message(question)
+            with st.spinner("Thinking..."):
+                try:
+                    st.session_state.pandas_data_analyst.invoke_agent(
+                        user_instructions=question,
+                        data_raw=st.session_state["DATA_RAW"]
+                    )
+                    result = st.session_state.pandas_data_analyst.get_response()
+                    route = result.get("routing_preprocessor_decision", "")
+                    ai_msg = "Here's what I found:"
+                    msgs.add_ai_message(ai_msg)
+                    msg_index = len(msgs.messages) - 1
+                    if "chat_artifacts" not in st.session_state:
+                        st.session_state["chat_artifacts"] = {}
+                    st.session_state["chat_artifacts"][msg_index] = []
+                    if route == "chart" and not result.get("plotly_error", False):
+                        plot_obj = pio.from_json(json.dumps(result["plotly_graph"]))
+                        st.session_state.plots.append(plot_obj)
+                        # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                        viz_code = result.get('data_visualization_function', "")
+                        wrangle_code = result.get('data_wrangler_function', "")
+                        df_wrangled  = result.get('data_wrangled')
+
+                        # Combine both functions into one code block
+                        combined_code = f"{wrangle_code}\n\n{viz_code}\n\n# Runtime Execution\noutput = data_visualization(data_wrangler([df]))"
+
+                        st.session_state["chat_artifacts"][msg_index].append({
+                            "title": "Chart",
+                            "render_type": "plotly",
+                            "data": plot_obj,
+                            "code": combined_code,
+                            "data_preview": df_wrangled
+                        })
+                        # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                        # print(result['data_visualization_function'])
+
+                    elif route == "table":
+                        df = result.get("data_wrangled")
+                        if df is not None:
+                            st.session_state.dataframes.append(df)
+                            st.session_state["chat_artifacts"][msg_index].append({
+                                "title": "Table",
+                                "render_type": "dataframe",
+                                "data": df,
+                                'code': result.get('data_wrangler_function')
+                            })
+                except Exception as e:
+                    error_msg = f"Error: {e}"
+                    msgs.add_ai_message(error_msg)
+        display_chat_history()
+

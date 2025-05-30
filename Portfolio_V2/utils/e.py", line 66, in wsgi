@@ -1,0 +1,100 @@
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:     self.callable = self.load()
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:                     ^^^^^^^^^^^
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:     return self.load_wsgiapp()
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:            ^^^^^^^^^^^^^^^^^^^
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:     return util.import_app(self.app_uri)
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:     mod = importlib.import_module(module)
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:     return _bootstrap._gcd_import(name[level:], package, level)
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/wsgi.py", line 1, in <module>
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:     from app import app
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/app.py", line 16, in <module>
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:     from utils.ai_pipeline import run_clean_pipeline
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/utils/__init__.py", line 4, in <module>
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:     from .ai_pipeline import run_clean_pipeline
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/utils/ai_pipeline.py", line 57
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:             print("⏳ Loading OpenAI API key...")
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]:     ^
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]: TabError: inconsistent use of tabs and spaces in indentation
+May 30 01:15:15 ip-172-31-13-20 gunicorn[26495]: [2025-05-30 01:15:15 +0000] [26495] [INFO] Worker exiting (pid: 26495)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]: [2025-05-30 01:15:16 +0000] [26491] [ERROR] Worker (pid:26493) exited with code 3
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]: [2025-05-30 01:15:16 +0000] [26491] [ERROR] Worker (pid:26494) was sent SIGTERM!
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]: [2025-05-30 01:15:16 +0000] [26491] [ERROR] Worker (pid:26492) was sent SIGTERM!
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]: --- Logging error ---
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]: Traceback (most recent call last):
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 208, in run
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     self.sleep()
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 359, in sleep
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     ready = select.select([self.PIPE[0]], [], [], 1.0)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     self.reap_workers()
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 529, in reap_workers
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]: gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]: During handling of the above exception, another exception occurred:
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]: Traceback (most recent call last):
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/usr/lib/python3.12/logging/__init__.py", line 1163, in emit
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     stream.write(msg + self.terminator)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]: RuntimeError: reentrant call inside <_io.BufferedWriter name='<stderr>'>
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]: During handling of the above exception, another exception occurred:
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]: Traceback (most recent call last):
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/usr/lib/python3.12/logging/__init__.py", line 1163, in emit
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     stream.write(msg + self.terminator)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     self.reap_workers()
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 553, in reap_workers
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     self.log.error(msg)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/glogging.py", line 271, in error
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     self.error_log.error(msg, *args, **kwargs)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/usr/lib/python3.12/logging/__init__.py", line 1568, in error
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     self._log(ERROR, msg, args, **kwargs)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/usr/lib/python3.12/logging/__init__.py", line 1684, in _log
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     self.handle(record)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/usr/lib/python3.12/logging/__init__.py", line 1700, in handle
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     self.callHandlers(record)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/usr/lib/python3.12/logging/__init__.py", line 1762, in callHandlers
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     hdlr.handle(record)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/usr/lib/python3.12/logging/__init__.py", line 1028, in handle
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     self.emit(record)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/usr/lib/python3.12/logging/__init__.py", line 1168, in emit
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     self.handleError(record)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/usr/lib/python3.12/logging/__init__.py", line 1081, in handleError
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     sys.stderr.write('--- Logging error ---\n')
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]: RuntimeError: reentrant call inside <_io.BufferedWriter name='<stderr>'>
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]: Call stack:
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/bin/gunicorn", line 8, in <module>
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     sys.exit(run())
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 66, in run
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]", prog=prog).run()
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 235, in run
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     super().run()
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/app/base.py", line 71, in run
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     Arbiter(self).run()
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 228, in run
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     self.halt(reason=inst.reason, exit_status=inst.exit_status)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 341, in halt
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     self.stop()
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 395, in stop
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     time.sleep(0.1)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     self.reap_workers()
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/arbiter.py", line 553, in reap_workers
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     self.log.error(msg)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:   File "/home/lannonwill/Cloudberry_AWS_Bootcamp/Portfolio_V2/venv/lib/python3.12/site-packages/gunicorn/glogging.py", line 271, in error
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]:     self.error_log.error(msg, *args, **kwargs)
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]: Message: 'Worker (pid:26492) was sent SIGTERM!'
+May 30 01:15:16 ip-172-31-13-20 gunicorn[26491]: Arguments: ()
