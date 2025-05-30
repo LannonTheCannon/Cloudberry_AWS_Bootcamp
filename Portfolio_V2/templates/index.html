@@ -21,9 +21,9 @@
     </header>
 
     <!-- Hero -->
-    <section class="flex-1 flex flex-col justify-center items-center text-center px-4">
+    <section class="flex-1 flex flex-col justify-center items-center text-center px-20 py-20">
       <h2 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-        Building AI-powered tools that <span class="text-indigo-400">transform data into insight.🏂🏼</span>
+        Building AI-powered tools that <span class="text-indigo-400">transform data into insight.🪐</span>
       </h2>
       <p class="text-gray-300 max-w-xl mb-6">
         Hey There. I'm Lannon. Check out Data Forge Plus, that's my proudest app so far. I'm going to build a book app next probably.
@@ -39,27 +39,67 @@
     </section>
 
 
+    <!-- Stats Counter Section -->
+      <section id="stats" class="py-8 bg-white dark:bg-gray-900">
+        <div class="max-w-4xl mx-auto text-center grid grid-cols-2 sm:grid-cols-4 gap-8">
+          <div>
+            <span class="counter text-4xl font-extrabold text-brand" data-target="25">0</span>
+            <p class="mt-2 text-gray-600 dark:text-gray-300">Projects Built</p>
+          </div>
+          <div>
+            <span class="counter text-4xl font-extrabold text-brand" data-target="10">0</span>
+            <p class="mt-2 text-gray-600 dark:text-gray-300">Open-Source Packages</p>
+          </div>
+          <div>
+            <span class="counter text-4xl font-extrabold text-brand" data-target="2500">0</span>
+            <p class="mt-2 text-gray-600 dark:text-gray-300">Commits Made</p>
+          </div>
+          <div>
+            <span class="counter text-4xl font-extrabold text-brand" data-target="50">0</span>
+            <p class="mt-2 text-gray-600 dark:text-gray-300">Blog Posts</p>
+          </div>
+        </div>
+      </section>
+
+
     <section class="relative flex flex-row justify-center items-center px-8 py-20 overflow-hidden gap-12">
 
-      <!-- About Me Card -->
-      <div class="relative z-10 w-full max-w-md bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 shadow-xl text-left">
-        <div class="flex flex-col items-center text-center">
-          <div class="w-24 h-24 mb-4 rounded-full overflow-hidden border-2 border-indigo-400">
+
+      <!-- About Me Card (increased blur effect) -->
+      <div class="tilt-card relative z-10 w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform">
+
+        <!-- Top Row: Profile Pic + About Me Title -->
+        <div class="flex items-start justify-between">
+
+          <!-- Profile Bubble -->
+          <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-indigo-400 shadow-md">
             <img src="/static/images/space_commander.png" alt="Profile" class="object-cover w-full h-full" />
           </div>
-          <h4 class="text-xl font-bold mb-2 text-white">About Me</h4>
-          <p class="text-sm text-gray-300">
-            I'm a full-stack engineer with a passion for building immersive AI-powered platforms. I love clean UI, clever automations, and coffee-fueled creativity.
-          </p>
+
+          <!-- ID Title -->
+          <h4 class="text-2xl font-bold text-gray-300 tracking-wider font-mono mt-2">
+            Space Force | AI Engineer
+          </h4>
+        </div>
+
+        <!-- Description -->
+        <p class="text-sm leading-relaxed text-gray-300 font-light">
+          I'm a full-stack engineer with a passion for building immersive AI-powered platforms. I love clean UI, clever automations, and coffee-fueled creativity. My mission? To empower data storytellers and create tools that feel like magic.
+        </p>
+
+        <!-- Optional: Space Force Details -->
+        <div class="pt-2 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between">
+          <span>ID CODE: LNN-0425-ALPHA</span>
+          <span>SECTOR: DATA OPS</span>
         </div>
       </div>
 
-      <!-- Spaceship Image Overlapping Right Side -->
+      <!-- Spaceship Image Overlapping Right Side (no blur) -->
       <div class="absolute right-[-80px] top-1/2 -translate-y-1/2 z-0 pointer-events-none">
         <img
           src="/static/images/space_ship.png"
           alt="Futuristic Spaceship"
-          class="max-w-md opacity-30 blur-[1px]"
+          class="max-w-md opacity-30"
         />
       </div>
 
@@ -111,5 +151,7 @@
     <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
       &copy; 2059 Lannon Khau. Built with Flask. 🚀 Auto-deploy test.
     </footer>
+  <script src="{{ url_for('static', filename='js/tilt.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
   </body>
 </html>
