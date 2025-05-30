@@ -30,9 +30,8 @@ def run_clean_pipeline(df: pd.DataFrame) -> pd.DataFrame:
         print("⏳ Loading OpenAI API key...")
 
         # You can switch between static and Secrets Manager here
-        # api_key = get_openai_api_key()
-        api_key = "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"  # <-- trim as needed
-
+        api_key = get_openai_api_key()
+        
         if not api_key:
             raise RuntimeError("🛑 OpenAI API key could not be loaded.")
 
