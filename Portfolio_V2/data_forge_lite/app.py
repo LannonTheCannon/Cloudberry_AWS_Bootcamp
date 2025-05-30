@@ -152,26 +152,22 @@ import json
 import logging
 
 def get_openai_api_key(secret_name="dev/openai/api_key", region_name="us-west-1"):
+    print(f"🔑 Loading secret: {secret_name}")
     client = boto3.client("secretsmanager", region_name=region_name)
-
     try:
         response = client.get_secret_value(SecretId=secret_name)
         secret_dict = json.loads(response["SecretString"])
-        return secret_dict["OPENAI_API_KEY"]
+        api_key = secret_dict.get("OPENAI_API_KEY")
+
+        if not api_key:
+            raise ValueError("❌ OPENAI_API_KEY not found in secret JSON.")
+
+        return api_key
     except Exception as e:
-        print("❌ Secret load error:")
-        traceback.print_exc()
+        print(f"❌ Secret load error: {e}")
         return None
 
-
-
-# --- Get OpenAI API Key from AWS Secrets Manager ---
-@st.cache_resource(show_spinner=False)
-def load_openai_api_key():
-    return get_openai_api_key(secret_name="dev/openai/api_key")
-
-OPENAI_API_KEY = load_openai_api_key()
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = get_openai_api_key()
 st.session_state["OPENAI_API_KEY"] = OPENAI_API_KEY
 
 if not OPENAI_API_KEY:
