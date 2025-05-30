@@ -120,7 +120,7 @@ flask run
 
 ## 📬 Contact
 
-If you're interested in using this platform internally for your team, or just want to jam on ideas—reach out at [lannonwill@gmail.com](mailto:lannonkhau@gmail.com)
+If you're interested in using this platform internally for your team, or just want to jam on ideas—reach out at [lannonkhau@gmail.com](mailto:lannonkhau@gmail.com)
 
 ---
 
