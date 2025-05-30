@@ -31,7 +31,7 @@ from streamlit_flow.layouts import ManualLayout, RadialLayout, TreeLayout
 # Node template (your custom classes)
 from node_template import BaseNode, ThemeNode, QuestionNode, TerminalNode
 
-# ────────────────────────────────────────────────────────
+# Agents #────────────────────────────────────────────────────────
 # SETUP: Streamlit Page + Session State
 # ────────────────────────────────────────────────────────
 st.set_page_config(page_title="Data Forge Lite", layout="wide")
@@ -375,13 +375,13 @@ if page == '📊 Cleaned Data Preview':
     st.write(df.describe())
 
 elif page == '🧠 Mind Mapping':
-
     # Save everything into session_state
     df_final = df
     st.session_state.df = df_final
     st.session_state.DATA_RAW = df_final
     st.session_state.df_preview = df_final.head()
     dataset_name = file.filename.rsplit('.', 1)[0]
+
     numeric_summary = df_final.describe()
     # categorical_summary = df_final.describe(include=['object', 'category', 'bool'])
 
