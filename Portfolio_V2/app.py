@@ -152,10 +152,10 @@ def show_project(slug):
 
 posts = {
     "graphic-design-skills": {
-        "title": "12 Graphic Design Skills You Need To Get Hired",
-        "content": "Here’s what you should know...",  # Optional fallback
-        "author": "Michael Andreuzza",
-        "template": "graphic-design-skills.html"  # points to templates/posts/
+        "title": "Journey of End to End",
+        "content": "What i've learned these past 6 months",  # Optional fallback
+        "author": "Lannon Khau",
+        "template": "journey.html"  # points to templates/posts/
     },
     "my-first-hackathon": {
         "title": "🚀 My First Hackathon",
