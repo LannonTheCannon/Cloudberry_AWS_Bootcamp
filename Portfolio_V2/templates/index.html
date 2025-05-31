@@ -6,6 +6,39 @@
     <title>Portfolio V2 – Lannon Khau</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="/static/favicon.ico" />
+
+    <style>
+.typing-ball {
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  animation: bounce 1.2s infinite ease-in-out;
+  opacity: 0.6;
+}
+
+.dot1 {
+  animation-delay: 0s;
+}
+.dot2 {
+  animation-delay: 0.2s;
+}
+.dot3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+}
+</style>
+
   </head>
   <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
 
@@ -39,39 +72,47 @@
     </section>
 
 
-    <section class="relative flex flex-row justify-center items-center px-8 py-20 overflow-hidden gap-12">
 
 
-      <!-- About Me Card (increased blur effect) -->
-      <div class="tilt-card relative z-10 w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform">
+<section class="relative flex flex-row justify-center items-center px-8 pt-16 pb-2 overflow-hidden gap-12">
+  <!-- About Me Card -->
+  <div class="tilt-card relative z-10 w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform">
 
-        <!-- Top Row: Profile Pic + About Me Title -->
-        <div class="flex items-start justify-between">
+    <!-- Top Row: Profile Pic + About Me Title -->
+    <div class="flex items-start justify-between">
+      <!-- Profile Bubble -->
+      <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-indigo-400 shadow-md">
+        <img src="/static/images/space_commander.png" alt="Profile" class="object-cover w-full h-full" />
+      </div>
 
-          <!-- Profile Bubble -->
-          <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-indigo-400 shadow-md">
-            <img src="/static/images/space_commander.png" alt="Profile" class="object-cover w-full h-full" />
-          </div>
+      <!-- ID Title -->
+      <div class="flex flex-col mt-2">
+        <h4 class="text-2xl font-bold text-gray-300 tracking-wider font-mono">
+          Space Force | AI Engineer
+        </h4>
+        <!-- Top Divider Line -->
+        <div class="mt-2 w-full border-t border-white/10"></div>
+      </div>
+    </div>
 
-          <!-- ID Title -->
-          <h4 class="text-2xl font-bold text-gray-300 tracking-wider font-mono mt-2">
-            Space Force | AI Engineer
-          </h4>
-        </div>
-
-        <!-- Description -->
-<!--        <p class="text-sm leading-relaxed text-gray-300 font-light">-->
-<!--          I'm a full-stack engineer with a passion for building immersive AI-powered platforms. I love clean UI, clever automations, and coffee-fueled creativity. My mission? To empower data storytellers and create tools that feel like magic.-->
-<!--        </p>-->
-
-        <p id="typewriter" class="text-sm leading-relaxed text-gray-300 font-light min-h-[60px] whitespace-pre-line"></p>
-
-        <!-- Optional: Space Force Details -->
-        <div class="pt-2 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between">
-          <span>ID CODE: LNN-0425-ALPHA</span>
-          <span>SECTOR: DATA OPS</span>
+    <!-- Typewriter Output -->
+    <p id="typewriter" class="text-sm leading-relaxed text-gray-300 font-light min-h-[60px] whitespace-pre-line"></p>
+      <div class="relative h-6 mt-[-4px]">
+        <div id="typing-indicator" class="absolute top-0 left-0 flex gap-2 hidden">
+          <span class="typing-ball dot1"></span>
+          <span class="typing-ball dot2"></span>
+          <span class="typing-ball dot3"></span>
         </div>
       </div>
+
+    <!-- Footer Row -->
+    <div class="pt-2 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between">
+      <span>ID CODE: LNN-0425-ALPHA</span>
+      <span>SECTOR: DATA OPS</span>
+    </div>
+  </div>
+
+
 
       <!-- Spaceship Image Overlapping Right Side (no blur) -->
       <div class="absolute right-[-80px] top-1/2 -translate-y-1/2 z-0 pointer-events-none">
@@ -84,22 +125,41 @@
 
     </section>
 
-<!-- Featured Projects -->
-    <section id="projects" class="px-8 py-20">
-      <h3 class="text-3xl font-bold mb-12 text-center text-white tracking-tight">Featured Projects</h3>
+    <section class="flex justify-center items-center px-8 pt-2 pb-2">
+      <div class="w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md">
+        <div class="flex space-x-4">
+          <input
+            id="user-query"
+            type="text"
+            placeholder="Ask me anything..."
+            class="flex-1 bg-transparent border-none text-sm text-gray-100 placeholder-gray-400 focus:outline-none"
+          />
+          <button
+            id="query-send"
+            class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition"
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="projects" class="px-8 py-20 overflow-hidden">
+      <h3 class="fade-in-up text-3xl font-bold mb-12 text-center text-white tracking-tight opacity-0 translate-y-10 transition duration-700">
+        Featured Projects
+      </h3>
 
       <div class="grid md:grid-cols-3 gap-10">
         <!-- Project Card -->
         <a href="/projects/data-forge-plus"
-          class="project-card bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
-
+          class="fade-in-up bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer opacity-0 translate-y-10 delay-0">
           <div class="flex items-center mb-4 space-x-4">
             <div class="w-12 h-12 bg-gray-700 rounded-xl overflow-hidden flex-shrink-0">
               <img src="/static/images/data_analysis.png" alt="Data Forge Plus Logo" class="object-cover w-full h-full" />
             </div>
             <h4 class="text-lg font-bold text-white">Data Forge Plus</h4>
           </div>
-
           <p class="text-sm text-gray-400 leading-relaxed">
             An AI-powered dataset cleaner and exploration engine built on Flask, S3, Lambda, and Streamlit.
           </p>
@@ -107,15 +167,13 @@
 
         <!-- Project Card -->
         <a href="/projects/task-master-plus"
-          class="project-card bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
-
+          class="fade-in-up bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer opacity-0 translate-y-10 delay-100">
           <div class="flex items-center mb-4 space-x-4">
             <div class="w-12 h-12 bg-gray-700 rounded-xl overflow-hidden flex-shrink-0">
               <img src="/static/images/planets.png" alt="Exo-Explorer Logo" class="object-cover w-full h-full" />
             </div>
             <h4 class="text-lg font-bold text-white">Exo-Explorer</h4>
           </div>
-
           <p class="text-sm text-gray-400 leading-relaxed">
             Find out which exoplanets score highest in habitability. Then render the planet’s data with DALL·E 3!
           </p>
@@ -123,15 +181,13 @@
 
         <!-- Project Card -->
         <a href="/projects/data-forge-lite"
-          class="project-card bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
-
+          class="fade-in-up bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer opacity-0 translate-y-10 delay-200">
           <div class="flex items-center mb-4 space-x-4">
             <div class="w-12 h-12 bg-gray-700 rounded-xl overflow-hidden flex-shrink-0">
               <img src="/static/images/bookstar.png" alt="Quote-Ability Logo" class="object-cover w-full h-full" />
             </div>
             <h4 class="text-lg font-bold text-white">Quote-Ability</h4>
           </div>
-
           <p class="text-sm text-gray-400 leading-relaxed">
             Like your own personal book club. Ask questions about the pages you’ve read and deepen your understanding.
           </p>
@@ -161,55 +217,149 @@
 
   <script src="{{ url_for('static', filename='js/tilt.js') }}"></script>
   <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const typeTarget = document.getElementById("typewriter");
+  const input = document.getElementById("user-query");
+  const sendButton = document.getElementById("query-send");
+  const typingDots = document.getElementById("typing-indicator");
+
+  const phrases = [
+    "I'm a full-stack engineer with a passion for building immersive AI-powered platforms.",
+    "I love clean UI, clever automations, and coffee-fueled creativity.",
+    "My mission? To empower data storytellers and create tools that feel like magic.",
+    "I once wrote 500 lines of code just to automate making my morning coffee. Worth it.",
+    "Currently deploying projects — and inner peace — on AWS.",
+    "I believe good design feels like a handshake, not a user manual.",
+    "Fluent in Python, JavaScript, and awkward silence during Zoom calls.",
+    "My GitHub is more active than my social life. No regrets.",
+    "I write code that’s clean, comments that are poetic, and commit messages that age like wine.",
+    "I'm not saying I'm Iron Man, but you’ve never seen us deploy in the same room.",
+    `"I'm 40% code!" – Bender`,
+    `"Bite my shiny metal API." – Bender`
+  ];
+
+  let currentPhraseIndex = 0;
+  let currentCharIndex = 0;
+  let typingPaused = false;
+  let hasUserInteracted = false;
+
+  function getTypingDelay(char) {
+    if ([".", "!", "?"].includes(char)) return 400 + Math.random() * 200;
+    if ([",", ";", ":"].includes(char)) return 200 + Math.random() * 100;
+    if (char === " ") return 60 + Math.random() * 40;
+    return 25 + Math.random() * 60;
+  }
+
+  function typeLoop() {
+    if (typingPaused || hasUserInteracted) return;
+
+    const phrase = phrases[currentPhraseIndex];
+    const char = phrase[currentCharIndex];
+    const visibleText = phrase.slice(0, currentCharIndex);
+
+    typeTarget.textContent = visibleText;
+
+    if (currentCharIndex < phrase.length) {
+      currentCharIndex++;
+      const delay = getTypingDelay(char);
+      setTimeout(typeLoop, delay);
+    } else {
+      setTimeout(() => {
+        typeTarget.classList.add("opacity-0", "transition-opacity", "duration-500");
+
+        setTimeout(() => {
+          typeTarget.textContent = "";
+          currentCharIndex = 0;
+          currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+          typeTarget.classList.remove("opacity-0");
+          setTimeout(typeLoop, 300);
+        }, 500);
+      }, 2500);
+    }
+  }
+
+  sendButton.addEventListener("click", () => {
+    const query = input.value.trim();
+    if (!query) return;
+
+    typingPaused = true;
+    hasUserInteracted = true;
+
+    // Fade out existing text
+    typeTarget.classList.add("opacity-0", "transition-opacity", "duration-300");
+
+    setTimeout(() => {
+      typeTarget.textContent = "";
+      showTypingDots();
+
+      fetch("/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query })
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log("✅ FULL response object:", data);
+        console.log("✅ Assistant response (data.response):", data.response);
+        hideTypingDots();
+        typeTarget.classList.remove("opacity-0");
+        console.log("✅ Assistant Response:", data.response);  // debugging
+        animateTyping(data.response);  // ✅ This must be data.response!
+        input.value = ""; // Optional: Clear input after sending
+      })
+      .catch(err => {
+        hideTypingDots();
+        typeTarget.classList.remove("opacity-0");
+        typeTarget.textContent = "⚠️ Oops, something went wrong.";
+        console.error("❌ Error:", err);
+      });
+    }, 300);
+  });
+
+  function animateTyping(text) {
+    let i = 0;
+    function typeChar() {
+      if (i <= text.length) {
+        typeTarget.textContent = text.slice(0, i++);
+        setTimeout(typeChar, getTypingDelay(text[i] || ""));
+      }
+    }
+    typeChar();
+  }
+
+  function showTypingDots() {
+  typingDots.classList.remove("hidden");
+  typingDots.classList.add("inline-block");
+}
+
+function hideTypingDots() {
+  typingDots.classList.add("hidden");
+  typingDots.classList.remove("inline-block");
+}
+
+  typeLoop(); // startup loop for ambient phrases
+});
+</script>
+
   <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const typeTarget = document.getElementById("typewriter");
-    const phrases = [
-      "I'm a full-stack engineer with a passion for building immersive AI-powered platforms.",
-      "I love clean UI, clever automations, and coffee-fueled creativity.",
-      "My mission? To empower data storytellers and create tools that feel like magic."
-    ];
-
-    let currentPhraseIndex = 0;
-    let currentCharIndex = 0;
-    let isDeleting = false;
-
-    function getTypingDelay(char) {
-      if ([".", "!", "?"].includes(char)) return 400 + Math.random() * 200;
-      if ([",", ";", ":"].includes(char)) return 200 + Math.random() * 100;
-      if (char === " ") return 60 + Math.random() * 40;
-      return 25 + Math.random() * 60;
-    }
-
-    function typeLoop() {
-      const phrase = phrases[currentPhraseIndex];
-      const char = phrase[currentCharIndex];
-      const visibleText = phrase.slice(0, currentCharIndex);
-
-      typeTarget.textContent = visibleText;
-
-      if (!isDeleting && currentCharIndex < phrase.length) {
-        currentCharIndex++;
-        const delay = getTypingDelay(char);
-        setTimeout(typeLoop, delay);
-      }
-      else if (isDeleting && currentCharIndex > 0) {
-        currentCharIndex--;
-        setTimeout(typeLoop, 20 + Math.random() * 30);
-      }
-      else {
-        // Toggle mode and prepare for next cycle
-        isDeleting = !isDeleting;
-
-        if (!isDeleting) {
-          currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove("opacity-0", "translate-y-10");
+          entry.target.classList.add("opacity-100", "translate-y-0");
+          entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
+          observer.unobserve(entry.target);
         }
+      });
+    }, { threshold: 0.25 });
 
-        setTimeout(typeLoop, 1000 + Math.random() * 600);
-      }
-    }
-
-    typeLoop();
+    document.querySelectorAll('.fade-in-up').forEach((el) => {
+      observer.observe(el);
+    });
   });
   </script>
   </body>
