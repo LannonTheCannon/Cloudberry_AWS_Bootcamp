@@ -1,7 +1,8 @@
 from flask import (
     Flask, render_template, request, redirect,
-    url_for, flash, session, g
+    url_for, flash, session, g, jsonify
 )
+
 from flask_sqlalchemy import SQLAlchemy
 from jinja2 import TemplateNotFound
 from flask import abort
@@ -13,7 +14,7 @@ import pandas as pd
 from io import BytesIO
 import os
 import sys
-from utils.ai_pipeline import run_clean_pipeline
+from utils.ai_pipeline import run_clean_pipeline, get_openai_api_key
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -398,6 +399,59 @@ def get_file_info(file_id):
     if file.user_id != g.user.id:
         return {"error": "unauthorized"}, 401
     return {"cleaned_key": file.cleaned_key}
+
+
+import openai
+
+openai.api_key = get_openai_api_key()
+
+@app.route('/ask', methods=['POST'])
+def ask_openai():
+    try:
+        user_input = request.json.get("query")
+
+        print("🧠 User said:", user_input)
+
+        # Create a thread
+        thread = openai.beta.threads.create()
+
+        # Add user's message
+        openai.beta.threads.messages.create(
+            thread_id=thread.id,
+            role="user",
+            content=user_input
+        )
+
+        # Start the assistant run
+        run = openai.beta.threads.runs.create(
+            thread_id=thread.id,
+            assistant_id="asst_kgRhmlXadMK4i3tEQ6nTaAyD",
+        )
+
+        # Wait for completion
+        while True:
+            run_status = openai.beta.threads.runs.retrieve(
+                thread_id=thread.id,
+                run_id=run.id
+            )
+            if run_status.status == "completed":
+                break
+            elif run_status.status in ("failed", "cancelled"):
+                return jsonify({"response": "❌ Assistant failed to respond"}), 500
+
+        # Fetch latest message
+        messages = openai.beta.threads.messages.list(thread_id=thread.id)
+        for msg in messages.data:
+            print(f"{msg.role.upper()}: {msg.content[0].text.value}")
+
+        latest = messages.data[0]
+        response_text = latest.content[0].text.value.strip()
+
+        return jsonify({"response": response_text})
+
+    except Exception as e:
+        print(f"💥 Error: {e}")
+        return jsonify({"response": "⚠️ Something went wrong on the server."}), 500
 
 if __name__ == '__main__':
     print("Running db.create_all()")
