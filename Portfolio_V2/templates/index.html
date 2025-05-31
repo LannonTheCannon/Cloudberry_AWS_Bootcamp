@@ -71,12 +71,18 @@
       </div>
     </section>
 
+      <!-- Spaceship Image Overlapping Right Side (no blur) -->
+      <div class="absolute right-[-80px] top-1/2 -translate-y-1/2 z-0 pointer-events-none">
+        <img
+          src="/static/images/landing.png"
+          alt="Futuristic Spaceship"
+          class="w-[400px] scale-[1.3] opacity-100"
+        />
+      </div>
 
 
-
-<section class="relative flex flex-row justify-center items-center px-8 pt-16 pb-2 overflow-hidden gap-12">
-  <!-- About Me Card -->
-  <div class="tilt-card relative z-10 w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform">
+<section class="relative flex flex-row justify-center items-center px-8 pt-8 pb-3 overflow-hidden gap-12">  <!-- About Me Card -->
+  <div class="tilt-card relative z-[30] w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform">
 
     <!-- Top Row: Profile Pic + About Me Title -->
     <div class="flex items-start justify-between">
@@ -96,8 +102,7 @@
     </div>
 
     <!-- Typewriter Output -->
-    <p id="typewriter" class="text-sm leading-relaxed text-gray-300 font-light min-h-[60px] whitespace-pre-line"></p>
-      <div class="relative h-6 mt-[-4px]">
+      <p id="typewriter" class="text-sm leading-relaxed text-gray-300 font-light min-h-[60px] whitespace-pre-line text-center px-4"></p>      <div class="relative h-6 mt-[-4px]">
         <div id="typing-indicator" class="absolute top-0 left-0 flex gap-2 hidden">
           <span class="typing-ball dot1"></span>
           <span class="typing-ball dot2"></span>
@@ -114,34 +119,25 @@
 
 
 
-      <!-- Spaceship Image Overlapping Right Side (no blur) -->
-      <div class="absolute right-[-80px] top-1/2 -translate-y-1/2 z-0 pointer-events-none">
-        <img
-          src="/static/images/space_ship.png"
-          alt="Futuristic Spaceship"
-          class="max-w-md opacity-30"
-        />
-      </div>
-
     </section>
 
-    <section class="flex justify-center items-center px-8 pt-2 pb-2">
+    <section class="relative z-[30] flex justify-center items-center px-8 pt-2 pb-2">
       <div class="w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md">
-        <div class="flex space-x-4">
-          <input
-            id="user-query"
-            type="text"
-            placeholder="Ask me anything..."
-            class="flex-1 bg-transparent border-none text-sm text-gray-100 placeholder-gray-400 focus:outline-none"
-          />
-          <button
-            id="query-send"
-            class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition"
-          >
-            Send
-          </button>
-        </div>
-      </div>
+            <div class="flex space-x-4">
+              <input
+                id="user-query"
+                type="text"
+                placeholder="Ask me anything..."
+                class="flex-1 bg-transparent border-none text-sm text-gray-100 placeholder-gray-400 focus:outline-none"
+              />
+              <button
+                id="query-send"
+                class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition"
+              >
+                Send
+              </button>
+            </div>
+          </div>
     </section>
 
 
@@ -227,18 +223,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const typingDots = document.getElementById("typing-indicator");
 
   const phrases = [
-    "I'm a full-stack engineer with a passion for building immersive AI-powered platforms.",
-    "I love clean UI, clever automations, and coffee-fueled creativity.",
-    "My mission? To empower data storytellers and create tools that feel like magic.",
-    "I once wrote 500 lines of code just to automate making my morning coffee. Worth it.",
-    "Currently deploying projects — and inner peace — on AWS.",
-    "I believe good design feels like a handshake, not a user manual.",
-    "Fluent in Python, JavaScript, and awkward silence during Zoom calls.",
-    "My GitHub is more active than my social life. No regrets.",
-    "I write code that’s clean, comments that are poetic, and commit messages that age like wine.",
-    "I'm not saying I'm Iron Man, but you’ve never seen us deploy in the same room.",
-    `"I'm 40% code!" – Bender`,
-    `"Bite my shiny metal API." – Bender`
+    "“The best way to predict the future is to invent it.” – Alan Kay",
+    "“Programs must be written for people to read, and only incidentally for machines to execute.” – Harold Abelson",
+    "“Simplicity is the soul of efficiency.” – Austin Freeman",
+    "“Talk is cheap. Show me the code.” – Linus Torvalds",
+    "“First, solve the problem. Then, write the code.” – John Johnson",
+    "“Any sufficiently advanced technology is indistinguishable from magic.” – Arthur C. Clarke",
+    "“The code you write makes you a programmer. The code you delete makes you a good one.” – Mario Fusco",
+    "“Software is a great combination of artistry and engineering.” – Bill Gates",
+    "“In the middle of difficulty lies opportunity.” – Albert Einstein",
+    "“Stay hungry, stay foolish.” – Steve Jobs"
   ];
 
   let currentPhraseIndex = 0;
@@ -246,12 +240,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let typingPaused = false;
   let hasUserInteracted = false;
 
-  function getTypingDelay(char) {
-    if ([".", "!", "?"].includes(char)) return 400 + Math.random() * 200;
-    if ([",", ";", ":"].includes(char)) return 200 + Math.random() * 100;
-    if (char === " ") return 60 + Math.random() * 40;
-    return 25 + Math.random() * 60;
-  }
+    function getTypingDelay(char) {
+      if ([".", "!", "?"].includes(char)) return (200 + Math.random() * 100);       // was 400–600
+      if ([",", ";", ":"].includes(char)) return (100 + Math.random() * 50);        // was 200–300
+      if (char === " ") return (30 + Math.random() * 20);                           // was 60–100
+      return (12 + Math.random() * 30);                                             // was 25–85
+}
 
   function typeLoop() {
     if (typingPaused || hasUserInteracted) return;
