@@ -356,7 +356,8 @@ def clean_file(file_id):
         # flash("Cleaning complete!", "success")
 
     except Exception as e:
-        # flash(f"Cleaning error: {e}", "danger")
+        flash(f"Cleaning error: {e}", "danger")
+
 
     # 🔁 This line must exist outside the try/except block too
     return redirect(url_for('dashboard'))
