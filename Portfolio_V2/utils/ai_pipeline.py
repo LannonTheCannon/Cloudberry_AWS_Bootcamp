@@ -1,11 +1,13 @@
 import pandas as pd
-from ai_data_science_team import DataCleaningAgent, FeatureEngineeringAgent
+from ai_data_science_team.agents import DataCleaningAgent, FeatureEngineeringAgent
 from langchain_openai import ChatOpenAI
 import boto3
 import json
 import traceback
 import time
 import plotly.io as pio
+
+
 
 def get_openai_api_key(secret_name="dev/openai/api_key", region_name="us-west-1"):
     print(f"🔑 Loading secret: {secret_name}")
@@ -40,20 +42,28 @@ def run_clean_pipeline(df: pd.DataFrame) -> pd.DataFrame:
             openai_api_key=api_key
         )
 
+        data_cleaning_agent = DataCleaningAgent(model=llm, n_samples=50, log=False)
+        feature_engineering_agent = FeatureEngineeringAgent(model=llm, n_samples=50, log=False)
+
         print("🧹 Starting Cleaning Agent...")
         t1 = time.time()
-        cleaning_agent = DataCleaningAgent(model=llm)
-        cleaning_agent.invoke_agent(data_raw=df, user_instructions='Use default cleaning steps.')
-        df_cleaned = cleaning_agent.get_data_cleaned()
+        # cleaning_agent = DataCleaningAgent(model=llm)
+        data_cleaning_agent.invoke_agent(data_raw=df, user_instructions='Use default cleaning steps.')
+
+        df_cleaned = data_cleaning_agent.get_data_cleaned()
+
         print(f"✅ Cleaning completed in {time.time() - t1:.2f} seconds.")
 
         print("🧠 Starting Feature Engineering Agent...")
         t2 = time.time()
-        fe_agent = FeatureEngineeringAgent(model=llm)
-        fe_agent.invoke_agent(data_raw=df_cleaned, user_instructions='Use default feature engineering steps')
-        df_final = fe_agent.get_data_engineered()
-        print(f"✅ Feature Engineering completed in {time.time() - t2:.2f} seconds.")
 
+        # fe_agent = FeatureEngineeringAgent(model=llm)
+
+        feature_engineering_agent.invoke_agent(data_raw=df_cleaned, user_instructions='Use default feature engineering steps')
+
+        df_final = feature_engineering_agent.get_data_engineered()
+
+        print(f"✅ Feature Engineering completed in {time.time() - t2:.2f} seconds.")
         print(f"⏱️ Total pipeline runtime: {time.time() - start_all:.2f} seconds.")
         return df_final
 
