@@ -391,6 +391,8 @@ def delete(file_id):
 
     return redirect(url_for('dashboard'))
 
+
+
 @app.route('/api/file/<int:file_id>')
 @login_required
 def get_file_info(file_id):
@@ -399,6 +401,26 @@ def get_file_info(file_id):
         return {"error": "unauthorized"}, 401
     return {"cleaned_key": file.cleaned_key}
 
+
+
+
+# This is for getting the logs from data cleaning step
+@app.route('/logs/<int:file_id>')
+def get_logs(file_id):
+    file = File.query.get(file_id)
+    if not file:
+        return jsonify({"status": "not_found", "logs": []})
+
+    logs = get_current_logs(file_id)  # This should return a list of strings
+    status = "pending"
+    if file.cleaned:
+        status = "cleaned"
+    elif file.cleaning:
+        status = "cleaning"
+    elif file.failed:
+        status = "failed"
+
+    return jsonify({"status": status, "logs": logs})
 
 import openai
 

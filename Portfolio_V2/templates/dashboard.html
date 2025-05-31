@@ -79,26 +79,25 @@
               {{ file.uploaded_at.strftime('%Y-%m-%d %H:%M') }}
             </td>
 
-            <!-- Cleaning Status -->
             <td class="px-4 py-3">
-              {% if file.cleaning %}
-                <div class="flex items-center gap-2">
-                  <div class="w-full max-w-[120px] bg-gray-700 rounded-full h-2.5">
-                    <div class="bg-indigo-500 h-2.5 rounded-full animate-pulse" style="width: 60%"></div>
+              <div id="status-{{ file.id }}">
+                {% if file.cleaning %}
+                  <div class="flex flex-col text-sm text-indigo-300 gap-1 font-mono bg-black/20 p-2 rounded">
+                    <span>🧹 Cleaning started...</span>
+
                   </div>
-                  <span class="text-xs text-indigo-300">Cleaning...</span>
-                </div>
-              {% elif file.cleaned %}
-                <div class="inline-flex items-center gap-2 px-2 py-1 bg-emerald-700 text-white text-xs rounded-full">
-                  <i data-lucide="check-circle" class="w-4 h-4"></i>
-                  Cleaned
-                </div>
-              {% else %}
-                <div class="inline-flex items-center gap-2 px-2 py-1 bg-yellow-600 text-white text-xs rounded-full">
-                  <i data-lucide="clock" class="w-4 h-4"></i>
-                  Pending
-                </div>
-              {% endif %}
+                {% elif file.cleaned %}
+                  <div class="inline-flex items-center gap-2 px-2 py-1 bg-emerald-700 text-white text-xs rounded-full">
+                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                    Cleaned
+                  </div>
+                {% else %}
+                  <div class="inline-flex items-center gap-2 px-2 py-1 bg-yellow-600 text-white text-xs rounded-full">
+                    <i data-lucide="clock" class="w-4 h-4"></i>
+                    Pending
+                  </div>
+                {% endif %}
+              </div>
             </td>
 
             <!-- Actions Column with Lucide Icons -->
@@ -199,7 +198,51 @@ function showLoader(fileId) {
   document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   });
+
+  function pollStatus(fileId) {
+  const statusBox = document.getElementById(`status-${fileId}`);
+  if (!statusBox) return;
+
+  const interval = setInterval(() => {
+    fetch(`/logs/${fileId}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === "cleaning") {
+          statusBox.innerHTML = `
+            <div class="flex flex-col text-sm text-indigo-300 gap-1 font-mono bg-black/20 p-2 rounded">
+              ${data.logs.map(step => `<span>${step}</span>`).join('')}
+            </div>
+          `;
+        } else if (data.status === "cleaned") {
+          clearInterval(interval);
+          statusBox.innerHTML = `
+            <div class="inline-flex items-center gap-2 px-2 py-1 bg-emerald-700 text-white text-xs rounded-full">
+              <i data-lucide="check-circle" class="w-4 h-4"></i>
+              Cleaned
+            </div>
+          `;
+        } else if (data.status === "failed") {
+          clearInterval(interval);
+          statusBox.innerHTML = `
+            <div class="inline-flex items-center gap-2 px-2 py-1 bg-red-700 text-white text-xs rounded-full">
+              <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+              Failed
+            </div>
+          `;
+        }
+      });
+  }, 3000); // every 3 seconds
+}
+
+  // Initialize polling only for cleaning jobs
+  {% for file in files %}
+    {% if file.cleaning %}
+      pollStatus({{ file.id }});
+    {% endif %}
+  {% endfor %}
+
 </script>
+
 
 </body>
 </html>
