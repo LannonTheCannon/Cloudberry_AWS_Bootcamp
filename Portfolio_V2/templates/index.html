@@ -59,7 +59,7 @@
         Building AI-powered tools that <span class="text-indigo-400">transform data into insight.🪐</span>
       </h2>
       <p class="text-gray-300 max-w-xl mb-6">
-        Hey There. I'm Lannon. Check out Data Forge Plus, that's my proudest app so far. I'm going to build a book app next probably.
+        Hey There, I'm Lannon. I craft intelligent interfaces that help people explore, question, and understand their data. My goal is to make exploration feel magical and intuitive.
       </p>
       <div class="space-x-4">
         <a href="/projects" class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-xl transition">
@@ -72,10 +72,14 @@
     </section>
 
     <section class="text-white text-center -mt-10 mb-4 px-4">
-      <div class="flex justify-center items-center space-x-2 text-lg text-white/70 tracking-wide font-serif">
+      <div class="flex justify-center items-center space-x-2 text-lg text-white/70 tracking-wide font-serif leading-none">
         <span class="text-xl">★★★★</span>
-        <span>|</span>
-        <span class="italic">"Mission-Driven, Elegantly Engineered"</span>
+        <span class="text-white/30">|</span>
+        <div class="relative overflow-hidden h-[2.5em] flex items-center">
+          <span id="quote-display" class="italic transition-opacity duration-500 ease-in-out">
+            "Mission-Driven, Elegantly Engineered"
+          </span>
+        </div>
       </div>
       <div class="mt-2 mb-1">
         <hr class="w-24 border-white/20 mx-auto" />
@@ -348,6 +352,31 @@ function hideTypingDots() {
 
   typeLoop(); // startup loop for ambient phrases
 });
+</script>
+
+    <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const quotes = [
+      `"Mission-Driven, Elegantly Engineered"`,
+      `"Feels like magic, powered by logic"`,
+      `"A data app I actually look forward to using"`,
+      `"Built with clarity, powered by courage"`,
+      `"A toolkit for thinkers, not just analysts"`
+    ];
+
+    const display = document.getElementById("quote-display");
+    let index = 0;
+
+    setInterval(() => {
+      display.classList.add("opacity-0"); // fade out
+
+      setTimeout(() => {
+        index = (index + 1) % quotes.length;
+        display.textContent = quotes[index];
+        display.classList.remove("opacity-0"); // fade in
+      }, 500); // match transition duration
+    }, 6000); // every 6 seconds
+  });
 </script>
 
   <script>
