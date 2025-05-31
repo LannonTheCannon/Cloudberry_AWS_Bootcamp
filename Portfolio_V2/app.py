@@ -126,8 +126,6 @@ def show_project(slug):
     else:
         abort(404)
 
-
-
 # ─── Blog Section  ──────────────────────────────────────────────────────────────────────
 
 posts = {
@@ -331,7 +329,7 @@ def preview_file(file_id):
 def clean_file(file_id):
     file = File.query.get_or_404(file_id)
     if file.user_id != g.user.id:
-        flash('Unauthorized access to file.', 'danger')
+        # flash('Unauthorized access to file.', 'danger')
         return redirect(url_for('dashboard'))
 
     try:
@@ -355,10 +353,10 @@ def clean_file(file_id):
         file.cleaned_key = cleaned_key
         db.session.commit()
 
-        flash("Cleaning complete!", "success")
+        # flash("Cleaning complete!", "success")
 
     except Exception as e:
-        flash(f"Cleaning error: {e}", "danger")
+        # flash(f"Cleaning error: {e}", "danger")
 
     # 🔁 This line must exist outside the try/except block too
     return redirect(url_for('dashboard'))
