@@ -37,12 +37,6 @@
     opacity: 1;
   }
 }
-
-.project-card.selected {
-  transform: translateY(-8px);
-  box-shadow: 0 0 25px rgba(99, 102, 241, 0.5);
-  transition: all 0.3s ease;
-}
 </style>
 
   </head>
@@ -204,7 +198,8 @@
       </a>
 
       <!-- Project Card -->
-      <a data-project="quote-ability" class="project-card bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">        <div class="flex items-center mb-4 space-x-4">
+      <a href="/projects/quote-ability" class="bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+        <div class="flex items-center mb-4 space-x-4">
           <div class="w-12 h-12 bg-gray-700 rounded-xl overflow-hidden flex-shrink-0">
             <img src="/static/images/bookstar.png" alt="Quote-Ability Logo" class="object-cover w-full h-full" />
           </div>
@@ -217,7 +212,8 @@
     </div>
 
     <!-- Stat Grid -->
-    <div class="stat-grid grid grid-cols-1 sm:grid-cols-4 gap-6 text-center bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-6">      <div class="flex flex-col items-center">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-6 text-center bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-6">
+      <div class="flex flex-col items-center">
         <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="137">0</div>
         <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Commits per Week</p>
       </div>
@@ -238,7 +234,7 @@
     <!-- Mission Log + Skill Chart Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 -mt-6">
       <!-- Mission Log -->
-    <div class="mission-log bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 font-mono text-sm text-gray-300">
+    <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 font-mono text-sm text-gray-300">
       <h4 class="text-lg font-bold text-indigo-300 mb-4 tracking-widest uppercase border-b border-white/10 pb-2">Motion Mission Log</h4>
         <ul class="space-y-3">
           <li>
@@ -265,7 +261,7 @@
       </div>
 
       <!-- Skill Activity Chart -->
-      <div class="skill-chart bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 shadow-lg">
+      <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 shadow-lg">
         <h4 class="text-lg font-bold text-indigo-300 mb-4 tracking-widest uppercase border-b border-white/10 pb-2 font-mono">Skill Activity</h4>
         <canvas id="skillBarChart" class="w-full h-[280px]"></canvas>
       </div>
@@ -274,9 +270,9 @@
 </section>
 
 
-<!--<section id="projects-and-stats2" class="fade-in-up px-8 pt-10 -mt-14 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700">-->
-<!--  <h3 class="text-3xl font-bold mb-4 text-center text-white tracking-tight">Active Life</h3>-->
-<!--</section>-->
+<section id="projects-and-stats2" class="fade-in-up px-8 pt-10 -mt-14 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700">
+  <h3 class="text-3xl font-bold mb-4 text-center text-white tracking-tight">Active Life</h3>
+</section>
 
 
     <!-- Footer -->
@@ -471,7 +467,6 @@ function hideTypingDots() {
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const ctx = document.getElementById("skillBarChart").getContext("2d");
@@ -525,92 +520,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
-
-  <script>
-  const projectCards = document.querySelectorAll(".project-card");
-  const statsSection = document.querySelector(".stat-grid");
-  const missionLog = document.querySelector(".mission-log");
-  const skillChart = document.querySelector(".skill-chart");
-
-  const projectData = {
-    "data-forge-plus": {
-      stats: [137, 2, 5, 145],
-      log: [
-        "[05.31.2025 – 20:15] Pushed 6 commits to `data-forge-plus`",
-        "[05.31.2025 – 18:42] Refactored OpenAI Assistant Memory"
-      ]
-    },
-    "exo-land": {
-      stats: [89, 4, 7, 122],
-      log: [
-        "[05.30.2025 – 16:09] Rendered 14 planets with DALL·E 3",
-        "[05.30.2025 – 13:32] Merged `habitability-score` pipeline"
-      ]
-    },
-    "quote-ability": {
-      stats: [42, 3, 6, 90],
-      log: [
-        "[05.30.2025 – 09:14] Indexed 3 books into vector DB",
-        "[05.29.2025 – 21:22] Launched quote scheduler"
-      ]
-    }
-  };
-
-  function animateCount(el, target) {
-    let current = 0;
-    const increment = Math.ceil(target / 40);
-    const interval = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        el.textContent = target;
-        clearInterval(interval);
-      } else {
-        el.textContent = current;
-      }
-    }, 20);
-  }
-
-  projectCards.forEach(card => {
-    card.addEventListener("click", () => {
-      // Remove .selected from all cards
-      projectCards.forEach(c => c.classList.remove("selected"));
-      // Add .selected to clicked one
-      card.classList.add("selected");
-
-      const selected = card.dataset.project;
-      const newStats = projectData[selected].stats;
-      const newLog = projectData[selected].log;
-
-      // Animate fade out
-      statsSection.classList.add("opacity-0", "transition", "duration-300");
-      missionLog.classList.add("opacity-0", "transition", "duration-300");
-      skillChart.classList.add("opacity-0", "transition", "duration-300");
-
-      setTimeout(() => {
-        // Update stats counters
-        const counters = statsSection.querySelectorAll(".counter");
-        counters.forEach((el, i) => {
-          el.textContent = "0"; // Reset first
-          animateCount(el, newStats[i]);
-        });
-
-        // Update mission log
-        const ul = missionLog.querySelector("ul");
-        ul.innerHTML = newLog.map(log => `
-          <li>
-            <span class="text-xs text-gray-400">${log.split(']')[0]}]</span><br>
-            <span class="text-indigo-200">${log.split(']')[1].trim()}</span>
-          </li>
-        `).join("");
-
-        // Fade back in
-        statsSection.classList.remove("opacity-0");
-        missionLog.classList.remove("opacity-0");
-        skillChart.classList.remove("opacity-0");
-      }, 300);
-    });
-  });
-</script>
-
   </body>
 </html>

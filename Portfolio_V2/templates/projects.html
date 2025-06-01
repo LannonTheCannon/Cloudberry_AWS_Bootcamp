@@ -6,6 +6,45 @@
   <title>Projects – Lannon Khau</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="/static/favicon.ico" />
+    <style>
+.typing-ball {
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  animation: bounce 1.2s infinite ease-in-out;
+  opacity: 0.6;
+}
+
+.dot1 {
+  animation-delay: 0s;
+}
+.dot2 {
+  animation-delay: 0.2s;
+}
+.dot3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+}
+
+  .project-card.selected {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4); /* nice glow */
+    border-color: rgba(99, 102, 241, 0.5); /* indigo glow border */
+    transition: all 0.3s ease-in-out;
+  }
+
+</style>
 </head>
 <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
 
@@ -21,6 +60,9 @@
       <a href="/contact" class="hover:text-indigo-400">Contact</a>
     </nav>
   </header>
+
+
+
 
 <!-- Projects Section -->
 <section class="px-8 py-16 max-w-6xl mx-auto">
@@ -42,6 +84,7 @@
 
 
 
+
   <!-- Footer -->
   <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
     <div class="flex justify-center space-x-6 py-6">
@@ -60,6 +103,146 @@
     </div>
     &copy; 2025 Lannon Khau. Powered by Flask & Tailwind. All rights reserved.
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const ctx = document.getElementById("skillBarChart").getContext("2d");
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['May 25', 'May 26', 'May 27', 'May 28', 'May 29', 'May 30', 'May 31'],
+      datasets: [
+        {
+          label: 'Lines Added',
+          data: [120, 150, 80, 200, 180, 160, 210],
+          borderColor: '#4ADE80',
+          backgroundColor: 'rgba(74, 222, 128, 0.1)',
+          tension: 0.3,
+          fill: true,
+        },
+        {
+          label: 'Lines Removed',
+          data: [20, 60, 40, 50, 70, 30, 90],
+          borderColor: '#F87171',
+          backgroundColor: 'rgba(248, 113, 113, 0.1)',
+          tension: 0.3,
+          fill: true,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          labels: {
+            color: '#e2e8f0',
+            font: {
+              family: 'monospace'
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#cbd5e1' },
+          grid: { color: 'rgba(255,255,255,0.05)' }
+        },
+        y: {
+          ticks: { color: '#cbd5e1' },
+          grid: { color: 'rgba(255,255,255,0.05)' }
+        }
+      }
+    }
+  });
+});
+</script>
+
+  <script>
+  const projectCards = document.querySelectorAll(".project-card");
+  const statsSection = document.querySelector(".stat-grid");
+  const missionLog = document.querySelector(".mission-log");
+  const skillChart = document.querySelector(".skill-chart");
+
+  const projectData = {
+    "data-forge-plus": {
+      stats: [137, 2, 5, 145],
+      log: [
+        "[05.31.2025 – 20:15] Pushed 6 commits to `data-forge-plus`",
+        "[05.31.2025 – 18:42] Refactored OpenAI Assistant Memory"
+      ]
+    },
+    "exo-land": {
+      stats: [89, 4, 7, 122],
+      log: [
+        "[05.30.2025 – 16:09] Rendered 14 planets with DALL·E 3",
+        "[05.30.2025 – 13:32] Merged `habitability-score` pipeline"
+      ]
+    },
+    "quote-ability": {
+      stats: [42, 3, 6, 90],
+      log: [
+        "[05.30.2025 – 09:14] Indexed 3 books into vector DB",
+        "[05.29.2025 – 21:22] Launched quote scheduler"
+      ]
+    }
+  };
+
+  function animateCount(el, target) {
+    let current = 0;
+    const increment = Math.ceil(target / 40);
+    const interval = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        el.textContent = target;
+        clearInterval(interval);
+      } else {
+        el.textContent = current;
+      }
+    }, 20);
+  }
+
+  projectCards.forEach(card => {
+    card.addEventListener("click", () => {
+      // Remove .selected from all cards
+      projectCards.forEach(c => c.classList.remove("selected"));
+      // Add .selected to clicked one
+      card.classList.add("selected");
+
+      const selected = card.dataset.project;
+      const newStats = projectData[selected].stats;
+      const newLog = projectData[selected].log;
+
+      // Animate fade out
+      statsSection.classList.add("opacity-0", "transition", "duration-300");
+      missionLog.classList.add("opacity-0", "transition", "duration-300");
+      skillChart.classList.add("opacity-0", "transition", "duration-300");
+
+      setTimeout(() => {
+        // Update stats counters
+        const counters = statsSection.querySelectorAll(".counter");
+        counters.forEach((el, i) => {
+          el.textContent = "0"; // Reset first
+          animateCount(el, newStats[i]);
+        });
+
+        // Update mission log
+        const ul = missionLog.querySelector("ul");
+        ul.innerHTML = newLog.map(log => `
+          <li>
+            <span class="text-xs text-gray-400">${log.split(']')[0]}]</span><br>
+            <span class="text-indigo-200">${log.split(']')[1].trim()}</span>
+          </li>
+        `).join("");
+
+        // Fade back in
+        statsSection.classList.remove("opacity-0");
+        missionLog.classList.remove("opacity-0");
+        skillChart.classList.remove("opacity-0");
+      }, 300);
+    });
+  });
+</script>
 </body>
 </html>
