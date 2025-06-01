@@ -174,19 +174,21 @@
     <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-4 gap-6 text-center bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl shadow-lg p-6 mb-6">
       <div class="flex flex-col items-center">
         <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="137">0</div>
-        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Commits This Month</p>
+        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Commits per Week</p>
       </div>
       <div class="flex flex-col items-center">
         <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="2">0</div>
-        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Planets Discovered</p>
+        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Feature Branch Merged</p>
       </div>
       <div class="flex flex-col items-center">
         <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="5">0</div>
-        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Hours Exercised</p>
+        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Average Commit Size</p>
+<!--        📏 Formula: lines added + removed / number of commits-->
       </div>
       <div class="flex flex-col items-center">
         <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="145">0</div>
-        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Pages Read</p>
+        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Lines Ratio</p>
+<!--        Lines Ratio = Lines Added / Lines Removed-->
       </div>
     </div>
 
@@ -194,7 +196,7 @@
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
       <!-- Mission Log -->
       <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 shadow-lg font-mono text-sm text-gray-300">
-        <h4 class="text-lg font-bold text-indigo-300 mb-4 tracking-widest uppercase border-b border-white/10 pb-2">Mission Log</h4>
+        <h4 class="text-lg font-bold text-indigo-300 mb-4 tracking-widest uppercase border-b border-white/10 pb-2">Motion Mission Log</h4>
         <ul class="space-y-3">
           <li>
             <span class="text-xs text-gray-400">[05.31.2025 – 20:15]</span><br>
@@ -469,5 +471,60 @@ function hideTypingDots() {
     });
   });
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const ctx = document.getElementById("skillBarChart").getContext("2d");
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['May 25', 'May 26', 'May 27', 'May 28', 'May 29', 'May 30', 'May 31'],
+      datasets: [
+        {
+          label: 'Lines Added',
+          data: [120, 150, 80, 200, 180, 160, 210],
+          borderColor: '#4ADE80',
+          backgroundColor: 'rgba(74, 222, 128, 0.1)',
+          tension: 0.3,
+          fill: true,
+        },
+        {
+          label: 'Lines Removed',
+          data: [20, 60, 40, 50, 70, 30, 90],
+          borderColor: '#F87171',
+          backgroundColor: 'rgba(248, 113, 113, 0.1)',
+          tension: 0.3,
+          fill: true,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          labels: {
+            color: '#e2e8f0',
+            font: {
+              family: 'monospace'
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#cbd5e1' },
+          grid: { color: 'rgba(255,255,255,0.05)' }
+        },
+        y: {
+          ticks: { color: '#cbd5e1' },
+          grid: { color: 'rgba(255,255,255,0.05)' }
+        }
+      }
+    }
+  });
+});
+</script>
   </body>
 </html>
