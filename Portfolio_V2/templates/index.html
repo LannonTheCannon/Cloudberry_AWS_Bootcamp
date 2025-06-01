@@ -163,6 +163,71 @@
           </div>
     </section>
 
+
+  <section id="stats" class="fade-in-up px-8 py-14 mt-20 opacity-0 translate-y-10 transition duration-700">
+
+    <h3 class="fade-in-up text-3xl font-bold mb-12 text-center text-white tracking-tight opacity-0 translate-y-10 transition duration-700">
+      Mission Stats
+    </h3>
+
+    <!-- Stat Grid -->
+    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-4 gap-6 text-center bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl shadow-lg p-6 mb-6">
+      <div class="flex flex-col items-center">
+        <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="137">0</div>
+        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Commits This Month</p>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="2">0</div>
+        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Planets Discovered</p>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="5">0</div>
+        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Hours Exercised</p>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="145">0</div>
+        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Pages Read</p>
+      </div>
+    </div>
+
+    <!-- Mission Log + Skill Chart Grid -->
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+      <!-- Mission Log -->
+      <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 shadow-lg font-mono text-sm text-gray-300">
+        <h4 class="text-lg font-bold text-indigo-300 mb-4 tracking-widest uppercase border-b border-white/10 pb-2">Mission Log</h4>
+        <ul class="space-y-3">
+          <li>
+            <span class="text-xs text-gray-400">[05.31.2025 – 20:15]</span><br>
+            <span class="text-indigo-200">Pushed 6 commits to `data-forge-plus`</span>
+          </li>
+          <li>
+            <span class="text-xs text-gray-400">[05.31.2025 – 18:42]</span><br>
+            <span class="text-indigo-200">Refactored OpenAI Assistant Memory</span>
+          </li>
+          <li>
+            <span class="text-xs text-gray-400">[05.31.2025 – 17:08]</span><br>
+            <span class="text-indigo-200">Added new mission card interface</span>
+          </li>
+          <li>
+            <span class="text-xs text-gray-400">[05.30.2025 – 22:01]</span><br>
+            <span class="text-indigo-200">Deployed `quote-ability` static blog</span>
+          </li>
+          <li>
+            <span class="text-xs text-gray-400">[05.30.2025 – 09:14]</span><br>
+            <span class="text-indigo-200">Read 28 pages of *The War of Art*</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Skill Activity Chart -->
+      <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 shadow-lg">
+        <h4 class="text-lg font-bold text-indigo-300 mb-4 tracking-widest uppercase border-b border-white/10 pb-2 font-mono">Skill Activity</h4>
+        <canvas id="skillBarChart" class="w-full h-[280px]"></canvas>
+      </div>
+    </div>
+  </section>
+
+
     <section id="projects" class="px-8 py-20 overflow-hidden">
       <h3 class="fade-in-up text-3xl font-bold mb-12 text-center text-white tracking-tight opacity-0 translate-y-10 transition duration-700">
         Active Projects
@@ -212,6 +277,7 @@
         </a>
       </div>
     </section>
+
 
     <!-- Footer -->
     <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
