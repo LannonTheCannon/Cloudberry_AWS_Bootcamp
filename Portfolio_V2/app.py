@@ -99,11 +99,29 @@ def about():
 projects = {
     "data-forge-plus": {
         "title": "Data Forge Plus",
-        "description": "A Flask + Streamlit-powered AI engine for automated dataset cleaning and visual EDA. ",
+        "description": "A Flask + Streamlit-powered AI engine for automated dataset cleaning and visual EDA.",
         "tech": ["Flask", "Streamlit", "AWS Lambda", "S3", "RDS", "OpenAI"],
         "author": "Lannon Khau",
         "template": "data-forge-plus.html"
     },
+    "exo-land": {
+        "title": "Exo-Explorer",
+        "description": "An AI assistant for NASA exoplanet datasets. Uses predictive modeling to identify habitable worlds and generates visuals using DALL·E 3.",
+        "tech": ["Pandas", "Scikit-Learn", "OpenAI", "DALL·E", "Streamlit", "Flask"],
+        "author": "Lannon Khau",
+        "template": "exo-land.html"
+    },
+    "quote-ability": {
+        "title": "Quote-Ability",
+        "description": (
+            "A multi-agent reading companion that enhances your book experience. "
+            "Use your camera to bookmark exactly where you left off, and enter dynamic rooms with AI agents trained "
+            "on your current progress — offering spoiler-free discussions, full-book analysis, and quote curation."
+        ),
+        "tech": ["OCR", "LangChain", "OpenAI", "Streamlit / Discord", "Pinecone", "PDF Parsing"],
+        "author": "Lannon Khau",
+        "template": "quote-able.html"
+    }
 }
 @app.route('/projects')
 def show_projects():
@@ -434,25 +452,34 @@ def ask_openai():
         print("🧠 User said:", user_input)
 
         # Create a thread
-        thread = openai.beta.threads.create()
+        # thread = openai.beta.threads.create()
+
+        thread_id = session.get("openai_thread_id")
+        if not thread_id:
+            thread = openai.beta.threads.create()
+            thread_id = thread.id
+            session["openai_thread_id"] = thread_id  # Save thread in session
+            print(f"🧵 Created new thread: {thread_id}")
+        else:
+            print(f"📎 Using existing thread: {thread_id}")
 
         # Add user's message
         openai.beta.threads.messages.create(
-            thread_id=thread.id,
+            thread_id=thread_id,
             role="user",
             content=user_input
         )
 
         # Start the assistant run
         run = openai.beta.threads.runs.create(
-            thread_id=thread.id,
+            thread_id=thread_id,
             assistant_id="asst_kgRhmlXadMK4i3tEQ6nTaAyD",
         )
 
-        # Wait for completion
+        # Wait until complete
         while True:
             run_status = openai.beta.threads.runs.retrieve(
-                thread_id=thread.id,
+                thread_id=thread_id,
                 run_id=run.id
             )
             if run_status.status == "completed":
@@ -461,13 +488,11 @@ def ask_openai():
                 return jsonify({"response": "❌ Assistant failed to respond"}), 500
 
         # Fetch latest message
-        messages = openai.beta.threads.messages.list(thread_id=thread.id)
-        for msg in messages.data:
-            print(f"{msg.role.upper()}: {msg.content[0].text.value}")
-
+        messages = openai.beta.threads.messages.list(thread_id=thread_id)
         latest = messages.data[0]
         response_text = latest.content[0].text.value.strip()
 
+        print(f"🤖 Assistant: {response_text}")
         return jsonify({"response": response_text})
 
     except Exception as e:
