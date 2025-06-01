@@ -103,11 +103,16 @@ if not file.cleaned or not file.cleaned_key:
 # ────────────────────────────────────────────────────────
 try:
     obj = s3.get_object(Bucket=S3_BUCKET, Key=file.cleaned_key)
-    df = pd.read_csv(BytesIO(obj['Body'].read()))
+    content = obj['Body'].read()
+    print("S3 file size:", len(content))  # Log file size
+
+    df = pd.read_csv(BytesIO(content))
     st.session_state.df = df
     st.session_state["DATA_RAW"] = df
     st.session_state["dataset_name"] = file.filename
 except Exception as e:
+    import traceback
+    traceback.print_exc()
     st.error(f"❌ Failed to load data from S3: {e}")
     st.stop()
 
