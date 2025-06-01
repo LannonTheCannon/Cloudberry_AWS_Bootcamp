@@ -70,7 +70,7 @@
     <!-- Project Cards Row -->
     <div class="grid md:grid-cols-3 gap-6 -mb-6 pt-10">
       <!-- Project Card -->
-        <a data-project="data-forge-plus" class="project-card bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">        <div class="flex items-center mb-4 space-x-4">
+        <a data-project="data-forge-plus" class="project-card selected bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">        <div class="flex items-center mb-4 space-x-4">
           <div class="w-12 h-12 bg-gray-700 rounded-xl overflow-hidden flex-shrink-0">
             <img src="/static/images/data_analysis.png" alt="Data Forge Plus Logo" class="object-cover w-full h-full" />
           </div>
@@ -166,10 +166,10 @@
 
 
 <!-- Projects Section -->
-<section class="px-8 py-16 max-w-6xl mx-auto">
-  <h2 class="text-4xl font-bold text-center mb-10">All Projects</h2>
+<section class="px-8 py-16 max-w-6xl -mt-16 mx-auto">
+  <h3 class="text-3xl font-bold mb-4 text-center text-white tracking-tight">All Projects</h3>
 
-  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div class="grid md:grid-cols-3 gap-6 pt-10">
     {% for slug, project in projects.items() %}
     <a href="{{ url_for('show_project', slug=slug) }}"
        class="block bg-white/5 border border-white/10 rounded-xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
@@ -182,9 +182,6 @@
     {% endfor %}
   </div>
 </section>
-
-
-
 
   <!-- Footer -->
   <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
@@ -204,6 +201,8 @@
     </div>
     &copy; 2025 Lannon Khau. Powered by Flask & Tailwind. All rights reserved.
   </footer>
+
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
@@ -344,7 +343,113 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 300);
     });
   });
-</script>
+  </script>
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const defaultProject = "data-forge-plus";
+  const defaultCard = document.querySelector(`.project-card[data-project="${defaultProject}"]`);
+
+  if (defaultCard) {
+    defaultCard.classList.add("selected");
+
+    const newStats = projectData[defaultProject].stats;
+    const newLog = projectData[defaultProject].log;
+
+    // Update stat counters
+    const counters = statsSection.querySelectorAll(".counter");
+    counters.forEach((el, i) => {
+      el.textContent = "0"; // Reset
+      animateCount(el, newStats[i]);
+    });
+
+    // Update mission log
+    const ul = missionLog.querySelector("ul");
+    ul.innerHTML = newLog.map(log => `
+      <li>
+        <span class="text-xs text-gray-400">${log.split(']')[0]}]</span><br>
+        <span class="text-indigo-200">${log.split(']')[1].trim()}</span>
+      </li>
+    `).join("");
+
+    // Reset & rebuild skill chart
+    const ctx = document.getElementById("skillBarChart").getContext("2d");
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['May 25', 'May 26', 'May 27', 'May 28', 'May 29', 'May 30', 'May 31'],
+        datasets: [
+          {
+            label: 'Lines Added',
+            data: [120, 150, 80, 200, 180, 160, 210],
+            borderColor: '#4ADE80',
+            backgroundColor: 'rgba(74, 222, 128, 0.1)',
+            tension: 0.3,
+            fill: true,
+          },
+          {
+            label: 'Lines Removed',
+            data: [20, 60, 40, 50, 70, 30, 90],
+            borderColor: '#F87171',
+            backgroundColor: 'rgba(248, 113, 113, 0.1)',
+            tension: 0.3,
+            fill: true,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            labels: {
+              color: '#e2e8f0',
+              font: { family: 'monospace' }
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: '#cbd5e1' },
+            grid: { color: 'rgba(255,255,255,0.05)' }
+          },
+          y: {
+            ticks: { color: '#cbd5e1' },
+            grid: { color: 'rgba(255,255,255,0.05)' }
+          }
+        }
+      }
+    });
+  }
+});
+  </script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const defaultProject = "data-forge-plus";
+        const defaultCard = document.querySelector(`.project-card[data-project="${defaultProject}"]`);
+
+        if (defaultCard) {
+          defaultCard.classList.add("selected");
+
+          const newStats = projectData[defaultProject].stats;
+          const newLog = projectData[defaultProject].log;
+
+          const counters = statsSection.querySelectorAll(".counter");
+          counters.forEach((el, i) => {
+            el.textContent = "0"; // Reset first
+            animateCount(el, newStats[i]);
+          });
+
+          const ul = missionLog.querySelector("ul");
+          ul.innerHTML = newLog.map(log => `
+            <li>
+              <span class="text-xs text-gray-400">${log.split(']')[0]}]</span><br>
+              <span class="text-indigo-200">${log.split(']')[1].trim()}</span>
+            </li>
+          `).join("");
+        }
+      });
+  </script></script>
 
   <script>
   document.addEventListener("DOMContentLoaded", () => {
@@ -450,5 +555,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 </script>
+
+
 </body>
 </html>
