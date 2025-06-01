@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exo Explorer – Lannon Khau</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="/static/favicon.ico" />
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
+
+  <!-- Nav -->
+  <header class="w-full px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold tracking-tight">
+      <a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
+    </h1>
+    <nav class="space-x-6 text-sm">
+      <a href="/projects" class="text-indigo-400 font-semibold">Projects</a>
+      <a href="/blog" class="hover:text-indigo-400">Blog</a>
+      <a href="/register" class="hover:text-indigo-400">Register</a>
+      <a href="/login" class="hover:text-indigo-400">Login</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="px-6 md:px-20 py-20 max-w-5xl mx-auto leading-relaxed text-gray-300">
+    <h2 class="text-4xl font-extrabold mb-2 text-white">Exo Explorer</h2>
+    <p class="text-sm text-gray-400 mb-8">Built by Lannon Khau</p>
+
+    <!-- Intro Paragraph -->
+    <p class="mb-6 text-lg text-gray-300">
+      <span class="text-indigo-400 font-semibold">Exo Explorer</span> is a concept-stage platform designed to explore the potential habitability of exoplanets through AI-powered feature engineering and generative imaging. By analyzing NASA's Exoplanet Archive, the app uncovers hidden correlations, builds predictive models, and visually renders what alien worlds might look like—from icy giants to lava planets.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="flex gap-4 mb-12">
+      <a href="#" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl font-semibold text-white transition">🚀 Coming Soon</a>
+      <a href="#" class="text-indigo-400 hover:underline">🌌 Join the Waitlist</a>
+    </div>
+
+    <!-- Feature Overview -->
+    <div class="flex flex-col md:flex-row gap-10 items-start">
+      <div class="w-full md:w-1/3 rounded-xl overflow-hidden border border-white/10 shadow-lg">
+        <img src="/static/images/exoplanet_teaser.png" alt="Exo Explorer Screenshot" class="object-cover w-full h-auto" />
+      </div>
+      <div class="flex-1">
+        <h3 class="text-2xl font-semibold mb-4 text-white">🪐 What Exo Explorer Does</h3>
+        <ul class="list-disc list-inside space-y-4 text-gray-300">
+          <li><strong>Ingest NASA Data:</strong> Pulls structured exoplanet data from official archives and reformats for machine learning.</li>
+          <li><strong>Feature Engineering:</strong> Constructs new predictive columns like surface temperature, potential water presence, or gravity thresholds.</li>
+          <li><strong>Modeling Habitability:</strong> Applies classification models to score potential habitability with transparent logic.</li>
+          <li><strong>AI Planet Rendering:</strong> Transforms engineered data into rich text prompts, then sends to image generators to visualize each planet’s unique characteristics.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tech Stack & Design -->
+    <div class="mt-20 grid md:grid-cols-2 gap-12">
+      <div>
+        <h3 class="text-2xl font-semibold mb-4">🧬 Envisioned Tech Stack</h3>
+        <ul class="list-disc list-inside text-gray-300 space-y-2">
+          <li>Flask + FastAPI for backend data processing</li>
+          <li>LangChain & OpenAI for feature logic & narrative prompts</li>
+          <li>Scikit-learn + XGBoost for predictive scoring</li>
+          <li>DALL·E 3 / Stability AI for generative rendering</li>
+          <li>TailwindCSS for sleek and minimal UI</li>
+          <li>MySQL (RDS) for storing planet metadata and user logs</li>
+        </ul>
+      </div>
+      <div class="overflow-hidden rounded-xl border border-white/10 shadow-lg">
+        <img src="/static/images/exo_architecture.png" alt="System Architecture" class="object-cover w-full h-auto" />
+      </div>
+    </div>
+
+    <!-- Future Use Cases -->
+    <div class="mt-20">
+      <h3 class="text-2xl font-semibold mb-4">🌌 Who Is This For?</h3>
+      <p class="mb-4">Exo Explorer is for curious minds. Whether you're an astronomy student, a data scientist fascinated by classification, or someone who dreams of alien skies, this app helps you see the invisible patterns hidden in distant star systems.</p>
+    </div>
+
+    <!-- Roadmap -->
+    <div class="mt-16">
+      <h3 class="text-2xl font-semibold mb-4">📅 Roadmap</h3>
+      <p class="mb-2"><span class="text-green-400">✅ Research Complete:</span> NASA Archive schema + available feature fields mapped</p>
+      <p class="mb-2"><span class="text-yellow-300">🧪 Experimenting:</span> Feature engineering strategies using log-scale metrics and orbital zones</p>
+      <p class="mb-2"><span class="text-yellow-300">📷 Prompt Design:</span> Mapping numerical outputs to visual style prompts for DALL·E</p>
+      <p class="mb-2"><span class="text-yellow-300">🚀 Build Phase:</span> Flask + Streamlit dashboard for early exploration</p>
+    </div>
+
+    <!-- Why It Matters -->
+    <div class="mt-16">
+      <h3 class="text-2xl font-semibold mb-4">💫 Why It Matters</h3>
+      <p>
+        We’re discovering new worlds every year—but numbers alone don’t stir the imagination. Exo Explorer bridges the gap between astronomy and storytelling. It brings distant planets into vivid focus, helping users see not just how far we’ve come in space discovery, but how close we are to understanding alien worlds.
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
+      <div class="flex justify-center space-x-6 py-6">
+        <a href="https://github.com/LannonTheCannon" target="_blank">
+          <img src="/static/icons/github.svg" alt="GitHub" class="h-6 w-6 hover:scale-110 transition" />
+        </a>
+        <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank">
+          <img src="/static/icons/linkedin.svg" alt="LinkedIn" class="h-6 w-6 hover:scale-110 transition" />
+        </a>
+        <a href="https://www.youtube.com/@LannonKhau" target="_blank">
+          <img src="/static/icons/youtube.svg" alt="Youtube" class="h-6 w-6 hover:scale-110 transition" />
+        </a>
+        <a href="#">
+          <img src="/static/icons/goog.svg" alt="Email" class="h-6 w-6 hover:scale-110 transition" />
+        </a>
+      </div>
+      &copy; 2025 Lannon Khau. Made for explorers beyond Earth.
+    </footer>
+
+</section>
+</body>
+</html>

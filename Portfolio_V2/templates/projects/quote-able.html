@@ -1,0 +1,115 @@
+<!-- templates/projects/quote-ability.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quote-Ability – Lannon Khau</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="/static/favicon.ico" />
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
+
+  <!-- Nav -->
+  <header class="w-full px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold tracking-tight">
+      <a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
+    </h1>
+    <nav class="space-x-6 text-sm">
+      <a href="/projects" class="text-indigo-400 font-semibold">Projects</a>
+      <a href="/blog" class="hover:text-indigo-400">Blog</a>
+      <a href="/register" class="hover:text-indigo-400">Register</a>
+      <a href="/login" class="hover:text-indigo-400">Login</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="px-6 md:px-20 py-20 max-w-5xl mx-auto leading-relaxed text-gray-300">
+    <h2 class="text-4xl font-extrabold mb-2 text-white">Quote-Ability</h2>
+    <p class="text-sm text-gray-400 mb-8">Built by Lannon Khau</p>
+
+    <!-- Intro Paragraph -->
+    <p class="mb-6 text-lg text-gray-300">
+      <span class="text-indigo-400 font-semibold">Quote-Ability</span> is your personal literary companion. Upload a snapshot of your book and enter interactive AI-powered rooms that match your current reading progress. Whether you're exploring character arcs or saving your favorite quotes, this app turns every reading session into an unforgettable conversation.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="flex gap-4 mb-12">
+      <a href="#" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl font-semibold text-white transition">📚 Coming Soon</a>
+      <a href="#" class="text-indigo-400 hover:underline">📝 Join the Early Access</a>
+    </div>
+
+    <!-- Feature Overview -->
+    <div class="flex flex-col md:flex-row gap-10 items-start">
+      <div class="w-full md:w-1/3 rounded-xl overflow-hidden border border-white/10 shadow-lg">
+        <img src="/static/images/quoteability_teaser.png" alt="Quote-Ability Screenshot" class="object-cover w-full h-auto" />
+      </div>
+      <div class="flex-1">
+        <h3 class="text-2xl font-semibold mb-4 text-white">📖 What Quote-Ability Does</h3>
+        <ul class="list-disc list-inside space-y-4 text-gray-300">
+          <li><strong>Visual Bookmarking:</strong> Snap a photo of your page, and the app finds your exact spot in the ebook.</li>
+          <li><strong>AI Reading Room:</strong> Have live, spoiler-free discussions with an agent trained only on your current progress.</li>
+          <li><strong>Book Mastermind:</strong> Talk to a full-book-trained assistant that can explain themes, plotlines, and answer your toughest literary questions.</li>
+          <li><strong>Quote Curator:</strong> Save and organize your favorite lines across books, and chat with an agent who remembers them all.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tech Stack & Design -->
+    <div class="mt-20 grid md:grid-cols-2 gap-12">
+      <div>
+        <h3 class="text-2xl font-semibold mb-4">🧠 Envisioned Tech Stack</h3>
+        <ul class="list-disc list-inside text-gray-300 space-y-2">
+          <li>Python OCR (Tesseract) for visual bookmarking</li>
+          <li>Flask backend with Streamlit or Discord frontend</li>
+          <li>OpenAI Assistants trained on uploaded EPUB/Book content</li>
+          <li>PostgreSQL or RDS for quote tracking & metadata</li>
+          <li>LangChain + Embedding search for contextual discussion</li>
+          <li>TailwindCSS for minimalist reading UI</li>
+        </ul>
+      </div>
+      <div class="overflow-hidden rounded-xl border border-white/10 shadow-lg">
+        <img src="/static/images/quoteability_architecture.png" alt="System Architecture" class="object-cover w-full h-auto" />
+      </div>
+    </div>
+
+    <!-- Why It Matters -->
+    <div class="mt-20">
+      <h3 class="text-2xl font-semibold mb-4">💬 Why It Matters</h3>
+      <p>
+        We often read to remember, but how much do we truly retain? <span class="text-indigo-400 font-medium">Quote-Ability</span> ensures that your reading journey never fades. With AI-powered conversation, visual bookmarking, and curated quote recall, this app brings depth, context, and memory to your literary experience.
+      </p>
+    </div>
+
+    <!-- Roadmap -->
+    <div class="mt-16">
+      <h3 class="text-2xl font-semibold mb-4">🛤 Roadmap</h3>
+      <p class="mb-2"><span class="text-green-400">✅ Idea Validated:</span> Real conversations with readers who crave deeper recall and engagement</p>
+      <p class="mb-2"><span class="text-yellow-300">🔎 R&D Phase:</span> OCR testing, quote extraction, and non-spoiler text alignment</p>
+      <p class="mb-2"><span class="text-yellow-300">🧠 Assistant Training:</span> Custom agents per book chapter, structured memory design</p>
+      <p class="mb-2"><span class="text-yellow-300">⚙️ MVP Design:</span> Streamlit vs Discord – platform decision and initial deployment</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
+      <div class="flex justify-center space-x-6 py-6">
+        <a href="https://github.com/LannonTheCannon" target="_blank">
+          <img src="/static/icons/github.svg" alt="GitHub" class="h-6 w-6 hover:scale-110 transition" />
+        </a>
+        <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank">
+          <img src="/static/icons/linkedin.svg" alt="LinkedIn" class="h-6 w-6 hover:scale-110 transition" />
+        </a>
+        <a href="https://www.youtube.com/@LannonKhau" target="_blank">
+          <img src="/static/icons/youtube.svg" alt="Youtube" class="h-6 w-6 hover:scale-110 transition" />
+        </a>
+        <a href="#">
+          <img src="/static/icons/goog.svg" alt="Email" class="h-6 w-6 hover:scale-110 transition" />
+        </a>
+      </div>
+      &copy; 2025 Lannon Khau. Made for thinkers, readers, and dreamers.
+    </footer>
+
+  </section>
+</body>
+</html>
