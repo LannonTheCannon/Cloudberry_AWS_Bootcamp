@@ -38,10 +38,29 @@
   }
 }
 
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+
 .project-card.selected {
   transform: translateY(-8px);
   box-shadow: 0 0 25px rgba(99, 102, 241, 0.5);
   transition: all 0.3s ease;
+}
+
+/* ✅ Correct: custom-scrollbar defined globally */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 0;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 </style>
@@ -102,54 +121,52 @@
         />
       </div>
 
+      <section class="relative flex flex-row justify-center items-center px-8 -mt-8 pt-8 pb-3 overflow-hidden gap-12">
+        <!-- About Me Card -->
+        <div class="tilt-card relative z-[30] w-full max-w-2xl h-[300px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform overflow-hidden">
 
-<section class="relative flex flex-row justify-center items-center px-8 -mt-8 pt-8 pb-3 overflow-hidden gap-12">  <!-- About Me Card -->
-  <div class="tilt-card relative z-[30] w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform">
+          <!-- Top Row -->
+          <div class="flex items-start justify-between">
+            <!-- Profile Bubble -->
+            <div class="w-24 h-24 rounded-full overflow-hidden border border-white/20 shadow-md">
+              <img src="/static/images/space_commander.png" alt="Profile" class="object-cover w-full h-full" />
+            </div>
 
-    <!-- Top Row: Profile Pic + About Me Title -->
-    <div class="flex items-start justify-between">
-      <!-- Profile Bubble -->
-      <div class="w-28 h-28 rounded-full overflow-hidden border border-white/20 shadow-md">
-        <img src="/static/images/space_commander.png" alt="Profile" class="object-cover w-full h-full" />
-      </div>
+            <!-- ID Title -->
+            <div class="flex flex-col mt-1">
+              <h4 class="text-xl font-bold text-gray-200 tracking-wider font-mono text-right block">
+                Full-Stack Engineer
+              </h4>
+              <div class="mt-1 w-full border-t border-white/10"></div>
+              <span class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-1 text-right block">
+                Conversational Intelligence & Data UX
+              </span>
+            </div>
+          </div>
 
-      <!-- ID Title -->
-      <div class="flex flex-col mt-2">
-        <h4 class="text-2xl font-bold text-gray-200 tracking-wider font-mono text-right block">
-          Full-Stack Engineer
-        </h4>
-        <!-- Top Divider Line -->
-        <div class="mt-2 w-full border-t border-white/10"></div>
-          <span class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-1 text-right block">
-           Conversational Intelligence & Data UX
-          </span>
-      </div>
-    </div>
+          <!-- Scrollable Typewriter Output -->
+          <div class="relative flex-1 overflow-y-auto px-4 max-w-xl mx-auto custom-scrollbar">
+            <p id="typewriter"
+               class="text-base leading-relaxed text-gray-200 font-light whitespace-pre-line">
+            </p>
+          </div>
 
-    <!-- Typewriter Output -->
-<p id="typewriter"
-   class="text-base leading-relaxed text-gray-200 font-light min-h-[60px] whitespace-pre-line text-center px-4 max-w-xl mx-auto">
-</p>
+          <!-- Typing Indicator -->
+          <div class="relative h-6 mt-[-4px]">
+            <div id="typing-indicator" class="absolute top-0 left-0 flex gap-2 hidden">
+              <span class="typing-ball dot1"></span>
+              <span class="typing-ball dot2"></span>
+              <span class="typing-ball dot3"></span>
+            </div>
+          </div>
 
-
-    <div class="relative h-6 mt-[-4px]">
-        <div id="typing-indicator" class="absolute top-0 left-0 flex gap-2 hidden">
-          <span class="typing-ball dot1"></span>
-          <span class="typing-ball dot2"></span>
-          <span class="typing-ball dot3"></span>
+          <!-- Footer Row -->
+          <div class="pt-1 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between">
+            <span>ID CODE: LNN-0425-ALPHA</span>
+            <span>SECTOR: DATA OPS</span>
+          </div>
         </div>
-      </div>
-
-    <!-- Footer Row -->
-    <div class="pt-2 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between">
-      <span>ID CODE: LNN-0425-ALPHA</span>
-      <span>SECTOR: DATA OPS</span>
-    </div>
-  </div>
-
-
-
-    </section>
+      </section>
 
     <section class="relative z-[30] flex justify-center items-center px-8 pt-2 pb-2">
       <div class="w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md">
@@ -170,11 +187,6 @@
           </div>
     </section>
 
-
-
-<!--<section id="projects-and-stats2" class="fade-in-up px-8 pt-10 -mt-14 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700">-->
-<!--  <h3 class="text-3xl font-bold mb-4 text-center text-white tracking-tight">Active Life</h3>-->
-<!--</section>-->
 
 
     <!-- Footer -->
@@ -199,7 +211,6 @@
 
   <script src="{{ url_for('static', filename='js/tilt.js') }}"></script>
   <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
-
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
