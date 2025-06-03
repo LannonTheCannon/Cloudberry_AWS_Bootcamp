@@ -39,27 +39,27 @@
 }
 
 .custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.4) transparent; /* Thumb color and track color (transparent) */
 }
 
-.project-card.selected {
-  transform: translateY(-8px);
-  box-shadow: 0 0 25px rgba(99, 102, 241, 0.5);
-  transition: all 0.3s ease;
-}
-
-/* ✅ Correct: custom-scrollbar defined globally */
+/* For Chrome, Edge, and other WebKit-based browsers */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 5px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 0;
+  width: 6px; /* Width of the scrollbar */
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent !important; /* Ensure track is transparent */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4); /* Color of the thumb (scroll bar) */
+  border-radius: 10px; /* Rounded corners for thumb */
+  border: none; /* No border around thumb */
+}
+
+/* Optional: Handle the corner where scrollbars meet (if both horizontal and vertical exist) */
+.custom-scrollbar::-webkit-scrollbar-corner {
   background: transparent;
 }
 
@@ -82,10 +82,10 @@
     <!-- Hero -->
     <section class="flex-1 flex flex-col justify-center items-center text-center px-20 py-20">
       <h2 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-        Building AI-powered tools that <span class="text-indigo-400">transform data into insight.</span>
+        From prototype to production, <span class="text-indigo-400">tell your story.</span>
       </h2>
       <p class="text-gray-300 max-w-xl mb-6">
-        I build smart interfaces that turn data into insight—fast, fun, and intuitive.
+        I build production grade web apps that turn raw messy data into data storytelling dashboards in minutes
       </p>
       <div class="space-x-4">
         <a href="/projects" class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-xl transition">
@@ -103,7 +103,7 @@
         <span class="text-white/30">|</span>
         <div class="relative overflow-hidden h-[2.5em] flex items-center">
           <span id="quote-display" class="italic transition-opacity duration-500 ease-in-out">
-            "Mission-Driven, Elegantly Engineered"
+
           </span>
         </div>
       </div>
@@ -128,8 +128,8 @@
           <!-- Top Row -->
           <div class="flex items-start justify-between">
             <!-- Profile Bubble -->
-            <div class="w-24 h-24 rounded-full overflow-hidden border border-white/20 shadow-md">
-              <img src="/static/images/space_commander.png" alt="Profile" class="object-cover w-full h-full" />
+            <div class="w-24 h-24 rounded-full overflow-hidden border border-white/20">
+              <img src="/static/images/chill_guy.png" alt="Profile" class="object-cover w-full h-full" />
             </div>
 
             <!-- ID Title -->
@@ -144,9 +144,9 @@
             </div>
           </div>
 
-          <!-- Scrollable Typewriter Output -->
-          <div class="relative flex-1 overflow-y-auto px-4 max-w-xl mx-auto custom-scrollbar">
-            <p id="typewriter"
+              <!-- Scrollable Typewriter Output -->
+<div id="typewriter-container" class="relative flex-1 overflow-y-auto px-4 max-w-xl mx-auto custom-scrollbar">
+  <p id="typewriter"
                class="text-base leading-relaxed text-gray-200 font-light whitespace-pre-line">
             </p>
           </div>
@@ -167,6 +167,8 @@
           </div>
         </div>
       </section>
+
+
 
     <section class="relative z-[30] flex justify-center items-center px-8 pt-2 pb-2">
       <div class="w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md">
@@ -212,128 +214,158 @@
   <script src="{{ url_for('static', filename='js/tilt.js') }}"></script>
   <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const typeTarget = document.getElementById("typewriter");
-  const input = document.getElementById("user-query");
-  const sendButton = document.getElementById("query-send");
-  const typingDots = document.getElementById("typing-indicator");
+    <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const typeTarget = document.getElementById("typewriter");
+    const input = document.getElementById("user-query");
+    const sendButton = document.getElementById("query-send");
+    const typingDots = document.getElementById("typing-indicator");
 
-  const phrases = [
-    "“The best way to predict the future is to invent it.” – Alan Kay",
-    "“Programs must be written for people to read, and only incidentally for machines to execute.” – Harold Abelson",
-    "“Simplicity is the soul of efficiency.” – Austin Freeman",
-    "“Talk is cheap. Show me the code.” – Linus Torvalds",
-    "“First, solve the problem. Then, write the code.” – John Johnson",
-    "“Any sufficiently advanced technology is indistinguishable from magic.” – Arthur C. Clarke",
-    "“The code you write makes you a programmer. The code you delete makes you a good one.” – Mario Fusco",
-    "“Software is a great combination of artistry and engineering.” – Bill Gates",
-    "“In the middle of difficulty lies opportunity.” – Albert Einstein",
-    "“Stay hungry, stay foolish.” – Steve Jobs"
-  ];
+    const states = [
+      `
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    Lannon Khau  //  Los Angeles HQ
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      `,
+      `
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  beep
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      `,
+      `
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  boop
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      `,
+      `
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  beeeeeeeeeeeeeep
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      `,
+      `
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  booooooooooooooooooooooooooooooooop
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      `,
+    ];
 
-  let currentPhraseIndex = 0;
-  let currentCharIndex = 0;
-  let typingPaused = false;
-  let hasUserInteracted = false;
+    let currentPhraseIndex = 0;
+    let currentCharIndex = 0;
+    let typingPaused = false;
+    let hasUserInteracted = false;
 
     function getTypingDelay(char) {
-      if ([".", "!", "?"].includes(char)) return (200 + Math.random() * 100);       // was 400–600
-      if ([",", ";", ":"].includes(char)) return (100 + Math.random() * 50);        // was 200–300
-      if (char === " ") return (30 + Math.random() * 20);                           // was 60–100
-      return (12 + Math.random() * 30);                                             // was 25–85
-}
-
-  function typeLoop() {
-    if (typingPaused || hasUserInteracted) return;
-
-    const phrase = phrases[currentPhraseIndex];
-    const char = phrase[currentCharIndex];
-    const visibleText = phrase.slice(0, currentCharIndex);
-
-    typeTarget.textContent = visibleText;
-
-    if (currentCharIndex < phrase.length) {
-      currentCharIndex++;
-      const delay = getTypingDelay(char);
-      setTimeout(typeLoop, delay);
-    } else {
-      setTimeout(() => {
-        typeTarget.classList.add("opacity-0", "transition-opacity", "duration-500");
-
-        setTimeout(() => {
-          typeTarget.textContent = "";
-          currentCharIndex = 0;
-          currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-          typeTarget.classList.remove("opacity-0");
-          setTimeout(typeLoop, 300);
-        }, 500);
-      }, 2500);
+      if ([".", "!", "?"].includes(char)) return (200 + Math.random() * 100);
+      if ([",", ";", ":"].includes(char)) return (100 + Math.random() * 50);
+      if (char === " ") return (30 + Math.random() * 20);
+      return (12 + Math.random() * 30);
     }
-  }
 
-  sendButton.addEventListener("click", () => {
-    const query = input.value.trim();
-    if (!query) return;
+    let currentState = 0;
 
-    typingPaused = true;
-    hasUserInteracted = true;
+    function rotateCardText() {
+      if (typingPaused || hasUserInteracted) return;
 
-    // Fade out existing text
-    typeTarget.classList.add("opacity-0", "transition-opacity", "duration-300");
+      const phrase = states[currentState];
+      currentCharIndex = 0;
 
-    setTimeout(() => {
-      typeTarget.textContent = "";
-      showTypingDots();
+      function typeChar() {
+        if (typingPaused || hasUserInteracted) return;
 
-      fetch("/ask", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query })
-      })
-      .then(res => res.json())
-      .then(data => {
-        console.log("✅ FULL response object:", data);
-        console.log("✅ Assistant response (data.response):", data.response);
-        hideTypingDots();
-        typeTarget.classList.remove("opacity-0");
-        console.log("✅ Assistant Response:", data.response);  // debugging
-        animateTyping(data.response);  // ✅ This must be data.response!
-        input.value = ""; // Optional: Clear input after sending
-      })
-      .catch(err => {
-        hideTypingDots();
-        typeTarget.classList.remove("opacity-0");
-        typeTarget.textContent = "⚠️ Oops, something went wrong.";
-        console.error("❌ Error:", err);
-      });
-    }, 300);
-  });
+        const char = phrase[currentCharIndex];
+        const visibleText = phrase.slice(0, currentCharIndex);
+        typeTarget.textContent = visibleText;
 
-  function animateTyping(text) {
-    let i = 0;
-    function typeChar() {
-      if (i <= text.length) {
-        typeTarget.textContent = text.slice(0, i++);
-        setTimeout(typeChar, getTypingDelay(text[i] || ""));
+        // Auto-scroll down
+        const container = document.getElementById("typewriter-container");
+        container.scrollTop = container.scrollHeight;
+
+        if (currentCharIndex < phrase.length) {
+          currentCharIndex++;
+          const delay = getTypingDelay(char);
+          setTimeout(typeChar, delay);
+        } else {
+          setTimeout(() => {
+            typeTarget.classList.add("opacity-0", "transition-opacity", "duration-500");
+            setTimeout(() => {
+              typeTarget.textContent = "";
+              typeTarget.classList.remove("opacity-0");
+              currentState = (currentState + 1) % states.length;
+              rotateCardText();
+            }, 500);
+          }, 6000);
+        }
       }
+
+      typeChar();
     }
-    typeChar();
-  }
 
-  function showTypingDots() {
-  typingDots.classList.remove("hidden");
-  typingDots.classList.add("inline-block");
-}
+    sendButton.addEventListener("click", () => {
+      const query = input.value.trim();
+      if (!query) return;
 
-function hideTypingDots() {
-  typingDots.classList.add("hidden");
-  typingDots.classList.remove("inline-block");
-}
+      typingPaused = true;
+      hasUserInteracted = true;
 
-  typeLoop(); // startup loop for ambient phrases
-});
-</script>
+      typeTarget.classList.add("opacity-0", "transition-opacity", "duration-300");
+
+      setTimeout(() => {
+        typeTarget.textContent = "";
+        showTypingDots();
+
+        fetch("/ask", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query })
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log("✅ FULL response object:", data);
+          console.log("✅ Assistant response (data.response):", data.response);
+          hideTypingDots();
+          typeTarget.classList.remove("opacity-0");
+          animateTyping(data.response);
+          input.value = "";
+        })
+        .catch(err => {
+          hideTypingDots();
+          typeTarget.classList.remove("opacity-0");
+          typeTarget.textContent = "⚠️ Oops, something went wrong.";
+          console.error("❌ Error:", err);
+        });
+      }, 300);
+    });
+
+    function animateTyping(text) {
+      let i = 0;
+      function typeChar() {
+        if (i <= text.length) {
+          typeTarget.textContent = text.slice(0, i++);
+
+          // ✅ Auto-scroll as new text is added
+          const container = document.getElementById("typewriter-container");
+          container.scrollTop = container.scrollHeight;
+
+          setTimeout(typeChar, getTypingDelay(text[i] || ""));
+        }
+      }
+      typeChar();
+    }
+
+    function showTypingDots() {
+      typingDots.classList.remove("hidden");
+      typingDots.classList.add("inline-block");
+    }
+
+    function hideTypingDots() {
+      typingDots.classList.add("hidden");
+      typingDots.classList.remove("inline-block");
+    }
+
+    rotateCardText();
+  });
+  </script>
+
 
     <script>
   document.addEventListener("DOMContentLoaded", () => {
