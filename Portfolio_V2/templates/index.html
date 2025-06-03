@@ -39,26 +39,44 @@
 }
 
 .custom-scrollbar {
-  scrollbar-width: thin; /* For Firefox */
-  scrollbar-color: rgba(255, 255, 255, 0.4) transparent; /* Thumb color and track color (transparent) */
+  scrollbar-width: none; /* Hide scrollbar for Firefox initially */
+  scrollbar-color: rgba(255, 255, 255, 0.5) transparent; /* For Firefox when we show it */
 }
 
-/* For Chrome, Edge, and other WebKit-based browsers */
+/* Show thin scrollbar on hover for Firefox */
+.custom-scrollbar:hover {
+  scrollbar-width: thin;
+}
+
+/* WebKit browsers (Chrome, Safari, Edge) */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 6px; /* Width of the scrollbar */
+  width: 4px; /* Make it very thin */
+  background: transparent;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent !important; /* Ensure track is transparent */
+  background: transparent !important;
+  border: none;
+  border-radius: 0;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.4); /* Color of the thumb (scroll bar) */
-  border-radius: 10px; /* Rounded corners for thumb */
-  border: none; /* No border around thumb */
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  border: none;
+  min-height: 20px;
 }
 
-/* Optional: Handle the corner where scrollbars meet (if both horizontal and vertical exist) */
+/* Only show scrollbar on hover */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Remove any corner backgrounds */
 .custom-scrollbar::-webkit-scrollbar-corner {
   background: transparent;
 }
@@ -145,9 +163,10 @@
           </div>
 
               <!-- Scrollable Typewriter Output -->
-<div id="typewriter-container" class="relative flex-1 overflow-y-auto px-4 max-w-xl mx-auto custom-scrollbar">
-  <p id="typewriter"
-               class="text-base leading-relaxed text-gray-200 font-light whitespace-pre-line">
+        <div id="typewriter-container"
+             class="relative flex-1 overflow-y-auto px-4 max-w-xl mx-auto custom-scrollbar text-left">
+          <p id="typewriter"
+               class="text-base leading-relaxed text-gray-200 font-light whitespace-pre-line text-left">
             </p>
           </div>
 
@@ -221,34 +240,49 @@
     const sendButton = document.getElementById("query-send");
     const typingDots = document.getElementById("typing-indicator");
 
-    const states = [
-      `
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    Lannon Khau  //  Los Angeles HQ
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      `,
-      `
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  beep
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      `,
-      `
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  boop
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      `,
-      `
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  beeeeeeeeeeeeeep
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      `,
-      `
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  booooooooooooooooooooooooooooooooop
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      `,
-    ];
+const states = [
+  // ── Hero Welcome ──
+  `
+Welcome aboard, traveler.
+Initializing access protocols...
+Status: Identity confirmed. All systems green.
+  `,
 
+  // ── Faux System Stats ──
+  `
+System Uptime: 9,381 hrs     | Temp: 21°C
+Last Commit: ✅ Deployed      | AI Mode: ON
+Status: All subsystems optimal.
+  `,
+
+  // ── Divider Quote ──
+  `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"Feels like magic, powered by logic."
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  `,
+
+  // ── Professional/Playful Business Card ──
+  `
+Name: Lannon Khau            | Rank: Lt. Data Specialist
+Division: UX Ops             | AI Clearance: 7.2
+Mission Code: DK-0425        | Chat Sync: ✅
+  `,
+
+  // ── Vision-Aligned Quote ──
+  `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"A toolkit for thinkers — not just analysts."
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  `,
+
+  // ── Light Humor Metrics ──
+  `
+Lines of Code: 492,713       | Coffee: 999+
+GPT Sync Drift: 0.01%        | Deployment Window: Active
+Engine Temp: Nominal         | AI Comms: Stable
+  `
+];
     let currentPhraseIndex = 0;
     let currentCharIndex = 0;
     let typingPaused = false;
@@ -310,7 +344,7 @@
       typeTarget.classList.add("opacity-0", "transition-opacity", "duration-300");
 
       setTimeout(() => {
-        typeTarget.textContent = "";
+        typeTarget.textContentHTML = "";;
         showTypingDots();
 
         fetch("/ask", {
@@ -342,16 +376,17 @@
         if (i <= text.length) {
           typeTarget.textContent = text.slice(0, i++);
 
-          // ✅ Auto-scroll as new text is added
+          // Auto-scroll as content builds
           const container = document.getElementById("typewriter-container");
-          container.scrollTop = container.scrollHeight;
+          if (container) {
+            container.scrollTop = container.scrollHeight;
+          }
 
           setTimeout(typeChar, getTypingDelay(text[i] || ""));
         }
       }
       typeChar();
     }
-
     function showTypingDots() {
       typingDots.classList.remove("hidden");
       typingDots.classList.add("inline-block");
