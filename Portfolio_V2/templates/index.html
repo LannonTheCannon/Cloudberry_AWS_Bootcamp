@@ -120,9 +120,7 @@
         <span class="text-xl">★★★★</span>
         <span class="text-white/30">|</span>
         <div class="relative overflow-hidden h-[2.5em] flex items-center">
-          <span id="quote-display" class="italic transition-opacity duration-500 ease-in-out">
-
-          </span>
+<span id="quote-display" class="italic transition-opacity duration-500 ease-in-out"></span>
         </div>
       </div>
       <div class="mt-2 mb-1">
@@ -241,21 +239,12 @@
     const typingDots = document.getElementById("typing-indicator");
 
 const states = [
-  // ── Professional/Playful Business Card ──
-  `
-Name: Lannon Khau
-Division: Space Corps
-Current Mission: Data Forge Plus
-  `,
-  `
-Welcome aboard, traveler. Think of my as your personal concierge to this website.
-  `,
-  `
-I have been trained on all of Lannon's github patterns, ask my about his poor coding poor behavior.
-  `,
-  `
-Slow is smooth. Smooth is fast.
-  `,
+      `"Making high value web pages feel inevitable"`,
+      `"What you build is what you believe - made visible."`,
+      `"Build for the person you’re becoming, not the person you were."`,
+      `"The best interfaces don’t just show you - they show you yourself."`,
+      `"Inspire first, architect second.."`,
+      `"A good tool teaches. A great tool transforms."`,
 ];
     let currentPhraseIndex = 0;
     let currentCharIndex = 0;
@@ -379,15 +368,18 @@ Slow is smooth. Smooth is fast.
     <script>
   document.addEventListener("DOMContentLoaded", () => {
     const quotes = [
-      `"Mission-Driven, Elegantly Engineered"`,
-      `"Feels like magic, powered by logic"`,
-      `"A data app I actually look forward to using"`,
-      `"Built with clarity, powered by courage"`,
-      `"A toolkit for thinkers, not just analysts"`
+        `Frontend: Flask, TailwindCSS, Vanilla JS`,
+        `Backend: Python, Gunicorn, REST API architecture`,
+        `Database: AWS RDS (MySQL), SQLite for local dev`,
+        `Storage: AWS S3 for secure dataset uploads`,
+        `Serverless: AWS Lambda for AI pipeline processing`,
+        `AI Integration: GPT-4o-mini, AI_Data_Science_Team`,
     ];
 
     const display = document.getElementById("quote-display");
     let index = 0;
+
+    display.textContent = quotes[0]
 
     setInterval(() => {
       display.classList.add("opacity-0"); // fade out
