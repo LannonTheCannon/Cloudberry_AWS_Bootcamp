@@ -13,73 +13,140 @@
   </head>
 
   <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white min-h-screen">
-    <section class="border-b border-white/10">
-      <div x-data="{ open: false }" class="flex flex-col w-full p-4 mx-auto sm:px-6 lg:max-w-7xl lg:px-16 lg:items-center lg:justify-between lg:flex-row md:px-6">
-        <div class="flex flex-row items-center justify-between">
-          <a href="./index.html" class="focus:outline-none focus:shadow-outline">
-            <div class="inline-flex items-center">
-              <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 229 229" fill="currentColor">
-                <path d="M-84.1,15.3h-8.3v74.3h8.3V15.3z" />
-                <!-- SVG shortened for brevity -->
-              </svg>
-              <span class="font-serif text-white text-base ml-2">Monotone</span>
-            </div>
-          </a>
-          <button class="lg:hidden focus:outline-none" @click="open = !open" aria-label="Menu toggle">
-            <svg fill="white" viewBox="0 0 20 20" class="w-6 h-6">
-              <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-            </svg>
-          </button>
-        </div>
-        <nav :class="{'flex': open, 'hidden': !open}" class="flex-col items-end flex-grow hidden px-5 md:pb-0 lg:flex lg:justify-end lg:flex-row lg:space-x-4">
-          <a class="p-2 text-white hover:text-indigo-400 transition" href="./index.html">Home</a>
-          <a class="p-2 text-white hover:text-indigo-400 transition" href="#pricing">Pricing</a>
-          <a class="p-2 text-white hover:text-indigo-400 transition" href="./blog.html">Blog</a>
-          <a class="p-2 text-white hover:text-indigo-400 transition" href="./journey.html">Blog Post</a>
-          <a href="https://wicked-templates.gumroad.com/l/monotone-starter" target="_blank" class="inline-flex items-center px-6 py-2 text-sm text-white bg-indigo-600 hover:bg-indigo-500 rounded-md transition">Buy for $29</a>
-        </nav>
-      </div>
-    </section>
 
-    <section>
-      <div class="container flex flex-col items-center px-5 py-24 mx-auto overflow-hidden max-w-7xl md:flex-row lg:px-20">
-        <div class="flex flex-col items-center mx-auto text-center lg:flex-grow md:items-start md:text-left lg:max-w-3xl">
-          <h1 class="mb-8 font-serif text-4xl font-bold tracking-tight text-white md:text-6xl">
-            Data Forge - The origin of a production grade data app
-          </h1>
-          <div class="flex items-center mt-6">
-            <div class="flex-shrink-0">
-              <img class="w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1599824701954-d1d141704de9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1180&q=80" alt="Author" />
-            </div>
-            <div class="ml-3">
-              <p class="text-sm font-medium text-gray-300">
-                <a href="#" class="hover:underline">By Antonio Sandiego</a> in
-                <a href="#" class="text-indigo-400 underline hover:text-indigo-200">Careers</a>
-              </p>
-              <div class="flex space-x-1 text-sm text-gray-400">
-                <time datetime="2020-03-16">Mar 16, 2020</time>
-                <span>&middot;</span>
-                <span>6 min read</span>
-              </div>
-            </div>
-          </div>
-          <div class="z-0 mt-8 flex space-x-4">
-            <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
-              Tweet
-            </button>
-            <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
-              LinkedIn
-            </button>
-            <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
-              Copy
-            </button>
+    <!-- Nav -->
+  <header class="w-full px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold tracking-tight">
+      <a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
+    </h1>
+    <nav class="space-x-6 text-sm">
+      <a href="/about" class="hover:text-indigo-400">Mission</a>
+      <a href="/projects" class="hover:text-indigo-400">Projects</a>
+      <a href="/blog" class="hover:text-indigo-400">Blog</a>
+      <a href="/contact" class="hover:text-indigo-400">Contact</a>
+    </nav>
+  </header>
+
+    <section class="py-12">
+  <div class="relative mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-3xl">
+    <!-- Header -->
+    <div class="text-left">
+      <h1 class="mb-8 font-serif text-4xl font-bold tracking-tight text-white md:text-6xl">
+        Data Forge Plus<span class="text-indigo-400"> 2025</span>
+      </h1>
+
+      <div class="flex items-center mt-6">
+        <img class="w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1599824701954-d1d141704de9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1180&q=80" alt="Author" />
+        <div class="ml-3">
+          <p class="text-sm font-medium text-gray-300">
+            <a href="#" class="hover:underline">By Lannon Khau</a>
+          </p>
+          <div class="flex space-x-1 text-sm text-gray-400">
+            <time datetime="2020-03-16">Jun 4, 2025</time>
+            <span>&middot;</span>
+            <span>6 min read</span>
           </div>
         </div>
       </div>
-    </section>
 
-    <footer class="text-center text-sm text-gray-500 border-t border-white/10 py-6 mt-20">
-      &copy; 2059 Lannon Khau. Built with Flask. 🚀
-    </footer>
+      <!-- Share Buttons -->
+      <div class="z-0 mt-8 flex space-x-4">
+        <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">Tweet</button>
+        <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">LinkedIn</button>
+        <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">Copy</button>
+      </div>
+    </div>
+
+    <!-- Blog Content -->
+    <div class="mt-20 text-lg text-slate-300">
+      <blockquote class="text-xl leading-8 text-slate-400">
+        <span class="font-serif text-6xl text-slate-100 float-left mr-2 leading-none">D</span>
+        ata Forge Plus is not just another analytics tool—it’s an AI-powered engine built for speed, clarity, and insight. Designed from the ground up to transform messy datasets into visual stories, it’s a launchpad for analysts, product teams, and curious explorers to uncover the signal beneath the noise.
+      </blockquote>
+
+      <div class="mt-24 prose prose-lg prose-invert prose-indigo max-w-none">
+    <h3 class="mt-12 font-serif text-2xl font-bold leading-6 text-white">What is Data Forge Plus?</h3>
+        <p class="text-slate-400">
+          At its core, Data Forge Plus is a full-stack, cloud-based data pipeline that automates dataset cleaning, feature engineering, and exploratory visualization—all using the power of AI.
+        </p>
+        <p class="text-slate-400">
+          Users upload raw CSVs through a secure Flask web interface. From there, the data is stored in AWS S3, processed by AI agents running on Lambda functions, and stored in a MySQL database on AWS RDS. The end result? A clean, AI-augmented dataset ready for visual storytelling.
+        </p>
+<!--        <figure>-->
+<!--          <img class="w-full rounded-lg border border-white/10 shadow-md" src="/static/images/hero.png" alt="" width="1310" height="873" />-->
+<!--          <figcaption class="text-sm text-slate-400">-->
+<!--            <a href="https://serendipitytheme.com/" class="text-indigo-400 hover:underline">Serendipity Theme for VS Code</a>-->
+<!--          </figcaption>-->
+<!--        </figure>-->
+
+        <h3 class="mt-12 font-serif text-2xl font-bold leading-6 text-white">From Upload to Insight in Seconds</h3>
+
+          <p class="text-slate-400">
+            What once took hours of wrangling now happens in moments. With Data Forge, uploading up to five datasets at once triggers an automated queue that:
+          </p>
+          <ul>
+            <li class="text-slate-400"> ✅ Cleans missing values and outliers</li>
+            <li class="text-slate-400">✅ Applies intelligent feature engineering</li>
+            <li class="text-slate-400">✅ Summarizes dataset structure and meaning</li>
+            <li class="text-slate-400">✅ Outputs a clean sample into Streamlit for visual EDA</li>
+          </ul>
+
+            <figure>
+              <img class="w-full rounded-lg border border-white/10 shadow-md" src="/static/images/hero.png" alt="Data Forge Preview" />
+              <figcaption class="text-sm text-slate-400">
+                A sample view from the EDA interface powered by Streamlit and Plotly
+              </figcaption>
+            </figure>
+
+        <h3 class="mt-12 font-serif text-2xl font-bold leading-6 text-white">Why I Built This</h3>
+        <p class="text-slate-400">
+          As a data analyst and builder, I’ve spent too much time on the grunt work—cleaning datasets, fixing schemas, and trying to make sense of inconsistent formats. Data Forge was born from frustration. But it evolved into something empowering: a space where intuition meets automation.
+        </p>
+        <p class="text-slate-400">
+          The goal wasn’t just to streamline analysis—it was to create an experience. One where anyone, technical or not, could feel the thrill of discovery within their own data.
+        </p>
+
+        <blockquote class="border-l-4 pl-4 italic text-indigo-300">
+          “We don’t just process data. We listen to it.”
+        </blockquote>
+
+        <h3 class="mt-12 font-serif text-2xl font-bold leading-6 text-white">What’s Next for Data Forge</h3>
+        <p class="text-slate-400">
+          I’m working on real-time progress bars, smarter AI agents, and public visualization sharing features. I see Data Forge as more than a portfolio piece—it’s a foundation for a full-fledged data storytelling platform.
+        </p>
+        <p class="text-slate-400">
+          Whether you’re a startup PM exploring trends or a data science intern diving into CSVs, this tool was built to spark insight—and maybe a little awe.
+        </p>
+
+        <h3 class="mt-12 font-serif text-2xl font-bold leading-6 text-white">Want to Try It?</h3>
+        <p class="text-slate-400">
+          Check out the project on the <a href="/projects" class="text-indigo-400 hover:underline">Projects</a> page or head straight to the Data Forge dashboard to upload your first dataset. The forge is lit. 🔥
+        </p>
+
+        <blockquote class="border-l-4 pl-4 italic text-indigo-300">Register for Tim's Character Design for Animation course today!</blockquote>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
+    <div class="flex justify-center space-x-6 py-6">
+      <a href="https://github.com/LannonTheCannon" target="_blank" rel="noopener noreferrer">
+        <img src="/static/icons/github.svg" alt="GitHub" class="h-6 w-6 hover:scale-110 transition" />
+      </a>
+      <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank" rel="noopener noreferrer">
+        <img src="/static/icons/linkedin.svg" alt="LinkedIn" class="h-6 w-6 hover:scale-110 transition" />
+      </a>
+      <a href="https://www.youtube.com/@LannonKhau" target="_blank" rel="noopener noreferrer">
+        <img src="/static/icons/youtube.svg" alt="Youtube" class="h-6 w-6 hover:scale-110 transition" />
+      </a>
+      <a href="">
+        <img src="/static/icons/goog.svg" alt="Email" class="h-6 w-6 hover:scale-110 transition" />
+      </a>
+    </div>
+    &copy; 2025 Lannon Khau. Welcome aboard, cadet.
+  </footer>
   </body>
 </html>
