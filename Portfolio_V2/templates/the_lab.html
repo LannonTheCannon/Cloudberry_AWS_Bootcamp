@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog – Lannon Khau</title>
+    <title>Labs – Lannon Khau</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="/static/favicon.ico" />
   </head>
@@ -17,32 +17,32 @@
       <nav class="space-x-6 text-sm">
         <a href="/about" class="hover:text-indigo-400">Mission</a>
         <a href="/projects" class="hover:text-indigo-400">Projects</a>
-        <a href="/blog" class="text-indigo-400 font-semibold">Blog</a>
-        <a href="/the_lab" class="hover:text-indigo-400">The Lab</a>
+        <a href="/blog" class="hover:text-indigo-400">Blog</a>
+        <a href="/the_lab" class="text-indigo-400 font-semibold">The Lab</a>
         <a href="/contact" class="hover:text-indigo-400">Contact</a>
       </nav>
     </header>
 
     <!-- Blog Intro -->
     <section class="flex flex-col items-center text-center mt-16 px-4">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">Words That Built My Code</h2>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">Explore from my mentors</h2>
       <p class="text-gray-300 max-w-2xl">
-        Thoughts, breakdowns, and reflections on building systems, mastering mindset, and leveling up in tech.
+        A briefing of the time I spent on this bootcamp, what I've learned, and realtime demonstrations with AI workflows.
       </p>
     </section>
 
     <!-- Blog Posts Section -->
     <section class="px-8 py-16 max-w-6xl mx-auto">
-      <h2 class="text-4xl font-bold text-center mb-10">Blog Posts</h2>
+      <h2 class="text-4xl font-bold text-center mb-10">Labs</h2>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {% for slug, post in posts.items() %}
-        <a href="{{ url_for('blog_post', slug=slug) }}"
+        {% for slug, lab in labs.items() %}
+        <a href="{{ url_for('lab_post', slug=slug) }}"
            class="block bg-white/5 border border-white/10 rounded-xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
 
-          <h3 class="text-xl font-bold mb-2 text-white">{{ post.title }}</h3>
-          <p class="text-sm text-gray-400 mb-3">By {{ post.author }}</p>
-          <p class="text-sm text-gray-300">{{ post.summary or "Click to read more..." }}</p>
+          <h3 class="text-xl font-bold mb-2 text-white">{{ lab.title }}</h3>
+          <p class="text-sm text-gray-400 mb-3">By {{ lab.author }}</p>
+          <p class="text-sm text-gray-300">{{ lab.summary or "Click to read more..." }}</p>
 
         </a>
         {% endfor %}
@@ -67,7 +67,7 @@
         <img src="/static/icons/goog.svg" alt="Email" class="h-6 w-6 hover:scale-110 transition" />
       </a>
     </div>
-      &copy; 2025 Lannon Khau. Writing code. Writing stories. Always building.
+      &copy; 2085 Lannon Khau. Writing code. Writing stories. Always building.
     </footer>
   </body>
 </html>

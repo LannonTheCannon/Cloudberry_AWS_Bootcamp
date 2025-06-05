@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en-US" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" type="text/css" href="/static/css/app.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>Cloudberry Bootcamp Recap</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white min-h-screen">
+
+    <header class="w-full px-6 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold tracking-tight">
+        <a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
+      </h1>
+      <nav class="space-x-6 text-sm">
+        <a href="/about" class="hover:text-indigo-400">Mission</a>
+        <a href="/projects" class="hover:text-indigo-400">Projects</a>
+        <a href="/blog" class="hover:text-indigo-400">Blog</a>
+        <a href="/contact" class="hover:text-indigo-400">Contact</a>
+      </nav>
+    </header>
+
+    <section class="py-12">
+      <div class="relative mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-3xl">
+        <div class="text-left">
+          <h1 class="mb-8 font-serif text-4xl font-bold tracking-tight text-white md:text-6xl">
+            Cloudberry Bootcamp<span class="text-indigo-400"> Recap</span>
+          </h1>
+
+          <div class="flex items-center mt-6">
+            <img class="w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1599824701954-d1d141704de9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1180&q=80" alt="Author" />
+            <div class="ml-3">
+              <p class="text-sm font-medium text-gray-300">
+                <a href="#" class="hover:underline">By Lannon Khau</a>
+              </p>
+              <div class="flex space-x-1 text-sm text-gray-400">
+                <time datetime="2025-06-05">Jun 5, 2025</time>
+                <span>&middot;</span>
+                <span>8 min read</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="z-0 mt-8 flex space-x-4">
+            <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">Tweet</button>
+            <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">LinkedIn</button>
+            <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">Copy</button>
+          </div>
+        </div>
+
+        <div class="mt-20 text-lg text-slate-300">
+          <blockquote class="text-xl leading-8 text-slate-400">
+            <span class="font-serif text-6xl text-slate-100 float-left mr-2 leading-none">C</span>
+            loudberry wasn’t just a bootcamp—it was a furnace. It melted down my assumptions about full-stack development and forged a sharper, more resilient version of myself. From Flask to EC2, every lesson left a scar of growth.
+          </blockquote>
+
+          <a href="http://54.193.148.70:8502"
+                   target="_blank"
+                   class="p-2 bg-emerald-700 hover:bg-emerald-800 rounded-full transition"
+                   title="Explore">
+            <i data-lucide="arrow-up-right-from-square" class="w-4 h-4 text-white"></i>
+          </a>
+
+          <div class="mt-24 prose prose-lg prose-invert prose-indigo max-w-none">
+            <h3 class="mt-12 font-serif text-2xl font-bold leading-6 text-white">The Stack We Built</h3>
+            <p class="text-slate-400">
+              Cloudberry gave me the blueprint for building production-grade web apps. We launched full-stack projects using Flask, deployed them to EC2 instances, used Gunicorn + Nginx for server config, and automated deployments with GitHub Actions.
+            </p>
+            <p class="text-slate-400">
+              We also worked with AWS S3 for file storage, RDS for persistent relational data, and introduced nohup for running Streamlit apps alongside Flask on separate ports.
+            </p>
+
+            <h3 class="mt-12 font-serif text-2xl font-bold leading-6 text-white">Lessons Beyond Code</h3>
+            <p class="text-slate-400">
+              Cloudberry reminded me that engineering is about trade-offs. Sometimes it’s okay to be scrappy. Sometimes clarity is more important than cleverness. And sometimes, the most powerful code is a single bash command that just works.
+            </p>
+
+            <blockquote class="border-l-4 pl-4 italic text-indigo-300">
+              "Make it useful. Make it yours. Then make it beautiful."
+            </blockquote>
+
+            <h3 class="mt-12 font-serif text-2xl font-bold leading-6 text-white">The Lab Lives On</h3>
+            <p class="text-slate-400">
+              This page is part of <strong>The Lab</strong>, a new section of my portfolio designed to catalog everything I build, learn, and refine. It’s where bootcamp notes meet working prototypes—and where theory becomes practice.
+            </p>
+            <p class="text-slate-400">
+              You can launch the Streamlit demos directly from this tab. They're running on EC2 and organized by port. All of them are permanent fixtures in this evolving toolkit.
+            </p>
+
+            <h3 class="mt-12 font-serif text-2xl font-bold leading-6 text-white">Ready to Explore?</h3>
+            <p class="text-slate-400">
+              Click below to jump into the Cloudberry Streamlit demo or return to <a href="/labs" class="text-indigo-400 hover:underline">The Lab homepage</a> to explore more experiments.
+            </p>
+
+            <blockquote class="border-l-4 pl-4 italic text-indigo-300">Cloudberry was just the beginning. The forge is always lit. 🔥</blockquote>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
+      <div class="flex justify-center space-x-6 py-6">
+        <a href="https://github.com/LannonTheCannon" target="_blank" rel="noopener noreferrer">
+          <img src="/static/icons/github.svg" alt="GitHub" class="h-6 w-6 hover:scale-110 transition" />
+        </a>
+        <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank" rel="noopener noreferrer">
+          <img src="/static/icons/linkedin.svg" alt="LinkedIn" class="h-6 w-6 hover:scale-110 transition" />
+        </a>
+        <a href="https://www.youtube.com/@LannonKhau" target="_blank" rel="noopener noreferrer">
+          <img src="/static/icons/youtube.svg" alt="Youtube" class="h-6 w-6 hover:scale-110 transition" />
+        </a>
+        <a href="">
+          <img src="/static/icons/goog.svg" alt="Email" class="h-6 w-6 hover:scale-110 transition" />
+        </a>
+      </div>
+      &copy; 2025 Lannon Khau. Welcome aboard, cadet.
+    </footer>
+  </body>
+</html>

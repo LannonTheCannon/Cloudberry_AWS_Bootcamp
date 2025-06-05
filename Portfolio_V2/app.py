@@ -181,6 +181,42 @@ def show_project(slug):
 # Date - Data Forge Blog Series - #001 - Cloudberry AWS Full Stack Engineer Bootcamp Part 1
 # Date - Data Forge Blog Series - #002 - Data Science for Business Gen AI Bootcamp Part 1
 
+labs = {
+    "cloudberry-bootcamp": {
+        "title": "Cloudberry AWS Bootcamp",
+        "content": "OOP, Flask, AWS S3, RDS MySql, EC2",
+        "author": "Lannon Khau",
+        "template": "cloudberry.html"
+    },
+
+    "gen-ai-bootcamp": {
+        "title": "Generative AI Bootcamp",
+        "content": "Bootcamp 2 (Data Science, ML/ AI/ Streamlit)",
+        "author": "Lannon Khau",
+        "template": "gen_ai_bootcamp.html"
+    }
+}
+
+@app.route('/the_lab')
+def show_lab():
+    return render_template('the_lab.html', labs=labs)
+@app.route("/the_lab/<slug>")
+def lab_post(slug):
+    lab = labs.get(slug)
+    if lab:
+        try:
+            return render_template(
+                f"labs/{lab['template']}",
+                title=lab["title"],
+                author=lab["author"],
+                content=lab["content"]
+            )
+        except TemplateNotFound:
+            abort(404)
+    else:
+        abort(404)
+
+
 # ─── Blog Section  ──────────────────────────────────────────────────────────────────────
 
 posts = {
@@ -477,6 +513,8 @@ def get_logs(file_id):
 
     return jsonify({"status": status, "logs": logs})
 
+#------------------------ Front facing chatbot ---------------------------------------#
+
 import openai
 
 openai.api_key = get_openai_api_key()
@@ -535,6 +573,8 @@ def ask_openai():
     except Exception as e:
         print(f"💥 Error: {e}")
         return jsonify({"response": "⚠️ Something went wrong on the server."}), 500
+
+#
 
 if __name__ == '__main__':
     print("Running db.create_all()")
