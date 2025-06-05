@@ -144,6 +144,43 @@ def show_project(slug):
     else:
         abort(404)
 
+# --- Course Catalog Section -------------------------------------------------------------
+
+# Create a blog style like library catalog where users can enter in different organized study tools
+# materials and events. Like a blog thats organized for easy information access. It's a bit tricky i
+# think that a true project manager at this point would command and conquer- with even just a bit of
+# planning, this bootcamp can end up wit you at the top of the class again.
+
+# Like my own personal library - always with me - always here for reference . stored in S3? this can
+# be an expensive catalog - like maybe even 50 - 60 / month.. is it necessary at this moment?
+
+# Now you should be complete the AI Fast Track course - and you should be learning what you did last
+# course and doing what's better. Like focusing on creating an outstanding plan at the get go.
+
+# Your portfolio, is a beautiful piece as is! And we're going to keep it running. We want to keep
+# coming back to this because you are obsessed with this piece and want to make incremental yet consistent
+# changes as you continue to nail down the AI portion. This is perfect for tseting on the chatbot as well
+# as might changes like a library page and some blogs. Hell i know I could definitely benefit by getting
+# some things off my chest in a blog or vlog or something.
+
+# It can be a tracking system! it can be a catalog system! it can be a github project behavior dashboard.
+# it can be a project catalog. It can be a POC. It can be a information hub and a website hub.
+# I don't think i'd want to get into making courses - but honestly practice that would be really
+# helpful for me. Making videos from what I've learned and just posting them daily would be a gamechanger
+
+# cosmetic changes of course. Yeah - these changes need to stay up to date because its your portfolio! \
+# Focus 20% of your time on portfolio building. Add a resume section!
+
+# 80% of your time should be allocated to Matt Dancho's course. This mean 12-8PM everyday for the next 8
+# weeks. Right off the bat, you need to do a bit of catch up but I was able to truly nail the last camp.
+# At the BEST footing possible.
+
+# Alright of course, the most important thing for me to do is to get my thoughts out there on paper
+# Let's create the blog app as soon as possible. we'll figure out out how to do the library catalog later.
+# 1) Create Blog
+# Date - Data Forge Blog Series - #001 - Cloudberry AWS Full Stack Engineer Bootcamp Part 1
+# Date - Data Forge Blog Series - #002 - Data Science for Business Gen AI Bootcamp Part 1
+
 # ─── Blog Section  ──────────────────────────────────────────────────────────────────────
 
 posts = {
