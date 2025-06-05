@@ -1,94 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Journey to Building a Production-Grade AI App – Lannon Khau</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col">
+<html lang="en-US" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" type="text/css" href="/static/css/app.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>Lannon Khau Blog #001</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
 
-  <!-- Nav -->
-  <header class="w-full px-6 py-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold tracking-tight">
-      <a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
-    </h1>
-    <nav class="space-x-6 text-sm">
-      <a href="/" class="hover:text-indigo-400">Home</a>
-      <a href="/blog" class="text-indigo-400 font-semibold">Blog</a>
-    </nav>
-  </header>
+  <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white min-h-screen">
+    <section class="border-b border-white/10">
+      <div x-data="{ open: false }" class="flex flex-col w-full p-4 mx-auto sm:px-6 lg:max-w-7xl lg:px-16 lg:items-center lg:justify-between lg:flex-row md:px-6">
+        <div class="flex flex-row items-center justify-between">
+          <a href="./index.html" class="focus:outline-none focus:shadow-outline">
+            <div class="inline-flex items-center">
+              <svg class="w-12 h-12 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 229 229" fill="currentColor">
+                <path d="M-84.1,15.3h-8.3v74.3h8.3V15.3z" />
+                <!-- SVG shortened for brevity -->
+              </svg>
+              <span class="font-serif text-white text-base ml-2">Monotone</span>
+            </div>
+          </a>
+          <button class="lg:hidden focus:outline-none" @click="open = !open" aria-label="Menu toggle">
+            <svg fill="white" viewBox="0 0 20 20" class="w-6 h-6">
+              <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+        <nav :class="{'flex': open, 'hidden': !open}" class="flex-col items-end flex-grow hidden px-5 md:pb-0 lg:flex lg:justify-end lg:flex-row lg:space-x-4">
+          <a class="p-2 text-white hover:text-indigo-400 transition" href="./index.html">Home</a>
+          <a class="p-2 text-white hover:text-indigo-400 transition" href="#pricing">Pricing</a>
+          <a class="p-2 text-white hover:text-indigo-400 transition" href="./blog.html">Blog</a>
+          <a class="p-2 text-white hover:text-indigo-400 transition" href="./journey.html">Blog Post</a>
+          <a href="https://wicked-templates.gumroad.com/l/monotone-starter" target="_blank" class="inline-flex items-center px-6 py-2 text-sm text-white bg-indigo-600 hover:bg-indigo-500 rounded-md transition">Buy for $29</a>
+        </nav>
+      </div>
+    </section>
 
-  <!-- Blog Content -->
-  <article class="max-w-3xl mx-auto py-16 px-6">
-    <h2 class="text-4xl font-bold mb-4">The Journey to Building a Production-Grade AI App</h2>
-    <p class="text-sm text-gray-400 mb-8">Written by Lannon Khau</p>
+    <section>
+      <div class="container flex flex-col items-center px-5 py-24 mx-auto overflow-hidden max-w-7xl md:flex-row lg:px-20">
+        <div class="flex flex-col items-center mx-auto text-center lg:flex-grow md:items-start md:text-left lg:max-w-3xl">
+          <h1 class="mb-8 font-serif text-4xl font-bold tracking-tight text-white md:text-6xl">
+            Data Forge - The origin of a production grade data app
+          </h1>
+          <div class="flex items-center mt-6">
+            <div class="flex-shrink-0">
+              <img class="w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1599824701954-d1d141704de9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1180&q=80" alt="Author" />
+            </div>
+            <div class="ml-3">
+              <p class="text-sm font-medium text-gray-300">
+                <a href="#" class="hover:underline">By Antonio Sandiego</a> in
+                <a href="#" class="text-indigo-400 underline hover:text-indigo-200">Careers</a>
+              </p>
+              <div class="flex space-x-1 text-sm text-gray-400">
+                <time datetime="2020-03-16">Mar 16, 2020</time>
+                <span>&middot;</span>
+                <span>6 min read</span>
+              </div>
+            </div>
+          </div>
+          <div class="z-0 mt-8 flex space-x-4">
+            <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
+              Tweet
+            </button>
+            <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
+              LinkedIn
+            </button>
+            <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
+              Copy
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="prose prose-invert max-w-none">
-      <p>
-        It started with a CSV file—1.3 million rows of raw, messy financial transaction data.
-        My first instinct was to clean it, analyze it, visualize it. But even with all my experience using Pandas and Streamlit,
-        it quickly became clear: this wasn’t going to be easy. The file was too big. The Streamlit uploader kept crashing.
-        The request would time out. It was frustrating.
-      </p>
-
-      <p>
-        And that’s when the idea hit me: what if I could build an AI-powered tool to do this <em>for</em> the user?
-        A tool that could clean, feature engineer, and explore any dataset—regardless of size. That was the spark behind what would eventually become <strong>Data Forge</strong>.
-      </p>
-
-      <p>
-        At first, I started small. I built a local prototype in Streamlit, integrating OpenAI’s API and LangChain to let users
-        interact with their data conversationally. It worked—but only for smaller datasets. Anything over 200MB would break.
-        It wasn’t enough.
-      </p>
-
-      <p>
-        That question stuck with me: <strong>“How do you let users upload big data?”</strong> The answer: AWS S3.
-        By decoupling the front-end from file ingestion, I could let users upload datasets—gigabytes large—into cloud storage without worrying about memory or timeouts.
-        From there, the pipeline would kick off.
-      </p>
-
-      <p>
-        So I went deeper: I built secure upload flows using Flask and Boto3. I spun up an EC2 instance and configured Gunicorn + systemd to keep the Flask app live.
-        I designed an RDS-backed database to track user uploads. I built Lambda functions that would load files from S3,
-        invoke AI cleaning agents via OpenAI and LangChain, and save the cleaned versions back.
-      </p>
-
-      <p>
-        And all of that was just the backend. The frontend evolved too. I built an AI-powered visual mind map experience using Streamlit + Streamlit Flow,
-        so users could visually explore their dataset by asking questions, generating plots, and uncovering insights through natural language.
-      </p>
-
-      <p>
-        Today, this app includes:
-      </p>
-
-      <ul>
-        <li>A Flask-based web UI for registration, file uploads, and dashboarding</li>
-        <li>Streamlit-powered EDA visualization with AI agents</li>
-        <li>S3 for file storage and ingestion</li>
-        <li>RDS (MySQL) for metadata tracking</li>
-        <li>AWS Secrets Manager for secure API keys</li>
-        <li>OpenAI + LangChain + the <code>ai_data_science_team</code> library for automation</li>
-        <li>A complete cloud-hosted deployment via EC2</li>
-      </ul>
-
-      <p>
-        It’s not just a data dashboard. It’s a living, breathing interface between human intuition and AI automation. And honestly? It’s the proudest I’ve ever been of something I’ve built.
-      </p>
-
-      <p>
-        This project started months ago as a small idea. Today, it’s production-grade.
-      </p>
-
-      <p class="text-indigo-400 font-semibold">— Lannon Khau</p>
-    </div>
-  </article>
-
-  <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
-    &copy; 2025 Lannon Khau. Built with Flask & Tailwind.
-  </footer>
-
-</body>
+    <footer class="text-center text-sm text-gray-500 border-t border-white/10 py-6 mt-20">
+      &copy; 2059 Lannon Khau. Built with Flask. 🚀
+    </footer>
+  </body>
 </html>
