@@ -25,30 +25,77 @@
 
     <!-- Blog Intro -->
     <section class="flex flex-col items-center text-center mt-16 px-4">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">Explore from my mentors</h2>
+      <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4 leading-tight"><span class="text-indigo-400"> Explore</span> From My Mentors</h2>
       <p class="text-gray-300 max-w-2xl">
         A briefing of the time I spent on this bootcamp, what I've learned, and realtime demonstrations with AI workflows.
       </p>
     </section>
 
-    <!-- Blog Posts Section -->
-    <section class="px-8 py-16 max-w-6xl mx-auto">
-      <h2 class="text-4xl font-bold text-center mb-10">Labs</h2>
+<!--    &lt;!&ndash; Blog Posts Section &ndash;&gt;-->
+<!--    <section class="px-8 py-16 max-w-6xl mx-auto">-->
+<!--      <h2 class="text-4xl font-bold text-center mb-10">Labs</h2>-->
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {% for slug, lab in labs.items() %}
-        <a href="{{ url_for('lab_post', slug=slug) }}"
-           class="block bg-white/5 border border-white/10 rounded-xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+<!--      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">-->
+<!--        {% for slug, lab in labs.items() %}-->
+<!--        <a href="{{ url_for('lab_post', slug=slug) }}"-->
+<!--           class="block bg-white/5 border border-white/10 rounded-xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">-->
 
-          <h3 class="text-xl font-bold mb-2 text-white">{{ lab.title }}</h3>
-          <p class="text-sm text-gray-400 mb-3">By {{ lab.author }}</p>
-          <p class="text-sm text-gray-300">{{ lab.summary or "Click to read more..." }}</p>
+<!--          <h3 class="text-xl font-bold mb-2 text-white">{{ lab.title }}</h3>-->
+<!--          <p class="text-sm text-gray-400 mb-3">By {{ lab.author }}</p>-->
+<!--          <p class="text-sm text-gray-300">{{ lab.summary or "Click to read more..." }}</p>-->
 
-        </a>
-        {% endfor %}
+<!--        </a>-->
+<!--        {% endfor %}-->
+<!--      </div>-->
+<!--    </section>-->
+
+
+<section class="px-8 py-26 mt-8 max-w-7xl mx-auto">
+  <h2 class="text-4xl font-bold text-center mb-14 text-white">Labs</h2>
+
+  <div class="max-w-6xl mx-auto grid grid-cols-3 gap-6">
+    {% for slug, lab in labs.items() %}
+    <a href="{{ url_for('lab_post', slug=slug) }}"
+       class="group tilt-card relative w-full h-[380px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
+
+      <!-- Header Row -->
+      <div class="flex items-start justify-between mb-4">
+        <!-- Profile / Icon -->
+        <div class="w-16 h-16 rounded-full overflow-hidden border border-white/10">
+          <img src="/static/icons/rocket.svg"
+               alt="Icon"
+               class="w-full h-full object-contain bg-white/5 p-2" />
+        </div>
+
+        <!-- Title / Metadata -->
+        <div class="text-right ml-4">
+          <h3 class="text-lg font-semibold text-white">{{ lab.title }}</h3>
+          <p class="text-xs text-gray-400 mt-1 uppercase tracking-wide font-mono">By {{ lab.author }}</p>
+        </div>
       </div>
-    </section>
 
+      <!-- Summary Scrollable -->
+      <div class="flex-1 overflow-y-auto max-h-[120px] custom-scrollbar text-sm text-gray-300 leading-relaxed font-light whitespace-pre-line">
+        {{ lab.summary or "Click to read more about this lab entry." }}
+      </div>
+
+      <!-- Image Row -->
+      <div class="w-full h-28 mt-4 rounded-md overflow-hidden border border-white/10">
+        <img src="{{ lab.image }}"
+             alt="Lab Preview"
+             class="w-full h-full object-cover" />
+      </div>
+
+
+      <!-- Footer Row -->
+      <div class="pt-3 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between mt-4">
+        <span>ID: LAB-{{ '%02d' % loop.index }}</span>
+        <span>Sector: AI EDU</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
 
 
     <!-- Footer -->

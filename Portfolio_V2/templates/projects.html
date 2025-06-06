@@ -64,7 +64,7 @@
 
 
   <section id="projects-and-stats" class="fade-in-up px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700">
-<h3 class="text-3xl font-bold mb-4 text-center text-white tracking-tight">Active Project Overview</h3>
+<h3 class="text-5xl font-bold mb-4 text-center text-white tracking-tight"><span class="text-indigo-400"> Active</span> Project Overview</h3>
   <!-- Unified Grid Container -->
   <div class="max-w-6xl mx-auto grid grid-cols-1 gap-12">
 
@@ -165,24 +165,74 @@
   </div>
 </section>
 
+<!--&lt;!&ndash; Projects Section &ndash;&gt;-->
+<!--<section class="px-8 py-16 max-w-6xl -mt-16 mx-auto">-->
+<!--  <h3 class="text-3xl font-bold mb-4 text-center text-white tracking-tight">All Projects</h3>-->
 
-<!-- Projects Section -->
-<section class="px-8 py-16 max-w-6xl -mt-16 mx-auto">
-  <h3 class="text-3xl font-bold mb-4 text-center text-white tracking-tight">All Projects</h3>
+<!--  <div class="grid md:grid-cols-3 gap-6 pt-10">-->
+<!--    {% for slug, project in projects.items() %}-->
+<!--    <a href="{{ url_for('show_project', slug=slug) }}"-->
+<!--       class="block bg-white/5 border border-white/10 rounded-xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">-->
 
-  <div class="grid md:grid-cols-3 gap-6 pt-10">
-    {% for slug, project in projects.items() %}
-    <a href="{{ url_for('show_project', slug=slug) }}"
-       class="block bg-white/5 border border-white/10 rounded-xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+<!--      <h3 class="text-xl font-bold mb-2 text-white">{{ project.title }}</h3>-->
+<!--      <p class="text-sm text-gray-300 mb-4">{{ project.description }}</p>-->
+<!--      <p class="text-xs text-gray-400">Tech: {{ project.tech | join(', ') }}</p>-->
 
-      <h3 class="text-xl font-bold mb-2 text-white">{{ project.title }}</h3>
-      <p class="text-sm text-gray-300 mb-4">{{ project.description }}</p>
-      <p class="text-xs text-gray-400">Tech: {{ project.tech | join(', ') }}</p>
+<!--    </a>-->
+<!--    {% endfor %}-->
+<!--  </div>-->
+<!--</section>-->
+<!--      -->
+          <!-- Labs Showcase -->
+   <section class="px-8 py-26 mt-8 max-w-7xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-14 text-white">Projects</h2>
 
-    </a>
-    {% endfor %}
-  </div>
-</section>
+<!--      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">-->
+      <div class="max-w-6xl mx-auto grid grid-cols-3 gap-6">
+        {% for slug, project in projects.items() %}
+        <a href="{{ url_for('show_project', slug=slug) }}"
+           class="group tilt-card relative w-full h-[380px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
+
+          <!-- Header Row -->
+          <div class="flex items-start justify-between mb-4">
+            <!-- Profile / Icon -->
+            <div class="w-16 h-16 rounded-full overflow-hidden border border-white/10">
+              <img src="/static/icons/rocket.svg"
+                   alt="Icon"
+                   class="w-full h-full object-contain bg-white/5 p-2" />
+            </div>
+
+            <!-- Title / Metadata -->
+            <div class="text-right ml-4">
+              <h3 class="text-lg font-semibold text-white">{{ project.title }}</h3>
+              <p class="text-xs text-gray-400 mt-1 uppercase tracking-wide font-mono">By {{ project.author }}</p>
+            </div>
+          </div>
+
+          <!-- Summary Scrollable -->
+          <div class="flex-1 overflow-y-auto max-h-[120px] custom-scrollbar text-sm text-gray-300 leading-relaxed font-light whitespace-pre-line">
+            {{ project.description }}
+          </div>
+
+          <!-- Image Row -->
+          <div class="w-full h-28 mt-4 rounded-md overflow-hidden border border-white/10">
+            <img src="{{ project.image }}"
+                 alt="Lab Preview"
+                 class="w-full h-full object-cover" />
+          </div>
+
+
+          <!-- Footer Row -->
+          <div class="pt-3 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between mt-4">
+            <span>ID: LAB-{{ '%02d' % loop.index }}</span>
+            <span>Sector: AI EDU</span>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+
+
 
   <!-- Footer -->
   <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
