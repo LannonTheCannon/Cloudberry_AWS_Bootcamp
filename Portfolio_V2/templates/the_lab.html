@@ -56,13 +56,13 @@
   <div class="max-w-6xl mx-auto grid grid-cols-3 gap-6">
     {% for slug, lab in labs.items() %}
     <a href="{{ url_for('lab_post', slug=slug) }}"
-       class="group tilt-card relative w-full h-[380px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
+       class="group tilt-card relative w-full h-[420px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
 
       <!-- Header Row -->
       <div class="flex items-start justify-between mb-4">
         <!-- Profile / Icon -->
         <div class="w-16 h-16 rounded-full overflow-hidden border border-white/10">
-          <img src="/static/icons/rocket.svg"
+          <img src="{{ lab.icon }}"
                alt="Icon"
                class="w-full h-full object-contain bg-white/5 p-2" />
         </div>
@@ -76,15 +76,15 @@
 
       <!-- Summary Scrollable -->
       <div class="flex-1 overflow-y-auto max-h-[120px] custom-scrollbar text-sm text-gray-300 leading-relaxed font-light whitespace-pre-line">
-        {{ lab.summary or "Click to read more about this lab entry." }}
+        {{ "Click to read more about this lab entry." }}
       </div>
 
-      <!-- Image Row -->
-      <div class="w-full h-28 mt-4 rounded-md overflow-hidden border border-white/10">
-        <img src="{{ lab.image }}"
-             alt="Lab Preview"
-             class="w-full h-full object-cover" />
-      </div>
+<!-- Image Row -->
+<div class="w-full h-32 mt-4 rounded-md overflow-hidden border border-white/10 bg-white/5 flex items-center justify-center">
+  <img src="{{ lab.image }}"
+       alt="Lab Preview"
+       class="max-h-full max-w-full object-contain" />
+</div>
 
 
       <!-- Footer Row -->
