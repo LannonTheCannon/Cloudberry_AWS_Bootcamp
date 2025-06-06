@@ -73,7 +73,7 @@
       <!-- Project Card -->
         <a data-project="data-forge-plus" class="project-card selected bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">        <div class="flex items-center mb-4 space-x-4">
           <div class="w-12 h-12 bg-gray-700 rounded-xl overflow-hidden flex-shrink-0">
-            <img src="/static/images/data_analysis.png" alt="Data Forge Plus Logo" class="object-cover w-full h-full" />
+            <img src="static/images/forge_icon.svg" alt="Data Forge Plus Logo" class="object-cover w-full h-full" />
           </div>
           <h4 class="text-lg font-bold text-white">Data Forge Plus</h4>
         </div>
@@ -85,7 +85,7 @@
       <!-- Project Card -->
         <a data-project="exo-land" class="project-card bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">        <div class="flex items-center mb-4 space-x-4">
           <div class="w-12 h-12 bg-gray-700 rounded-xl overflow-hidden flex-shrink-0">
-            <img src="/static/images/planets.png" alt="Exo-Explorer Logo" class="object-cover w-full h-full" />
+            <img src="/static/images/planet_icon.svg" alt="Exo-Explorer Logo" class="object-cover w-full h-full" />
           </div>
           <h4 class="text-lg font-bold text-white">Exo-Explorer</h4>
         </div>
@@ -191,13 +191,13 @@
       <div class="max-w-6xl mx-auto grid grid-cols-3 gap-6">
         {% for slug, project in projects.items() %}
         <a href="{{ url_for('show_project', slug=slug) }}"
-           class="group tilt-card relative w-full h-[380px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
+           class="group tilt-card relative w-full h-[420px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
 
           <!-- Header Row -->
           <div class="flex items-start justify-between mb-4">
             <!-- Profile / Icon -->
             <div class="w-16 h-16 rounded-full overflow-hidden border border-white/10">
-              <img src="/static/icons/rocket.svg"
+              <img src="{{ project.icon }}"
                    alt="Icon"
                    class="w-full h-full object-contain bg-white/5 p-2" />
             </div>
@@ -210,13 +210,13 @@
           </div>
 
           <!-- Summary Scrollable -->
-          <div class="flex-1 overflow-y-auto max-h-[120px] custom-scrollbar text-sm text-gray-300 leading-relaxed font-light whitespace-pre-line">
+          <div class="flex-1 overflow-y-auto max-h-[90px] custom-scrollbar text-sm text-gray-300 leading-relaxed font-light whitespace-pre-line">
             {{ project.description }}
           </div>
 
           <!-- Image Row -->
-          <div class="w-full h-28 mt-4 rounded-md overflow-hidden border border-white/10">
-            <img src="{{ project.image }}"
+          <div class="w-full h-40 mt-4 rounded-md overflow-hidden border border-white/10">
+            <img src="{{ project.image1 }}"
                  alt="Lab Preview"
                  class="w-full h-full object-cover" />
           </div>

@@ -102,7 +102,8 @@ projects = {
         "description": "A Flask + Streamlit-powered AI engine for automated dataset cleaning and visual EDA.",
         "tech": ["Flask", "Streamlit", "AWS Lambda", "S3", "RDS", "OpenAI"],
         "author": "Lannon Khau",
-        "image1": "",
+        "image1": "static/images/relate.jpg",
+        "icon": "static/images/forge_icon.svg",
         "template": "data-forge-plus.html"
     },
     "exo-land": {
@@ -110,7 +111,8 @@ projects = {
         "description": "An AI assistant for NASA exoplanet datasets. Uses predictive modeling to identify habitable worlds and generates visuals using DALL·E 3.",
         "tech": ["Pandas", "Scikit-Learn", "OpenAI", "DALL·E", "Streamlit", "Flask"],
         "author": "Lannon Khau",
-        "image1": "",
+        "image1": "static/images/ship.jpg",
+        "icon": "static/images/planet_icon.svg",
         "template": "exo-land.html"
     },
     "quote-ability": {
@@ -122,7 +124,8 @@ projects = {
         ),
         "tech": ["OCR", "LangChain", "OpenAI", "Streamlit / Discord", "Pinecone", "PDF Parsing"],
         "author": "Lannon Khau",
-        "image1": "",
+        "image1": "static/images/library.jpg",
+        "icon": "static/images/bookstar.png",
         "template": "quote-able.html"
     }
 }
@@ -185,21 +188,25 @@ def show_project(slug):
 # Date - Data Forge Blog Series - #001 - Cloudberry AWS Full Stack Engineer Bootcamp Part 1
 # Date - Data Forge Blog Series - #002 - Data Science for Business Gen AI Bootcamp Part 1
 
+
+
 labs = {
     "cloudberry-bootcamp": {
         "title": "Cloudberry AWS Bootcamp",
         "content": "OOP, Flask, AWS S3, RDS MySql, EC2",
-        "author": "Lannon Khau",
+        "author": "Zee Ansari",
         "template": "cloudberry.html",
-        "image": 'static/images/cloudyberry.png'
+        "image": 'static/images/ownweb.png',
+        "icon": 'static/images/cloudy.svg'
     },
 
     "gen-ai-bootcamp": {
         "title": "Generative AI Bootcamp",
         "content": "Bootcamp 2 (Data Science, ML/ AI/ Streamlit)",
-        "author": "Lannon Khau",
+        "author": "Matt Dancho",
         "template": "gen_ai_bootcamp.html",
-        "image": 'static/images/gen-ai-bootcamp.png'
+        "image": 'static/images/ai.png',
+        "icon": 'static/images/ds4u.png'
     }
 }
 
@@ -231,14 +238,16 @@ posts = {
         "content": "What i've learned these past 6 months",  # Optional fallback
         "author": "Lannon Khau",
         "template": "journey.html",  # points to templates/posts/
-        "image1": "static/images"
+        "image1": "static/images/competition.jpg",
+        "icon": 'static/images/mind.svg'
     },
     "my-first-hackathon": {
-        "title": "🚀 My First Hackathon",
+        "title": "🚀 Microsoft Reactor Hackathon",
         "content": "What I learned building under pressure.",
         "author": "Lannon Khau",
         "template": "my-first-hackathon.html",
-        "image1": "static/images"
+        "image1": "static/images/hackathon.jpg",
+        "icon": 'static/images/award.svg'
     }
 }
 
