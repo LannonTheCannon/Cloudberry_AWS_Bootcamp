@@ -102,6 +102,7 @@ projects = {
         "description": "A Flask + Streamlit-powered AI engine for automated dataset cleaning and visual EDA.",
         "tech": ["Flask", "Streamlit", "AWS Lambda", "S3", "RDS", "OpenAI"],
         "author": "Lannon Khau",
+        "image1": "",
         "template": "data-forge-plus.html"
     },
     "exo-land": {
@@ -109,6 +110,7 @@ projects = {
         "description": "An AI assistant for NASA exoplanet datasets. Uses predictive modeling to identify habitable worlds and generates visuals using DALL·E 3.",
         "tech": ["Pandas", "Scikit-Learn", "OpenAI", "DALL·E", "Streamlit", "Flask"],
         "author": "Lannon Khau",
+        "image1": "",
         "template": "exo-land.html"
     },
     "quote-ability": {
@@ -120,6 +122,7 @@ projects = {
         ),
         "tech": ["OCR", "LangChain", "OpenAI", "Streamlit / Discord", "Pinecone", "PDF Parsing"],
         "author": "Lannon Khau",
+        "image1": "",
         "template": "quote-able.html"
     }
 }
@@ -137,7 +140,8 @@ def show_project(slug):
                 title=project["title"],
                 description=project["description"],
                 tech=project["tech"],
-                author=project["author"]
+                author=project["author"],
+                image=project["image1"]
             )
         except TemplateNotFound:
             abort(404)
@@ -186,14 +190,16 @@ labs = {
         "title": "Cloudberry AWS Bootcamp",
         "content": "OOP, Flask, AWS S3, RDS MySql, EC2",
         "author": "Lannon Khau",
-        "template": "cloudberry.html"
+        "template": "cloudberry.html",
+        "image": 'static/images/cloudyberry.png'
     },
 
     "gen-ai-bootcamp": {
         "title": "Generative AI Bootcamp",
         "content": "Bootcamp 2 (Data Science, ML/ AI/ Streamlit)",
         "author": "Lannon Khau",
-        "template": "gen_ai_bootcamp.html"
+        "template": "gen_ai_bootcamp.html",
+        "image": 'static/images/gen-ai-bootcamp.png'
     }
 }
 
@@ -224,13 +230,15 @@ posts = {
         "title": "Journey of End to End",
         "content": "What i've learned these past 6 months",  # Optional fallback
         "author": "Lannon Khau",
-        "template": "journey.html"  # points to templates/posts/
+        "template": "journey.html",  # points to templates/posts/
+        "image1": "static/images"
     },
     "my-first-hackathon": {
         "title": "🚀 My First Hackathon",
         "content": "What I learned building under pressure.",
         "author": "Lannon Khau",
-        "template": "my-first-hackathon.html"
+        "template": "my-first-hackathon.html",
+        "image1": "static/images"
     }
 }
 
