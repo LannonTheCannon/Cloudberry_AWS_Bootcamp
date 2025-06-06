@@ -192,20 +192,20 @@ def show_project(slug):
 
 labs = {
     "cloudberry-bootcamp": {
-        "title": "Cloudberry AWS Bootcamp",
+        "title": "Full Stack AWS Bootcamp",
         "content": "OOP, Flask, AWS S3, RDS MySql, EC2",
-        "author": "Zee Ansari",
+        "author": "Cloudberry",
         "template": "cloudberry.html",
-        "image": 'static/images/ownweb.png',
+        "image": 'static/images/hoster.svg',
         "icon": 'static/images/cloudy.svg'
     },
 
     "gen-ai-bootcamp": {
-        "title": "Generative AI Bootcamp",
+        "title": "Gen AI for Data Science and Business Application",
         "content": "Bootcamp 2 (Data Science, ML/ AI/ Streamlit)",
-        "author": "Matt Dancho",
+        "author": "Business Science",
         "template": "gen_ai_bootcamp.html",
-        "image": 'static/images/ai.png',
+        "image": 'static/images/ai2.svg',
         "icon": 'static/images/ds4u.png'
     }
 }
