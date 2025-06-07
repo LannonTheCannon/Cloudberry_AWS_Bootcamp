@@ -567,7 +567,7 @@ def ask_openai():
         # Start the assistant run
         run = openai.beta.threads.runs.create(
             thread_id=thread_id,
-            assistant_id="asst_kgRhmlXadMK4i3tEQ6nTaAyD",
+            assistant_id="asst_6gmouMfvq4cpc99N74qKV6qY",
         )
 
         # Wait until complete
