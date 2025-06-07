@@ -100,8 +100,8 @@
     </header>
 
     <!-- Hero -->
-    <section class="flex-1 flex flex-col justify-center items-center text-center px-20 py-20">
-      <h1 class="font-serif text-4xl md:text-5xl font-bold mb-4 leading-tight">
+<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 flex-1 flex flex-col justify-center items-center text-center px-20 py-20">
+  <h1 class="font-serif text-4xl md:text-5xl font-bold mb-4 leading-tight">
         From prototype to production, <span class="text-indigo-400">tell your story.</span>
       </h1>
       <p class="text-gray-300 max-w-xl mb-6">
@@ -117,8 +117,8 @@
       </div>
     </section>
 
-    <section class="text-white text-center -mt-10 mb-4 px-4">
-      <div class="flex justify-center items-center space-x-2 text-lg text-white/70 tracking-wide font-serif leading-none">
+<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 text-white text-center -mt-10 mb-4 px-4" data-delay="200ms">
+  <div class="flex justify-center items-center space-x-2 text-lg text-white/70 tracking-wide font-serif leading-none">
         <span class="text-xl">★★★★</span>
         <span class="text-white/30">|</span>
         <div class="relative overflow-hidden h-[2.5em] flex items-center">
@@ -139,8 +139,7 @@
         />
       </div>
 
-      <section class="relative flex flex-row justify-center items-center px-8 -mt-8 pt-8 pb-3 overflow-hidden gap-12">
-        <!-- About Me Card -->
+<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center px-8 -mt-8 pt-8 pb-3 overflow-hidden gap-12" data-delay="400ms">        <!-- About Me Card -->
         <div class="tilt-card relative z-[30] w-full max-w-2xl h-[300px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform overflow-hidden">
 
           <!-- Top Row -->
@@ -189,8 +188,8 @@
 
 
 
-    <section class="relative z-[30] flex justify-center items-center px-8 pt-2 pb-2">
-      <div class="w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md">
+<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative z-[30] flex justify-center items-center px-8 pt-2 pb-2" data-delay="600ms">
+  <div class="w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md">
             <div class="flex space-x-4">
               <input
                 id="user-query"
@@ -501,6 +500,23 @@ const states = [
     });
   });
 </script>
+      <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("opacity-0", "translate-y-10");
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.25 });
 
+      document.querySelectorAll('.fade-in-up').forEach((el) => {
+        observer.observe(el);
+      });
+    });
+  </script>
   </body>
 </html>

@@ -23,20 +23,19 @@
       </nav>
     </header>
 
-    <section class="flex flex-col items-center text-center mt-16 px-4">
+    <section class="fade-in-up opacity-0 translate-y-10 transition duration-700 flex flex-col items-center text-center mt-16 px-4">
       <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4 leading-tight"><span class="text-indigo-400"> Words</span> That Built My Code</h2>
       <p class="text-gray-300 max-w-2xl">
         A briefing of the time I spent on this bootcamp, what I've learned, and realtime demonstrations with AI workflows.
       </p>
-    </section>
 
-    <section class="px-8 py-26 mt-8 max-w-7xl mx-auto">
+
       <h2 class="text-4xl font-bold text-center mb-14 text-white">Blog</h2>
 
       <div class="max-w-6xl mx-auto grid grid-cols-3 gap-6">
         {% for slug, post in posts.items() %}
         <a href="{{ url_for('blog_post', slug=slug) }}"
-           class="group tilt-card relative w-full h-[380px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
+           class="group tilt-card relative w-full h-[420px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
 
           <!-- Header Row -->
           <div class="flex items-start justify-between mb-4">
@@ -56,11 +55,11 @@
 
           <!-- Summary Scrollable -->
           <div class="flex-1 overflow-y-auto max-h-[120px] custom-scrollbar text-sm text-gray-300 leading-relaxed font-light whitespace-pre-line">
-            {{ post.summary or "Click to read more about this lab entry." }}
+            {{ post.content }}
           </div>
 
           <!-- Image Row -->
-          <div class="w-full h-28 mt-4 rounded-md overflow-hidden border border-white/10">
+          <div class="w-full h-40 mt-4 rounded-md overflow-hidden border border-white/10">
             <img src="{{ post.image1 }}"
                  alt="Lab Preview"
                  class="w-full h-full object-cover" />
@@ -95,5 +94,25 @@
     </div>
       &copy; 2025 Lannon Khau. Writing code. Writing stories. Always building.
     </footer>
+
+      <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("opacity-0", "translate-y-10");
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.25 });
+
+      document.querySelectorAll('.fade-in-up').forEach((el) => {
+        observer.observe(el);
+      });
+    });
+  </script>
+
   </body>
 </html>

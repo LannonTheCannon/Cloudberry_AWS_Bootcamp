@@ -24,8 +24,7 @@
   </header>
 
   <!-- Contact Card Section -->
-  <section class="relative flex flex-row justify-center items-center px-8 py-20 overflow-hidden">
-
+<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center px-8 py-20 overflow-hidden">
     <!-- Contact Card -->
     <div class="tilt-card relative z-10 w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl text-left space-y-6 transition-transform duration-300 ease-out will-change-transform">
 
@@ -102,6 +101,23 @@
     </div>
     &copy; 2025 Lannon Khau. Reach out — I’d love to hear from you.
   </footer>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("opacity-0", "translate-y-10");
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.25 });
 
+      document.querySelectorAll('.fade-in-up').forEach((el) => {
+        observer.observe(el);
+      });
+    });
+  </script>
 </body>
 </html>
