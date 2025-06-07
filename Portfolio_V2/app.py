@@ -99,34 +99,36 @@ def about():
 projects = {
     "data-forge-plus": {
         "title": "Data Forge Plus",
-        "description": "A Flask + Streamlit-powered AI engine for automated dataset cleaning and visual EDA.",
+        "description": "Data Forge helps you ask the right questions on your dataset AND helps you visualize them.",
         "tech": ["Flask", "Streamlit", "AWS Lambda", "S3", "RDS", "OpenAI"],
         "author": "Lannon Khau",
         "image1": "static/images/relate.jpg",
         "icon": "static/images/forge_icon.svg",
-        "template": "data-forge-plus.html"
+        "template": "data-forge-plus.html",
+        "login_req": "True",
     },
     "exo-land": {
         "title": "Exo-Explorer",
-        "description": "An AI assistant for NASA exoplanet datasets. Uses predictive modeling to identify habitable worlds and generates visuals using DALL·E 3.",
+        "description": "Ever wanted to see what the surface of our nearest exoplanet, Kepler 22B, looked like?",
         "tech": ["Pandas", "Scikit-Learn", "OpenAI", "DALL·E", "Streamlit", "Flask"],
         "author": "Lannon Khau",
         "image1": "static/images/ship.jpg",
         "icon": "static/images/planet_icon.svg",
-        "template": "exo-land.html"
+        "template": "exo-land.html",
+        "login_req": "False",
+
     },
     "quote-ability": {
         "title": "Quote-Ability",
         "description": (
-            "A multi-agent reading companion that enhances your book experience. "
-            "Use your camera to bookmark exactly where you left off, and enter dynamic rooms with AI agents trained "
-            "on your current progress — offering spoiler-free discussions, full-book analysis, and quote curation."
+            "Generate a thorough and detailed summary of any book! This web app is for those who occasionally forget what they read and would like a summary of their current place in the book (no spoilers)!"
         ),
         "tech": ["OCR", "LangChain", "OpenAI", "Streamlit / Discord", "Pinecone", "PDF Parsing"],
         "author": "Lannon Khau",
         "image1": "static/images/library.jpg",
         "icon": "static/images/bookstar.png",
-        "template": "quote-able.html"
+        "template": "quote-able.html",
+        "login_req": "False",
     }
 }
 @app.route('/projects')

@@ -191,7 +191,7 @@
       <div class="max-w-6xl mx-auto grid grid-cols-3 gap-6">
         {% for slug, project in projects.items() %}
         <a href="{{ url_for('show_project', slug=slug) }}"
-           class="group tilt-card relative w-full h-[420px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
+           class="group tilt-card relative w-full h-[480px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
 
           <!-- Header Row -->
           <div class="flex items-start justify-between mb-4">
@@ -206,6 +206,7 @@
             <div class="text-right ml-4">
               <h3 class="text-lg font-semibold text-white">{{ project.title }}</h3>
               <p class="text-xs text-gray-400 mt-1 uppercase tracking-wide font-mono">By {{ project.author }}</p>
+              <p class="text-xs text-gray-400 mt-1 uppercase tracking-wide font-mono">Login Required: {{ project.login_req }}</p>
             </div>
           </div>
 
