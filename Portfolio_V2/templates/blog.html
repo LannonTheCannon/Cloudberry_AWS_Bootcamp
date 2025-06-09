@@ -33,8 +33,8 @@
       <h2 class="text-4xl font-bold text-center mb-14 text-white">Blog</h2>
 
       <div class="max-w-6xl mx-auto grid grid-cols-3 gap-6">
-        {% for slug, post in posts.items() %}
-        <a href="{{ url_for('blog_post', slug=slug) }}"
+        {% for slug, post in series.items() %}
+        <a href="{{ url_for('blog_series', slug=slug) }}"
            class="group tilt-card relative w-full h-[420px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
 
           <!-- Header Row -->
@@ -68,7 +68,7 @@
 
           <!-- Footer Row -->
           <div class="pt-3 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between mt-4">
-            <span>ID: LAB-{{ '%02d' % loop.index }}</span>
+            <span>ID: Series-{{ '%02d' % loop.index }}</span>
             <span>Sector: AI EDU</span>
           </div>
         </a>

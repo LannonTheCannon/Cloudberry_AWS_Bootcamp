@@ -27,7 +27,7 @@ def get_openai_api_key(secret_name="dev/openai/api_key", region_name="us-west-1"
 api_key = get_openai_api_key()
 
 llm = ChatOpenAI(
-    model='gpt-4o-mini',
+    model='gpt-4o-nano',
     openai_api_key=api_key
 )
 

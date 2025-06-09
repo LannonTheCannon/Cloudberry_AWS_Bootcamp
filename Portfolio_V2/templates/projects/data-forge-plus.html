@@ -1,131 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ title }} – Lannon Khau</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="/static/favicon.ico" />
-</head>
-<body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
+<html lang="en-US" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" type="text/css" href="/static/css/app.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>Data Forge Plus README</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
 
-  <!-- Nav -->
-  <header class="w-full px-6 py-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold tracking-tight">
-      <a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
-    </h1>
-    <nav class="space-x-6 text-sm">
-      <a href="/projects" class="text-indigo-400 font-semibold">Projects</a>
-      <a href="/blog" class="hover:text-indigo-400">Blog</a>
-      <a href="/register" class="hover:text-indigo-400">Register</a>
-      <a href="/login" class="hover:text-indigo-400">Login</a>
-    </nav>
-  </header>
+  <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white min-h-screen">
 
-    <!-- 📊 Data Forge Plus Overview -->
-<section class="px-6 md:px-20 py-20 max-w-5xl mx-auto leading-relaxed text-gray-300">
-  <h2 class="text-4xl font-extrabold mb-2 text-white">{{ title }}</h2>
-  <p class="text-sm text-gray-400 mb-8">Built by {{ author }}</p>
+    <!-- Nav -->
+    <header class="w-full px-6 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold tracking-tight"><a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a></h1>
+      <nav class="space-x-6 text-sm">
+        <a href="/about" class="hover:text-indigo-400">Mission</a>
+        <a href="/projects" class="hover:text-indigo-400">Projects</a>
+        <a href="/blog" class="hover:text-indigo-400">Blog</a>
+        <a href="/contact" class="hover:text-indigo-400">Contact</a>
+      </nav>
+    </header>
 
-  <!-- 🔥 Project Summary -->
-  <p class="mb-6 text-lg text-gray-300">
-    <span class="text-indigo-400 font-semibold">Data Forge Plus</span> is your personal AI-powered data scientist. It transforms messy, unstructured CSVs into clean, usable insight—no manual wrangling required. Upload up to five datasets, and watch as the system detects patterns, engineers features, and summarizes your data using real intelligence.
-  </p>
+    <section class="py-12">
+      <div class="relative mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-3xl">
+        <!-- Header -->
+        <div class="text-left">
+          <h1 class="mb-8 font-serif text-4xl font-bold tracking-tight text-white md:text-6xl">
+            Data Forge Plus<span class="text-indigo-400"> README</span>
+          </h1>
 
-  <!-- CTA Buttons -->
-  <div class="flex gap-4 mb-12">
-    <a href="/login" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl font-semibold text-white transition">🚀 Launch the Demo</a>
-    <a href="https://github.com/LannonTheCannon/Cloudberry_AWS_Bootcamp" target="_blank" class="text-indigo-400 hover:underline">📦 View Source on GitHub</a>
-  </div>
+          <div class="flex items-center mt-6">
+            <img class="w-10 h-10 rounded-full" src="/static/images/chill_guy.png" />
+            <div class="ml-3">
+              <p class="text-sm font-medium text-gray-300"><a href="#" class="hover:underline">By Lannon Khau</a></p>
+              <div class="flex space-x-1 text-sm text-gray-400">
+                <time datetime="2025-06-07">Jun 7, 2025</time>
+                <span>&middot;</span>
+                <span>4 min read</span>
+              </div>
+            </div>
+          </div>
 
-  <!-- 🔍 Feature Overview -->
-  <div class="flex flex-col md:flex-row gap-10 items-start">
-    <!-- Floating Image -->
-    <div class="w-full md:w-1/3 rounded-xl overflow-hidden border border-white/10 shadow-lg">
-      <img src="/static/images/valid.png" alt="Data Forge Plus Screenshot" class="object-cover w-full h-auto" />
-    </div>
+          <!-- Share Buttons -->
+          <div class="z-0 mt-8 flex space-x-4">
+            <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">Tweet</button>
+            <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">LinkedIn</button>
+            <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">Copy</button>
+          </div>
+        </div>
 
-    <!-- Feature Bullets -->
-    <div class="flex-1">
-      <h3 class="text-2xl font-semibold mb-4 text-white">🔍 What You Can Do</h3>
-      <ul class="list-disc list-inside space-y-4 text-gray-300">
-        <li><strong>AI-Powered Cleaning:</strong> Leverages GPT-4o-mini to analyze and fix messy, inconsistent datasets.</li>
-        <li><strong>Feature Engineering:</strong> Automatically creates new columns that enhance model performance.</li>
-        <li><strong>Upload and Track:</strong> Supports multi-file uploads (up to 5) with per-user logging via AWS S3 and RDS.</li>
-        <li><strong>Explore Visually:</strong> Use Data Forge Lite (Streamlit) to mind-map and preview datasets in real-time.</li>
-<!--        <li><strong>Code Suggestions:</strong> The conversational agent can provide wrangling code tailored to your dataset.</li>-->
-<!--        <li><strong>Asynchronous Execution:</strong> Runs data cleaning as background jobs, with results delivered on completion.</li>-->
-      </ul>
-    </div>
-  </div>
+        <!-- Blog Content -->
+        <div class="mt-20 text-lg text-slate-300">
+          <blockquote class="text-xl leading-8 text-slate-400">
+            <span class="text-6xl font-serif text-slate-100 float-left mr-2 leading-none">D</span>
+            ata Forge Plus is a production-grade, AI-powered data platform designed for scalable, cloud-native data cleaning, transformation, and exploration.
+          </blockquote>
 
-  <!-- 🧠 Tech Stack + System Design -->
-  <div class="mt-20 grid md:grid-cols-2 gap-12">
-    <div>
-      <h3 class="text-2xl font-semibold mb-4">🧠 Tech Stack</h3>
-      <ul class="list-disc list-inside text-gray-300 space-y-2">
-        <li>Flask + Gunicorn (API layer)</li>
-        <li>EC2 with Gunicorn and CI/CD pipeline</li>
-        <li>S3 (raw & cleaned storage)</li>
-        <li>RDS (MySQL user & file metadata)</li>
-        <li>Streamlit (exploration interface)</li>
-        <li>OpenAI API (GPT-4o-mini) & LangChain</li>
-        <li>Tailwind CSS (styling + layout)</li>
-      </ul>
-    </div>
-    <div class=" overflow-hidden rounded-xl border border-white/10 shadow-lg">
-      <img src="/static/images/forge.png" alt="Architecture Diagram" class="object-cover w-full h-auto" />
-    </div>
-  </div>
 
-  <!-- 🌐 How It Works -->
-  <div class="mt-20">
-    <h3 class="text-2xl font-semibold mb-4">🌐 How It Works</h3>
-    <p class="mb-4">
-      Once a user logs in, they can upload one or more CSV files to their personal S3 bucket. These files are processed by an OpenAI-powered agent pipeline running inside AWS Lambda, which performs both data cleaning and feature engineering. Cleaned results are stored separately, and metadata is logged in RDS.
-    </p>
-    <p class="mb-4">
-      Users can then enter “exploration mode” — launching Streamlit Lite — where they view a smart sample of the dataset, ask follow-up questions, and receive AI-curated insights or code recommendations.
-    </p>
-  </div>
+        <div class="relative w-full pb-[56.25%] mt-6 rounded-lg overflow-hidden border border-white/10 shadow-md">
+          <iframe
+            class="absolute top-0 left-0 w-full h-full"
+            src="https://www.youtube.com/embed/DDOKRTiakno"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
 
-  <!-- 🚀 Status & Roadmap -->
-  <div class="mt-16">
-    <h3 class="text-2xl font-semibold mb-4">🚀 Current Status</h3>
-    <p class="mb-4">
-      <span class="text-green-400">✅ MVP Deployed</span> – EC2 with Gunicorn, user auth, Lambda cleaning, S3/RDS integration, and Streamlit preview working across environments.
-    </p>
-    <p class="mb-2"><span class="text-yellow-300">🔄 In Progress:</span> CI/CD pipeline + automated testing suite</p>
-    <p class="mb-2"><span class="text-yellow-300">🧠 Coming Soon:</span> Multi-agent pipelines (for EDA, forecasting, cleaning)</p>
-    <p class="mb-2"><span class="text-yellow-300">📊 On the Roadmap:</span> Custom insights dashboard for business users</p>
-  </div>
+          <div class="mt-24 prose prose-lg prose-invert prose-indigo max-w-none">
 
-  <!-- 💫 Closing Note -->
-  <div class="mt-16">
-    <h3 class="text-2xl font-semibold mb-4">💫 Why I Built This</h3>
-    <p>
-      I built Data Forge Plus to empower data explorers — not just engineers — to harness the power of AI. Whether you're a founder with a spreadsheet, a teacher with class data, or an analyst onboarding new sources, Data Forge helps you cut through noise and reach understanding faster. It’s fast, intuitive, and powered by the future of human-AI collaboration.
-    </p>
-  </div>
+            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">🧠 About the Project</h3>
+            <p class="text-slate-400">
+              Originally conceived to handle 1.3 million rows of financial transaction data, this platform has grown into a dynamic data engine. It enables anyone—from data scientists to non-technical teams—to upload massive CSVs, clean them with AI, and explore insights using intuitive UIs.
+            </p>
 
-  <!-- Footer -->
-  <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
-    <div class="flex justify-center space-x-6 py-6">
-      <a href="https://github.com/LannonTheCannon" target="_blank" rel="noopener noreferrer">
-        <img src="/static/icons/github.svg" alt="GitHub" class="h-6 w-6 hover:scale-110 transition" />
-      </a>
-      <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank" rel="noopener noreferrer">
-        <img src="/static/icons/linkedin.svg" alt="LinkedIn" class="h-6 w-6 hover:scale-110 transition" />
-      </a>
-      <a href="https://www.youtube.com/@LannonKhau" target="_blank" rel="noopener noreferrer">
-        <img src="/static/icons/youtube.svg" alt="Youtube" class="h-6 w-6 hover:scale-110 transition" />
-      </a>
-      <a href="">
-        <img src="/static/icons/goog.svg" alt="Email" class="h-6 w-6 hover:scale-110 transition" />
-      </a>
-    </div>
-    &copy; 2025 Lannon Khau. Built with heart and Flask.
-  </footer>
+            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">🌐 Architecture Overview</h3>
+            <p class="text-slate-400">Deployed via AWS, the stack includes:</p>
+            <ul>
+              <li class="text-slate-400">✅ EC2: Flask backend with Gunicorn and Nginx</li>
+              <li class="text-slate-400">✅ S3: Dataset upload and object storage</li>
+              <li class="text-slate-400">✅ RDS (MySQL): Relational metadata store</li>
+              <li class="text-slate-400">✅ Lambda: Serverless AI agents</li>
+              <li class="text-slate-400">✅ Secrets Manager: Securely stores API keys</li>
+              <li class="text-slate-400">✅ GitHub Actions: CI/CD deployment pipeline</li>
+            </ul>
 
-</body>
+            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">🧹 AI-Powered Data Pipeline</h3>
+            <p class="text-slate-400">
+              Users upload CSVs via Flask. The system asynchronously runs the cleaning pipeline (using LangChain agents) via AWS Lambda and logs results to RDS. Cleaned datasets are saved in a separate S3 prefix, and users can explore them through a Streamlit EDA interface.
+            </p>
+
+            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">🛠️ Tech Stack</h3>
+            <ul>
+              <li class="text-slate-400">Backend: Flask, Gunicorn</li>
+              <li class="text-slate-400">Frontend: TailwindCSS, Streamlit, Jinja2</li>
+              <li class="text-slate-400">AI Agents: GPT-4o, LangChain</li>
+              <li class="text-slate-400">Infra: EC2, S3, Lambda, RDS, Secrets Manager</li>
+              <li class="text-slate-400">CI/CD: GitHub Actions</li>
+            </ul>
+
+            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">📁 Project Layout</h3>
+            <ul>
+              <li class="text-slate-400">/Portfolio_V2 → Flask App</li>
+              <li class="text-slate-400">/utils → AI logic, S3 handler, OpenAI secrets</li>
+              <li class="text-slate-400">/data_forge_lite → Streamlit interface</li>
+              <li class="text-slate-400">/.github/workflows → CI scripts</li>
+            </ul>
+
+            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">⚙️ Running Locally</h3>
+            <pre class="bg-black text-slate-300 text-sm p-4 rounded-md overflow-x-auto">
+git clone https://github.com/LannonTheCannon/Cloudberry_AWS_Bootcamp.git
+cd Cloudberry_AWS_Bootcamp/Portfolio_V2
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+flask run
+            </pre>
+
+            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">🚧 Known Limitations</h3>
+            <p class="text-slate-400">
+              Streamlit’s native file upload limit is ~200MB. This is mitigated by routing uploads directly to S3 using pre-signed URLs.
+            </p>
+
+            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">🏁 Roadmap</h3>
+            <ul>
+              <li class="text-slate-400">✅ Secure uploads to S3</li>
+              <li class="text-slate-400">✅ Multi-agent Lambda pipeline</li>
+              <li class="text-slate-400">✅ Integrated RDS storage</li>
+              <li class="text-slate-400">✅ Visual EDA in Streamlit</li>
+              <li class="text-slate-400">⏳ Role-based permissions (Admin, Viewer)</li>
+              <li class="text-slate-400">⏳ Real-time status UI for Lambda jobs</li>
+              <li class="text-slate-400">⏳ Public sharing for visualizations</li>
+            </ul>
+
+            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">📬 Contact</h3>
+            <p class="text-slate-400">
+              Interested in licensing this platform or collaborating? Shoot me a note at <a href="mailto:lannonkhau@gmail.com" class="text-indigo-400 hover:underline">lannonkhau@gmail.com</a>
+            </p>
+
+            <blockquote class="border-l-4 pl-4 italic text-indigo-300">
+              “The Forge was built for exploration—and it’s just getting started.”
+            </blockquote>
+
+            <a href="/dashboard" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl font-semibold text-white transition">🚀 Launch the Demo</a>
+            <a href="https://github.com/LannonTheCannon/Cloudberry_AWS_Bootcamp" target="_blank" class="text-indigo-400 hover:underline">📦 View Source on GitHub</a>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
+      <div class="flex justify-center space-x-6 py-6">
+        <a href="https://github.com/LannonTheCannon" target="_blank" rel="noopener noreferrer"><img src="/static/icons/github.svg" alt="GitHub" class="h-6 w-6 hover:scale-110 transition" /></a>
+        <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank" rel="noopener noreferrer"><img src="/static/icons/linkedin.svg" alt="LinkedIn" class="h-6 w-6 hover:scale-110 transition" /></a>
+        <a href="https://www.youtube.com/@LannonKhau" target="_blank" rel="noopener noreferrer"><img src="/static/icons/youtube.svg" alt="YouTube" class="h-6 w-6 hover:scale-110 transition" /></a>
+        <a href="#"><img src="/static/icons/goog.svg" alt="Email" class="h-6 w-6 hover:scale-110 transition" /></a>
+      </div>
+      &copy; 2025 Lannon Khau. Welcome aboard, cadet.
+    </footer>
+
+  </body>
 </html>
