@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Forge Series – Blog Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800&display=swap" rel="stylesheet" />
+  </head>
+
+  <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen">
+    <header class="w-full px-6 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold tracking-tight">
+        <a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
+      </h1>
+      <nav class="space-x-6 text-sm">
+        <a href="/about" class="hover:text-indigo-400">Mission</a>
+        <a href="/projects" class="hover:text-indigo-400">Projects</a>
+        <a href="/blog" class="hover:text-indigo-400">Blog</a>
+        <a href="/contact" class="hover:text-indigo-400">Contact</a>
+      </nav>
+    </header>
+
+    <section class="py-16 px-8 max-w-5xl mx-auto">
+      <h2 class="text-4xl font-serif font-bold text-white text-center mb-10">Data Forge Blog Series V2</h2>
+
+      <table class="min-w-full divide-y divide-white/10 text-left">
+        <thead>
+          <tr class="text-sm uppercase tracking-widest text-indigo-300 font-mono">
+            <th class="py-3 pr-4">#</th>
+            <th class="py-3 pr-4">Title</th>
+            <th class="py-3 pr-4">Date</th>
+            <th class="py-3 pr-4">Video</th>
+            <th class="py-3">Link</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/10 text-slate-300">
+        {% for cat in series %}
+          <tr>
+            <td class="py-3 pr-4">{{ cat.number }}</td>
+            <td class="py-3 pr-4">{{ cat.title }}</td>
+            <td class="py-3 pr-4">{{ cat.date }}</td>
+            <td class="py-3 pr-4">{{ cat.video }}</td>
+            <td class="py-3">
+              <a href="{{ url_for('series_post', slug=cat.slug) }}" class="text-indigo-400 hover:underline">Read</a>
+            </td>
+          </tr>
+
+        {% endfor %}
+          <!-- Add more rows as blog posts grow -->
+        </tbody>
+      </table>
+
+      <div class="mt-16 text-center">
+        <a href="/blog" class="inline-block px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl transition">
+          Back to Blog
+        </a>
+      </div>
+    </section>
+
+    <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
+      <div class="flex justify-center space-x-6 py-6">
+        <a href="https://github.com/LannonTheCannon" target="_blank">
+          <img src="/static/icons/github.svg" class="h-6 w-6 hover:scale-110 transition" />
+        </a>
+        <a href="https://linkedin.com/in/lannon-khau" target="_blank">
+          <img src="/static/icons/linkedin.svg" class="h-6 w-6 hover:scale-110 transition" />
+        </a>
+        <a href="https://youtube.com/@LannonKhau" target="_blank">
+          <img src="/static/icons/youtube.svg" class="h-6 w-6 hover:scale-110 transition" />
+        </a>
+      </div>
+      &copy; 2025 Lannon Khau. Always building.
+    </footer>
+  </body>
+</html>

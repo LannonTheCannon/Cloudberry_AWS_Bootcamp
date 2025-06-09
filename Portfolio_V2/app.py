@@ -233,39 +233,86 @@ def lab_post(slug):
 
 
 # ─── Blog Section  ──────────────────────────────────────────────────────────────────────
-
-posts = {
-    "graphic-design-skills": {
+#
+series = {
+    "data-forge-plus": {
         "title": "Journey of End to End",
-        "content": "What i've learned these past 6 months",  # Optional fallback
+        "content": "What I've learned these past 6 months",
         "author": "Lannon Khau",
-        "template": "journey.html",  # points to templates/posts/
         "image1": "static/images/competition.jpg",
-        "icon": 'static/images/mind.svg'
+        "icon": 'static/images/mind.svg',
+        "series": [
+            {
+            "title": "Bootstrapping Data Forge",
+            "number": '001',
+            "date": "2025-06-04",
+            "video": True,
+            "slug": "data-forge-plus-001.html"
+          },
+           {
+            "title": "Optimizing AWS Costs",
+            "number": '002',
+            "date": "2025-06-07",
+            "video": False,
+            "slug": "Sbiznatch"
+            }
+        ],
     },
-    "my-first-hackathon": {
+    "microsoft-reactor-hackathon": {
         "title": "🚀 Microsoft Reactor Hackathon",
         "content": "What I learned building under pressure.",
         "author": "Lannon Khau",
-        "template": "my-first-hackathon.html",
         "image1": "static/images/hackathon.jpg",
-        "icon": 'static/images/award.svg'
-    }
+        "icon": 'static/images/award.svg',
+        "series": [
+        {
+            "title": "Beep Boop",
+            "number": '001',
+            "date": "2025-06-04",
+            "video": True,
+            "slug": "liblib"
+        },
+        {
+            "title": "Bizzzapp!!",
+            "number": '002',
+            "date": "2025-06-07",
+            "video": False,
+            "slug": "weepaweepa"
+        }
+    ]
 }
 
+}
+#
 @app.route('/blog')
 def show_blog():
-    return render_template('blog.html', posts=posts)
+    return render_template('blog.html', series=series)
+
 @app.route("/blog/<slug>")
-def blog_post(slug):
-    post = posts.get(slug)
+def blog_series(slug):
+    # slug is data-forge-plus-001.html
+    series_cat = series[slug]['series']
+    print(f'SERIES CAT: ', series_cat)
+    if not series_cat:
+        abort(404)
+    return render_template(f"/posts/series/{slug}.html", series=series_cat)
+
+
+            # return render_template(
+            #     f"labs/{lab['template']}",
+            #     title=lab["title"],
+            #     author=lab["author"],
+            #     content=lab["content"]
+            # )
+
+@app.route("/series-post/<slug>")
+def series_post(slug):
+    post = series.get(slug)
     if post:
         try:
+            print(post[slug])
             return render_template(
-                f"posts/{post['template']}",
-                title=post["title"],
-                author=post["author"],
-                content=post["content"]
+                f"/posts/posts/{ post[slug] }"
             )
         except TemplateNotFound:
             abort(404)
