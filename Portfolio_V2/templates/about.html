@@ -25,11 +25,17 @@
 
   <section class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center px-8 py-20 overflow-hidden" data-delay="200ms">
     <div class="relative mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-3xl">
+
       <!-- Header -->
-      <div class="text-left">
-        <h1 class="mb-8 font-serif text-4xl font-bold tracking-tight text-white md:text-6xl">
+      <div class="text-left relative">
+        <h1 class="mb-8 font-serif text-4xl font-bold tracking-tight text-white md:text-6xl relative">
           Mission<span class="text-indigo-400"> Blue Scorpion</span>
         </h1>
+
+        <!-- Scorpion image under Blue Scorpion -->
+<img src="/static/images/scropi.png" alt="Blue Scorpion"
+     class="absolute -bottom-24 w-96 h-96 opacity-50 pointer-events-none select-none [transform:rotate(45deg)]"
+     style="right: -10rem;" />
 
         <div class="flex items-center mt-6">
           <img class="w-10 h-10 rounded-full" src="/static/images/chill_guy.png" alt="Lannon Khau" />
@@ -55,8 +61,7 @@
 
       <!-- About Content -->
       <div class="mt-20 text-lg text-slate-300 text-left">
-
-                <blockquote class="text-xl leading-8 text-slate-400">
+        <blockquote class="text-xl leading-8 text-slate-400">
           <span class="font-serif text-6xl text-slate-100 float-left mr-2 leading-none">T</span>
           here’s a thrill in building something from scratch—especially when it feels impossible at first. My name is Lannon, and I build with intention, curiosity, and a quiet fire to explore the unknown.
         </blockquote>
@@ -71,13 +76,10 @@
         </div>
 
         <div class="prose prose-lg prose-invert prose-indigo max-w-none">
-          <!-- Remaining prose content... -->
           <h3 class="mt-12 text-2xl font-bold leading-6 text-white">From Curiosity to Creation</h3>
           <p class="text-slate-400">
             I started my journey the way most builders do: with questions...
           </p>
-
-          <!-- [TRIMMED FOR BREVITY — KEEP ALL ORIGINAL TEXT HERE] -->
 
           <blockquote class="border-l-4 pl-4 italic text-indigo-300">
             “My mission is to explore uncharted data and reveal hidden insight by combining human intelligence with AI.”
@@ -120,7 +122,8 @@
     </div>
     &copy; 2025 Lannon Khau. Always building.
   </footer>
-      <script>
+
+  <script>
     document.addEventListener("DOMContentLoaded", () => {
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
