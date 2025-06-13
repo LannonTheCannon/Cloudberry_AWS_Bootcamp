@@ -1,115 +1,132 @@
-<!-- templates/projects/quote-ability.html -->
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quote-Ability – Lannon Khau</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="/static/favicon.ico" />
-</head>
-<body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
+<html lang="en-US" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" type="text/css" href="/static/css/app.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>Quote-Ability README</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white min-h-screen">
+    <header class="w-full px-6 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold tracking-tight"><a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a></h1>
+      <nav class="space-x-6 text-sm">
+        <a href="/about" class="hover:text-indigo-400">Mission</a>
+        <a href="/projects" class="hover:text-indigo-400">Projects</a>
+        <a href="/blog" class="hover:text-indigo-400">Blog</a>
+        <a href="/contact" class="hover:text-indigo-400">Contact</a>
+      </nav>
+    </header>
 
-  <!-- Nav -->
-  <header class="w-full px-6 py-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold tracking-tight">
-      <a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
-    </h1>
-    <nav class="space-x-6 text-sm">
-      <a href="/projects" class="text-indigo-400 font-semibold">Projects</a>
-      <a href="/blog" class="hover:text-indigo-400">Blog</a>
-      <a href="/register" class="hover:text-indigo-400">Register</a>
-      <a href="/login" class="hover:text-indigo-400">Login</a>
-    </nav>
-  </header>
+    <section class="py-12">
+      <div class="relative mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-3xl">
+        <div class="text-left">
+          <h1 class="mb-8 font-serif text-4xl font-bold tracking-tight text-white md:text-6xl">
+            Quote-Ability<span class="text-indigo-400"> README</span>
+          </h1>
 
-  <!-- Hero Section -->
-  <section class="px-6 md:px-20 py-20 max-w-5xl mx-auto leading-relaxed text-gray-300">
-    <h2 class="text-4xl font-extrabold mb-2 text-white">Quote-Ability</h2>
-    <p class="text-sm text-gray-400 mb-8">Built by Lannon Khau</p>
+          <div class="flex items-center mt-6">
+            <img class="w-10 h-10 rounded-full" src="/static/images/chill_guy.png" />
+            <div class="ml-3">
+              <p class="text-sm font-medium text-gray-300"><a href="#" class="hover:underline">By Lannon Khau</a></p>
+              <div class="flex space-x-1 text-sm text-gray-400">
+                <time datetime="2025-06-12">Jun 12, 2025</time>
+                <span>&middot;</span>
+                <span>4 min read</span>
+              </div>
+            </div>
+          </div>
 
-    <!-- Intro Paragraph -->
-    <p class="mb-6 text-lg text-gray-300">
-      <span class="text-indigo-400 font-semibold">Quote-Ability</span> is your personal literary companion. Upload a snapshot of your book and enter interactive AI-powered rooms that match your current reading progress. Whether you're exploring character arcs or saving your favorite quotes, this app turns every reading session into an unforgettable conversation.
-    </p>
+          <div class="z-0 mt-8 flex space-x-4">
+            <button class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">Tweet</button>
+            <button class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">LinkedIn</button>
+            <button class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">Copy</button>
+          </div>
+        </div>
 
-    <!-- CTA Buttons -->
-    <div class="flex gap-4 mb-12">
-      <a href="#" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl font-semibold text-white transition">📚 Coming Soon</a>
-      <a href="#" class="text-indigo-400 hover:underline">📝 Join the Early Access</a>
-    </div>
+        <div class="mt-20 text-lg text-slate-300">
+          <blockquote class="text-xl leading-8 text-slate-400">
+            <span class="text-6xl font-serif text-slate-100 float-left mr-2 leading-none">Q</span>uote-Ability is a personal reading companion—an AI-powered Streamlit app designed to help readers recall, reflect on, and summarize what they've read.
+          </blockquote>
 
-    <!-- Feature Overview -->
-    <div class="flex flex-col md:flex-row gap-10 items-start">
-      <div class="w-full md:w-1/3 rounded-xl overflow-hidden border border-white/10 shadow-lg">
-        <img src="/static/images/quoteability_teaser.png" alt="Quote-Ability Screenshot" class="object-cover w-full h-auto" />
+          <div class="mt-24 prose prose-lg prose-invert prose-indigo max-w-none">
+
+            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">🧠 About the Project</h3>
+            <p class="text-slate-400">
+              The inspiration? Forgetting the best parts of what you've read. Quote-Ability fixes that by letting you upload a PDF and talk to your book. Get contextual summaries, revisit prior sections, or ask questions—all without spoilers.
+            </p>
+
+            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">🔧 Architecture Overview</h3>
+            <ul>
+              <li class="text-slate-400">✅ Streamlit frontend with file uploader + chat input</li>
+              <li class="text-slate-400">✅ PyPDFLoader + LangChain for text processing</li>
+              <li class="text-slate-400">✅ GPT-4o mini for natural language interaction</li>
+              <li class="text-slate-400">✅ ChromaDB with pysqlite3 for vectorstore persistence</li>
+              <li class="text-slate-400">✅ Streamlit Secrets for secure API key injection</li>
+            </ul>
+
+            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">📁 Project Structure</h3>
+            <ul>
+              <li class="text-slate-400">📄 <code>ebook_tutor.py</code> — Main Streamlit app</li>
+              <li class="text-slate-400">📄 <code>requirements.txt</code> — pip dependencies</li>
+              <li class="text-slate-400">📄 <code>.streamlit/secrets.toml</code> — API key storage</li>
+              <li class="text-slate-400">📄 <code>Practice_Folder_V1/data/</code> — Chroma persistence</li>
+            </ul>
+
+            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">⚙️ Running Locally</h3>
+            <pre class="bg-black text-slate-300 text-sm p-4 rounded-md overflow-x-auto">
+git clone https://github.com/LannonTheCannon/Octopus_Books.git
+cd Octopus_Books
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+streamlit run ebook_tutor.py
+            </pre>
+
+            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">🚧 Limitations</h3>
+            <p class="text-slate-400">
+              - PDF uploads are capped at ~200MB<br/>
+              - ChromaDB may encounter sqlite issues if not patched with <code>pysqlite3</code><br/>
+              - Does not yet support scanned PDFs or OCR (coming soon!)
+            </p>
+
+            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">🛣️ Roadmap</h3>
+            <ul>
+              <li class="text-slate-400">✅ File upload + RAG chat enabled</li>
+              <li class="text-slate-400">✅ Streamlit Cloud deployment support</li>
+              <li class="text-slate-400">⏳ OCR support for image-based PDFs</li>
+              <li class="text-slate-400">⏳ Bookmarking and save-to-library options</li>
+              <li class="text-slate-400">⏳ Multi-user authentication and storage via S3</li>
+            </ul>
+
+            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">📬 Contact</h3>
+            <p class="text-slate-400">
+              Curious about integrating Quote-Ability into your digital library or eLearning platform? Reach out to <a href="mailto:lannonkhau@gmail.com" class="text-indigo-400 hover:underline">lannonkhau@gmail.com</a>
+            </p>
+
+            <blockquote class="border-l-4 pl-4 italic text-indigo-300">
+              "It's not just what you read. It's what you remember."
+            </blockquote>
+
+            <a href="https://octopus-books.streamlit.app" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl font-semibold text-white transition">🚀 Try the App</a>
+            <a href="https://github.com/LannonTheCannon/Octopus_Books" target="_blank" class="ml-4 text-indigo-400 hover:underline">📦 View Source</a>
+          </div>
+        </div>
       </div>
-      <div class="flex-1">
-        <h3 class="text-2xl font-semibold mb-4 text-white">📖 What Quote-Ability Does</h3>
-        <ul class="list-disc list-inside space-y-4 text-gray-300">
-          <li><strong>Visual Bookmarking:</strong> Snap a photo of your page, and the app finds your exact spot in the ebook.</li>
-          <li><strong>AI Reading Room:</strong> Have live, spoiler-free discussions with an agent trained only on your current progress.</li>
-          <li><strong>Book Mastermind:</strong> Talk to a full-book-trained assistant that can explain themes, plotlines, and answer your toughest literary questions.</li>
-          <li><strong>Quote Curator:</strong> Save and organize your favorite lines across books, and chat with an agent who remembers them all.</li>
-        </ul>
-      </div>
-    </div>
+    </section>
 
-    <!-- Tech Stack & Design -->
-    <div class="mt-20 grid md:grid-cols-2 gap-12">
-      <div>
-        <h3 class="text-2xl font-semibold mb-4">🧠 Envisioned Tech Stack</h3>
-        <ul class="list-disc list-inside text-gray-300 space-y-2">
-          <li>Python OCR (Tesseract) for visual bookmarking</li>
-          <li>Flask backend with Streamlit or Discord frontend</li>
-          <li>OpenAI Assistants trained on uploaded EPUB/Book content</li>
-          <li>PostgreSQL or RDS for quote tracking & metadata</li>
-          <li>LangChain + Embedding search for contextual discussion</li>
-          <li>TailwindCSS for minimalist reading UI</li>
-        </ul>
-      </div>
-      <div class="overflow-hidden rounded-xl border border-white/10 shadow-lg">
-        <img src="/static/images/quoteability_architecture.png" alt="System Architecture" class="object-cover w-full h-auto" />
-      </div>
-    </div>
-
-    <!-- Why It Matters -->
-    <div class="mt-20">
-      <h3 class="text-2xl font-semibold mb-4">💬 Why It Matters</h3>
-      <p>
-        We often read to remember, but how much do we truly retain? <span class="text-indigo-400 font-medium">Quote-Ability</span> ensures that your reading journey never fades. With AI-powered conversation, visual bookmarking, and curated quote recall, this app brings depth, context, and memory to your literary experience.
-      </p>
-    </div>
-
-    <!-- Roadmap -->
-    <div class="mt-16">
-      <h3 class="text-2xl font-semibold mb-4">🛤 Roadmap</h3>
-      <p class="mb-2"><span class="text-green-400">✅ Idea Validated:</span> Real conversations with readers who crave deeper recall and engagement</p>
-      <p class="mb-2"><span class="text-yellow-300">🔎 R&D Phase:</span> OCR testing, quote extraction, and non-spoiler text alignment</p>
-      <p class="mb-2"><span class="text-yellow-300">🧠 Assistant Training:</span> Custom agents per book chapter, structured memory design</p>
-      <p class="mb-2"><span class="text-yellow-300">⚙️ MVP Design:</span> Streamlit vs Discord – platform decision and initial deployment</p>
-    </div>
-
-    <!-- Footer -->
     <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
       <div class="flex justify-center space-x-6 py-6">
-        <a href="https://github.com/LannonTheCannon" target="_blank">
-          <img src="/static/icons/github.svg" alt="GitHub" class="h-6 w-6 hover:scale-110 transition" />
-        </a>
-        <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank">
-          <img src="/static/icons/linkedin.svg" alt="LinkedIn" class="h-6 w-6 hover:scale-110 transition" />
-        </a>
-        <a href="https://www.youtube.com/@LannonKhau" target="_blank">
-          <img src="/static/icons/youtube.svg" alt="Youtube" class="h-6 w-6 hover:scale-110 transition" />
-        </a>
-        <a href="#">
-          <img src="/static/icons/goog.svg" alt="Email" class="h-6 w-6 hover:scale-110 transition" />
-        </a>
+        <a href="https://github.com/LannonTheCannon" target="_blank"><img src="/static/icons/github.svg" class="h-6 w-6 hover:scale-110 transition" /></a>
+        <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank"><img src="/static/icons/linkedin.svg" class="h-6 w-6 hover:scale-110 transition" /></a>
+        <a href="https://www.youtube.com/@LannonKhau" target="_blank"><img src="/static/icons/youtube.svg" class="h-6 w-6 hover:scale-110 transition" /></a>
+        <a href="mailto:lannonkhau@gmail.com"><img src="/static/icons/goog.svg" class="h-6 w-6 hover:scale-110 transition" /></a>
       </div>
-      &copy; 2025 Lannon Khau. Made for thinkers, readers, and dreamers.
+      &copy; 2025 Lannon Khau. Welcome aboard, cadet.
     </footer>
-
-  </section>
-</body>
+  </body>
 </html>
