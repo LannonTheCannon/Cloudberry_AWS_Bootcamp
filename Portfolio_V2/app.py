@@ -50,7 +50,7 @@ s3_client = boto3.client("s3", region_name="us-west-2")
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html', projects=projects)
 
 # ─── MODELS ─────────────────────────────────────────────────────────────────────
 
@@ -102,7 +102,7 @@ projects = {
         "description": "Data Forge helps you ask the right questions on your dataset AND helps you visualize them.",
         "tech": ["Flask", "Streamlit", "AWS Lambda", "S3", "RDS", "OpenAI"],
         "author": "Lannon Khau",
-        "image1": "static/images/relate.jpg",
+        "image1": "static/images/magma.png",
         "icon": "static/images/forge_icon.svg",
         "template": "data-forge-plus.html",
         "login_req": "True",
@@ -118,14 +118,14 @@ projects = {
         "login_req": "False",
 
     },
-    "quote-ability": {
-        "title": "Quote-Ability",
+    "Octopus Books": {
+        "title": "Octopus Books",
         "description": (
             "Generate a thorough and detailed summary of any book! This web app is for those who occasionally forget what they read and would like a summary of their current place in the book (no spoilers)!"
         ),
         "tech": ["OCR", "LangChain", "OpenAI", "Streamlit / Discord", "Pinecone", "PDF Parsing"],
         "author": "Lannon Khau",
-        "image1": "static/images/library.jpg",
+        "image1": "static/images/octo.svg",
         "icon": "static/images/bookstar.png",
         "template": "quote-able.html",
         "login_req": "False",
@@ -614,7 +614,7 @@ def ask_openai():
         # Start the assistant run
         run = openai.beta.threads.runs.create(
             thread_id=thread_id,
-            assistant_id="asst_6gmouMfvq4cpc99N74qKV6qY",
+            assistant_id="asst_mc0taWOrYfoUTuh15ePGWal8",
         )
 
         # Wait until complete
