@@ -1,96 +1,91 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="stylesheet" type="text/css" href="./static/css/app.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap"
-        rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./static/css/app.css" />
 
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
 
-    <title>DataForge+ – Lannon Khau</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="/static/favicon.ico" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @keyframes draw-border {
-        0% {
-            border-width: 0;
-            clip-path: polygon(0 0, 0 0, 0 0, 0 0);
-        }
+  <link rel="icon" href="/static/favicon.ico" />
+  <title>DataForge+ – Lannon Khau</title>
 
-        25% {
-            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-        }
-
-        50% {
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
-        }
-
-        75% {
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-        }
-
-        100% {
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-        }
-        }
-
-        .border-animate {
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        animation: draw-border 1.2s ease-out forwards;
-        border-radius: 1rem;
+  <style>
+    @keyframes draw-border {
+      0% {
+        border-width: 0;
         clip-path: polygon(0 0, 0 0, 0 0, 0 0);
-        }
+      }
+      25% {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      }
+      50% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
+      }
+      75% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+      100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+    }
 
+    .border-animate {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: draw-border 1.2s ease-out forwards;
+      border-radius: 1rem;
+      clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+    }
 
-        .floating-star {
-        position: absolute;
-        top: -5rem;         /* Adjust vertical alignment */
-        right: -6rem;      /* Push out horizontally to "hover" next to the block */
-        z-index: 10;
-        pointer-events: none;
-        }
+    .floating-star {
+      position: absolute;
+      top: -5rem;
+      right: -6rem;
+      z-index: 10;
+      pointer-events: none;
+    }
 
-        .floating-star::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    .floating-star::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 200px;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(173, 216, 255, 0.6),
+        rgba(173, 216, 255, 0.05) 70%,
+        transparent 100%
+      );
+      filter: blur(40px);
+      opacity: 0.9;
+      z-index: -1;
+    }
 
-        width: 100%;
-        height: 200px;
-        background: radial-gradient(
-            ellipse at center,
-            rgba(173, 216, 255, 0.6),
-            rgba(173, 216, 255, 0.05) 70%,
-            transparent 100%
-        );
-        filter: blur(40px);
-        opacity: 0.9;
-        z-index: -1;
-        }
     @media (max-width: 640px) {
-        .fade-in-up {
-            opacity: 100 !important;
-            transform: none !important;
-        }
-        }
-
-
-    </style>
-
+      .fade-in-up {
+        opacity: 100 !important;
+        transform: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white min-h-screen">
-      <!-- Nav -->
+
+  <!-- Navbar -->
   <header class="w-full px-6 py-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold tracking-tight"><a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
+    <h1 class="text-xl font-bold tracking-tight">
+      <a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
     </h1>
     <nav class="space-x-6 text-sm">
       <a href="/" class="hover:text-indigo-400">Home</a>
@@ -100,32 +95,37 @@
     </nav>
   </header>
 
-  <section
-    class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center px-8 py-20 overflow-hidden"
-    data-delay="200ms">
-    <div class="relative mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-3xl">
+  <!-- Hero Section -->
+  <section class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex justify-center items-center px-8 py-20 overflow-visible" data-delay="200ms">
+    <div class="relative mx-auto w-full px-4 sm:px-6 lg:px-8 max-w-7xl">
 
-      
-
-      <!-- Header -->
       <div class="text-left relative">
-        <h1 class="mb-8 font-serif text-4xl font-bold tracking-tight text-white md:text-6xl relative">
+        <h1 class="mb-8 font-serif text-4xl font-bold tracking-tight text-white md:text-6xl">
           Data Forge <span class="text-indigo-400">Plus</span>
         </h1>
 
-                <!-- floating star element -->
+        <!-- Floating Glow Star -->
         <div class="floating-star">
-                        <!-- Scorpion image under Blue Scorpion -->
-        <img src="/static/images/axe.png" alt="Blue Scorpion"
-            class="w-96 h-96 opacity-96 pointer-events-none select-none [transform:rotate(17deg)]"
-            style="right: -6rem; top: -7rem;" />
+          <img src="/static/images/axe.png" alt="Floating Icon"
+               class="w-96 h-96 opacity-96 pointer-events-none select-none [transform:rotate(17deg)]"
+               style="right: -6rem; top: -7rem;" />
         </div>
+      </div>
 
     </div>
   </section>
 
 
+
+  <script>
+  // Fallback JS if IntersectionObserver is not set up yet
+  document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll('.fade-in-up');
+    elements.forEach(el => {
+      el.classList.remove('opacity-0', 'translate-y-10');
+      el.classList.add('opacity-100', 'translate-y-0');
+    });
+  });
+</script>
 </body>
-
-
 </html>
