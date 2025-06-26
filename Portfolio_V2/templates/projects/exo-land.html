@@ -1,127 +1,376 @@
 <!DOCTYPE html>
 <html lang="en-US" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="stylesheet" type="text/css" href="/static/css/app.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
-    <title>Exo Explorer README</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
 
-  <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white min-h-screen">
-    <header class="w-full px-6 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold tracking-tight"><a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a></h1>
-      <nav class="space-x-6 text-sm">
-        <a href="/about" class="hover:text-indigo-400">Mission</a>
-        <a href="/projects" class="hover:text-indigo-400">Projects</a>
-        <a href="/blog" class="hover:text-indigo-400">Blog</a>
-        <a href="/contact" class="hover:text-indigo-400">Contact</a>
-      </nav>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="stylesheet" type="text/css" href="/static/css/app.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <title>ExoExplorer README</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes draw-border {
+      0% {
+        border-width: 0;
+        clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+      }
 
-    <section class="py-12">
-      <div class="relative mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-3xl">
-        <div class="text-left">
-          <h1 class="mb-8 font-serif text-4xl font-bold tracking-tight text-white md:text-6xl">
-            Exo Explorer<span class="text-indigo-400"> README</span>
-          </h1>
+      25% {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      }
 
-          <div class="flex items-center mt-6">
-            <img class="w-10 h-10 rounded-full" src="/static/images/chill_guy.png" />
-            <div class="ml-3">
-              <p class="text-sm font-medium text-gray-300"><a href="#" class="hover:underline">By Lannon Khau</a></p>
-              <div class="flex space-x-1 text-sm text-gray-400">
-                <time datetime="2025-06-13">Jun 13, 2025</time>
-                <span>&middot;</span>
-                <span>6 min read</span>
-              </div>
+      50% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
+      }
+
+      75% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+
+    .border-animate {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: draw-border 1.2s ease-out forwards;
+      border-radius: 1rem;
+      clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+    }
+  </style>
+
+</head>
+
+<body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white min-h-screen">
+
+  <!-- Nav -->
+  <header class="w-full px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold tracking-tight"><a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
+    </h1>
+    <nav class="space-x-6 text-sm">
+      <a href="/" class="hover:text-indigo-400">Home</a>
+      <a href="/about" class="hover:text-indigo-400">Mission</a>
+      <a href="/projects" class="hover:text-indigo-400">Projects</a>
+      <a href="/blog" class="hover:text-indigo-400">Blog</a>
+      <a href="/the_lab" class="hover:text-indigo-400">The Lab</a>
+      <a href="/contact" class="hover:text-indigo-400">Contact</a>
+    </nav>
+  </header>
+
+  <section
+    class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center px-8 py-20 overflow-hidden"
+    data-delay="200ms">
+    <div class="relative mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-3xl">
+
+      
+
+      <!-- Header -->
+      <div class="text-left relative">
+        <h1 class="mb-8 font-serif text-4xl font-bold tracking-tight text-white md:text-6xl relative">
+          Exo <span class="text-indigo-400">Explorer</span>
+        </h1>
+
+                        <!-- Scorpion image under Blue Scorpion -->
+        <img src="/static/images/staro.png" alt="Blue Scorpion"
+            class="absolute -bottom-24 w-96 h-96 opacity-96 pointer-events-none select-none [transform:rotate(17deg)]"
+            style="right: -6rem; top: -6rem;" />
+
+        <div class="flex items-center mt-6">
+          <img class="w-10 h-10 rounded-full" src="/static/images/chill_guy.png" alt="Lannon Khau" />
+          <div class="ml-3">
+            <p class="text-sm font-medium text-gray-300">
+              <a href="#" class="hover:underline">By Lannon Khau</a>
+            </p>
+            <div class="flex space-x-1 text-sm text-gray-400">
+              <time datetime="2025-06-13">Jun 13, 2025</time>
+              <span>&middot;</span>
+              <span>5 min read</span>
             </div>
-          </div>
-
-          <div class="z-0 mt-8 flex space-x-4">
-            <button class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">Tweet</button>
-            <button class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">LinkedIn</button>
-            <button class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">Copy</button>
           </div>
         </div>
 
-        <div class="mt-20 text-lg text-slate-300">
+        <div class="z-0 mt-8 flex space-x-4">
+          <button type="button"
+            class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">Tweet</button>
+          <button type="button"
+            class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">LinkedIn</button>
+          <button type="button"
+            class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">Copy</button>
+        </div>
+      </div>
+
+      <div class="relative w-full pb-[56.25%] mt-12 rounded-lg overflow-hidden border border-white/10 shadow-md">
+        <iframe class="absolute top-0 left-0 w-full h-full"
+          src="https://www.youtube.com/embed/0ZOhJe_7GrE?start=12"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mt-12">
+        <!-- LEFT COLUMN -->
+        <div class="text-lg text-slate-300">
           <blockquote class="text-xl leading-8 text-slate-400">
-            <span class="text-6xl font-serif text-slate-100 float-left mr-2 leading-none">E</span>xo Explorer is a concept-stage AI platform that visualizes exoplanets and predicts their habitability based on real NASA datasets.
-          </blockquote>
+          <span class="font-serif text-8xl text-slate-100 float-left mr-2 leading-none">E</span>
+          xo-Explorer, an AI-powered web app that cleans, engineers, and analyzes NASA's extensive exo-planetary data to predict habitability scores. Built with GPT-4o, LangGraph, and H2O AutoML, it automates scientific discovery, combining rule-based filtering with probabilistic modeling to surface potentially life-supporting worlds across the galaxy.
 
-          <div class="mt-24 prose prose-lg prose-invert prose-indigo max-w-none">
+            <hr class="mt-6 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">🧠 About the Project</h3>
-            <p class="text-slate-400">
-              Exo Explorer bridges data science with astronomy. It ingests the NASA Exoplanet Archive, performs predictive modeling on planetary attributes, and uses generative AI to render what these alien worlds might look like. It's storytelling through science.
+
+            <!-- 🧠 Architecture -->
+            <h3 class="mt-6 text-2xl font-bold leading-6 text-white mb-4">🧠 Local AI Architecture</h3>
+            <ul class="space-y-4 text-sm text-slate-300">
+              <li><span class="text-indigo-400 font-semibold">Streamlit</span>: Frontend interface for interactive exploration</li>
+              <li><span class="text-indigo-400 font-semibold">LangGraph + GPT-4o</span>: Orchestrates a modular data-cleaning agent with memory and human-in-the-loop review</li>
+              <li><span class="text-indigo-400 font-semibold">Pandas + SQLite</span>: Stores planetary data and model outputs locally</li>
+              <li><span class="text-indigo-400 font-semibold">H2O AutoML</span>: Trains models to predict exoplanet habitability with automated feature selection and tuning</li>
+              <li><span class="text-indigo-400 font-semibold">OpenAI + LangChain</span>: Powers agent-based code generation and reasoning</li>
+              <li><span class="text-indigo-400 font-semibold">Local CSV & SQL Storage</span>: Persist cleaned datasets and predictions for download or analysis</li>
+            </ul>
+
+            <hr class="mt-6 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+            <div>
+
+              <div class="space-y-2">
+
+                <!-- Backend -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-2">Backend</h4>
+                  <div class="flex flex-wrap gap-4 items-center">
+                    <div class="flex items-center space-x-2">
+                      <img src="/static/icons/python.svg" alt="Python" class="h-6" />
+                      <span class="text-white text-sm font-medium">Python</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                      <img src="/static/icons/SQLAlchemy.svg" alt="Python" class="h-12" />
+                      <span class="text-white text-sm font-medium">SQL Alchemy</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Frontend -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">Frontend</h4>
+                  <div class="flex flex-wrap gap-6 items-center">
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/streamlit.svg" alt="Streamlit" class="h-6" />
+                      <span class="text-white text-sm font-medium">Streamlit</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- AI Agents -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">AI/ML</h4>
+                  <div class="flex flex-wrap gap-6 items-center">
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/chatgpt.svg" alt="OpenAI" class="h-6" />
+                      <span class="text-white text-sm font-medium">GPT-4o</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/bus.png" alt="AI Data Science Team" class="h-6" />
+                      <span class="text-white text-sm font-medium">AI Data Science Team</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/langchain.svg" alt="LangChain" class="h-12" />
+                      <span class="text-white text-sm font-medium">LangChain</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/langgraph.png" alt="LangChain" class="h-12" />
+                      <span class="text-white text-sm font-medium">LangGraph</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/h20.svg" alt="h20" class="h-6" />
+                      <span class="text-white text-sm font-medium">H2O AutoML</span>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- CI/CD -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">CI / CD</h4>
+                  <div class="inline-flex items-center space-x-2">
+                    <img src="/static/icons/github-desktop.svg" alt="GitHub Actions" class="h-6" />
+                    <span class="text-white text-sm font-medium">GitHub Actions</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <hr class="mb-4 mt-8 my-16 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+              <h3 class="mb-6 mt-6 text-2xl font-bold leading-6 text-white">Let’s Connect</h3>
+              <p class="text-slate-400">
+                If you’re a builder, dreamer, or data explorer, reach out. Whether it's a conversation, a collaboration,
+                or just curiosity, I’d love to connect. You can find me on
+                <a href="https://linkedin.com/in/lannon-khau" target="_blank"
+                  class="text-indigo-400 hover:underline">LinkedIn</a> or email me directly.
+              </p>
+
+              <hr class="mt-4 my-16 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Timeline or Features -->
+        <div class="relative border-l border-white/10 pl-6 space-y-8 self-start">
+          <h3 class="text-2xl font-bold leading-6 text-white mb-4">🧪 How It Works</h3>
+
+          <!-- Step 1: Auth -->
+          <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="100ms">
+            <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+            <p class="text-sm text-gray-400 mb-1 ml-2">Step 1: Open the App</p>
+            <h4 class="text-white font-semibold ml-2">ExoExplorer uses NASA Exoplanet Archive</h4>
+            <p class="text-gray-400 text-sm mt-2 ml-2">
+              Users first visualize the dataset in a Streamlit dashboard. The app connects to the NASA Exoplanet Archive and it ready for H2O AutoML predictive analysis.</A>
             </p>
+          </div>
 
-            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">🔧 Architecture Overview</h3>
-            <ul>
-              <li class="text-slate-400">✅ FastAPI backend for NASA ingestion + ML pipeline</li>
-              <li class="text-slate-400">✅ Streamlit dashboard for front-end visual exploration</li>
-              <li class="text-slate-400">✅ XGBoost & Scikit-learn for habitability modeling</li>
-              <li class="text-slate-400">✅ LangChain agents for prompt logic</li>
-              <li class="text-slate-400">✅ DALL·E 3 & Stability AI for planet rendering</li>
-            </ul>
+          <!-- Step 2: Upload -->
+          <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="200ms">
+            <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+            <p class="text-sm text-gray-400 mb-1 ml-2">Step 2: Click on Train Model</p>
+            <h4 class="text-white font-semibold ml-2">H2O AutoML Begins Training</h4>
+            <p class="text-gray-400 text-sm mt-2 ml-2">
+              The user then clicks on Start Training, which triggers the H2O AutoML pipeline. This pipeline
+              automatically cleans, engineers, and trains a model on the dataset using LangGraph and GPT-4o.
+            </p>
+          </div>
 
-            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">📁 Project Structure</h3>
-            <ul>
-              <li class="text-slate-400">📄 <code>exo_pipeline.py</code> — ML + inference logic</li>
-              <li class="text-slate-400">📄 <code>render_planet.py</code> — Image prompt generator</li>
-              <li class="text-slate-400">📄 <code>explorer_dashboard.py</code> — Streamlit app interface</li>
-              <li class="text-slate-400">📂 <code>/static/images</code> — Teasers and results</li>
-            </ul>
+          <!-- Step 3: Trigger Pipeline -->
+          <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="300ms">
+            <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+            <p class="text-sm text-gray-400 mb-1 ml-2">Step 3: AutoML Leaderboard generated</p>
+            <h4 class="text-white font-semibold ml-2">A Best Model is Chosen</h4>
+            <p class="text-gray-400 text-sm mt-2 ml-2">
+              The pipeline runs a series of data cleaning and feature engineering steps, generating a leaderboard of
+              models. The best-performing model is selected based on metrics like accuracy and F1 score.
+            </p>
+          </div>
 
-            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">⚙️ Running Locally</h3>
-            <pre class="bg-black text-slate-300 text-sm p-4 rounded-md overflow-x-auto">
-git clone https://github.com/LannonTheCannon/Exo-Explorer.git
-cd Exo-Explorer
+          <!-- Step 4: Save & Track -->
+          <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="400ms">
+            <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+            <p class="text-sm text-gray-400 mb-1 ml-2">Step 4: Probability-Habitability Column now Fulfilled</p>
+            <h4 class="text-white font-semibold ml-2">Each Planet Record now Contains Habitability Score/h4>
+            <p class="text-gray-400 text-sm mt-2 ml-2">
+              The best model's predictions are saved back to the SQLite database, enriching each planet record with a
+              habitability score. This allows users to filter and explore potentially habitable worlds.
+            </p>
+          </div>
+
+          <!-- Step 5: Explore -->
+          <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="500ms">
+            <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+            <p class="text-sm text-gray-400 mb-1 ml-2">Step 5: Explore The Exoplanet</p>
+            <h4 class="text-white font-semibold ml-2">Planets With Highest Habitability Score</h4>
+            <p class="text-gray-400 text-sm mt-2 ml-2">
+              Explore the actual worlds with the highest habitability scores. Visit the NASA Exoplanet Archive to view the 
+              full details of each planet, including its characteristics and potenital for supporting life.
+            </p>
+          </div>
+
+          <hr class="my-16 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+          <!-- Repo Structure -->
+          <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+            <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">📁 Repository Structure
+            </h4>
+              <pre
+                class="text-sm text-slate-300 font-mono leading-6 whitespace-pre overflow-x-auto bg-black rounded-md p-4 border border-white/5">
+ExoExplorer/
+│
+├── Exo_Explorer.py                  # Streamlit app for exoplanet habitability
+│
+├── cleaning_agent/                 # LangGraph-powered data cleaning agent
+│   ├── agent.py                    # Main agent logic and pipeline
+│   ├── utils.py                    # Helper functions
+│
+├── dataset/                        # NASA exoplanet CSV dataset
+├── database/                       # SQLite database for storing results
+├── models/                         # Saved H2O AutoML models
+├── img/                            # Images or diagrams (optional)
+│
+├── templates/                      # Prompt templates for agent instructions
+├── parsers/                        # Output parsers for GPT responses
+├── tools/                          # Shared tools/utilities
+├── utils/                          # General-purpose utility scripts
+│
+├── README.md                       # Project overview and instructions
+├── requirements.txt                # Core Python dependencies
+├── additional-requirements.txt     # Extra deps for experiments or modules
+└── .gitignore                      # Ignore Python caches, models, etc.
+              </pre>
+          </div>
+
+        </div>
+      </div>
+
+      <h3 class="mt-8 text-2xl font-bold leading-6 text-white">⚙️ Running Locally</h3>
+<pre class="mt-4 bg-black text-slate-300 text-sm p-4 rounded-md">
+git clone https://github.com/LannonTheCannon/ExoExplorer.git
+cd Week3
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-streamlit run explorer_dashboard.py
-            </pre>
+streamlit run Exo_Explorer.py
+</pre>
 
-            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">🚧 Roadmap</h3>
-            <ul>
-              <li class="text-slate-400">✅ Ingest NASA Exoplanet Archive</li>
-              <li class="text-slate-400">✅ Build initial ML habitability scores</li>
-              <li class="text-slate-400">⏳ Refine prompt-to-image translations</li>
-              <li class="text-slate-400">⏳ Add planetary summary cards</li>
-              <li class="text-slate-400">⏳ Open AI-powered planet explorer to users</li>
-            </ul>
+      <!-- Call to Action -->
+      <div class="mt-16 flex flex-col sm:flex-row justify-center items-center gap-4">
 
-            <h3 class="mt-12 text-2xl font-bold leading-6 text-white">📬 Contact</h3>
-            <p class="text-slate-400">
-              Want to visualize your own planetary data? Curious about the modeling? Email me at <a href="mailto:lannonkhau@gmail.com" class="text-indigo-400 hover:underline">lannonkhau@gmail.com</a>
-            </p>
-
-            <blockquote class="border-l-4 pl-4 italic text-indigo-300">
-              "We're not just exploring space. We're reimagining it."
-            </blockquote>
-
-            <a href="#" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl font-semibold text-white transition">🌌 Join the Waitlist</a>
-            <a href="https://github.com/LannonTheCannon/Exo-Explorer" target="_blank" class="ml-4 text-indigo-400 hover:underline">📦 View Source</a>
-
-          </div>
-        </div>
+        <a href="https://github.com/LannonTheCannon/Cloudberry_AWS_Bootcamp" target="_blank"
+          class="text-indigo-400 hover:underline">📦 View Source on GitHub</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
-      <div class="flex justify-center space-x-6 py-6">
-        <a href="https://github.com/LannonTheCannon" target="_blank"><img src="/static/icons/github.svg" class="h-6 w-6 hover:scale-110 transition" /></a>
-        <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank"><img src="/static/icons/linkedin.svg" class="h-6 w-6 hover:scale-110 transition" /></a>
-        <a href="https://www.youtube.com/@LannonKhau" target="_blank"><img src="/static/icons/youtube.svg" class="h-6 w-6 hover:scale-110 transition" /></a>
-        <a href="mailto:lannonkhau@gmail.com"><img src="/static/icons/goog.svg" class="h-6 w-6 hover:scale-110 transition" /></a>
-      </div>
-      &copy; 2025 Lannon Khau. Imagining the future, one orbit at a time.
-    </footer>
-  </body>
+  <!-- Footer -->
+  <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
+    <div class="flex justify-center space-x-6 py-6">
+      <a href="https://github.com/LannonTheCannon" target="_blank" rel="noopener noreferrer"><img
+          src="/static/icons/github.svg" alt="GitHub" class="h-6 w-6 hover:scale-110 transition" /></a>
+      <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank" rel="noopener noreferrer"><img
+          src="/static/icons/linkedin.svg" alt="LinkedIn" class="h-6 w-6 hover:scale-110 transition" /></a>
+      <a href="https://www.youtube.com/@LannonKhau" target="_blank" rel="noopener noreferrer"><img
+          src="/static/icons/youtube.svg" alt="YouTube" class="h-6 w-6 hover:scale-110 transition" /></a>
+      <a href="#"><img src="/static/icons/goog.svg" alt="Email" class="h-6 w-6 hover:scale-110 transition" /></a>
+    </div>
+    &copy; 2025 Lannon Khau. Welcome aboard, cadet.
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("opacity-0", "translate-y-10");
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.25 });
+
+      document.querySelectorAll('.fade-in-up').forEach((el) => {
+        observer.observe(el);
+      });
+    });
+  </script>
+
+</body>
+
 </html>
