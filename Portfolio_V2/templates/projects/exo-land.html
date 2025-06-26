@@ -36,13 +36,34 @@
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
       }
     }
-
-    .border-animate {
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      animation: draw-border 1.2s ease-out forwards;
-      border-radius: 1rem;
-      clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+    .floating-star {
+      position: absolute;
+      top: -1rem;         /* Adjust vertical alignment */
+      right: -6rem;      /* Push out horizontally to "hover" next to the block */
+      z-index: 10;
+      pointer-events: none;
     }
+
+    .floating-star::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 400%;
+      height: 150px;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(173, 216, 255, 0.6),
+        rgba(173, 216, 255, 0.05) 70%,
+        transparent 100%
+      );
+      filter: blur(40px);
+      opacity: 0.9;
+      z-index: -1;
+    }
+
   </style>
 
 </head>
@@ -74,10 +95,12 @@
           Exo <span class="text-indigo-400">Explorer</span>
         </h1>
 
-                        <!-- Scorpion image under Blue Scorpion -->
-        <img src="/static/images/staro.png" alt="Blue Scorpion"
-            class="absolute -bottom-24 w-96 h-96 opacity-96 pointer-events-none select-none [transform:rotate(17deg)]"
-            style="right: -6rem; top: -6rem;" />
+        <!-- floating star element -->
+        <div class="floating-star">
+          <img src="/static/images/staro.png"
+              alt="Crystal Star"
+              class="w-64 h-64 rotate-[17deg]" />
+        </div>
 
         <div class="flex items-center mt-6">
           <img class="w-10 h-10 rounded-full" src="/static/images/chill_guy.png" alt="Lannon Khau" />
@@ -319,7 +342,7 @@ ExoExplorer/
 
       <h3 class="mt-8 text-2xl font-bold leading-6 text-white">⚙️ Running Locally</h3>
 <pre class="mt-4 bg-black text-slate-300 text-sm p-4 rounded-md">
-git clone https://github.com/LannonTheCannon/ExoExplorer.git
+git clone https://github.com/LannonTheCannon/gen_ai_bootcamp.git
 cd Week3
 python3 -m venv venv
 source venv/bin/activate
@@ -330,7 +353,7 @@ streamlit run Exo_Explorer.py
       <!-- Call to Action -->
       <div class="mt-16 flex flex-col sm:flex-row justify-center items-center gap-4">
 
-        <a href="https://github.com/LannonTheCannon/Cloudberry_AWS_Bootcamp" target="_blank"
+        <a href="https://github.com/LannonTheCannon/gen_ai_bootcamp.git" target="_blank"
           class="text-indigo-400 hover:underline">📦 View Source on GitHub</a>
       </div>
     </div>
