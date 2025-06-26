@@ -1,5 +1,6 @@
 import os
 import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import json
 import boto3
 import pandas as pd
@@ -20,8 +21,8 @@ from code_editor import code_editor
 # --- Add parent dir to path to import utils ---
 # sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 # sys.path.append(os.path.dirname(__file__))
-from data_forge_lite.utils.db_secrets import get_db_secret
-from data_forge_lite.utils.s3_secrets import get_s3_config
+from utils.db_secrets import get_db_secret
+from utils.s3_secrets import get_s3_config
 # from utils.openai_secret import get_openai_api_key
 
 from streamlit_flow import streamlit_flow
