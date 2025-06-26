@@ -112,6 +112,295 @@
         </div>
       </div>
 
+        <div class="flex items-center mt-6">
+          <img class="w-10 h-10 rounded-full" src="/static/images/chill_guy.png" alt="Lannon Khau" />
+          <div class="ml-3">
+            <p class="text-sm font-medium text-gray-300">
+              <a href="#" class="hover:underline">By Lannon Khau</a>
+            </p>
+            <div class="flex space-x-1 text-sm text-gray-400">
+              <time datetime="2025-06-13">Jun 13, 2025</time>
+              <span>&middot;</span>
+              <span>5 min read</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="z-0 mt-8 flex space-x-4">
+          <button type="button"
+            class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">Tweet</button>
+          <button type="button"
+            class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">LinkedIn</button>
+          <button type="button"
+            class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">Copy</button>
+        </div>
+
+        <div class="relative w-full pb-[56.25%] mt-12 rounded-lg overflow-hidden border border-white/10 shadow-md">
+            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/DDOKRTiakno"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mt-12">
+        <!-- LEFT COLUMN -->
+        <div class="text-lg text-slate-300">
+          <blockquote class="text-xl leading-8 text-slate-400">
+            <span class="font-serif text-8xl text-slate-100 float-left mr-2 leading-none">T</span>
+            his project started as an idea to process 1.3 million rows of financial data interactively. Over time, it
+            evolved into a powerful AI-powered web application that can accept any size dataset, clean it, perform
+            feature engineering, and visualize it in an intuitive UI—all powered by GPT-4o, LangChain, and serverless
+            AWS tools.
+
+            <hr class="mt-6 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+
+            <!-- 🧠 Architecture -->
+            <h3 class="mt-6 text-2xl font-bold leading-6 text-white mb-4">🌐 Live Architecture</h3>
+            <ul class="space-y-4 text-sm text-slate-300">
+              <li><span class="text-indigo-400 font-semibold">EC2</span>: Flask backend with Gunicorn and Nginx</li>
+              <li><span class="text-indigo-400 font-semibold">S3</span>: Secure file storage for datasets</li>
+              <li><span class="text-indigo-400 font-semibold">RDS (MySQL)</span>: Stores metadata and session logs</li>
+              <li><span class="text-indigo-400 font-semibold">Lambda</span>: Triggers OpenAI agents for data cleaning
+              </li>
+              <li><span class="text-indigo-400 font-semibold">Secrets Manager</span>: Secure API key management</li>
+              <li><span class="text-indigo-400 font-semibold">GitHub Actions</span>: Handles CI/CD deployment</li>
+            </ul>
+
+            <hr class="mt-6 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+            <div>
+
+              <div class="space-y-2">
+
+                <!-- Backend -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-2">Backend</h4>
+                  <div class="flex flex-wrap gap-4 items-center">
+                    <div class="flex items-center space-x-2">
+                      <img src="/static/icons/flask.svg" alt="Flask" class="h-6" />
+                      <span class="text-white text-sm font-medium">Flask</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                      <img src="/static/icons/python.svg" alt="Python" class="h-6" />
+                      <span class="text-white text-sm font-medium">Python</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                      <img src="/static/icons/gunicorn.svg" alt="Gunicorn" class="h-6" />
+                      <span class="text-white text-sm font-medium">Gunicorn</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Frontend -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">Frontend</h4>
+                  <div class="flex flex-wrap gap-6 items-center">
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/html-5.svg" alt="HTML" class="h-6" />
+                      <span class="text-white text-sm font-medium">HTML</span>
+                    </div>
+
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/streamlit.svg" alt="Streamlit" class="h-6" />
+                      <span class="text-white text-sm font-medium">Streamlit</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/jinja.svg" alt="Jinja2" class="h-6" />
+                      <span class="text-white text-sm font-medium">Jinja2</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/tailwind.svg" alt="TailwindCSS" class="h-6" />
+                      <span class="text-white text-sm font-medium">TailwindCSS</span>
+                    </div>
+
+
+                  </div>
+                </div>
+
+                <!-- AI Agents -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">AI Agents</h4>
+                  <div class="flex flex-wrap gap-6 items-center">
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/chatgpt.svg" alt="OpenAI" class="h-6" />
+                      <span class="text-white text-sm font-medium">GPT-4o</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/bus.png" alt="AI Data Science Team" class="h-6" />
+                      <span class="text-white text-sm font-medium">AI Data Science Team</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/langchain.svg" alt="LangChain" class="h-6" />
+                      <span class="text-white text-sm font-medium">LangChain</span>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- Infrastructure -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">Infrastructure</h4>
+                  <div class="flex flex-wrap gap-6 items-center">
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/s3.svg" alt="S3" class="h-6" />
+                      <span class="text-white text-sm font-medium">S3</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/ec2.svg" alt="EC2" class="h-6" />
+                      <span class="text-white text-sm font-medium">EC2</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/rds.svg" alt="RDS" class="h-6" />
+                      <span class="text-white text-sm font-medium">RDS</span>
+                    </div>
+
+
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/lambda.svg" alt="Lambda" class="h-6" />
+                      <span class="text-white text-sm font-medium">Lambda</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/secrets.svg" alt="Secrets Manager" class="h-6" />
+                      <span class="text-white text-sm font-medium">Secrets Manager</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CI/CD -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">CI / CD</h4>
+                  <div class="inline-flex items-center space-x-2">
+                    <img src="/static/icons/github-desktop.svg" alt="GitHub Actions" class="h-6" />
+                    <span class="text-white text-sm font-medium">GitHub Actions</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <hr class="mb-4 mt-8 my-16 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+              <h3 class="mb-6 mt-6 text-2xl font-bold leading-6 text-white">Let’s Connect</h3>
+              <p class="text-slate-400">
+                If you’re a builder, dreamer, or data explorer, reach out. Whether it's a conversation, a collaboration,
+                or just curiosity, I’d love to connect. You can find me on
+                <a href="https://linkedin.com/in/lannon-khau" target="_blank"
+                  class="text-indigo-400 hover:underline">LinkedIn</a> or email me directly.
+              </p>
+
+              <hr class="mt-4 my-16 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Timeline or Features -->
+        <div class="relative border-l border-white/10 pl-6 space-y-8 self-start">
+          <h3 class="text-2xl font-bold leading-6 text-white mb-4">🧪 How It Works</h3>
+
+          <!-- Step 1: Auth -->
+          <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="100ms">
+            <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+            <p class="text-sm text-gray-400 mb-1 ml-2">Step 1: Register / Login</p>
+            <h4 class="text-white font-semibold ml-2">Access the Dashboard</h4>
+            <p class="text-gray-400 text-sm mt-2 ml-2">
+              New users create an account or log in via a secure Flask authentication flow. Once authenticated, they
+              land in the main dashboard.
+            </p>
+          </div>
+
+          <!-- Step 2: Upload -->
+          <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="200ms">
+            <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+            <p class="text-sm text-gray-400 mb-1 ml-2">Step 2: Upload CSV</p>
+            <h4 class="text-white font-semibold ml-2">Flask Handles Upload to S3</h4>
+            <p class="text-gray-400 text-sm mt-2 ml-2">
+              Users drag and drop datasets directly into the dashboard. Files are uploaded to AWS S3 using secure
+              presigned URLs to bypass local limitations.
+            </p>
+          </div>
+
+          <!-- Step 3: Trigger Pipeline -->
+          <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="300ms">
+            <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+            <p class="text-sm text-gray-400 mb-1 ml-2">Step 3: Clean + Engineer</p>
+            <h4 class="text-white font-semibold ml-2">Lambda + AI Agents</h4>
+            <p class="text-gray-400 text-sm mt-2 ml-2">
+              Users trigger an AI-powered pipeline that runs `DataCleaningAgent` and `FeatureEngineeringAgent` on the
+              dataset asynchronously using AWS Lambda.
+            </p>
+          </div>
+
+          <!-- Step 4: Save & Track -->
+          <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="400ms">
+            <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+            <p class="text-sm text-gray-400 mb-1 ml-2">Step 4: Store Output</p>
+            <h4 class="text-white font-semibold ml-2">Cleaned Data in S3 + Logs in RDS</h4>
+            <p class="text-gray-400 text-sm mt-2 ml-2">
+              Once processed, cleaned files are saved in a `cleaned/` prefix in S3. All job metadata, timestamps, and
+              session info are stored in RDS for traceability.
+            </p>
+          </div>
+
+          <!-- Step 5: Explore -->
+          <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="500ms">
+            <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+            <p class="text-sm text-gray-400 mb-1 ml-2">Step 5: Explore with AI</p>
+            <h4 class="text-white font-semibold ml-2">Streamlit-Powered EDA</h4>
+            <p class="text-gray-400 text-sm mt-2 ml-2">
+              Users launch a dynamic Streamlit interface that loads the cleaned preview and visual insights. Features
+              include charts, agentic mind maps, and NL → SQL querying.
+            </p>
+          </div>
+
+          <hr class="my-16 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+
+          <div class="prose prose-lg prose-invert prose-indigo max-w-none mt-12">
+            <blockquote class="border-l-4 pl-4 italic text-indigo-300">
+              "This is super cool! I remember struggling to bridge that gap between insights and code. A tool that shows
+              the 'how' is a total game-changer for learning." - Tran Tien Van
+            </blockquote>
+
+          </div>
+
+          <hr class="my-16 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+          <!-- Repo Structure -->
+          <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+            <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">📁 Repository Structure
+            </h4>
+            <pre
+              class="text-sm text-slate-300 font-mono leading-6 whitespace-pre overflow-x-auto bg-black rounded-md p-4 border border-white/5">
+Cloudberry_AWS_Bootcamp/
+│
+├── Portfolio_V2/                  # Core Flask app
+│   ├── app.py                     # Entrypoint Flask application
+│   ├── templates/                 # Jinja2 HTML templates
+│   ├── static/                    # TailwindCSS and JS
+│   ├── utils/                     # AI pipeline, S3 handlers, and secrets manager
+│   ├── data_forge_lite/           # Streamlit-powered exploration dashboard
+│   └── requirements.txt
+│
+├── .github/workflows/            # GitHub Actions CI/CD scripts
+├── README.txt                    # You're reading it!
+└── start.sh                      # Launch script for Gunicorn
+            </pre>
+          </div>
+
+      </div>
+
+
+
+
+
+
+
+
     </div>
   </section>
 
