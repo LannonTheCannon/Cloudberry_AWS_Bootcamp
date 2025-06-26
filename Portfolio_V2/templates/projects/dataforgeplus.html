@@ -2,11 +2,106 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" type="text/css" href="./static/css/app.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet" />
+
+
     <title>DataForge+ – Lannon Khau</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="/static/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes draw-border {
+        0% {
+            border-width: 0;
+            clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+        }
+
+        25% {
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        }
+
+        50% {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
+        }
+
+        75% {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        100% {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+        }
+
+        .border-animate {
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        animation: draw-border 1.2s ease-out forwards;
+        border-radius: 1rem;
+        clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+        }
+
+
+        .floating-star {
+        position: absolute;
+        top: -5rem;         /* Adjust vertical alignment */
+        right: -6rem;      /* Push out horizontally to "hover" next to the block */
+        z-index: 10;
+        pointer-events: none;
+        }
+
+        .floating-star::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: 100%;
+        height: 200px;
+        background: radial-gradient(
+            ellipse at center,
+            rgba(173, 216, 255, 0.6),
+            rgba(173, 216, 255, 0.05) 70%,
+            transparent 100%
+        );
+        filter: blur(40px);
+        opacity: 0.9;
+        z-index: -1;
+        }
+    @media (max-width: 640px) {
+        .fade-in-up {
+            opacity: 100 !important;
+            transform: none !important;
+        }
+        }
+
+
+    </style>
+
 </head>
+
+<body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white min-h-screen">
+      <!-- Nav -->
+  <header class="w-full px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold tracking-tight"><a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
+    </h1>
+    <nav class="space-x-6 text-sm">
+      <a href="/" class="hover:text-indigo-400">Home</a>
+      <a href="/about" class="hover:text-indigo-400">Mission</a>
+      <a href="/projects" class="hover:text-indigo-400">Projects</a>
+      <a href="/contact" class="hover:text-indigo-400">Contact</a>
+    </nav>
+  </header>
+
+  
+</body>
 
 
 </html>
