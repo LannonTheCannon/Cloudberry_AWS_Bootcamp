@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <link rel="stylesheet" type="text/css" href="/static/css/app.css" />
+  <link rel="stylesheet" type="text/css" href="./static/css/app.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap"
@@ -71,6 +71,12 @@
       filter: blur(40px);
       opacity: 0.9;
       z-index: -1;
+    }
+   @media (max-width: 640px) {
+      .fade-in-up {
+        opacity: 100 !important;
+        transform: none !important;
+      }
     }
 
 
