@@ -104,7 +104,7 @@ projects = {
         "author": "Lannon Khau",
         "image1": "static/images/magma.png",
         "icon": "static/images/forge_icon.svg",
-        "template": "data-forge-plus.html",
+        "template": "dataforgeplus.html",
         "login_req": "True",
     },
     "exo-land": {
