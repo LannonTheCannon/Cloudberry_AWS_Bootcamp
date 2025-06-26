@@ -27,7 +27,7 @@ def get_openai_api_key(secret_name="dev/openai/api_key", region_name="us-west-1"
 api_key = get_openai_api_key()
 
 llm = ChatOpenAI(
-    model='gpt-4o-nano',
+    model='gpt-4o',
     openai_api_key=api_key
 )
 
@@ -39,8 +39,6 @@ def run_clean_pipeline(df: pd.DataFrame) -> pd.DataFrame:
         start_all = time.time()
         print("⏳ Loading OpenAI API key...")
 
-
-        
         if not api_key:
             raise RuntimeError("🛑 OpenAI API key could not be loaded.")
 

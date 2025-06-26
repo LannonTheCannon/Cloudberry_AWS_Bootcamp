@@ -57,114 +57,13 @@
       <a href="/" class="hover:text-indigo-400">Home</a>
       <a href="/about" class="hover:text-indigo-400">Mission</a>
       <a href="/projects" class="text-indigo-400 font-semibold">Projects</a>
-      <a href="/blog" class="hover:text-indigo-400">Blog</a>
-      <a href="/the_lab" class="hover:text-indigo-400">The Lab</a>
+      <!-- <a href="/blog" class="hover:text-indigo-400">Blog</a>
+      <a href="/the_lab" class="hover:text-indigo-400">The Lab</a> -->
       <a href="/contact" class="hover:text-indigo-400">Contact</a>
     </nav>
   </header>
 
 
-  <section id="projects-and-stats" class="fade-in-up px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700">
-<h3 class="text-5xl font-bold mb-4 text-center text-white tracking-tight"><span class="text-indigo-400"> Active</span> Project Overview</h3>
-  <!-- Unified Grid Container -->
-  <div class="max-w-6xl mx-auto grid grid-cols-1 gap-12">
-
-    <!-- Project Cards Row -->
-    <div class="grid md:grid-cols-3 gap-6 -mb-6 pt-10">
-      <!-- Project Card -->
-        <a data-project="data-forge-plus" class="project-card selected bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">        <div class="flex items-center mb-4 space-x-4">
-          <div class="w-12 h-12 bg-gray-700 rounded-xl overflow-hidden flex-shrink-0">
-            <img src="static/images/forge_icon.svg" alt="Data Forge Plus Logo" class="object-cover w-full h-full" />
-          </div>
-          <h4 class="text-lg font-bold text-white">Data Forge Plus</h4>
-        </div>
-        <p class="text-sm text-gray-400 leading-relaxed">
-          An AI-powered dataset cleaner and exploration engine built on Flask, S3, Lambda, and Streamlit.
-        </p>
-      </a>
-
-      <!-- Project Card -->
-        <a data-project="exo-land" class="project-card bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">        <div class="flex items-center mb-4 space-x-4">
-          <div class="w-12 h-12 bg-gray-700 rounded-xl overflow-hidden flex-shrink-0">
-            <img src="/static/images/planet_icon.svg" alt="Exo-Explorer Logo" class="object-cover w-full h-full" />
-          </div>
-          <h4 class="text-lg font-bold text-white">Exo-Explorer</h4>
-        </div>
-        <p class="text-sm text-gray-400 leading-relaxed">
-          Find out which exoplanets score highest in habitability. Then render the planet’s data with DALL·E 3!
-        </p>
-      </a>
-
-      <!-- Project Card -->
-      <a data-project="quote-ability" class="project-card bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
-        <div class="flex items-center mb-4 space-x-4">
-          <div class="w-12 h-12 bg-gray-700 rounded-xl overflow-hidden flex-shrink-0">
-            <img src="/static/images/bookstar.png" alt="Quote-Ability Logo" class="object-cover w-full h-full" />
-          </div>
-          <h4 class="text-lg font-bold text-white">Quote-Ability</h4>
-        </div>
-        <p class="text-sm text-gray-400 leading-relaxed">
-          Like your own personal book club. Ask questions about the pages you’ve read and deepen your understanding.
-        </p>
-      </a>
-    </div>
-
-    <!-- Stat Grid -->
-    <div class="stat-grid grid grid-cols-1 sm:grid-cols-4 gap-6 text-center bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-6">      <div class="flex flex-col items-center">
-        <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="137">0</div>
-        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Commits per Week</p>
-      </div>
-      <div class="flex flex-col items-center">
-        <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="2">0</div>
-        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Feature Branch Merged</p>
-      </div>
-      <div class="flex flex-col items-center">
-        <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="5">0</div>
-        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Average Commit Size</p>
-      </div>
-      <div class="flex flex-col items-center">
-        <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="145">0</div>
-        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Lines Ratio</p>
-      </div>
-    </div>
-
-    <!-- Mission Log + Skill Chart Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 -mt-6">
-      <!-- Mission Log -->
-    <div class="mission-log bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 font-mono text-sm text-gray-300">
-      <h4 class="text-lg font-bold text-indigo-300 mb-4 tracking-widest uppercase border-b border-white/10 pb-2">Motion Mission Log</h4>
-        <ul class="space-y-3">
-          <li>
-            <span class="text-xs text-gray-400">[05.31.2025 – 20:15]</span><br>
-            <span class="text-indigo-200">Pushed 6 commits to `data-forge-plus`</span>
-          </li>
-          <li>
-            <span class="text-xs text-gray-400">[05.31.2025 – 18:42]</span><br>
-            <span class="text-indigo-200">Refactored OpenAI Assistant Memory</span>
-          </li>
-          <li>
-            <span class="text-xs text-gray-400">[05.31.2025 – 17:08]</span><br>
-            <span class="text-indigo-200">Added new mission card interface</span>
-          </li>
-          <li>
-            <span class="text-xs text-gray-400">[05.30.2025 – 22:01]</span><br>
-            <span class="text-indigo-200">Deployed `quote-ability` static blog</span>
-          </li>
-          <li>
-            <span class="text-xs text-gray-400">[05.30.2025 – 09:14]</span><br>
-            <span class="text-indigo-200">Read 28 pages of *The War of Art*</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Skill Activity Chart -->
-      <div class="skill-chart bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 shadow-lg">
-        <h4 class="text-lg font-bold text-indigo-300 mb-4 tracking-widest uppercase border-b border-white/10 pb-2 font-mono">Skill Activity</h4>
-        <canvas id="skillBarChart" class="w-full h-[280px]"></canvas>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!--&lt;!&ndash; Projects Section &ndash;&gt;-->
 <!--<section class="px-8 py-16 max-w-6xl -mt-16 mx-auto">-->
@@ -185,10 +84,11 @@
 <!--</section>-->
 <!--      -->
           <!-- Labs Showcase -->
-   <section class="px-8 py-26 -mt-2 max-w-7xl mx-auto">
+
+          
+   <section class="px-8 mt-12 max-w-7xl mx-auto">
       <h2 class="text-4xl font-bold text-center mb-14 text-white"><span class="text-indigo-400"> All</span> Projects</h2>
 
-<!--      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">-->
       <div class="max-w-6xl mx-auto grid grid-cols-3 gap-6">
         {% for slug, project in projects.items() %}
         <a href="{{ url_for('show_project', slug=slug) }}"
@@ -233,8 +133,6 @@
         {% endfor %}
       </div>
     </section>
-
-
 
   <!-- Footer -->
   <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">

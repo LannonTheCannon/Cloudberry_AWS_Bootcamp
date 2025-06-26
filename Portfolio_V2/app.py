@@ -343,7 +343,9 @@ def contact():
 @app.before_request
 def load_logged_in_user():
     user_id  = session.get('user_id')
-    g.user   = User.query.get(user_id) if user_id else None
+    #g.user   = User.query.get(user_id) if user_id else None
+
+    g.user = db.session.get(User, user_id) if user_id else None
 
 def login_required(view):
     @wraps(view)
