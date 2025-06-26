@@ -43,6 +43,35 @@
       border-radius: 1rem;
       clip-path: polygon(0 0, 0 0, 0 0, 0 0);
     }
+
+    .floating-star {
+      position: absolute;
+      top: -7rem;         /* Adjust vertical alignment */
+      right: -7rem;      /* Push out horizontally to "hover" next to the block */
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .floating-star::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 240%;
+      height: 240px;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(173, 216, 255, 0.6),
+        rgba(173, 216, 255, 0.05) 70%,
+        transparent 100%
+      );
+      filter: blur(60px);
+      opacity: 100.9;
+      z-index: -1;
+    }
+
   </style>
 
 </head>
@@ -74,10 +103,15 @@
           <span class="text-indigo-400">Octopus</span> Books 
         </h1>
 
+
+        <div class="floating-star">
                         <!-- Scorpion image under Blue Scorpion -->
-        <img src="/static/images/octo.png" alt="Blue Scorpion"
-            class="absolute -bottom-24 w-96 h-96 opacity-96 pointer-events-none select-none [transform:rotate(17deg)]"
-            style="right: -6rem; top: -7rem;" />
+          <img src="/static/images/octo.png" alt="Blue Scorpion"
+              class="w-96 h-96 opacity-96 pointer-events-none select-none [transform:rotate(17deg)]"
+              style="right: -6rem; top: -7rem;" />
+        </div>
+
+
 
         <div class="flex items-center mt-6">
           <img class="w-10 h-10 rounded-full" src="/static/images/chill_guy.png" alt="Lannon Khau" />
