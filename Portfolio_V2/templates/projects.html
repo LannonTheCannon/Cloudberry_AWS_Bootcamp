@@ -49,7 +49,8 @@
 <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
 
   <!-- Nav -->
-  <header class="w-full px-6 py-4 flex justify-between items-center">
+      <header class="w-full px-6 py-4 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-6">
+
     <h1 class="text-xl font-bold tracking-tight">
       <a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
     </h1>
@@ -64,35 +65,15 @@
   </header>
 
 
+             <section
+  class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-12 -mt-4 max-w-7xl mx-auto" data-delay="200ms">
+      <h2 class="text-4xl font-bold text-center mb-12 mt-16 text-white"><span class="text-indigo-400">All </span> Projects</h2>
 
-<!--&lt;!&ndash; Projects Section &ndash;&gt;-->
-<!--<section class="px-8 py-16 max-w-6xl -mt-16 mx-auto">-->
-<!--  <h3 class="text-3xl font-bold mb-4 text-center text-white tracking-tight">All Projects</h3>-->
-
-<!--  <div class="grid md:grid-cols-3 gap-6 pt-10">-->
-<!--    {% for slug, project in projects.items() %}-->
-<!--    <a href="{{ url_for('show_project', slug=slug) }}"-->
-<!--       class="block bg-white/5 border border-white/10 rounded-xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">-->
-
-<!--      <h3 class="text-xl font-bold mb-2 text-white">{{ project.title }}</h3>-->
-<!--      <p class="text-sm text-gray-300 mb-4">{{ project.description }}</p>-->
-<!--      <p class="text-xs text-gray-400">Tech: {{ project.tech | join(', ') }}</p>-->
-
-<!--    </a>-->
-<!--    {% endfor %}-->
-<!--  </div>-->
-<!--</section>-->
-<!--      -->
-          <!-- Labs Showcase -->
-
-          
-   <section class="px-8 mt-12 max-w-7xl mx-auto">
-      <h2 class="text-4xl font-bold text-center mb-14 text-white"><span class="text-indigo-400"> All</span> Projects</h2>
-
-      <div class="max-w-6xl mx-auto grid grid-cols-3 gap-6">
+<!--      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">-->
+      <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {% for slug, project in projects.items() %}
         <a href="{{ url_for('show_project', slug=slug) }}"
-           class="group tilt-card relative w-full h-[480px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
+           class="relative w-full h-[480px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
 
           <!-- Header Row -->
           <div class="flex items-start justify-between mb-4">
@@ -126,8 +107,8 @@
 
           <!-- Footer Row -->
           <div class="pt-3 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between mt-4">
-            <span>ID: LAB-{{ '%02d' % loop.index }}</span>
-            <span>Sector: AI EDU</span>
+            <span>ID: PROJECT-{{ '%02d' % loop.index }}</span>
+            <span>SECTOR: AI EDU</span>
           </div>
         </a>
         {% endfor %}
