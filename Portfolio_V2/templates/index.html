@@ -144,33 +144,31 @@
     </section>
 
 
-<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center px-8 -mt-8 pt-8 pb-3 overflow-hidden gap-12" data-delay="400ms">        <!-- About Me Card -->
-        <div class="tilt-card relative z-[30] w-full max-w-2xl h-[300px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform overflow-hidden">
+<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center px-8 pt-8 pb-3 overflow-visible gap-12" data-delay="400ms">        <!-- About Me Card -->
+        <div class="tilt-card relative z-[30] w-full max-w-2xl h-[330px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform overflow-visible">
 
           <!-- Top Row -->
           <div class="flex items-start justify-between">
             <!-- Profile Bubble -->
-            <div class="w-24 h-24 rounded-full overflow-hidden border border-white/20">
-              <img src="/static/images/space_commander.png" alt="Profile" class="object-cover w-full h-full" />
-            </div>
-
+          <div class="w-28 h-28 rounded-full overflow-hidden border border-white/20">
+            <img src="/static/images/space_commander.png" alt="Profile" class="object-cover w-full h-full" />
+          </div>
             <!-- ID Title -->
             <div class="flex flex-col mt-1">
-              <h4 class="text-xl font-bold text-gray-200 font-medium tracking-wider text-right block">
-                Full Stack <span class="text-indigo-400">AI/ML</span> Engineer
-              </h4>
+        <h4 class="text-2xl sm:text-3xl font-extrabold text-gray-100 tracking-wide text-right block">
+          Lannon <span class="text-indigo-400">Khau</span>
+        </h4>
               <div class="mt-1 w-full border-t border-white/10"></div>
-              <span class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-1 text-right block">
-                Conversational Intelligence & Data UX
+              <span class="text-xs text-white-400 font-mono tracking-widest uppercase mt-1 text-right block">
+Full-Stack AI/ML Engineer
               </span>
             </div>
           </div>
 
               <!-- Scrollable Typewriter Output -->
-        <div id="typewriter-container"
-             class="relative flex-1 overflow-y-auto px-4 max-w-xl mx-auto custom-scrollbar text-left">
+        <div id="typewriter-container" class="-mt-1 relative flex-1 overflow-y-auto px-4 max-w-xl mx-auto custom-scrollbar text-left">
           <p id="typewriter"
-               class="text-base leading-relaxed text-gray-300 font-light whitespace-pre-line text-left">
+               class="-mt-1 text-base leading-relaxed text-gray-300 font-light whitespace-pre-line text-left">
             </p>
           </div>
 
@@ -465,37 +463,45 @@
     const typingDots = document.getElementById("typing-indicator");
 
 const states = [
-  `Lannon Khau | Full Stack AI/ML Engineer
-Conversational AI · Data UX · System Design
-Python · React · OpenAI · Flask`,
+  `Data UX Engineer · Frontlines of Human-AI Design  
+Bridging Product Intuition with Machine Precision  
+LangChain · OpenAI · Full Stack Craft`,
 
-  `Lannon Khau | Software Architect
-End-to-End AI Product Development
-Data Forge · Streamlit · LangChain`,
+  `AI Infrastructure Architect  
+From Prompt to Production—End to End  
+Flask · S3 · RDS · Lambda · GitHub Actions`,
 
-  `Lannon Khau | AI Systems Developer
-Building Human-Centric Interfaces
-Cloud · Serverless · GPT-4o`,
+  `Technical Product Designer  
+Making Intelligence Feel Natural to Use  
+Conversational AI · UX Systems · Tailwind`,
 
-  `Lannon Khau | AI Product Engineer
-Rapid Prototyping to Production Pipelines
-CI/CD · Flask APIs · Tailwind UI`,
+  `Senior AI Engineer · UX-Centric Dev  
+Scaling Insight with Code & Clarity  
+Streamlit · GPT-4o · Functional Python`,
 
-  `Lannon Khau | Vision-Driven Technologist
-Translating Ideas into Scalable Tools
-DataForge Studio · GitHub Actions · AWS`,
+  `Conversational AI Specialist  
+Turning User Prompts Into Business Logic  
+NL → SQL · RAG Systems · UX Feedback Loops`,
 
-  `Lannon Khau | Full Stack Innovator
-Engineering at the Intersection of UX and AI
-Agent Workflows · EDA Dashboards · NLP`,
+  `Systems Integrator · Cloud AI Architect  
+Composing Modular, Scalable Agent Chains  
+AWS · Flask · Event-Driven Backends`,
 
-  `Lannon Khau | ML App Engineer
-Designing Tools That Think with You
-Generative UI · Streamlit · LangChain`,
+  `Edge-Crafted AI Tools for Real People  
+Small Interactions · Big Leverage  
+EDA Agents · RAG Pipelines · Data Co-Pilots`,
 
-  `Lannon Khau | Builder & Collaborator
-Turning Insight into Product
-Let’s Connect on LinkedIn or GitHub`,
+  `Multi-Stack AI Developer  
+Building with Intention at Every Layer  
+Frontend · Backend · Infra · Intelligence`,
+
+  `Creative Technologist · Builder of Tools  
+Vision-Led Engineering · Detail-Obsessed  
+UIs that Think · Pipelines that Scale`,
+
+  `Engineer on a Mission  
+Empowering Builders with Smart Interfaces  
+Generative Apps · Full Stack AI · Production Ready`,
 ];
     let currentPhraseIndex = 0;
     let currentCharIndex = 0;
