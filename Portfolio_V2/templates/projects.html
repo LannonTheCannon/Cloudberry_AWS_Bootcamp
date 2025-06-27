@@ -2,49 +2,86 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects – Lannon Khau</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="stylesheet" type="text/css" href="/static/css/app.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <title>All Projects</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="/static/favicon.ico" />
-    <style>
-.typing-ball {
-  width: 10px;
-  height: 10px;
-  background-color: white;
-  border-radius: 50%;
-  animation: bounce 1.2s infinite ease-in-out;
-  opacity: 0.6;
-}
+  <style>
+    @keyframes draw-border {
+      0% {
+        border-width: 0;
+        clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+      }
 
-.dot1 {
-  animation-delay: 0s;
-}
-.dot2 {
-  animation-delay: 0.2s;
-}
-.dot3 {
-  animation-delay: 0.4s;
-}
+      25% {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      }
 
-@keyframes bounce {
-  0%, 80%, 100% {
-    transform: scale(0.8);
-    opacity: 0.4;
-  }
-  40% {
-    transform: scale(1.4);
-    opacity: 1;
-  }
-}
+      50% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
+      }
 
-  .project-card.selected {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4); /* nice glow */
-    border-color: rgba(99, 102, 241, 0.5); /* indigo glow border */
-    transition: all 0.3s ease-in-out;
-  }
+      75% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
 
-</style>
+      100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+    .floating-star {
+      position: absolute;
+      top: -1rem;         /* Adjust vertical alignment */
+      right: -6rem;      /* Push out horizontally to "hover" next to the block */
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .floating-star::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 200%;
+      height: 120px;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(173, 216, 255, 0.6),
+        rgba(173, 216, 255, 0.05) 70%,
+        transparent 100%
+      );
+      filter: blur(80px);
+      opacity: 0.9;
+      z-index: -1;
+    }
+    @media (max-width: 540px) {
+      .floating-star {
+        position: relative !important;
+        top: 0 !important;
+        right: 0 !important;
+        margin: 0 auto 1.5rem auto !important;
+        width: 300px !important;
+        height: auto !important;
+        display: flex;
+        justify-content: center;
+      }
+
+      .floating-star img {
+        width: 100% !important;
+        height: auto !important;
+        transform: none !important;
+      }
+    }
+
+  </style>
 </head>
 <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
 
@@ -65,9 +102,11 @@
   </header>
 
 
-             <section
-  class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-12 -mt-4 max-w-7xl mx-auto" data-delay="200ms">
-      <h2 class="text-4xl font-bold text-center mb-12 mt-16 text-white"><span class="text-indigo-400">All </span> Projects</h2>
+      <section
+        class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-12 -mt-4 max-w-7xl mx-auto text-center"
+        data-delay="200ms"
+      >
+       <h2 class="text-4xl mb-8 md:text-5xl font-serif font-bold mb-4 leading-tight"><span class="text-indigo-400">All</span> Projects.</h2>
 
 <!--      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">-->
       <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -101,7 +101,7 @@
     </header>
 
     <!-- Hero -->
-<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 flex-1 flex flex-col justify-center items-center text-center px-20 py-2">
+<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 flex-1 flex flex-col justify-center items-center text-center px-20 mt-10 py-2">
   <h1 class="font-serif text-4xl md:text-5xl font-bold mb-4 leading-tight">
         From prototype to production, <span class="text-indigo-400">tell your story.</span>
       </h1>
@@ -157,7 +157,7 @@
             <!-- ID Title -->
             <div class="flex flex-col mt-1">
               <h4 class="text-xl font-bold text-gray-200 font-medium tracking-wider text-right block">
-                United Stellar Forces | Full Stack AI/ML Engineer 
+                Full Stack <span class="text-indigo-400">AI/ML</span> Engineer
               </h4>
               <div class="mt-1 w-full border-t border-white/10"></div>
               <span class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-1 text-right block">
@@ -215,7 +215,7 @@
 
 
 <section
-  class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-24 -mt-8 max-w-7xl mx-auto" data-delay="200ms">
+  class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-24 -mt-16 max-w-7xl mx-auto" data-delay="200ms">
   <h2 class="text-4xl font-bold text-center mb-14 mt-14 text-white">
     <span class="text-indigo-400">About</span> Me
   </h2>
@@ -304,7 +304,7 @@
 
                 <!-- Labs Showcase -->
    <section
-  class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-12 -mt-12 max-w-7xl mx-auto" data-delay="200ms">
+  class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-12 -mt-20 max-w-7xl mx-auto" data-delay="200ms">
       <h2 class="text-4xl font-bold text-center mb-12 mt-16 text-white"><span class="text-indigo-400">Featured </span> Projects</h2>
 
 <!--      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">-->
@@ -465,16 +465,37 @@
     const typingDots = document.getElementById("typing-indicator");
 
 const states = [
-      `This is Commander Lannon Khau, designation Echo-Vega-12... Aboard the U.S.S. Callister of the Space Marines. Over.`,
-      `Stranded on moon planet near Omicron Persei 8...`,
-      `I Repeat - I am stranded. Environment: arid, low oxygen, extreme thermal flux. Unknown planet. No Signs of intelligent life.`,
-      `If anyone can hear this — I need evac. Coordinates broadcasting on all open bands.`,
-      `I’ll hold as long as I can. Over.`,
-      `To whoever picks this up: tell Earth I’m still fighting.`,
-      `Is anyone out there? Please respond to this distress signal...`,
-      `This is Commander Lannon Khau of the U.S.S. Callister Space Shuttle. Please respond to this distress signal...`,
-      `[SIGNAL REPEATS EVERY 6 HOURS…]`,
-      
+  `Lannon Khau | Full Stack AI/ML Engineer
+Conversational AI · Data UX · System Design
+Python · React · OpenAI · Flask`,
+
+  `Lannon Khau | Software Architect
+End-to-End AI Product Development
+Data Forge · Streamlit · LangChain`,
+
+  `Lannon Khau | AI Systems Developer
+Building Human-Centric Interfaces
+Cloud · Serverless · GPT-4o`,
+
+  `Lannon Khau | AI Product Engineer
+Rapid Prototyping to Production Pipelines
+CI/CD · Flask APIs · Tailwind UI`,
+
+  `Lannon Khau | Vision-Driven Technologist
+Translating Ideas into Scalable Tools
+DataForge Studio · GitHub Actions · AWS`,
+
+  `Lannon Khau | Full Stack Innovator
+Engineering at the Intersection of UX and AI
+Agent Workflows · EDA Dashboards · NLP`,
+
+  `Lannon Khau | ML App Engineer
+Designing Tools That Think with You
+Generative UI · Streamlit · LangChain`,
+
+  `Lannon Khau | Builder & Collaborator
+Turning Insight into Product
+Let’s Connect on LinkedIn or GitHub`,
 ];
     let currentPhraseIndex = 0;
     let currentCharIndex = 0;
@@ -520,7 +541,7 @@ const states = [
               currentState = (currentState + 1) % states.length;
               rotateCardText();
             }, 500);
-          }, 6000);
+          }, 3000);
         }
       }
 
