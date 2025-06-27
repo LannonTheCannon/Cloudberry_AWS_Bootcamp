@@ -97,6 +97,24 @@
     transform: none !important;
   }
 }
+    @media (max-width: 540px) {
+      .floating-star {
+        position: relative !important;
+        top: 0 !important;
+        right: 0 !important;
+        margin: 0 auto 1.5rem auto !important;
+        width: 300px !important;
+        height: auto !important;
+        display: flex;
+        justify-content: center;
+      }
+
+      .floating-star img {
+        width: 100% !important;
+        height: auto !important;
+        transform: none !important;
+      }
+    }
 
 
   </style>
@@ -128,14 +146,14 @@
           Data Forge <span class="text-indigo-400">Plus</span>
         </h1>
 
-                <!-- floating star element -->
-        <div class="floating-star">
-                        <!-- Scorpion image under Blue Scorpion -->
-        <img src="/static/images/axe.png" alt="Blue Scorpion"
-            class="w-96 h-96 opacity-96 pointer-events-none select-none [transform:rotate(17deg)]"
-            style="right: -6rem; top: -7rem;" />
-        </div>
-
+              <!-- floating star element -->
+            <div class="absolute top-[-5rem] right-[-2rem] floating-star block sm:absolute sm:top- sm:right-0 sm:block sm:z-10 mb-6 sm:mb-0 sm:ml-0 flex justify-center sm:justify-end">
+                <img
+                  src="/static/images/axe.png"
+                  alt="Blue Scorpion"
+                  class="w-64 sm:w-96 opacity-96 pointer-events-none select-none transform sm:[transform:rotate(17deg)] -translate-x-4 sm:translate-x-0"
+                />
+              </div>
 
 
         <div class="flex items-center mt-6">
