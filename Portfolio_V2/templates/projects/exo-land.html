@@ -63,6 +63,24 @@
       opacity: 0.9;
       z-index: -1;
     }
+    @media (max-width: 540px) {
+      .floating-star {
+        position: relative !important;
+        top: 0 !important;
+        right: 0 !important;
+        margin: 0 auto 1.5rem auto !important;
+        width: 300px !important;
+        height: auto !important;
+        display: flex;
+        justify-content: center;
+      }
+
+      .floating-star img {
+        width: 100% !important;
+        height: auto !important;
+        transform: none !important;
+      }
+    }
 
   </style>
 
@@ -95,11 +113,14 @@
         </h1>
 
         <!-- floating star element -->
-        <div class="floating-star">
-          <img src="/static/images/staro.png"
-              alt="Crystal Star"
-              class="w-64 h-64 rotate-[17deg]" />
+      <div class="floating-star block sm:absolute sm:top-0 sm:right-0 sm:block sm:z-10 mb-6 sm:mb-0 sm:ml-0 flex justify-center sm:justify-end">
+          <img
+            src="/static/images/staro.png"
+            alt="Blue Scorpion"
+            class="w-64 sm:w-96 opacity-96 pointer-events-none select-none transform sm:[transform:rotate(17deg)] -translate-x-4 sm:translate-x-0"
+          />
         </div>
+
 
         <div class="flex items-center mt-6">
           <img class="w-10 h-10 rounded-full" src="/static/images/chill_guy.png" alt="Lannon Khau" />
