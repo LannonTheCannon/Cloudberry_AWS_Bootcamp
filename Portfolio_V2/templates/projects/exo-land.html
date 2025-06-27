@@ -82,8 +82,10 @@
     </nav>
   </header>
 
-<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex justify-center items-center py-20 overflow-hidden">
-  <div class="mx-auto w-full px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+  <section
+    class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center px-8 py-20 overflow-hidden"
+    data-delay="200ms">
+    <div class="relative mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-3xl">
 
       
 
@@ -371,42 +373,25 @@ streamlit run Exo_Explorer.py
     &copy; 2025 Lannon Khau. Welcome aboard, cadet.
   </footer>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const elements = document.querySelectorAll('.fade-in-up');
-
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries, obs) => {
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.remove("opacity-0", "translate-y-10");
             entry.target.classList.add("opacity-100", "translate-y-0");
             entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
-            obs.unobserve(entry.target);
+            observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.05 }); // LOWERED threshold for better triggering
+      }, { threshold: 0.25 });
 
-      elements.forEach((el) => observer.observe(el));
-
-      // 🔐 Fallback guarantee: force visibility after 1s if no animation triggered
-      setTimeout(() => {
-        elements.forEach(el => {
-          if (el.classList.contains('opacity-0')) {
-            el.classList.remove('opacity-0', 'translate-y-10');
-            el.classList.add('opacity-100', 'translate-y-0');
-          }
-        });
-      }, 1000); // adjust to match your transition duration
-    } else {
-      // Older browsers fallback
-      elements.forEach(el => {
-        el.classList.remove('opacity-0', 'translate-y-10');
-        el.classList.add('opacity-100', 'translate-y-0');
+      document.querySelectorAll('.fade-in-up').forEach((el) => {
+        observer.observe(el);
       });
-    }
-  });
-</script>
+    });
+  </script>
+
 </body>
 
 </html>
