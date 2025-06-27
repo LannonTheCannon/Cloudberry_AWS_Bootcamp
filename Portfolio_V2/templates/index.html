@@ -85,7 +85,7 @@
 </style>
 
   </head>
-  <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
+  <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col overflow-x-hidden">
 
     <!-- Nav -->
     <header class="w-full px-6 py-4 flex justify-between items-center">
@@ -132,12 +132,14 @@
 
 
       <!-- Spaceship Image Overlapping Right Side (no blur) -->
-      <div class="absolute right-[0px] top-20 -translate-y-1/2 z-0 pointer-events-none">
-        <img
-          src="/static/images/landing.png"
-          alt="Futuristic Spaceship"
-          class="w-[400px] scale-[1.3] opacity-100"
-        />
+      <div class="relative w-full overflow-hidden">
+        <div class="absolute right-0 top-20 transform -translate-y-1/2 z-0 pointer-events-none max-w-[100vw]">
+          <img
+            src="/static/images/landing.png"
+            alt="Futuristic Spaceship"
+            class="w-[300px] md:w-[400px] lg:w-[520px] max-w-full"
+          />
+      </div>
       </div>
 
     </section>
