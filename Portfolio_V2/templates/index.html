@@ -119,6 +119,11 @@
     </section>
 
 <section class="fade-in-up opacity-0 translate-y-10 transition duration-700 text-white text-center -mt-10 mb-4 px-4" data-delay="200ms">
+  
+      <div class="-mt-2 mb-1">
+        <hr class="w-24 border-white/20 mx-auto" />
+      </div>
+
   <div class="flex justify-center items-center space-x-2 text-lg text-white/70 tracking-wide font-serif leading-none">
         <span class="text-xl">★★★★</span>
         <span class="text-white/30">|</span>
@@ -126,9 +131,7 @@
 <span id="quote-display" class="italic transition-opacity duration-500 ease-in-out"></span>
         </div>
       </div>
-      <div class="mt-2 mb-1">
-        <hr class="w-24 border-white/20 mx-auto" />
-      </div>
+
 
 
       <!-- Spaceship Image Overlapping Right Side (no blur) -->
@@ -144,8 +147,8 @@
     </section>
 
 
-<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center px-8 pt-8 pb-3 overflow-visible gap-12" data-delay="400ms">        <!-- About Me Card -->
-        <div class="tilt-card -mt-6 relative z-[30] w-full max-w-2xl h-[330px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform overflow-visible">
+<section class="-mt-4 fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center px-8 pt-8 pb-3 overflow-visible gap-12" data-delay="400ms">        <!-- About Me Card -->
+        <div class="tilt-card -mt-6 relative z-[30] w-full max-w-2xl h-[335px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform overflow-visible">
 
           <!-- Top Row -->
           <div class="flex items-start justify-between">
@@ -197,7 +200,7 @@ Full-Stack AI/ML Engineer
               <input
                 id="user-query"
                 type="text"
-                placeholder="Respond to distress signal..."
+                placeholder="Ask me anything..."
                 class="flex-1 bg-transparent border-none text-sm text-gray-100 placeholder-gray-400 focus:outline-none"
               />
               <button
@@ -627,12 +630,16 @@ Generative Apps · Full Stack AI · Production Ready`,
     <script>
   document.addEventListener("DOMContentLoaded", () => {
     const quotes = [
-        `Frontend: Flask, TailwindCSS, Vanilla JS`,
-        `Backend: Python, Gunicorn, REST API architecture`,
-        `Database: AWS RDS (MySQL), SQLite for local dev`,
-        `Storage: AWS S3 for secure dataset uploads`,
-        `Serverless: AWS Lambda for AI pipeline processing`,
-        `AI Integration: GPT-4o-mini, AI_Data_Science_Team`,
+        `Ask any question you'd like to know about Lannon below!`,
+        `Feel free to ask me anything about my projects, skills, or interests.`,
+        `I'm here to help with any questions you have about my work or experience.`,
+        `Curious about my latest projects? Just ask!`,
+        `Want to know more about my skills or background? I'm happy to share!`,
+        `Have a question about AI, data, or software development? I'm all ears!`,
+        `Looking for insights on my engineering journey? Just type your question!`,
+        `Interested in my approach to building AI systems? Ask away!`,
+        `Feel free to inquire about my latest projects or technologies I work with.`,
+        `I'm always open to discussing my work and sharing insights. What would you like to know?`
     ];
 
     const display = document.getElementById("quote-display");
