@@ -6,6 +6,76 @@
   <title>About – Lannon Khau</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="/static/favicon.ico" />
+    <style>
+    @keyframes draw-border {
+      0% {
+        border-width: 0;
+        clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+      }
+
+      25% {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      }
+
+      50% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
+      }
+
+      75% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+    .floating-star {
+      position: absolute;
+      top: -1rem;         /* Adjust vertical alignment */
+      right: -6rem;      /* Push out horizontally to "hover" next to the block */
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .floating-star::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 200%;
+      height: 120px;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(173, 216, 255, 0.6),
+        rgba(173, 216, 255, 0.05) 70%,
+        transparent 100%
+      );
+      filter: blur(80px);
+      opacity: 0.9;
+      z-index: -1;
+    }
+    @media (max-width: 540px) {
+      .floating-star {
+        position: relative !important;
+        top: 0 !important;
+        right: 0 !important;
+        margin: 0 auto 1.5rem auto !important;
+        width: 300px !important;
+        height: auto !important;
+        display: flex;
+        justify-content: center;
+      }
+
+      .floating-star img {
+        width: 100% !important;
+        height: auto !important;
+        transform: none !important;
+      }
+    }
+
+  </style>
 </head>
 <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
 
@@ -33,10 +103,16 @@
           Mission<span class="text-indigo-400"> Blue Scorpion</span>
         </h1>
 
-                <!-- Scorpion image under Blue Scorpion -->
-        <img src="/static/images/scropi.png" alt="Blue Scorpion"
-            class="absolute -bottom-24 w-96 h-96 opacity-100 pointer-events-none select-none [transform:rotate(0deg)]"
-            style="right: -10rem;" />
+
+        <div
+          class="absolute top-[-5rem] sm:right-[-6rem] right-0 z-10 flex justify-center sm:justify-end floating-star"
+        >
+          <img
+            src="/static/images/scropi.png"
+            alt="Blue Scorpion"
+            class="w-64 sm:w-96 opacity-96 pointer-events-none select-none sm:rotate-[17deg]"
+          />
+        </div>
 
                 <div class="flex items-center mt-6">
                   <img class="w-10 h-10 rounded-full" src="/static/images/chill_guy.png" alt="Lannon Khau" />
