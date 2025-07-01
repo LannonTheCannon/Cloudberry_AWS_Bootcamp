@@ -234,91 +234,129 @@ def lab_post(slug):
 
 # ─── Blog Section  ──────────────────────────────────────────────────────────────────────
 #
-series = {
-    "data-forge-plus": {
-        "title": "Journey of End to End",
-        "content": "What I've learned these past 6 months",
+blogs = {
+    "first-lms-system": {
+        "title": "First LMS with over 135 concurrent users!",
+        "description": "What I've learned launching a LMS on Flask designed for 6th-12th grade students.",
+        "tech": ["Flask", "SQLAlchemy", "Bootstrap", "HTML/CSS", "Tkinter"],
+        "content": "What I've learned launching a GUI on TKinter designed for 6th-12th grade students.",
         "author": "Lannon Khau",
-        "image1": "static/images/competition.jpg",
-        "icon": 'static/images/mind.svg',
-        "series": [
-            {
-            "title": "Bootstrapping Data Forge",
-            "number": '001',
-            "date": "2025-06-04",
-            "video": True,
-            "slug": "data-forge-plus-001.html"
-          },
-           {
-            "title": "Optimizing AWS Costs",
-            "number": '002',
-            "date": "2025-06-07",
-            "video": False,
-            "slug": "Sbiznatch"
-            }
-        ],
+        "image1": "static/images/learn.svg",
+        "icon": "static/icons/1.svg",
+        "template": "first-lms-system.html"
     },
-    "microsoft-reactor-hackathon": {
-        "title": "🚀 Microsoft Reactor Hackathon",
-        "content": "What I learned building under pressure.",
+    "rhombus-systems": {
+        "title": "Hour of Code with Anaheim School District",
+        "description": "Created many IoT projects that solved key issues during the Hour of Code sessions at Anaheim School District",
+        "tech": ["Python", "Flask", "SQLAlchemy", "HTML/CSS", "Raspberry Pi", "SSH", "Arduino", "OpenCV"],
+        "content": "I've built a camera module that could keep track of student check-in/check-out IoT parts which saved thousands in missing parts per annum.",
         "author": "Lannon Khau",
-        "image1": "static/images/hackathon.jpg",
-        "icon": 'static/images/award.svg',
-        "series": [
-        {
-            "title": "Beep Boop",
-            "number": '001',
-            "date": "2025-06-04",
-            "video": True,
-            "slug": "liblib"
-        },
-        {
-            "title": "Bizzzapp!!",
-            "number": '002',
-            "date": "2025-06-07",
-            "video": False,
-            "slug": "weepaweepa"
-        }
-    ]
-}
+        "image1": "static/images/mars.png",
+        "icon": "static/icons/2.svg",
+        "template": "rhombus-systems.html"
+    },
+    # "Python Entry Level Certification Exam": {
+    #     "title": "Python Entry Level Certification Exam",
+    #     "description": "What I've learned preparing for the Python Entry Level Certification Exam.",
+    #     "tech": ["Python", "Flask", "SQLAlchemy", "HTML/CSS", "Bootstrap"],
+    #     "content": "What I've learned preparing for the Python Entry Level Certification Exam.",
+    #     "author": "Lannon Khau",
+    #     "image1": "static/images/bronze.png",
+    #     "icon": "static/icons/2.svg",
+    #     "template": "pcep_exam.html"
+    # },
+    #     "Micosoft Hackathan Reactor FY2025": {
+    #     "title": "Microsoft Hackathan Reactor FY2025",
+    #     "description": "What I've learned preparing for the Microsoft Hackathan Reactor FY2025.",
+    #     "tech": ["Python", "Flask", "SQLAlchemy", "HTML/CSS", "Bootstrap"],
+    #     "content": "What I've learned preparing for the Microsoft Hackathan Reactor FY2025.",
+    #     "author": "Lannon Khau",
+    #     "image1": "static/images/competition.jpg",
+    #     "icon": "static/icons/3.svg",
+    #     "template": "pcep_exam.html"
+    # },
 
 }
-#
+
 @app.route('/blog')
 def show_blog():
-    return render_template('blog.html', series=series)
-
-@app.route("/blog/<slug>")
-def blog_series(slug):
-    # slug is data-forge-plus-001.html
-    series_cat = series[slug]['series']
-    print(f'SERIES CAT: ', series_cat)
-    if not series_cat:
-        abort(404)
-    return render_template(f"/posts/series/{slug}.html", series=series_cat)
+    return render_template('blog.html', blogs=blogs)
 
 
-            # return render_template(
-            #     f"labs/{lab['template']}",
-            #     title=lab["title"],
-            #     author=lab["author"],
-            #     content=lab["content"]
-            # )
-
-@app.route("/series-post/<slug>")
-def series_post(slug):
-    post = series.get(slug)
-    if post:
+@app.route('/blog/<slug>')
+def show_blog_post(slug):
+    blog = blogs.get(slug)
+    if blog:
         try:
-            print(post[slug])
             return render_template(
-                f"/posts/posts/{ post[slug] }"
+                f"blog/{blog['template']}",
+                title=blog["title"],
+                author=blog["author"],
+                content=blog["content"]
             )
-        except TemplateNotFound:
+        except TemplateNotFound as e:
+            print(f"Template not found: {e}")
             abort(404)
     else:
+        print(f"No blog found for slug: {slug}")
         abort(404)
 
+# projects = {
+#     "data-forge-plus": {
+#         "title": "Data Forge Plus",
+#         "description": "Data Forge helps you ask the right questions on your dataset AND helps you visualize them.",
+#         "tech": ["Flask", "Streamlit", "AWS Lambda", "S3", "RDS", "OpenAI"],
+#         "author": "Lannon Khau",
+#         "image1": "static/images/magma.png",
+#         "icon": "static/images/forge_icon.svg",
+#         "template": "data-forge-plus.html",
+#         "login_req": "True",
+#     },
+#     "exo-land": {
+#         "title": "Exo-Explorer",
+#         "description": "Ever wanted to see what the surface of our nearest exoplanet, Kepler 22B, looked like?",
+#         "tech": ["Pandas", "Scikit-Learn", "OpenAI", "DALL·E", "Streamlit", "Flask"],
+#         "author": "Lannon Khau",
+#         "image1": "static/images/ship.jpg",
+#         "icon": "static/images/planet_icon.svg",
+#         "template": "exo-land.html",
+#         "login_req": "False",
+
+#     },
+#     "Octopus Books": {
+#         "title": "Octopus Books",
+#         "description": (
+#             "Generate a thorough and detailed summary of any book! This web app is for those who occasionally forget what they read and would like a summary of their current place in the book (no spoilers)!"
+#         ),
+#         "tech": ["OCR", "LangChain", "OpenAI", "Streamlit / Discord", "Pinecone", "PDF Parsing"],
+#         "author": "Lannon Khau",
+#         "image1": "static/images/octo.svg",
+#         "icon": "static/images/bookstar.png",
+#         "template": "quote-able.html",
+#         "login_req": "False",
+#     }
+# }
+# @app.route('/projects')
+# def show_projects():
+#     return render_template('projects.html', projects=projects)
+
+# @app.route('/projects/<slug>')
+# def show_project(slug):
+#     project = projects.get(slug)
+#     if project:
+#         try:
+#             return render_template(
+#                 f"projects/{project['template']}",
+#                 title=project["title"],
+#                 description=project["description"],
+#                 tech=project["tech"],
+#                 author=project["author"],
+#                 image=project["image1"]
+#             )
+#         except TemplateNotFound:
+#             abort(404)
+#     else:
+#         abort(404)
 # ─── Contact Section  ──────────────────────────────────────────────────────────────────────
 
 @app.route("/contact", methods=["GET", "POST"])
