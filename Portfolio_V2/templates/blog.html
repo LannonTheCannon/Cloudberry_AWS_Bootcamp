@@ -1,67 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog – Lannon Khau</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="/static/favicon.ico" />
-  </head>
-  <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="stylesheet" type="text/css" href="/static/css/app.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <title>All Projects</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes draw-border {
+      0% {
+        border-width: 0;
+        clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+      }
 
-    <!-- Nav -->
-    <header class="w-full px-6 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold tracking-tight">
-        <a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
-      </h1>
-      <nav class="space-x-6 text-sm">
-        <a href="/" class="hover:text-indigo-400">Home</a>
-        <a href="/about" class="hover:text-indigo-400">Mission</a>
-        <a href="/projects" class="hover:text-indigo-400">Projects</a>
-        <a href="/blog" class="text-indigo-400 font-semibold">Blog</a>
-        <a href="/the_lab" class="hover:text-indigo-400">The Lab</a>
-        <a href="/contact" class="hover:text-indigo-400">Contact</a>
-      </nav>
-    </header>
+      25% {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      }
 
-    <section class="fade-in-up opacity-0 translate-y-10 transition duration-700 flex flex-col items-center text-center mt-16 px-4">
-      <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4 leading-tight"><span class="text-indigo-400"> Words</span> That Built My Code</h2>
-      <p class="text-gray-300 max-w-2xl">
-        A briefing of the time I spent on this bootcamp, what I've learned, and realtime demonstrations with AI workflows.
-      </p>
+      50% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
+      }
 
+      75% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
 
-      <h2 class="text-4xl font-bold text-center mb-14 text-white">Blog</h2>
+      100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+    .floating-star {
+      position: absolute;
+      top: -1rem;         /* Adjust vertical alignment */
+      right: -6rem;      /* Push out horizontally to "hover" next to the block */
+      z-index: 10;
+      pointer-events: none;
+    }
 
-      <div class="max-w-6xl mx-auto grid grid-cols-3 gap-6">
-        {% for slug, post in series.items() %}
-        <a href="{{ url_for('blog_series', slug=slug) }}"
-           class="group tilt-card relative w-full h-[420px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
+    .floating-star::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 200%;
+      height: 120px;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(173, 216, 255, 0.6),
+        rgba(173, 216, 255, 0.05) 70%,
+        transparent 100%
+      );
+      filter: blur(80px);
+      opacity: 0.9;
+      z-index: -1;
+    }
+    @media (max-width: 540px) {
+      .floating-star {
+        position: relative !important;
+        top: 0 !important;
+        right: 0 !important;
+        margin: 0 auto 1.5rem auto !important;
+        width: 300px !important;
+        height: auto !important;
+        display: flex;
+        justify-content: center;
+      }
+
+      .floating-star img {
+        width: 100% !important;
+        height: auto !important;
+        transform: none !important;
+      }
+    }
+
+  </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
+
+  <!-- Nav -->
+      <header class="w-full px-6 py-4 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-6">
+
+    <h1 class="text-xl font-bold tracking-tight">
+      <a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
+    </h1>
+    <nav class="space-x-6 text-sm">
+      <a href="/" class="hover:text-indigo-400">Home</a>
+      <a href="/about" class="hover:text-indigo-400">Mission</a>
+      <a href="/projects" class="hover:text-indigo-400">Projects</a>
+      <a href="/blog" class="text-indigo-400 font-semibold">Blog</a>
+      <!-- <a href="/the_lab" class="hover:text-indigo-400">The Lab</a> -->
+      <a href="/contact" class="hover:text-indigo-400">Contact</a>
+    </nav>
+  </header>
+
+      <section
+        class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-12 -mt-4 max-w-7xl mx-auto text-center"
+        data-delay="200ms"
+      >
+       <h2 class="text-4xl mb-8 md:text-5xl font-serif font-bold mb-4 leading-tight"><span class="text-indigo-400">All</span> blogs</h2>
+
+<!--      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">-->
+      <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for slug, blog in blogs.items() %}
+        <a href="{{ url_for('show_blog_post', slug=slug) }}"
+           class="relative w-full h-[480px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
 
           <!-- Header Row -->
           <div class="flex items-start justify-between mb-4">
             <!-- Profile / Icon -->
             <div class="w-16 h-16 rounded-full overflow-hidden border border-white/10">
-              <img src="{{ post.icon }}"
+              <img src="{{ blog.icon }}"
                    alt="Icon"
                    class="w-full h-full object-contain bg-white/5 p-2" />
             </div>
 
             <!-- Title / Metadata -->
             <div class="text-right ml-4">
-              <h3 class="text-lg font-semibold text-white">{{ post.title }}</h3>
-              <p class="text-xs text-gray-400 mt-1 uppercase tracking-wide font-mono">By {{ post.author }}</p>
+              <h3 class="text-lg font-semibold text-white">{{ blog.title }}</h3>
+              <p class="text-xs text-gray-400 mt-1 uppercase tracking-wide font-mono">By {{ blog.author }}</p>
+              <p class="text-xs text-gray-400 mt-1 uppercase tracking-wide font-mono">Login Required: {{ blog.login_req }}</p>
             </div>
           </div>
 
           <!-- Summary Scrollable -->
-          <div class="flex-1 overflow-y-auto max-h-[120px] custom-scrollbar text-sm text-gray-300 leading-relaxed font-light whitespace-pre-line">
-            {{ post.content }}
+          <div class="flex-1 overflow-y-auto max-h-[90px] custom-scrollbar text-sm text-gray-300 leading-relaxed font-light whitespace-pre-line">
+            {{ blog.description }}
           </div>
 
           <!-- Image Row -->
           <div class="w-full h-40 mt-4 rounded-md overflow-hidden border border-white/10">
-            <img src="{{ post.image1 }}"
+            <img src="{{ blog.image1 }}"
                  alt="Lab Preview"
                  class="w-full h-full object-cover" />
           </div>
@@ -69,16 +145,16 @@
 
           <!-- Footer Row -->
           <div class="pt-3 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between mt-4">
-            <span>ID: Series-{{ '%02d' % loop.index }}</span>
-            <span>Sector: AI EDU</span>
+            <span>ID: BLOG-{{ '%02d' % loop.index }}</span>
+            <span>SECTOR: AI EDU</span>
           </div>
         </a>
         {% endfor %}
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
+  <!-- Footer -->
+  <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
     <div class="flex justify-center space-x-6 py-6">
       <a href="https://github.com/LannonTheCannon" target="_blank" rel="noopener noreferrer">
         <img src="/static/icons/github.svg" alt="GitHub" class="h-6 w-6 hover:scale-110 transition" />
@@ -93,27 +169,363 @@
         <img src="/static/icons/goog.svg" alt="Email" class="h-6 w-6 hover:scale-110 transition" />
       </a>
     </div>
-      &copy; 2025 Lannon Khau. Writing code. Writing stories. Always building.
-    </footer>
+    &copy; 2025 Lannon Khau. Powered by Flask & Tailwind. All rights reserved.
+  </footer>
 
-      <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.remove("opacity-0", "translate-y-10");
-            entry.target.classList.add("opacity-100", "translate-y-0");
-            entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
-            observer.unobserve(entry.target);
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const ctx = document.getElementById("skillBarChart").getContext("2d");
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['May 25', 'May 26', 'May 27', 'May 28', 'May 29', 'May 30', 'May 31'],
+      datasets: [
+        {
+          label: 'Lines Added',
+          data: [120, 150, 80, 200, 180, 160, 210],
+          borderColor: '#4ADE80',
+          backgroundColor: 'rgba(74, 222, 128, 0.1)',
+          tension: 0.3,
+          fill: true,
+        },
+        {
+          label: 'Lines Removed',
+          data: [20, 60, 40, 50, 70, 30, 90],
+          borderColor: '#F87171',
+          backgroundColor: 'rgba(248, 113, 113, 0.1)',
+          tension: 0.3,
+          fill: true,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          labels: {
+            color: '#e2e8f0',
+            font: {
+              family: 'monospace'
+            }
           }
-        });
-      }, { threshold: 0.25 });
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#cbd5e1' },
+          grid: { color: 'rgba(255,255,255,0.05)' }
+        },
+        y: {
+          ticks: { color: '#cbd5e1' },
+          grid: { color: 'rgba(255,255,255,0.05)' }
+        }
+      }
+    }
+  });
+});
+</script>
 
-      document.querySelectorAll('.fade-in-up').forEach((el) => {
-        observer.observe(el);
-      });
+  <script>
+  const projectCards = document.querySelectorAll(".project-card");
+  const statsSection = document.querySelector(".stat-grid");
+  const missionLog = document.querySelector(".mission-log");
+  const skillChart = document.querySelector(".skill-chart");
+
+  const projectData = {
+    "data-forge-plus": {
+      stats: [137, 2, 5, 145],
+      log: [
+        "[05.31.2025 – 20:15] Pushed 6 commits to `data-forge-plus`",
+        "[05.31.2025 – 18:42] Refactored OpenAI Assistant Memory"
+      ]
+    },
+    "exo-land": {
+      stats: [89, 4, 7, 122],
+      log: [
+        "[05.30.2025 – 16:09] Rendered 14 planets with DALL·E 3",
+        "[05.30.2025 – 13:32] Merged `habitability-score` pipeline"
+      ]
+    },
+    "quote-ability": {
+      stats: [42, 3, 6, 90],
+      log: [
+        "[05.30.2025 – 09:14] Indexed 3 books into vector DB",
+        "[05.29.2025 – 21:22] Launched quote scheduler"
+      ]
+    }
+  };
+
+  function animateCount(el, target) {
+    let current = 0;
+    const increment = Math.ceil(target / 40);
+    const interval = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        el.textContent = target;
+        clearInterval(interval);
+      } else {
+        el.textContent = current;
+      }
+    }, 20);
+  }
+
+  projectCards.forEach(card => {
+    card.addEventListener("click", () => {
+      // Remove .selected from all cards
+      projectCards.forEach(c => c.classList.remove("selected"));
+      // Add .selected to clicked one
+      card.classList.add("selected");
+
+      const selected = card.dataset.project;
+      const newStats = projectData[selected].stats;
+      const newLog = projectData[selected].log;
+
+      // Animate fade out
+      statsSection.classList.add("opacity-0", "transition", "duration-300");
+      missionLog.classList.add("opacity-0", "transition", "duration-300");
+      skillChart.classList.add("opacity-0", "transition", "duration-300");
+
+      setTimeout(() => {
+        // Update stats counters
+        const counters = statsSection.querySelectorAll(".counter");
+        counters.forEach((el, i) => {
+          el.textContent = "0"; // Reset first
+          animateCount(el, newStats[i]);
+        });
+
+        // Update mission log
+        const ul = missionLog.querySelector("ul");
+        ul.innerHTML = newLog.map(log => `
+          <li>
+            <span class="text-xs text-gray-400">${log.split(']')[0]}]</span><br>
+            <span class="text-indigo-200">${log.split(']')[1].trim()}</span>
+          </li>
+        `).join("");
+
+        // Fade back in
+        statsSection.classList.remove("opacity-0");
+        missionLog.classList.remove("opacity-0");
+        skillChart.classList.remove("opacity-0");
+      }, 300);
     });
+  });
   </script>
 
-  </body>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const defaultProject = "data-forge-plus";
+  const defaultCard = document.querySelector(`.project-card[data-project="${defaultProject}"]`);
+
+  if (defaultCard) {
+    defaultCard.classList.add("selected");
+
+    const newStats = projectData[defaultProject].stats;
+    const newLog = projectData[defaultProject].log;
+
+    // Update stat counters
+    const counters = statsSection.querySelectorAll(".counter");
+    counters.forEach((el, i) => {
+      el.textContent = "0"; // Reset
+      animateCount(el, newStats[i]);
+    });
+
+    // Update mission log
+    const ul = missionLog.querySelector("ul");
+    ul.innerHTML = newLog.map(log => `
+      <li>
+        <span class="text-xs text-gray-400">${log.split(']')[0]}]</span><br>
+        <span class="text-indigo-200">${log.split(']')[1].trim()}</span>
+      </li>
+    `).join("");
+
+    // Reset & rebuild skill chart
+    const ctx = document.getElementById("skillBarChart").getContext("2d");
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['May 25', 'May 26', 'May 27', 'May 28', 'May 29', 'May 30', 'May 31'],
+        datasets: [
+          {
+            label: 'Lines Added',
+            data: [120, 150, 80, 200, 180, 160, 210],
+            borderColor: '#4ADE80',
+            backgroundColor: 'rgba(74, 222, 128, 0.1)',
+            tension: 0.3,
+            fill: true,
+          },
+          {
+            label: 'Lines Removed',
+            data: [20, 60, 40, 50, 70, 30, 90],
+            borderColor: '#F87171',
+            backgroundColor: 'rgba(248, 113, 113, 0.1)',
+            tension: 0.3,
+            fill: true,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            labels: {
+              color: '#e2e8f0',
+              font: { family: 'monospace' }
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: '#cbd5e1' },
+            grid: { color: 'rgba(255,255,255,0.05)' }
+          },
+          y: {
+            ticks: { color: '#cbd5e1' },
+            grid: { color: 'rgba(255,255,255,0.05)' }
+          }
+        }
+      }
+    });
+  }
+});
+  </script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const defaultProject = "data-forge-plus";
+        const defaultCard = document.querySelector(`.project-card[data-project="${defaultProject}"]`);
+
+        if (defaultCard) {
+          defaultCard.classList.add("selected");
+
+          const newStats = projectData[defaultProject].stats;
+          const newLog = projectData[defaultProject].log;
+
+          const counters = statsSection.querySelectorAll(".counter");
+          counters.forEach((el, i) => {
+            el.textContent = "0"; // Reset first
+            animateCount(el, newStats[i]);
+          });
+
+          const ul = missionLog.querySelector("ul");
+          ul.innerHTML = newLog.map(log => `
+            <li>
+              <span class="text-xs text-gray-400">${log.split(']')[0]}]</span><br>
+              <span class="text-indigo-200">${log.split(']')[1].trim()}</span>
+            </li>
+          `).join("");
+        }
+      });
+  </script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove("opacity-0", "translate-y-10");
+          entry.target.classList.add("opacity-100", "translate-y-0");
+          entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    document.querySelectorAll('.fade-in-up').forEach((el) => {
+      observer.observe(el);
+    });
+  });
+  </script>
+
+  <script>
+  const projectCards = document.querySelectorAll(".project-card");
+  const statsSection = document.querySelector(".stat-grid");
+  const missionLog = document.querySelector(".mission-log");
+  const skillChart = document.querySelector(".skill-chart");
+
+  const projectData = {
+    "data-forge-plus": {
+      stats: [137, 2, 5, 145],
+      log: [
+        "[05.31.2025 – 20:15] Pushed 6 commits to `data-forge-plus`",
+        "[05.31.2025 – 18:42] Refactored OpenAI Assistant Memory"
+      ]
+    },
+    "exo-land": {
+      stats: [89, 4, 7, 122],
+      log: [
+        "[05.30.2025 – 16:09] Rendered 14 planets with DALL·E 3",
+        "[05.30.2025 – 13:32] Merged `habitability-score` pipeline"
+      ]
+    },
+    "quote-ability": {
+      stats: [42, 3, 6, 90],
+      log: [
+        "[05.30.2025 – 09:14] Indexed 3 books into vector DB",
+        "[05.29.2025 – 21:22] Launched quote scheduler"
+      ]
+    }
+  };
+
+  function animateCount(el, target) {
+    let current = 0;
+    const increment = Math.ceil(target / 40);
+    const interval = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        el.textContent = target;
+        clearInterval(interval);
+      } else {
+        el.textContent = current;
+      }
+    }, 20);
+  }
+
+  projectCards.forEach(card => {
+    card.addEventListener("click", () => {
+      // Remove .selected from all cards
+      projectCards.forEach(c => c.classList.remove("selected"));
+      // Add .selected to clicked one
+      card.classList.add("selected");
+
+      const selected = card.dataset.project;
+      const newStats = projectData[selected].stats;
+      const newLog = projectData[selected].log;
+
+      // Animate fade out
+      statsSection.classList.add("opacity-0", "transition", "duration-300");
+      missionLog.classList.add("opacity-0", "transition", "duration-300");
+      skillChart.classList.add("opacity-0", "transition", "duration-300");
+
+      setTimeout(() => {
+        // Update stats counters
+        const counters = statsSection.querySelectorAll(".counter");
+        counters.forEach((el, i) => {
+          el.textContent = "0"; // Reset first
+          animateCount(el, newStats[i]);
+        });
+
+        // Update mission log
+        const ul = missionLog.querySelector("ul");
+        ul.innerHTML = newLog.map(log => `
+          <li>
+            <span class="text-xs text-gray-400">${log.split(']')[0]}]</span><br>
+            <span class="text-indigo-200">${log.split(']')[1].trim()}</span>
+          </li>
+        `).join("");
+
+        // Fade back in
+        statsSection.classList.remove("opacity-0");
+        missionLog.classList.remove("opacity-0");
+        skillChart.classList.remove("opacity-0");
+      }, 300);
+    });
+  });
+</script>
+
+
+</body>
 </html>
