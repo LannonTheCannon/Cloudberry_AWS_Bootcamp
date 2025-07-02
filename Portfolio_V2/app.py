@@ -265,16 +265,16 @@ blogs = {
     #     "icon": "static/icons/2.svg",
     #     "template": "pcep_exam.html"
     # },
-    #     "Micosoft Hackathan Reactor FY2025": {
-    #     "title": "Microsoft Hackathan Reactor FY2025",
-    #     "description": "What I've learned preparing for the Microsoft Hackathan Reactor FY2025.",
-    #     "tech": ["Python", "Flask", "SQLAlchemy", "HTML/CSS", "Bootstrap"],
-    #     "content": "What I've learned preparing for the Microsoft Hackathan Reactor FY2025.",
-    #     "author": "Lannon Khau",
-    #     "image1": "static/images/competition.jpg",
-    #     "icon": "static/icons/3.svg",
-    #     "template": "pcep_exam.html"
-    # },
+    "hack-fy2025": {
+        "title": "Microsoft Hackathan Reactor FY2025",
+        "description": "Microsoft AI Agents Hackathon was an incredible experience. My one key takeaway is that innovation and creativity is born from urgency, chaos and limited resources.",
+        "tech": ["Python", "Flask", "SQLAlchemy", "HTML/CSS", "Streamlit", "LangChain", "OpenAI"],
+        "content": "What I've learned preparing for the Microsoft Hackathan Reactor FY2025.",
+        "author": "Lannon Khau",
+        "image1": "static/images/competition.jpg",
+        "icon": "static/icons/3.svg",
+        "template": "hack-fy2025.html"
+    },
 
 }
 

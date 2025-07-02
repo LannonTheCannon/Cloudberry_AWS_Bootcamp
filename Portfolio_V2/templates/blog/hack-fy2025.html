@@ -44,16 +44,16 @@
       left: 50%;
       transform: translate(-50%, -50%);
 
-      width: 200%;
-      height: 120px;
+      width: 150%;
+      height: 320px;
       background: radial-gradient(
         ellipse at center,
         rgba(173, 216, 255, 0.6),
         rgba(173, 216, 255, 0.05) 70%,
         transparent 100%
       );
-      filter: blur(80px);
-      opacity: 0.9;
+      filter: blur(60px);
+      opacity: 0.5;
       z-index: -1;
     }
     @media (max-width: 540px) {
@@ -74,7 +74,6 @@
         transform: none !important;
       }
     }
-
   </style>
 </head>
 <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
@@ -86,7 +85,7 @@
     </h1>
     <nav class="space-x-6 text-sm">
       <a href="/" class="hover:text-indigo-400">Home</a>
-      <a href="/about" class="text-indigo-400 font-semibold">Mission</a>
+      <a href="/about" class="hover:text-indigo-400">Mission</a>
       <a href="/projects" class="hover:text-indigo-400">Projects</a>
       <a href="/blog" class="hover:text-indigo-400">Blog</a>
       <!-- <a href="/blog" class="hover:text-indigo-400">Blog</a>
@@ -101,17 +100,18 @@
       <!-- Header -->
       <div class="text-left relative">
         <h1 class="mb-8 font-serif text-4xl font-bold tracking-tight text-white md:text-6xl relative">
-          Mission<span class="text-indigo-400"> Blue Scorpion</span>
+          Microsoft <span class="text-indigo-400">AI Agents Hackathon </span> FY2025
         </h1>
 
 
+
         <div
-          class="absolute top-[-5rem] sm:right-[-6rem] right-0 z-10 flex justify-center sm:justify-end floating-star"
+          class="absolute top-[2rem] sm:right-[-5rem] right-0 z-10 flex justify-center sm:justify-end floating-star"
         >
           <img
-            src="/static/images/scropi.png"
+            src="/static/images/ai.png"
             alt="Blue Scorpion"
-            class="w-64 sm:w-96 opacity-96 pointer-events-none select-none sm:rotate-[17deg]"
+            class="w-60 sm:w-60 opacity-96 pointer-events-none select-none sm:rotate-[0deg]"
           />
         </div>
 
@@ -122,9 +122,9 @@
                       <a href="#" class="hover:underline">By Lannon Khau</a>
                     </p>
                     <div class="flex space-x-1 text-sm text-gray-400">
-                      <time datetime="2025-06-04">Jun 4, 2025</time>
+                      <time datetime="2025-06-04">July 1, 2025</time>
                       <span>&middot;</span>
-                      <span>4 min read</span>
+                      <span>2 min read</span>
                     </div>
                   </div>
                 </div>
@@ -142,88 +142,116 @@
                 </div>
               </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mt-24">
-                  <!-- LEFT COLUMN: About Content -->
-                  <div class="text-lg text-slate-300">
+
+                  <img src="/static/images/heatmap.png" alt="LMS Screenshot 1" class="mt-4 rounded-xl shadow-xl border border-white/10">
+
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mt-12">
+
+                
+
+                <!-- LEFT COLUMN: LMS Screenshots -->
+                <div class="space-y-6">
+
                     <blockquote class="text-xl leading-8 text-slate-400">
-                      <span class="font-serif text-8xl text-slate-100 float-left mr-2 leading-none">I</span>
-                      ’m a full-stack AI engineer who builds systems that think, learn, and adapt. My name is Lannon, and I specialize in Python, machine learning, and scalable backend systems. I’ve built learning platforms, evaluated large language models, and created AI tools that turn complex data into clear insight.
+                      <span class="font-serif text-8xl text-slate-100 float-left mr-2 leading-none">T</span>
+he Microsoft Reactor Hackathon Event FY2025 was my first official competition with other individual developers or teams of up to 4. I got to see 
+some seriously impressive submissions and with over 500 other notable projects, I was up against some of best in the nation. 
                     </blockquote>
 
-                    <div class="flex justify-center mt-10">
+                  <hr class="mt-4 my-16 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+
+                  <div class="text-lg text-slate-300">
+
+
+                    <div class="flex justify-center mt-8">
                       <img
-                        src="/static/images/avatar.png"
+                        src="/static/images/hacker.png"
                         alt="Portrait of Lannon Khau"
                         class="w-60 h-60 object-cover object-[center_bottom] rounded-full border-4 border-white/20 shadow-lg" />
                     </div>
 
                     <div class="prose prose-lg prose-invert prose-indigo max-w-none mt-12">
                       <h3 class="text-2xl font-bold leading-6 text-white">From Projects to Production</h3>
-                      <p class="text-slate-400">
-                        I’ve worked on everything from robotics analytics platforms to NLP-powered education tools, building end-to-end systems using Flask, React, AWS, and containerized microservices. I love turning experiments into scalable apps that actually ship.
+                      <p class="text-slate-400 mt-2">
+I uploaded Data Forge Lite, a streamlit app that would allow non-technical users upload any size dataset (under 200mb). The application
+would then take the user from data ingestion, to interactive mind mapping, to data visualization and storytelling.
                       </p>
 
                       <blockquote class="mt-4 border-l-4 pl-4 italic text-indigo-300">
-                        “Mission Blue Scorpion came from my zodiac sign. Someone told me I was a water scorpio or something and I thought that sounded cool.”
+“Mission Blue Scorpion came from my zodiac sign. Someone told me I was a water scorpio or something and I thought that sounded cool.”
                       </blockquote>
 
                     </div>
                   </div>
+                
+                </div>
 
-                  <!-- RIGHT COLUMN: Timeline -->
-                  <div class="relative border-l border-white/10 pl-6 space-y-8 self-start">
+                <!-- RIGHT COLUMN: About + Timeline -->
+                <div class="text-lg text-slate-300">
+                  
+                    
+                  <h3 class="text-2xl font-bold leading-6 text-white">Inspire, Teach, Grow</h3>
 
-                    <!-- 2021 Entry -->
-                    <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="300ms">
-                      <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
-                      <p class="text-sm text-gray-400 mb-1 ml-2">2021</p>
-                      <h4 class="text-white font-semibold ml-2">Graduated & Taught IoT Coding</h4>
-                      <p class="text-gray-400 text-sm mt-2 ml-2">
-                        Earned my B.S. in Information Systems from Cal State Fullerton. Taught 150+ students how to program IoT devices through a district-wide initiative, collaborating with ASD faculty to deliver hands-on tech education.
-                      </p>
-                    </div>
+                <img src="/static/images/hacka.jpeg" alt="LMS Screenshot 1" class="mt-4 rounded-xl shadow-xl border border-white/10">
 
-                    <!-- 2022 Entry -->
-                    <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="400ms">
-                      <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
-                      <p class="text-sm text-gray-400 mb-1 ml-2">2022</p>
-                      <h4 class="text-white font-semibold ml-2">Creative Core – Full-Stack Dev</h4>
-                      <p class="text-gray-400 text-sm mt-2 ml-2">
-                        Helped lead a 4-person engineering team to build a scalable LMS platform using Flask and React. Integrated ML models for student feedback and performance analytics, improving grading efficiency by 40%.
-                      </p>
-                    </div>
+                   <hr class="mt-4 my-16 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-                    <!-- 2023 Entry -->
-                    <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="500ms">
-                      <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
-                      <p class="text-sm text-gray-400 mb-1 ml-2">2023</p>
-                      <h4 class="text-white font-semibold ml-2">Scale AI – LLM Evaluator</h4>
-                      <p class="text-gray-400 text-sm mt-2 ml-2">
-                        Generated 2,500+ training examples for code completion and ML tuning. Built Python scripts for prompt evaluation and worked closely with research teams to improve alignment and model outputs.
-                      </p>
-                    </div>
 
-                    <!-- 2024 Entry -->
-                    <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="600ms">
-                      <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
-                      <p class="text-sm text-gray-400 mb-1 ml-2">2024</p>
-                      <h4 class="text-white font-semibold ml-2">Launched Data Forge & Property Pulse</h4>
-                      <p class="text-gray-400 text-sm mt-2 ml-2">
-                        Built and shipped two AI tools: <strong>Data Forge</strong>, an EDA assistant powered by OpenAI, and <strong>Property Pulse</strong>, a LangChain-based chatbot for real estate agents. Combined RAG pipelines with NLP and visual storytelling.
-                      </p>
-                    </div>
+                      <blockquote class="border-l-4 pl-4 italic text-indigo-300 -mt-12">
+                        “I just wanted my students to feel jazzed about going to coding class and feel a sense of teamwork and comraderie.”
+                      </blockquote>
 
-                    <!-- 2025 Entry -->
-                    <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="700ms">
-                      <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
-                      <p class="text-sm text-gray-400 mb-1 ml-2">2025</p>
-                      <h4 class="text-white font-semibold ml-2">Deep Dive into GenAI & AWS</h4>
-                      <p class="text-gray-400 text-sm mt-2 ml-2">
-                        Completed the Cloudberry Full-Stack AWS Bootcamp and a Generative AI for Data Science program. Submitted <strong>Data Forge</strong> to Microsoft's AI Hackathon and began working on the next generation of AI-assisted workflows.
-                      </p>
-                    </div>
+                  <hr class="mt-4 my-16 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+                  <!-- Timeline -->
+                  <div class="relative border-l border-white/10 pl-6 space-y-8 -mt-6">
+                    <!-- 2021 -->
+                    
+  <!-- 2021 -->
+  <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="300ms">
+    <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+    <p class="text-sm text-gray-400 mb-1 ml-2">figure 1</p>
+    <h4 class="text-white font-semibold ml-2">Heatmap Figure Above</h4>
+    <p class="text-gray-400 text-sm mt-2 ml-2">
+The heatmap shown above shows the joint density of effective stellar temperature (K) and radius (Solar radii) with color
+coded mean Mass (Solar masses) to explore how mass varies with temperature and radius in stellar populations.
+    </p>
+  </div>
+
+  <!-- 2022 -->
+  <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="400ms">
+    <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+    <p class="text-sm text-gray-400 mb-1 ml-2">figure 2</p>
+    <h4 class="text-white font-semibold ml-2">Prompt Engineering</h4>
+    <p class="text-gray-400 text-sm mt-2 ml-2">
+The above heatmap was generated through context that was derived from the metadata. For example, this NASA dataset was broken down by the
+AI which then created the question/ or prompt that was developed by the data visualization agent.
+    </p>
+  </div>
+
+  <!-- 2023 -->
+  <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="500ms">
+    <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+    <p class="text-sm text-gray-400 mb-1 ml-2">figure 3</p>
+    <h4 class="text-white font-semibold ml-2">The Data Visualization Agent</h4>
+    <p class="text-gray-400 text-sm mt-2 ml-2">
+The Data Visualization agent allows the user to have a conversation with their data and be able to visualize the charts
+using Plotly objects. This interactive and highly intuitive system allows users to make modifications to the charts
+either via natural language or direct code editing. 
+    </p>
+  </div>
+
+                     <hr class="mt-4 my-16 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+
+                    
                   </div>
                 </div>
+              </div>
+
+
               <!-- Contact Button -->
         <div class="mt-12 flex justify-center">
           <a href="/contact" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl text-sm font-semibold transition">
@@ -289,5 +317,6 @@
     }
   });
 </script>
+
 </body>
 </html>
