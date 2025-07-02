@@ -35,52 +35,40 @@
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
       }
     }
-    .floating-star {
+
+    .card-glow {
       position: absolute;
-      top: -1rem;         /* Adjust vertical alignment */
-      right: -6rem;      /* Push out horizontally to "hover" next to the block */
-      z-index: 10;
+      inset: -30px;
+      z-index: -1;
       pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
-    .floating-star::before {
+    .card-glow::before {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-
-      width: 200%;
-      height: 120px;
+      inset: 0;
       background: radial-gradient(
         ellipse at center,
-        rgba(173, 216, 255, 0.6),
-        rgba(173, 216, 255, 0.05) 70%,
+        rgba(173, 216, 255, 0.9),
+        rgba(173, 216, 255, 0.05) 15%,
         transparent 100%
       );
       filter: blur(80px);
-      opacity: 0.9;
       z-index: -1;
     }
-    @media (max-width: 540px) {
-      .floating-star {
-        position: relative !important;
-        top: 0 !important;
-        right: 0 !important;
-        margin: 0 auto 1.5rem auto !important;
-        width: 300px !important;
-        height: auto !important;
-        display: flex;
-        justify-content: center;
-      }
 
-      .floating-star img {
-        width: 100% !important;
-        height: auto !important;
-        transform: none !important;
-      }
+    .project-card.selected .card-glow {
+      opacity: 1;
     }
-
+    
+    /* Your existing .selected class styling */
+    .selected {
+      border-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.75);
+    }
+    
   </style>
 </head>
 <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
@@ -93,67 +81,168 @@
     </h1>
     <nav class="space-x-6 text-sm">
       <a href="/" class="hover:text-indigo-400">Home</a>
-      <a href="/service" class="hover:text-indigo-400">Services</a>
+      <a href="/service" class="text-indigo-400 font-semibold">Services</a>
       <a href="/about" class="hover:text-indigo-400">Mission</a>
-      <a href="/projects" class="text-indigo-400 font-semibold">Projects</a>
-      <a href="/blog" class="hover:text-indigo-400">Blog</a>
-      <!-- <a href="/blog" class="hover:text-indigo-400">Blog</a>
-      <a href="/the_lab" class="hover:text-indigo-400">The Lab</a> -->
+      <a href="/projects" class="hover:text-indigo-400">Projects</a>
+      <a href="/blog" class="hover:text-indigo-400">Blog</a>      
       <a href="/contact" class="hover:text-indigo-400">Contact</a>
     </nav>
   </header>
 
-      <section
-        class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-12 -mt-4 max-w-7xl mx-auto text-center"
-        data-delay="200ms"
-      >
-       <h2 class="text-4xl mb-8 md:text-5xl font-serif font-bold mb-4 leading-tight"><span class="text-indigo-400">All</span> projects</h2>
+<section id="projects-and-stats"
+    class="fade-in-up px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700">
 
-<!--      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">-->
-      <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for slug, project in projects.items() %}
-        <a href="{{ url_for('show_project', slug=slug) }}"
-           class="relative w-full h-[480px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
+    <h2 class="text-4xl mb-8 md:text-5xl font-serif font-bold leading-tight text-center">
+      Agent<span class="text-indigo-400"> Overview</span>
+    </h2>
+    <!-- Unified Grid Container -->
+    <div class="max-w-6xl mx-auto grid grid-cols-1 gap-12">
 
-          <!-- Header Row -->
-          <div class="flex items-start justify-between mb-4">
-            <!-- Profile / Icon -->
-            <div class="w-16 h-16 rounded-full overflow-hidden border border-white/10">
-              <img src="{{ project.icon }}"
-                   alt="Icon"
-                   class="w-full h-full object-contain bg-white/5 p-2" />
+      <!-- Project Cards Row -->
+
+    <div class="-mt-8 grid md:grid-cols-4 gap-6 -mb-6 pt-10">
+      {% for slug, agent in services.items() %}
+        <a data-project="{{ slug }}"
+          class="project-card {% if loop.first %}selected{% endif %} bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer relative">
+          
+          <!-- Add the glow element -->
+          <div class="card-glow"></div>
+          
+          <!-- Agent Icon and Title -->
+          <div class="flex items-center mb-4 space-x-4">
+            <div class="w-16 h-16 bg-gray-800 rounded-full overflow-hidden flex items-center justify-center border border-white/10 shadow-inner">
+              <img src="{{ agent.icon }}"
+                  alt="{{ agent.title }} Icon"
+                  class="w-full h-full object-cover object-top" />
             </div>
-
-            <!-- Title / Metadata -->
-            <div class="text-right ml-4">
-              <h3 class="text-lg font-semibold text-white">{{ project.title }}</h3>
-              <p class="text-xs text-gray-400 mt-1 uppercase tracking-wide font-mono">By {{ project.author }}</p>
-              <p class="text-xs text-gray-400 mt-1 uppercase tracking-wide font-mono">Login Required: {{ project.login_req }}</p>
-            </div>
+            <h4 class="text-base font-semibold text-white leading-tight">{{ agent.title }}</h4>
           </div>
 
-          <!-- Summary Scrollable -->
-          <div class="flex-1 overflow-y-auto max-h-[90px] custom-scrollbar text-sm text-gray-300 leading-relaxed font-light whitespace-pre-line">
-            {{ project.description }}
-          </div>
-
-          <!-- Image Row -->
-          <div class="w-full h-40 mt-4 rounded-md overflow-hidden border border-white/10">
-            <img src="{{ project.image1 }}"
-                 alt="Lab Preview"
-                 class="w-full h-full object-cover" />
-          </div>
-
-
-          <!-- Footer Row -->
-          <div class="pt-3 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between mt-4">
-            <span>ID: PROJECT-{{ '%02d' % loop.index }}</span>
-            <span>SECTOR: AI EDU</span>
-          </div>
+          <!-- Description -->
+          <p class="text-sm text-gray-400 leading-relaxed">
+            {{ agent.description }}
+          </p>
         </a>
-        {% endfor %}
-      </div>
-    </section>
+      {% endfor %}
+    </div>
+        <!-- Stat Grid -->
+
+        <div
+            class="stat-grid grid grid-cols-1 sm:grid-cols-4 gap-6 text-center bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-6">
+            <div class="flex flex-col items-center">
+
+                <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="137">0
+                </div>
+
+                <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Commits per Week</p>
+
+            </div>
+
+            <div class="flex flex-col items-center">
+
+                <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="2">0
+                </div>
+
+                <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Feature Branch Merged</p>
+
+            </div>
+
+            <div class="flex flex-col items-center">
+
+                <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="5">0
+                </div>
+
+                <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Average Commit Size</p>
+
+            </div>
+
+            <div class="flex flex-col items-center">
+
+                <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="145">0
+                </div>
+
+                <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Lines Ratio</p>
+
+            </div>
+
+        </div>
+
+        <!-- Mission Log + Skill Chart Grid -->
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 -mt-6">
+
+            <!-- Mission Log -->
+
+            <div
+                class="mission-log bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 font-mono text-sm text-gray-300">
+
+                <h4
+                    class="text-lg font-bold text-indigo-300 mb-4 tracking-widest uppercase border-b border-white/10 pb-2">
+                    Motion Mission Log</h4>
+
+                <ul class="space-y-3">
+
+                    <li>
+
+                        <span class="text-xs text-gray-400">[05.31.2025 – 20:15]</span><br>
+
+                        <span class="text-indigo-200">Pushed 6 commits to `data-forge-plus`</span>
+
+                    </li>
+
+                    <li>
+
+                        <span class="text-xs text-gray-400">[05.31.2025 – 18:42]</span><br>
+
+                        <span class="text-indigo-200">Refactored OpenAI Assistant Memory</span>
+
+                    </li>
+
+                    <li>
+
+                        <span class="text-xs text-gray-400">[05.31.2025 – 17:08]</span><br>
+
+                        <span class="text-indigo-200">Added new mission card interface</span>
+
+                    </li>
+
+                    <li>
+
+                        <span class="text-xs text-gray-400">[05.30.2025 – 22:01]</span><br>
+
+                        <span class="text-indigo-200">Deployed `quote-ability` static blog</span>
+
+                    </li>
+
+                    <li>
+
+                        <span class="text-xs text-gray-400">[05.30.2025 – 09:14]</span><br>
+
+                        <span class="text-indigo-200">Read 28 pages of *The War of Art*</span>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <!-- Skill Activity Chart -->
+
+            <div class="skill-chart bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 shadow-lg">
+
+                <h4
+                    class="text-lg font-bold text-indigo-300 mb-4 tracking-widest uppercase border-b border-white/10 pb-2 font-mono">
+                    Skill Activity</h4>
+
+                <canvas id="skillBarChart" class="w-full h-[280px]"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
   <!-- Footer -->
   <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
@@ -236,30 +325,64 @@ document.addEventListener("DOMContentLoaded", () => {
   const statsSection = document.querySelector(".stat-grid");
   const missionLog = document.querySelector(".mission-log");
   const skillChart = document.querySelector(".skill-chart");
-
-  const projectData = {
-    "data-forge-plus": {
-      stats: [137, 2, 5, 145],
-      log: [
-        "[05.31.2025 – 20:15] Pushed 6 commits to `data-forge-plus`",
-        "[05.31.2025 – 18:42] Refactored OpenAI Assistant Memory"
-      ]
-    },
-    "exo-land": {
-      stats: [89, 4, 7, 122],
-      log: [
-        "[05.30.2025 – 16:09] Rendered 14 planets with DALL·E 3",
-        "[05.30.2025 – 13:32] Merged `habitability-score` pipeline"
-      ]
-    },
-    "quote-ability": {
-      stats: [42, 3, 6, 90],
-      log: [
-        "[05.30.2025 – 09:14] Indexed 3 books into vector DB",
-        "[05.29.2025 – 21:22] Launched quote scheduler"
-      ]
-    }
-  };
+const projectData = {
+  "data-vis-agent": {
+    stats: [156, 3, 6, 165],
+    log: [
+      "[06.28.2025 – 15:12] Built RAG pipeline for SQL-based agent",
+      "[06.27.2025 – 18:22] Launched data-to-graph NL2SQL prototype"
+    ]
+  },
+  "data-wrangling-agent": {
+    stats: [124, 5, 8, 137],
+    log: [
+      "[06.26.2025 – 16:01] Refactored Flask backend for ETL agent",
+      "[06.25.2025 – 14:33] Dockerized API and deployed to AWS EC2"
+    ]
+  },
+  "feature-engineering-agent": {
+    stats: [109, 4, 7, 120],
+    log: [
+      "[06.24.2025 – 12:30] Tuned LightGBM model features",
+      "[06.23.2025 – 11:11] Generated 10K synthetic samples via Python"
+    ]
+  },
+  "sql-agent": {
+    stats: [95, 2, 6, 102],
+    log: [
+      "[06.22.2025 – 13:45] Added SQL caching mechanism",
+      "[06.21.2025 – 10:17] Launched GPT-backed DB assistant"
+    ]
+  },
+  "rag-qa-agent": {
+    stats: [132, 3, 5, 140],
+    log: [
+      "[06.20.2025 – 17:40] Embedded 200+ docs into vector DB",
+      "[06.19.2025 – 09:25] Integrated PDF parsing pipeline for RAG"
+    ]
+  },
+  "etl-agent": {
+    stats: [121, 6, 7, 134],
+    log: [
+      "[06.18.2025 – 12:00] Deployed Airflow DAG for S3 ingestion",
+      "[06.17.2025 – 08:15] Completed full ETL for daily sales data"
+    ]
+  },
+  "llm-eval-agent": {
+    stats: [88, 3, 4, 95],
+    log: [
+      "[06.16.2025 – 15:45] Evaluated GPT outputs using JSONL gold set",
+      "[06.15.2025 – 10:00] Built prompt variation tracker for eval suite"
+    ]
+  },
+  "user-auth-agent": {
+    stats: [101, 2, 5, 108],
+    log: [
+      "[06.14.2025 – 19:20] Implemented JWT and OAuth2 flow",
+      "[06.13.2025 – 11:33] Added RBAC for admin/mod/user tiers"
+    ]
+  }
+};
 
   function animateCount(el, target) {
     let current = 0;
@@ -527,7 +650,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 </script>
-
 
 </body>
 </html>

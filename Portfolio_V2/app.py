@@ -357,6 +357,115 @@ def show_blog_post(slug):
 #             abort(404)
 #     else:
 #         abort(404)
+
+# ─── Services Section  ──────────────────────────────────────────────────────────────────────
+
+services = {
+    "data-vis-agent": {
+        "title": "Data Visualization Agent",
+        "description": "Turn raw numbers into meaning with intelligent dashboards and RAG-powered visual insights.",
+        "tech": ["LangChain", "OpenAI", "Streamlit", "Pandas AI", "NL2SQL", "RAG Pipelines"],
+        "content": "This service acts as your visual co-pilot. I combine RAG pipelines with AI tools like Pandas AI and Streamlit to produce conversational dashboards, enabling business leaders and analysts to explore data through natural language and see patterns come alive visually.",
+        "author": "Lannon Khau",
+        "image1": "static/images/learn.svg",
+        "icon": "static/images/agent1.jpg",
+        "template": "data-vis-agent.html"
+    },
+    "data-wrangling-agent": {
+        "title": "Data Wrangling Agent",
+        "description": "Automate and clean your datasets with Python-native preprocessing tools.",
+        "tech": ["Flask", "React", "TailwindCSS", "SQLAlchemy", "AWS", "Docker"],
+        "content": "Designed for engineers and analysts, this agent automates dataset ingestion, cleanup, and transformation. I use Flask and React for frontend/backends, with SQLAlchemy and Dockerized deployments to ensure your data systems stay robust and scalable.",
+        "author": "Lannon Khau",
+        "image1": "static/images/mars.png",
+        "icon": "static/images/agent2.jpg",
+        "template": "data-wrangling-agent.html"
+    },
+    "feature-engineering-agent": {
+        "title": "Feature Engineering Agent",
+        "description": "Extract powerful features from raw data to optimize machine learning models.",
+        "tech": ["Python", "Pandas", "NumPy", "Scikit-learn", "Pickle", "SQL", "Airflow"],
+        "content": "I build intelligent feature pipelines that make raw datasets machine-learning ready. From scaling and encoding to custom time-series features, this agent transforms unstructured or messy inputs into optimized model-ready formats—ready to feed your AI systems.",
+        "author": "Lannon Khau",
+        "image1": "static/images/competition.jpg",
+        "icon": "static/images/agent3.jpg",
+        "template": "feature-engineering-agent.html"
+    },
+    "sql-agent": {
+        "title": "Business SQL Agent",
+        "description": "Ask business questions. Get SQL answers. No manual querying required.",
+        "tech": ["LangChain", "OpenAI", "SQL", "PostgreSQL", "Flask", "NL2SQL"],
+        "content": "This service converts natural language into business-grade SQL queries. I build agents that connect to your database, interpret your intent using NLP, and return actionable insights. Perfect for teams that want to self-serve data without knowing SQL.",
+        "author": "Lannon Khau",
+        "image1": "static/images/sql-agent.png",
+        "icon": "static/images/agent4.jpg",
+        "template": "sql-agent.html"
+    },
+    "rag-qa-agent": {
+    "title": "RAG Q&A Agent",
+    "description": "Bring context-aware intelligence to your internal docs and data with Retrieval-Augmented Generation.",
+    "tech": ["LangChain", "OpenAI", "ChromaDB", "PDF Parsers", "Tiktoken", "Pinecone"],
+    "content": "This agent enables AI systems to retrieve and synthesize answers from your documents, PDFs, or proprietary datasets using vector search. I build RAG pipelines that deliver grounded responses, reduce hallucinations, and scale with your business context.",
+    "author": "Lannon Khau",
+    "image1": "static/images/rag-agent.png",
+    "icon": "static/images/agent5.jpg",
+    "template": "rag-qa-agent.html"
+    },
+    "etl-agent": {
+        "title": "ETL Automation Agent",
+        "description": "Build fast, fault-tolerant pipelines for extracting, transforming, and loading data at scale.",
+        "tech": ["Airflow", "Pandas", "SQL", "AWS Lambda", "S3", "PostgreSQL"],
+        "content": "This agent is ideal for teams that need clean, reliable pipelines to manage large data flows. I design ETL jobs using Airflow or serverless tools to move data between cloud sources, clean it up, and make it queryable—without manual upkeep.",
+        "author": "Lannon Khau",
+        "image1": "static/images/etl-pipeline.png",
+        "icon": "static/images/agent6.jpg",
+        "template": "etl-agent.html"
+    },
+    "llm-eval-agent": {
+        "title": "LLM Evaluation Agent",
+        "description": "Measure, test, and improve large language models with custom eval pipelines.",
+        "tech": ["Python", "Jupyter", "LangChain", "OpenAI Eval", "Datasets", "JSONL"],
+        "content": "I build tools that help you evaluate LLM outputs against golden datasets or prompt variants. This agent tracks hallucinations, factual accuracy, and formatting to ensure your models improve with each iteration—perfect for R&D and internal tuning.",
+        "author": "Lannon Khau",
+        "image1": "static/images/llm-eval.png",
+        "icon": "static/images/agent7.jpg",
+        "template": "llm-eval-agent.html"
+    },
+    "user-auth-agent": {
+        "title": "User Auth Agent",
+        "description": "Secure authentication and role-based access control for your web and AI apps.",
+        "tech": ["Flask", "JWT", "OAuth2", "SQLAlchemy", "Firebase", "AWS Cognito"],
+        "content": "This service ensures your app has a secure login system with role-based permissions, token handling, and scalable session storage. Whether you're launching an LMS or an enterprise AI assistant, this agent keeps your users safe and data private.",
+        "author": "Lannon Khau",
+        "image1": "static/images/auth.png",
+        "icon": "static/images/agent8.jpg",
+        "template": "user-auth-agent.html"
+    }
+}
+
+@app.route('/service')
+def show_service():
+    return render_template('service.html', services=services)
+
+
+@app.route('/service/<slug>')
+def show_service_post(slug):
+    service = services.get(slug)
+    if service:
+        try:
+            return render_template(
+                f"service/{service['template']}",
+                title=service["title"],
+                author=service["author"],
+                content=service["content"]
+            )
+        except TemplateNotFound as e:
+            print(f"Template not found: {e}")
+            abort(404)
+    else:
+        print(f"No service found for slug: {slug}")
+        abort(404)
+
 # ─── Contact Section  ──────────────────────────────────────────────────────────────────────
 
 @app.route("/contact", methods=["GET", "POST"])
