@@ -50,7 +50,7 @@ s3_client = boto3.client("s3", region_name="us-west-2")
 
 @app.route('/')
 def home():
-    return render_template('index.html', projects=projects)
+    return render_template('index.html', projects=projects, services=services)
 
 # ─── MODELS ─────────────────────────────────────────────────────────────────────
 
