@@ -185,6 +185,38 @@
     }
   }
 
+    .card-glow {
+      position: absolute;
+      inset: -30px;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .card-glow::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(173, 216, 255, 0.9),
+        rgba(173, 216, 255, 0.05) 15%,
+        transparent 100%
+      );
+      filter: blur(80px);
+      z-index: -1;
+    }
+
+    .project-card.selected .card-glow {
+      opacity: 1;
+    }
+    
+    /* Your existing .selected class styling */
+    .selected {
+      border-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.75);
+    }
 </style>
 
   </head>
@@ -461,10 +493,49 @@ My journey began with a fascination for code and a drive to make the invisible v
         {% endfor %}
       </div>
     </section>
+
+
+    <section id="projects-and-stats"
+      class="-mt-4 fade-in-up px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700">
+    
+      <h2 class="text-4xl font-bold text-center mb-12 mt-16 text-white"><span class="text-indigo-400">AI Agents</span> Dream Team</h2>
+
+      <!-- Unified Grid Container -->
+      <div class="max-w-6xl mx-auto grid grid-cols-1 gap-12">
+    
+        <!-- Project Cards Row -->
+    
+        <div class="-mt-8 grid md:grid-cols-4 gap-6 -mb-6 pt-10">
+          {% for slug, agent in services.items() %}
+          <a data-project="{{ slug }}"
+            class="project-card {% if loop.first %}selected{% endif %} bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer relative">
+    
+            <!-- Add the glow element -->
+            <div class="card-glow"></div>
+    
+            <!-- Agent Icon and Title -->
+            <div class="flex items-center mb-4 space-x-4">
+              <div
+                class="w-16 h-16 bg-gray-800 rounded-full overflow-hidden flex items-center justify-center border border-white/10 shadow-inner">
+                <img src="{{ agent.icon }}" alt="{{ agent.title }} Icon" class="w-full h-full object-cover object-top" />
+              </div>
+              <h4 class="text-base font-semibold text-white leading-tight">{{ agent.title }}</h4>
+            </div>
+    
+            <!-- Description -->
+            <p class="text-sm text-gray-400 leading-relaxed">
+              {{ agent.description }}
+            </p>
+          </a>
+          {% endfor %}
+        </div>
+    
+    </section>
+    
     
 
       <!-- Contact Card Section -->
-<section class="fade-in-up mb-8 mt-8 opacity-0 translate-y-10 transition duration-700 relative flex flex-col items-center px-8 py-14 overflow-hidden", data-delay="200ms">
+<section class="fade-in-up mb-6 mt-6 opacity-0 translate-y-10 transition duration-700 relative flex flex-col items-center px-8 py-14 overflow-hidden", data-delay="200ms">
   <!-- Heading centered above the form -->
   <div class="text-center mb-12">
     <h2 class="text-4xl font-bold text-white">
