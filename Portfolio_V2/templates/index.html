@@ -1,86 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio V2 – Lannon Khau</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="icon" href="/static/favicon.ico" />
 
-    <style>
-.typing-ball {
-  width: 10px;
-  height: 10px;
-  background-color: white;
-  border-radius: 50%;
-  animation: bounce 1.2s infinite ease-in-out;
-  opacity: 0.6;
-}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio V2 – Lannon Khau</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" href="/static/favicon.ico" />
 
-.dot1 {
-  animation-delay: 0s;
-}
-.dot2 {
-  animation-delay: 0.2s;
-}
-.dot3 {
-  animation-delay: 0.4s;
-}
+  <style>
+    .typing-ball {
+      width: 10px;
+      height: 10px;
+      background-color: white;
+      border-radius: 50%;
+      animation: bounce 1.2s infinite ease-in-out;
+      opacity: 0.6;
+    }
 
-@keyframes bounce {
-  0%, 80%, 100% {
-    transform: scale(0.8);
-    opacity: 0.4;
-  }
-  40% {
-    transform: scale(1.4);
-    opacity: 1;
-  }
-}
+    .dot1 {
+      animation-delay: 0s;
+    }
 
-.custom-scrollbar {
-  scrollbar-width: none; /* Hide scrollbar for Firefox initially */
-  scrollbar-color: rgba(255, 255, 255, 0.5) transparent; /* For Firefox when we show it */
-}
+    .dot2 {
+      animation-delay: 0.2s;
+    }
 
-/* Show thin scrollbar on hover for Firefox */
-.custom-scrollbar:hover {
-  scrollbar-width: thin;
-}
+    .dot3 {
+      animation-delay: 0.4s;
+    }
 
-/* WebKit browsers (Chrome, Safari, Edge) */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px; /* Make it very thin */
-  background: transparent;
-}
+    @keyframes bounce {
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent !important;
-  border: none;
-  border-radius: 0;
-}
+      0%,
+      80%,
+      100% {
+        transform: scale(0.8);
+        opacity: 0.4;
+      }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 2px;
-  border: none;
-  min-height: 20px;
-}
+      40% {
+        transform: scale(1.4);
+        opacity: 1;
+      }
+    }
 
-/* Only show scrollbar on hover */
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: transparent;
-}
+    .custom-scrollbar {
+      scrollbar-width: none;
+      /* Hide scrollbar for Firefox initially */
+      scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+      /* For Firefox when we show it */
+    }
 
-.custom-scrollbar:hover::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.5);
-}
+    /* Show thin scrollbar on hover for Firefox */
+    .custom-scrollbar:hover {
+      scrollbar-width: thin;
+    }
 
-/* Remove any corner backgrounds */
-.custom-scrollbar::-webkit-scrollbar-corner {
-  background: transparent;
-}
+    /* WebKit browsers (Chrome, Safari, Edge) */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      /* Make it very thin */
+      background: transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent !important;
+      border: none;
+      border-radius: 0;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+      border: none;
+      min-height: 20px;
+    }
+
+    /* Only show scrollbar on hover */
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
+
+    .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Remove any corner backgrounds */
+    .custom-scrollbar::-webkit-scrollbar-corner {
+      background: transparent;
+    }
 
     @keyframes draw-border {
       0% {
@@ -115,8 +126,10 @@
 
     .floating-star {
       position: absolute;
-      top: 0rem;         /* Adjust vertical alignment */
-      right: 0rem;      /* Push out horizontally to "hover" next to the block */
+      top: 0rem;
+      /* Adjust vertical alignment */
+      right: 0rem;
+      /* Push out horizontally to "hover" next to the block */
       z-index: -100;
       pointer-events: none;
     }
@@ -130,17 +143,16 @@
 
       width: 100%;
       height: 200px;
-      background: radial-gradient(
-        ellipse at center,
-        rgba(173, 216, 255, 0.6),
-        rgba(173, 216, 255, 0.05) 80%,
-        transparent 100%
-      );
+      background: radial-gradient(ellipse at center,
+          rgba(173, 216, 255, 0.6),
+          rgba(173, 216, 255, 0.05) 80%,
+          transparent 100%);
       filter: blur(40px);
       opacity: .55;
       z-index: -100;
     }
-   @media (max-width: 640px) {
+
+    @media (max-width: 640px) {
       .fade-in-up {
         opacity: 100 !important;
         transform: none !important;
@@ -148,30 +160,12 @@
     }
 
     @media (max-width: 540px) {
-  .floating-star {
-    position: relative !important;
-    top: 0 !important;
-    right: 0 !important;
-    margin: 0 auto 1.5rem auto !important;
-    width: 400px !important;
-    height: auto !important;
-    display: flex;
-    justify-content: center;
-  }
-
-  .floating-star{
-    width: 100% !important;
-    height: auto !important;
-    transform: none !important;
-  }
-
-    @media (max-width: 540px) {
       .floating-star {
         position: relative !important;
         top: 0 !important;
         right: 0 !important;
         margin: 0 auto 1.5rem auto !important;
-        width: 300px !important;
+        width: 400px !important;
         height: auto !important;
         display: flex;
         justify-content: center;
@@ -182,8 +176,26 @@
         height: auto !important;
         transform: none !important;
       }
+
+      @media (max-width: 540px) {
+        .floating-star {
+          position: relative !important;
+          top: 0 !important;
+          right: 0 !important;
+          margin: 0 auto 1.5rem auto !important;
+          width: 300px !important;
+          height: auto !important;
+          display: flex;
+          justify-content: center;
+        }
+
+        .floating-star {
+          width: 100% !important;
+          height: auto !important;
+          transform: none !important;
+        }
+      }
     }
-  }
 
     .card-glow {
       position: absolute;
@@ -198,12 +210,10 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(
-        ellipse at center,
-        rgba(173, 216, 255, 0.9),
-        rgba(173, 216, 255, 0.05) 15%,
-        transparent 100%
-      );
+      background: radial-gradient(ellipse at center,
+          rgba(173, 216, 255, 0.9),
+          rgba(173, 216, 255, 0.05) 20%,
+          transparent 100%);
       filter: blur(80px);
       z-index: -1;
     }
@@ -211,149 +221,155 @@
     .project-card.selected .card-glow {
       opacity: 1;
     }
-    
+
     /* Your existing .selected class styling */
     .selected {
       border-color: rgba(255, 255, 255, 0.9);
       box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.75);
     }
-</style>
+  </style>
 
-  </head>
-  <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col overflow-x-hidden">
+</head>
 
-    <!-- Nav -->
-    <header class="w-full px-6 py-4 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-6">
-      <h1 class="text-xl font-bold tracking-tight">Lannon Khau</h1>
-      <nav class="space-x-6 text-sm">
-        <a href="/" class="text-indigo-400 font-semibold">Home</a>
-        <a href="/service" class="hover:text-indigo-400">Services</a>
-        <a href="/about" class="hover:text-indigo-400">Mission</a>
-        <a href="/projects" class="hover:text-indigo-400">Projects</a>
-        <a href="/blog" class="hover:text-indigo-400">Blog</a>
-        <a href="/contact" class="hover:text-indigo-400">Contact</a>
-      </nav>
-    </header>
+<body
+  class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col overflow-x-hidden">
 
-    <!-- Hero -->
-<section class="fade-in-up opacity-0 mt-12 translate-y-10 transition duration-700 flex-1 flex flex-col justify-center items-center text-center px-20 mt-10 py-2">
-  <h1 class="font-serif text-4xl md:text-5xl font-bold mb-4 leading-tight">
-        From prototype to production, <span class="text-indigo-400">tell your story.</span>
-      </h1>
-      <p class="text-gray-300 max-w-xl mb-6">
-        My name is Lannon, and I build with intention, curiosity, and a quiet fire to explore the unknown.
-      </p>
-      <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-16 ">
-        <a href="/projects" class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-xl transition text-center">
-          Explore Projects
-        </a>
-        <a href="/contact" class="bg-white text-gray-800 hover:bg-gray-200 px-5 py-2 rounded-xl transition text-center">
-          Contact Me
-        </a>
+  <!-- Nav -->
+  <header
+    class="w-full px-6 py-4 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-6">
+    <h1 class="text-xl font-bold tracking-tight">Lannon Khau</h1>
+    <nav class="space-x-6 text-sm">
+      <a href="/" class="text-indigo-400 font-semibold">Home</a>
+      <a href="/service" class="hover:text-indigo-400">Services</a>
+      <a href="/about" class="hover:text-indigo-400">Mission</a>
+      <a href="/projects" class="hover:text-indigo-400">Projects</a>
+      <a href="/blog" class="hover:text-indigo-400">Blog</a>
+      <a href="/contact" class="hover:text-indigo-400">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section
+    class="fade-in-up opacity-0 mt-12 translate-y-10 transition duration-700 flex-1 flex flex-col justify-center items-center text-center px-20 mt-10 py-2">
+    <h1 class="font-serif text-4xl md:text-5xl font-bold mb-4 leading-tight">
+      From prototype to production, <span class="text-indigo-400">tell your story.</span>
+    </h1>
+    <p class="text-gray-300 max-w-xl mb-6">
+      My name is Lannon, and I build with intention, curiosity, and a quiet fire to explore the unknown.
+    </p>
+    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-16 ">
+      <a href="/projects"
+        class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-xl transition text-center">
+        Explore Projects
+      </a>
+      <a href="/contact" class="bg-white text-gray-800 hover:bg-gray-200 px-5 py-2 rounded-xl transition text-center">
+        Contact Me
+      </a>
+    </div>
+  </section>
+
+  <section
+    class="hidden sm:block fade-in-up opacity-0 translate-y-10 transition duration-700 text-white text-center -mt-10 mb-4 px-4"
+    data-delay="200ms">
+
+    <div class="-mt-2 mb-1">
+      <hr class="w-24 border-white/20 mx-auto" />
+    </div>
+
+    <div class="flex justify-center items-center space-x-2 text-lg text-white/70 tracking-wide font-serif leading-none">
+      <span class="text-xl">★★★★</span>
+      <span class="text-white/30">|</span>
+      <div class="relative overflow-hidden h-[2.5em] flex items-center">
+        <span id="quote-display" class="italic transition-opacity duration-500 ease-in-out"></span>
       </div>
-    </section>
-
-<section class="hidden sm:block fade-in-up opacity-0 translate-y-10 transition duration-700 text-white text-center -mt-10 mb-4 px-4" data-delay="200ms">
-  
-      <div class="-mt-2 mb-1">
-        <hr class="w-24 border-white/20 mx-auto" />
-      </div>
-
-  <div class="flex justify-center items-center space-x-2 text-lg text-white/70 tracking-wide font-serif leading-none">
-        <span class="text-xl">★★★★</span>
-        <span class="text-white/30">|</span>
-        <div class="relative overflow-hidden h-[2.5em] flex items-center">
-<span id="quote-display" class="italic transition-opacity duration-500 ease-in-out"></span>
-        </div>
-      </div>
+    </div>
 
 
 
-      <!-- Spaceship Image Overlapping Right Side (no blur) -->
+    <!-- Spaceship Image Overlapping Right Side (no blur) -->
     <div class="relative w-full overflow-hidden">
       <div class="absolute right-0 top-20 transform -translate-y-1/2 z-0 pointer-events-none max-w-[100vw]">
-        <img
-          src="/static/images/landing.png"
-          alt="Futuristic Spaceship"
-          class="w-[300px] md:w-[400px] lg:w-[520px] max-w-full"
-        />
+        <img src="/static/images/landing.png" alt="Futuristic Spaceship"
+          class="w-[300px] md:w-[400px] lg:w-[520px] max-w-full" />
       </div>
 
-    </section>
-
-
-<section class="relative flex justify-center items-center px-8 pt-8 pb-3 -mt-4 fade-in-up opacity-0 translate-y-10 transition duration-700 overflow-visible gap-12" data-delay="400ms">
-
-  <!-- Glow Behind Card -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-indigo-400/20 blur-[100px] z-10 pointer-events-none"></div>
-
-  <!-- Tilt Card -->
-  <div class="tilt-card -mt-6 relative z-20 w-full max-w-2xl h-[335px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform overflow-visible">
-
-    <!-- Top Row -->
-    <div class="flex items-start justify-between">
-      <!-- Profile Bubble -->
-      <div class="w-28 h-28 rounded-full overflow-hidden border border-white/20">
-        <img src="/static/images/space_commander.png" alt="Profile" class="object-cover w-full h-full" />
-      </div>
-      <!-- ID Title -->
-      <div class="flex flex-col mt-1">
-        <h4 class="text-2xl sm:text-3xl font-extrabold text-gray-100 tracking-wide text-right block">
-          Lannon <span class="text-indigo-400">Khau</span>
-        </h4>
-        <div class="mt-1 w-full border-t border-white/10"></div>
-        <span class="text-xs text-white-400 font-mono tracking-widest uppercase mt-1 text-right block">
-          Full-Stack AI/ML Engineer
-        </span>
-      </div>
-    </div>
-
-    <!-- Scrollable Typewriter Output -->
-    <div id="typewriter-container" class="-mt-1 relative flex-1 overflow-y-auto px-4 max-w-xl mx-auto custom-scrollbar text-left">
-      <p id="typewriter" class="-mt-1 text-base leading-relaxed text-grey-900 font-light whitespace-pre-line text-left"></p>
-    </div>
-
-    <!-- Typing Indicator -->
-    <div class="relative h-6 mt-[-4px]">
-      <div id="typing-indicator" class="absolute top-0 left-0 flex gap-2 hidden">
-        <span class="typing-ball dot1"></span>
-        <span class="typing-ball dot2"></span>
-        <span class="typing-ball dot3"></span>
-      </div>
-    </div>
-
-    <!-- Footer Row -->
-    <div class="pt-1 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between">
-      <span>BUSINESS-CARD-079</span>
-      <span>SECTOR: DATA OPS</span>
-    </div>
-  </div>
-</section>
-
-
-
-<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative z-[30] flex justify-center items-center px-8 pt-2 pb-2" data-delay="600ms">
-  <div class="w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md">
-            <div class="flex space-x-4">
-              <input
-                id="user-query"
-                type="text"
-                placeholder="Ask me anything..."
-                class="flex-1 bg-transparent border-none text-sm text-gray-100 placeholder-gray-400 focus:outline-none"
-              />
-              <button
-                id="query-send"
-                class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition"
-              >
-                Send
-              </button>
-            </div>
-          </div>
-    </section>
+  </section>
 
 
   <section
-    class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-24 -mt-16 max-w-7xl mx-auto" data-delay="200ms">
+    class="relative flex justify-center items-center px-8 pt-8 pb-3 -mt-4 fade-in-up opacity-0 translate-y-10 transition duration-700 overflow-visible gap-12"
+    data-delay="400ms">
+
+    <!-- Glow Behind Card -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-indigo-400/20 blur-[100px] z-10 pointer-events-none">
+    </div>
+
+    <!-- Tilt Card -->
+    <div
+      class="tilt-card -mt-6 relative z-20 w-full max-w-2xl h-[335px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform overflow-visible">
+
+      <!-- Top Row -->
+      <div class="flex items-start justify-between">
+        <!-- Profile Bubble -->
+        <div class="w-28 h-28 rounded-full overflow-hidden border border-white/20">
+          <img src="/static/images/space_commander.png" alt="Profile" class="object-cover w-full h-full" />
+        </div>
+        <!-- ID Title -->
+        <div class="flex flex-col mt-1">
+          <h4 class="text-2xl sm:text-3xl font-extrabold text-gray-100 tracking-wide text-right block">
+            Lannon <span class="text-indigo-400">Khau</span>
+          </h4>
+          <div class="mt-1 w-full border-t border-white/10"></div>
+          <span class="text-xs text-white-400 font-mono tracking-widest uppercase mt-1 text-right block">
+            Full-Stack AI/ML Engineer
+          </span>
+        </div>
+      </div>
+
+      <!-- Scrollable Typewriter Output -->
+      <div id="typewriter-container"
+        class="-mt-1 relative flex-1 overflow-y-auto px-4 max-w-xl mx-auto custom-scrollbar text-left">
+        <p id="typewriter"
+          class="-mt-1 text-base leading-relaxed text-grey-900 font-light whitespace-pre-line text-left"></p>
+      </div>
+
+      <!-- Typing Indicator -->
+      <div class="relative h-6 mt-[-4px]">
+        <div id="typing-indicator" class="absolute top-0 left-0 flex gap-2 hidden">
+          <span class="typing-ball dot1"></span>
+          <span class="typing-ball dot2"></span>
+          <span class="typing-ball dot3"></span>
+        </div>
+      </div>
+
+      <!-- Footer Row -->
+      <div class="pt-1 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between">
+        <span>BUSINESS-CARD-079</span>
+        <span>SECTOR: DATA OPS</span>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section
+    class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative z-[30] flex justify-center items-center px-8 pt-2 pb-2"
+    data-delay="600ms">
+    <div class="w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md">
+      <div class="flex space-x-4">
+        <input id="user-query" type="text" placeholder="Ask me anything..."
+          class="flex-1 bg-transparent border-none text-sm text-gray-100 placeholder-gray-400 focus:outline-none" />
+        <button id="query-send" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition">
+          Send
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-24 -mt-16 max-w-7xl mx-auto"
+    data-delay="200ms">
     <h2 class="text-4xl font-bold text-center mb-14 mt-14 text-white">
       <span class="text-indigo-400">About</span> Me
     </h2>
@@ -363,26 +379,28 @@
       <div class="text-lg text-slate-300">
         <blockquote class="text-xl leading-8 text-slate-400">
           <span class="font-serif text-8xl text-slate-100 float-left mr-2 leading-none">I</span>
-’m Lannon Khau, a full-stack engineer with a passion for building AI-powered systems that solve real problems and spark curiosity.
+          ’m Lannon Khau, a full-stack engineer with a passion for building AI-powered systems that solve real problems
+          and spark curiosity.
 
-My journey began with a fascination for code and a drive to make the invisible visible, transforming raw data into insights, and insights into action. 
+          My journey began with a fascination for code and a drive to make the invisible visible, transforming raw data
+          into insights, and insights into action.
         </blockquote>
 
         <div class="flex justify-center mt-10">
-          <img
-            src="/static/images/avatar.png"
-            alt="Portrait of Lannon Khau"
+          <img src="/static/images/avatar.png" alt="Portrait of Lannon Khau"
             class="w-60 h-60 object-cover object-[center_bottom] rounded-full border-4 border-white/20 shadow-lg" />
         </div>
 
         <div class="prose prose-lg prose-invert prose-indigo max-w-none mt-12">
           <h3 class="text-2xl font-bold leading-6 text-white">Engineer. Builder. Explorer.</h3>
           <p class="text-slate-400">
-            My journey started with a desire to build—and evolved into an obsession with integrating AI to create smarter, more human tools.
+            My journey started with a desire to build—and evolved into an obsession with integrating AI to create
+            smarter, more human tools.
           </p>
 
           <blockquote class="border-l-4 pl-4 italic text-indigo-300">
-            “I build AI-powered systems that explore the unknown and turn raw data into insight, clarity, and creative tools.”
+            “I build AI-powered systems that explore the unknown and turn raw data into insight, clarity, and creative
+            tools.”
           </blockquote>
         </div>
       </div>
@@ -396,7 +414,8 @@ My journey began with a fascination for code and a drive to make the invisible v
           <p class="text-sm text-gray-400 mb-1 ml-2">2021</p>
           <h4 class="text-white font-semibold ml-2">Graduated & Began Teaching Code</h4>
           <p class="text-gray-400 text-sm mt-2 ml-2">
-            Earned my B.S. in Information Systems from Cal State Fullerton. Taught IoT programming to 150+ students through a district-wide tech education initiative.
+            Earned my B.S. in Information Systems from Cal State Fullerton. Taught IoT programming to 150+ students
+            through a district-wide tech education initiative.
           </p>
         </div>
 
@@ -406,7 +425,8 @@ My journey began with a fascination for code and a drive to make the invisible v
           <p class="text-sm text-gray-400 mb-1 ml-2">2022</p>
           <h4 class="text-white font-semibold ml-2">Full-Stack Dev at Creative Core</h4>
           <p class="text-gray-400 text-sm mt-2 ml-2">
-            Built LMS platforms using Flask, React, and AWS. Deployed ML models for personalized learning and auto-feedback systems—improving student outcomes and grading speed.
+            Built LMS platforms using Flask, React, and AWS. Deployed ML models for personalized learning and
+            auto-feedback systems—improving student outcomes and grading speed.
           </p>
         </div>
 
@@ -416,7 +436,8 @@ My journey began with a fascination for code and a drive to make the invisible v
           <p class="text-sm text-gray-400 mb-1 ml-2">2023</p>
           <h4 class="text-white font-semibold ml-2">LLM Engineer at Scale AI</h4>
           <p class="text-gray-400 text-sm mt-2 ml-2">
-            Produced 2,500+ code-focused prompts for LLM tuning. Scripted automation tools and prompt evaluations to improve model quality and alignment.
+            Produced 2,500+ code-focused prompts for LLM tuning. Scripted automation tools and prompt evaluations to
+            improve model quality and alignment.
           </p>
         </div>
 
@@ -426,7 +447,8 @@ My journey began with a fascination for code and a drive to make the invisible v
           <p class="text-sm text-gray-400 mb-1 ml-2">2024</p>
           <h4 class="text-white font-semibold ml-2">Launched Data Forge & Property Pulse</h4>
           <p class="text-gray-400 text-sm mt-2 ml-2">
-            Built AI-powered apps for EDA and real estate search. Integrated OpenAI APIs and RAG pipelines with NLP, achieving high accuracy and sub-2s query speeds.
+            Built AI-powered apps for EDA and real estate search. Integrated OpenAI APIs and RAG pipelines with NLP,
+            achieving high accuracy and sub-2s query speeds.
           </p>
         </div>
 
@@ -436,83 +458,88 @@ My journey began with a fascination for code and a drive to make the invisible v
           <p class="text-sm text-gray-400 mb-1 ml-2">2025</p>
           <h4 class="text-white font-semibold ml-2">Bootcamps, Hackathons, Next Chapter</h4>
           <p class="text-gray-400 text-sm mt-2 ml-2">
-            Completed Cloudberry AWS Bootcamp and GenAI systems training. Submitted Data Forge to Microsoft Reactor Hackathon and began development on my next big build.
+            Completed Cloudberry AWS Bootcamp and GenAI systems training. Submitted Data Forge to Microsoft Reactor
+            Hackathon and began development on my next big build.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-                <!-- Labs Showcase -->
-   <section
-  class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-12 -mt-20 max-w-7xl mx-auto" data-delay="200ms">
-      <h2 class="text-4xl font-bold text-center mb-12 mt-16 text-white"><span class="text-indigo-400">Featured </span> Projects</h2>
+  <!-- Labs Showcase -->
+  <section class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-12 -mt-20 max-w-7xl mx-auto"
+    data-delay="200ms">
+    <h2 class="text-4xl font-bold text-center mb-12 mt-16 text-white"><span class="text-indigo-400">Featured </span>
+      Projects</h2>
 
-<!--      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">-->
-      <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for slug, project in projects.items() %}
-        <a href="{{ url_for('show_project', slug=slug) }}"
-           class="relative w-full h-[480px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
+    <!--      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">-->
+    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for slug, project in projects.items() %}
+      <a href="{{ url_for('show_project', slug=slug) }}"
+        class="relative w-full h-[480px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
 
-          <!-- Header Row -->
-          <div class="flex items-start justify-between mb-4">
-            <!-- Profile / Icon -->
-            <div class="w-16 h-16 rounded-full overflow-hidden border border-white/10">
-              <img src="{{ project.icon }}"
-                   alt="Icon"
-                   class="w-full h-full object-contain bg-white/5 p-2" />
-            </div>
-
-            <!-- Title / Metadata -->
-            <div class="text-right ml-4">
-              <h3 class="text-lg font-semibold text-white">{{ project.title }}</h3>
-              <p class="text-xs text-gray-400 mt-1 uppercase tracking-wide font-mono">By {{ project.author }}</p>
-              <p class="text-xs text-gray-400 mt-1 uppercase tracking-wide font-mono">Login Required: {{ project.login_req }}</p>
-            </div>
+        <!-- Header Row -->
+        <div class="flex items-start justify-between mb-4">
+          <!-- Profile / Icon -->
+          <div class="w-16 h-16 rounded-full overflow-hidden border border-white/10">
+            <img src="{{ project.icon }}" alt="Icon" class="w-full h-full object-contain bg-white/5 p-2" />
           </div>
 
-          <!-- Summary Scrollable -->
-          <div class="flex-1 overflow-y-auto max-h-[90px] custom-scrollbar text-sm text-gray-300 leading-relaxed font-light whitespace-pre-line">
-            {{ project.description }}
+          <!-- Title / Metadata -->
+          <div class="text-right ml-4">
+            <h3 class="text-lg font-semibold text-white">{{ project.title }}</h3>
+            <p class="text-xs text-gray-400 mt-1 uppercase tracking-wide font-mono">By {{ project.author }}</p>
+            <p class="text-xs text-gray-400 mt-1 uppercase tracking-wide font-mono">Login Required: {{ project.login_req
+              }}</p>
           </div>
+        </div>
 
-          <!-- Image Row -->
-          <div class="w-full h-40 mt-4 rounded-md overflow-hidden border border-white/10">
-            <img src="{{ project.image1 }}"
-                 alt="Lab Preview"
-                 class="w-full h-full object-cover" />
-          </div>
+        <!-- Summary Scrollable -->
+        <div
+          class="flex-1 overflow-y-auto max-h-[90px] custom-scrollbar text-sm text-gray-300 leading-relaxed font-light whitespace-pre-line">
+          {{ project.description }}
+        </div>
 
-
-          <!-- Footer Row -->
-          <div class="pt-3 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between mt-4">
-            <span>ID: PROJECT-{{ '%02d' % loop.index }}</span>
-            <span>SECTOR: AI EDU</span>
-          </div>
-        </a>
-        {% endfor %}
-      </div>
-    </section>
+        <!-- Image Row -->
+        <div class="w-full h-40 mt-4 rounded-md overflow-hidden border border-white/10">
+          <img src="{{ project.image1 }}" alt="Lab Preview" class="w-full h-full object-cover" />
+        </div>
 
 
-    <section id="projects-and-stats"
-      class="-mt-4 fade-in-up px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700">
-    
-      <h2 class="text-4xl font-bold text-center mb-12 mt-16 text-white"><span class="text-indigo-400">AI Agents</span> Dream Team</h2>
+        <!-- Footer Row -->
+        <div class="pt-3 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between mt-4">
+          <span>ID: PROJECT-{{ '%02d' % loop.index }}</span>
+          <span>SECTOR: AI EDU</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
 
-      <!-- Unified Grid Container -->
-      <div class="max-w-6xl mx-auto grid grid-cols-1 gap-12">
-    
-        <!-- Project Cards Row -->
-    
-        <div class="-mt-8 grid md:grid-cols-4 gap-6 -mb-6 pt-10">
-          {% for slug, agent in services.items() %}
-          <a data-project="{{ slug }}"
+
+  <section id="projects-and-stats"
+    class="-mt-4 fade-in-up px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700">
+
+    <h2 class="text-4xl font-bold text-center mb-12 mt-16 text-white"><span class="text-indigo-400">
+AI Agents</span> Data Team</h2>
+
+    <!-- Unified Grid Container -->
+    <div class="max-w-6xl mx-auto grid grid-cols-1 gap-12">
+
+      <!-- Project Cards Row -->
+
+      <div class="-mt-8 grid md:grid-cols-4 gap-6 -mb-6 pt-10">
+        {% for slug, agent in services.items() %}
+          <a
+            data-project="{{ slug }}"
+            data-agent-name="{{ agent.title }}"
+            data-agent-role="{{ agent.description }}"
+            data-agent-image="{{ agent.image1 }}"
             class="project-card {% if loop.first %}selected{% endif %} bg-white/5 border border-white/10 rounded-2xl p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer relative">
-    
+
             <!-- Add the glow element -->
             <div class="card-glow"></div>
-    
+
             <!-- Agent Icon and Title -->
             <div class="flex items-center mb-4 space-x-4">
               <div
@@ -521,30 +548,94 @@ My journey began with a fascination for code and a drive to make the invisible v
               </div>
               <h4 class="text-base font-semibold text-white leading-tight">{{ agent.title }}</h4>
             </div>
-    
+
             <!-- Description -->
             <p class="text-sm text-gray-400 leading-relaxed">
               {{ agent.description }}
             </p>
           </a>
-          {% endfor %}
-        </div>
-    
-    </section>
-    
-    
+        {% endfor %}
+      </div>
 
-      <!-- Contact Card Section -->
-<section class="fade-in-up mb-6 mt-6 opacity-0 translate-y-10 transition duration-700 relative flex flex-col items-center px-8 py-14 overflow-hidden", data-delay="200ms">
-  <!-- Heading centered above the form -->
-  <div class="text-center mb-12">
-    <h2 class="text-4xl font-bold text-white">
-      Let's <span class="text-indigo-400">connect.</span>
-    </h2>
-  </div>
-  
-  <!-- Contact Card -->
-    <div class="relative z-10 w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl text-left space-y-6 transition-transform duration-300 ease-out will-change-transform">
+  </section>
+
+   <section
+    class="relative flex justify-center items-center px-8 pt-8 pb-3 -mt-4 fade-in-up opacity-0 translate-y-10 transition duration-700 overflow-visible gap-12"
+    data-delay="400ms">
+
+    <!-- Glow Behind Card -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-indigo-400/10 blur-[100px] z-10 pointer-events-none">
+    </div>
+
+    <!-- Tilt Card -->
+    <div
+      class="-mt-6 relative z-20 w-full max-w-2xl h-[335px] bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform overflow-visible">
+
+      <div id="agent-details" class="transition-opacity duration-300 ease-in-out opacity-100">
+        <div class="flex items-start justify-between">
+          <!-- Avatar -->
+          <div class="w-28 h-28 rounded-full overflow-hidden border border-white/20">
+            <img id="agent-img" src="/static/images/agent1.jpg" alt="Profile"
+              class="object-cover w-full h-full transition duration-300 ease-in-out scale-100" />
+          </div>
+
+          <!-- Name & Role -->
+          <div class="flex flex-col mt-1 text-right">
+            <h4 class="text-2xl sm:text-3xl font-extrabold text-gray-100 tracking-wide block">
+              <span id="agent-name">Data Visualization</span>
+              <span id="agent-lastname" class="text-indigo-400">AI Agent</span>
+            </h4>
+            <div class="mt-1 w-full border-t border-white/10"></div>
+            <span id="agent-role" class="text-xs text-white-400 font-mono tracking-widest uppercase mt-1 block">
+Generate Interactive Plotly Objects
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scrollable Typewriter Output -->
+      <div id="typewriter-container"
+        class="-mt-1 relative flex-1 overflow-y-auto px-4 max-w-xl mx-auto custom-scrollbar text-left">
+  <p id="agent-typewriter"
+  data-agent=""
+  class="-mt-1 text-base leading-relaxed text-grey-900 font-light whitespace-pre-line text-left">
+</p>
+        </div>
+
+      <!-- Typing Indicator -->
+      <div class="relative h-6 mt-[-4px]">
+        <div id="agent-typing-indicator" class="absolute top-0 left-0 flex gap-2 hidden">
+          <span class="typing-ball dot1"></span>
+          <span class="typing-ball dot2"></span>
+          <span class="typing-ball dot3"></span>
+        </div>
+      </div>
+
+      <!-- Footer Row -->
+      <div class="pt-1 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between">
+        <span>BUSINESS-CARD-079</span>
+        <span>SECTOR: DATA OPS</span>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Contact Card Section -->
+  <section
+    class="fade-in-up mt-14 opacity-0 translate-y-10 transition duration-700 relative flex flex-col items-center px-8 py-14 overflow-hidden"
+    , data-delay="200ms">
+    <!-- Heading centered above the form -->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-white">
+        Let's <span class="text-indigo-400">connect.</span>
+      </h2>
+    </div>
+
+    <!-- Contact Card -->
+    <div
+      class="relative z-10 w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl text-left space-y-6 transition-transform duration-300 ease-out will-change-transform">
 
       <!-- Header -->
       <div class="flex items-center justify-between">
@@ -554,7 +645,8 @@ My journey began with a fascination for code and a drive to make the invisible v
 
       <!-- Description -->
       <p class="text-sm text-gray-300 leading-relaxed">
-        Whether you're interested in collaborating, asking a technical question, or just want to say hi — I'm always open to meaningful conversations. Let's connect.
+        Whether you're interested in collaborating, asking a technical question, or just want to say hi — I'm always
+        open to meaningful conversations. Let's connect.
       </p>
 
       <!-- Form -->
@@ -593,30 +685,17 @@ My journey began with a fascination for code and a drive to make the invisible v
 
     <!-- Left Image -->
     <div class="absolute left-[-120px] top-60 -translate-y-1/2 z-0 pointer-events-none hidden sm:block">
-      <img
-        src="/static/images/valid.png"
-        alt="Futuristic Spaceship"
-        class="max-w-md opacity-30"
-      />
+      <img src="/static/images/valid.png" alt="Futuristic Spaceship" class="max-w-md opacity-30" />
     </div>
 
     <!-- Right Image -->
     <div class="absolute right-[-100px] top-1/2 -translate-y-1/2 z-0 pointer-events-none hidden sm:block">
-      <img
-        src="/static/images/sat.png"
-        alt="Futuristic Spaceship"
-        class="max-w-md opacity-30"
-      />
+      <img src="/static/images/sat.png" alt="Futuristic Spaceship" class="max-w-md opacity-30" />
     </div>
   </section>
 
-
-  
-
-
-
-    <!-- Footer -->
-    <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
+  <!-- Footer -->
+  <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
     <div class="flex justify-center space-x-6 py-6">
       <a href="https://github.com/LannonTheCannon" target="_blank" rel="noopener noreferrer">
         <img src="/static/icons/github.svg" alt="GitHub" class="h-6 w-6 hover:scale-110 transition" />
@@ -631,220 +710,219 @@ My journey began with a fascination for code and a drive to make the invisible v
         <img src="/static/icons/goog.svg" alt="Email" class="h-6 w-6 hover:scale-110 transition" />
       </a>
     </div>
-      &copy; 2059 Lannon Khau. Built with Flask. 🚀 Auto-deploy test.
-    </footer>
-        <!-- Social Media Icons Section -->
+    &copy; 2059 Lannon Khau. Built with Flask. 🚀 Auto-deploy test.
+  </footer>
+  <!-- Social Media Icons Section -->
 
   <script src="{{ url_for('static', filename='js/tilt.js') }}"></script>
   <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
 
-    <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const typeTarget = document.getElementById("typewriter");
-    const input = document.getElementById("user-query");
-    const sendButton = document.getElementById("query-send");
-    const typingDots = document.getElementById("typing-indicator");
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const typeTarget = document.getElementById("typewriter");
+      const input = document.getElementById("user-query");
+      const sendButton = document.getElementById("query-send");
+      const typingDots = document.getElementById("typing-indicator");
 
-const states = [
-`Humans speak at ~130 words per minute  
+      const states = [
+        `Humans speak at ~130 words per minute  
 But we type only ~40  
 So we build tools that think faster than our fingers`,
 
-`The average person spends 6.3 hours daily on screens  
+        `The average person spends 6.3 hours daily on screens  
 Only 11% say they feel in control  
 I design systems to restore that balance`,
 
-`AI doesn’t “understand”, it predicts  
+        `AI doesn’t “understand”, it predicts  
 Yet clarity often *feels* like understanding  
 That’s the UX magic I chase`,
 
-`RAG Systems reduce token bloat by 70%  
+        `RAG Systems reduce token bloat by 70%  
 If used right, they outperform fine-tuned models  
 Clean context beats raw power`,
 
-`Most dashboards go unused after week 3  
+        `Most dashboards go unused after week 3  
 Not because of data but friction  
 I make interfaces that invite return`,
 
-`One second of page delay can drop conversions by 20%  
+        `One second of page delay can drop conversions by 20%  
 Performance is UX  
 Speed is emotion`,
 
-`A good prompt can save 40 minutes of engineering time  
+        `A good prompt can save 40 minutes of engineering time  
 But only if the interface invites the right question  
 That’s where design meets intelligence`,
 
-`Data ≠ Insight  
+        `Data ≠ Insight  
 Insight = Pattern + Action + Timing  
 That’s the game I play`,
 
-`90% of AI apps are wrappers  
+        `90% of AI apps are wrappers  
 The rest? Systems with soul  
 I build the second kind`,
 
-`80% of enterprise data is unstructured  
+        `80% of enterprise data is unstructured  
 Yet most tools read it like static text  
 I build AI that listens between the lines`,
 
-`Design is not how it looks  
+        `Design is not how it looks  
 It’s how confidently you move through it  
 That’s the difference between UI and UX`,
 
-`95% of analytics dashboards are glanced at once  
+        `95% of analytics dashboards are glanced at once  
 Then forgotten  
 I build flows, not reports`,
 
-`Latency under 100ms feels “instant”  
+        `Latency under 100ms feels “instant”  
 Even if you're faking it  
 UX is a magic trick rooted in truth`,
 
-`The best AIs aren’t smart, they’re composed  
+        `The best AIs aren’t smart, they’re composed  
 Systems that orchestrate, not just answer  
 That’s the heart of agentic thinking`,
 
-`Tokens cost cents  
+        `Tokens cost cents  
 But user trust is priceless  
 So I optimize context with care`,
 
-`“Explainable AI” isn't about math  
+        `“Explainable AI” isn't about math  
 It’s about story  
 I make interfaces that narrate insight`,
 
-`Over 70% of users abandon apps mid-onboarding  
+        `Over 70% of users abandon apps mid-onboarding  
 Confusion kills curiosity  
 I design to reward momentum`,
 
-`Scaling is easy  
+        `Scaling is easy  
 Maintaining soul is the art  
 That’s why I handcraft even the edge cases`,
 
-`Code is a means  
+        `Code is a means  
 Clarity is the goal  
 I build tools that speak human first`,
 
-];
-    let currentPhraseIndex = 0;
-    let currentCharIndex = 0;
-    let typingPaused = false;
-    let hasUserInteracted = false;
+      ];
+      let currentPhraseIndex = 0;
+      let currentCharIndex = 0;
+      let typingPaused = false;
+      let hasUserInteracted = false;
 
-    function getTypingDelay(char) {
-      if ([".", "!", "?"].includes(char)) return (200 + Math.random() * 100);
-      if ([",", ";", ":"].includes(char)) return (100 + Math.random() * 50);
-      if (char === " ") return (30 + Math.random() * 20);
-      return (12 + Math.random() * 30);
-    }
+      function getTypingDelay(char) {
+        if ([".", "!", "?"].includes(char)) return (200 + Math.random() * 100);
+        if ([",", ";", ":"].includes(char)) return (100 + Math.random() * 50);
+        if (char === " ") return (30 + Math.random() * 20);
+        return (12 + Math.random() * 30);
+      }
 
-    let currentState = 0;
+      let currentState = 0;
 
-    function rotateCardText() {
-      if (typingPaused || hasUserInteracted) return;
-
-      const phrase = states[currentState];
-      currentCharIndex = 0;
-
-      function typeChar() {
+      function rotateCardText() {
         if (typingPaused || hasUserInteracted) return;
 
-        const char = phrase[currentCharIndex];
-        const visibleText = phrase.slice(0, currentCharIndex);
-        typeTarget.textContent = visibleText;
+        const phrase = states[currentState];
+        currentCharIndex = 0;
 
-        // Auto-scroll down
-        const container = document.getElementById("typewriter-container");
-        container.scrollTop = container.scrollHeight;
+        function typeChar() {
+          if (typingPaused || hasUserInteracted) return;
 
-        if (currentCharIndex < phrase.length) {
-          currentCharIndex++;
-          const delay = getTypingDelay(char);
-          setTimeout(typeChar, delay);
-        } else {
-          setTimeout(() => {
-            typeTarget.classList.add("opacity-0", "transition-opacity", "duration-500");
-            setTimeout(() => {
-              typeTarget.textContent = "";
-              typeTarget.classList.remove("opacity-0");
-              currentState = (currentState + 1) % states.length;
-              rotateCardText();
-            }, 500);
-          }, 3000);
-        }
-      }
+          const char = phrase[currentCharIndex];
+          const visibleText = phrase.slice(0, currentCharIndex);
+          typeTarget.textContent = visibleText;
 
-      typeChar();
-    }
-
-    sendButton.addEventListener("click", () => {
-      const query = input.value.trim();
-      if (!query) return;
-
-      typingPaused = true;
-      hasUserInteracted = true;
-
-      typeTarget.classList.add("opacity-0", "transition-opacity", "duration-300");
-
-      setTimeout(() => {
-        typeTarget.textContentHTML = "";;
-        showTypingDots();
-
-        fetch("/ask", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ query })
-        })
-        .then(res => res.json())
-        .then(data => {
-          console.log("✅ FULL response object:", data);
-          console.log("✅ Assistant response (data.response):", data.response);
-          hideTypingDots();
-          typeTarget.classList.remove("opacity-0");
-          animateTyping(data.response);
-          input.value = "";
-        })
-        .catch(err => {
-          hideTypingDots();
-          typeTarget.classList.remove("opacity-0");
-          typeTarget.textContent = "⚠️ Oops, something went wrong.";
-          console.error("❌ Error:", err);
-        });
-      }, 300);
-    });
-
-    function animateTyping(text) {
-      let i = 0;
-      function typeChar() {
-        if (i <= text.length) {
-          typeTarget.textContent = text.slice(0, i++);
-
-          // Auto-scroll as content builds
+          // Auto-scroll down
           const container = document.getElementById("typewriter-container");
-          if (container) {
-            container.scrollTop = container.scrollHeight;
+          container.scrollTop = container.scrollHeight;
+
+          if (currentCharIndex < phrase.length) {
+            currentCharIndex++;
+            const delay = getTypingDelay(char);
+            setTimeout(typeChar, delay);
+          } else {
+            setTimeout(() => {
+              typeTarget.classList.add("opacity-0", "transition-opacity", "duration-500");
+              setTimeout(() => {
+                typeTarget.textContent = "";
+                typeTarget.classList.remove("opacity-0");
+                currentState = (currentState + 1) % states.length;
+                rotateCardText();
+              }, 500);
+            }, 3000);
           }
-
-          setTimeout(typeChar, getTypingDelay(text[i] || ""));
         }
+
+        typeChar();
       }
-      typeChar();
-    }
-    function showTypingDots() {
-      typingDots.classList.remove("hidden");
-      typingDots.classList.add("inline-block");
-    }
 
-    function hideTypingDots() {
-      typingDots.classList.add("hidden");
-      typingDots.classList.remove("inline-block");
-    }
+      sendButton.addEventListener("click", () => {
+        const query = input.value.trim();
+        if (!query) return;
 
-    rotateCardText();
-  });
+        typingPaused = true;
+        hasUserInteracted = true;
+
+        typeTarget.classList.add("opacity-0", "transition-opacity", "duration-300");
+
+        setTimeout(() => {
+          typeTarget.textContentHTML = "";;
+          showTypingDots();
+
+          fetch("/ask", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ query })
+          })
+            .then(res => res.json())
+            .then(data => {
+              console.log("✅ FULL response object:", data);
+              console.log("✅ Assistant response (data.response):", data.response);
+              hideTypingDots();
+              typeTarget.classList.remove("opacity-0");
+              animateTyping(data.response);
+              input.value = "";
+            })
+            .catch(err => {
+              hideTypingDots();
+              typeTarget.classList.remove("opacity-0");
+              typeTarget.textContent = "⚠️ Oops, something went wrong.";
+              console.error("❌ Error:", err);
+            });
+        }, 300);
+      });
+
+      function animateTyping(text) {
+        let i = 0;
+        function typeChar() {
+          if (i <= text.length) {
+            typeTarget.textContent = text.slice(0, i++);
+
+            // Auto-scroll as content builds
+            const container = document.getElementById("typewriter-container");
+            if (container) {
+              container.scrollTop = container.scrollHeight;
+            }
+
+            setTimeout(typeChar, getTypingDelay(text[i] || ""));
+          }
+        }
+        typeChar();
+      }
+      function showTypingDots() {
+        typingDots.classList.remove("hidden");
+        typingDots.classList.add("inline-block");
+      }
+
+      function hideTypingDots() {
+        typingDots.classList.add("hidden");
+        typingDots.classList.remove("inline-block");
+      }
+
+      rotateCardText();
+    });
   </script>
 
-
-    <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const quotes = [
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const quotes = [
         `Ask any question you'd like to know about Lannon below!`,
         `Feel free to ask me anything about my projects, skills, or interests.`,
         `I'm here to help with any questions you have about my work or experience.`,
@@ -855,132 +933,26 @@ I build tools that speak human first`,
         `Interested in my approach to building AI systems? Ask away!`,
         `Feel free to ask about my latest projects or technologies I work with.`,
         `What would you like to know?`
-    ];
+      ];
 
-    const display = document.getElementById("quote-display");
-    let index = 0;
+      const display = document.getElementById("quote-display");
+      let index = 0;
 
-    display.textContent = quotes[0]
+      display.textContent = quotes[0]
 
-    setInterval(() => {
-      display.classList.add("opacity-0"); // fade out
+      setInterval(() => {
+        display.classList.add("opacity-0"); // fade out
 
-      setTimeout(() => {
-        index = (index + 1) % quotes.length;
-        display.textContent = quotes[index];
-        display.classList.remove("opacity-0"); // fade in
-      }, 500); // match transition duration
-    }, 6000); // every 6 seconds
-  });
-</script>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.remove("opacity-0", "translate-y-10");
-          entry.target.classList.add("opacity-100", "translate-y-0");
-          entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.25 });
-
-    document.querySelectorAll('.fade-in-up').forEach((el) => {
-      observer.observe(el);
+        setTimeout(() => {
+          index = (index + 1) % quotes.length;
+          display.textContent = quotes[index];
+          display.classList.remove("opacity-0"); // fade in
+        }, 500); // match transition duration
+      }, 6000); // every 6 seconds
     });
-  });
   </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <script>
-  const projectCards = document.querySelectorAll(".project-card");
-  const statsSection = document.querySelector(".stat-grid");
-  const missionLog = document.querySelector(".mission-log");
-  const skillChart = document.querySelector(".skill-chart");
-
-  const projectData = {
-    "data-forge-plus": {
-      stats: [137, 2, 5, 145],
-      log: [
-        "[05.31.2025 – 20:15] Pushed 6 commits to `data-forge-plus`",
-        "[05.31.2025 – 18:42] Refactored OpenAI Assistant Memory"
-      ]
-    },
-    "exo-land": {
-      stats: [89, 4, 7, 122],
-      log: [
-        "[05.30.2025 – 16:09] Rendered 14 planets with DALL·E 3",
-        "[05.30.2025 – 13:32] Merged `habitability-score` pipeline"
-      ]
-    },
-    "quote-ability": {
-      stats: [42, 3, 6, 90],
-      log: [
-        "[05.30.2025 – 09:14] Indexed 3 books into vector DB",
-        "[05.29.2025 – 21:22] Launched quote scheduler"
-      ]
-    }
-  };
-
-  function animateCount(el, target) {
-    let current = 0;
-    const increment = Math.ceil(target / 40);
-    const interval = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        el.textContent = target;
-        clearInterval(interval);
-      } else {
-        el.textContent = current;
-      }
-    }, 20);
-  }
-
-  projectCards.forEach(card => {
-    card.addEventListener("click", () => {
-      // Remove .selected from all cards
-      projectCards.forEach(c => c.classList.remove("selected"));
-      // Add .selected to clicked one
-      card.classList.add("selected");
-
-      const selected = card.dataset.project;
-      const newStats = projectData[selected].stats;
-      const newLog = projectData[selected].log;
-
-      // Animate fade out
-      statsSection.classList.add("opacity-0", "transition", "duration-300");
-      missionLog.classList.add("opacity-0", "transition", "duration-300");
-      skillChart.classList.add("opacity-0", "transition", "duration-300");
-
-      setTimeout(() => {
-        // Update stats counters
-        const counters = statsSection.querySelectorAll(".counter");
-        counters.forEach((el, i) => {
-          el.textContent = "0"; // Reset first
-          animateCount(el, newStats[i]);
-        });
-
-        // Update mission log
-        const ul = missionLog.querySelector("ul");
-        ul.innerHTML = newLog.map(log => `
-          <li>
-            <span class="text-xs text-gray-400">${log.split(']')[0]}]</span><br>
-            <span class="text-indigo-200">${log.split(']')[1].trim()}</span>
-          </li>
-        `).join("");
-
-        // Fade back in
-        statsSection.classList.remove("opacity-0");
-        missionLog.classList.remove("opacity-0");
-        skillChart.classList.remove("opacity-0");
-      }, 300);
-    });
-  });
-</script>
-      <script>
     document.addEventListener("DOMContentLoaded", () => {
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
@@ -998,5 +970,94 @@ I build tools that speak human first`,
       });
     });
   </script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+document.querySelectorAll(".project-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const name = card.dataset.agentName;
+    const role = card.dataset.agentRole;
+    const image = card.dataset.agentImage;
+
+    // Remove selection from others
+    document.querySelectorAll(".project-card").forEach(c => c.classList.remove("selected"));
+    card.classList.add("selected");
+
+    // Fade-out effect
+    const details = document.getElementById("agent-details");
+    details.classList.remove("opacity-100");
+    details.classList.add("opacity-0");
+
+    setTimeout(() => {
+      // Update card content
+      document.querySelector("#agent-name").textContent = name.split(" ").slice(0, -1).join(" ");
+      document.querySelector("#agent-lastname").textContent = name.split(" ").slice(-1).join(" ");
+      document.querySelector("#agent-role").textContent = role;
+      document.querySelector("#agent-img").src = image;
+
+      // Fade-in
+      details.classList.remove("opacity-0");
+      details.classList.add("opacity-100");
+
+      // Typewriter effect with hardcoded message per agent
+      const introText = getAgentIntro(name);
+      simulateTypewriter(introText);
+    }, 300);
+  });
+});
+
+function simulateTypewriter(text) {
+  const el = document.getElementById("agent-typewriter");
+  el.textContent = "";
+  let i = 0;
+  const speed = 35;
+
+  const typing = setInterval(() => {
+    el.textContent += text.charAt(i);
+    i++;
+    if (i >= text.length) clearInterval(typing);
+  }, speed);
+}
+
+function getAgentIntro(agentName) {
+  const intros = {
+    "Data Visualization AI Agent": 
+      "Hi, I'm Nova, your data storytelling AI. I craft interactive charts, dashboards, and visual narratives that turn raw numbers into insights people can instantly grasp. Whether you're pitching to stakeholders or exploring trends, I make your data speak fluently.",
+
+    "Data Wrangling AI Agent": 
+      "Greetings, I'm Orion, your systems navigator. I specialize in cleaning, merging, and optimizing data pipelines for scale and efficiency. If your data is messy, scattered, or slow to move, I'm here to bring order and flow.",
+
+    "Feature Engineering AI Agent": 
+      "Hey! Vega here, our insights engine. I extract meaningful patterns from raw datasets, transforming columns into actionable features that boost model performance. If you're training AI, I’m your secret weapon for smarter predictions.",
+
+    "Business SQL Agent": 
+      "Hello, I'm Cosmo, your database translator. I help you query, summarize, and interpret data from your business systems using clear and efficient SQL. Whether it's revenue trends or customer behavior, I surface answers fast.",
+
+    "Vector Store Q&A Agent": 
+      "Hi! I’m Luma, your intelligent search architect. I connect large text corpora to powerful vector databases, so you can ask natural language questions and get accurate, context-aware answers. Perfect for docs, wikis, or internal tools.",
+
+    "ETL Automation Agent": 
+      "Atlas here, your architecture strategist. I design and automate robust ETL pipelines that ingest, clean, and move data across cloud platforms. My job is to make your data infrastructure reliable, scalable, and hands-free.",
+
+    "LLM Evaluation Agent": 
+      "Echo online. I help you rigorously test and measure LLM outputs for accuracy, relevance, and bias using golden datasets and structured evaluation metrics. If you're iterating prompts or tuning models, I’ll guide your experiments with clarity.",
+
+    "User Auth Agent": 
+      "I’m Synth, your secure identity gatekeeper. I implement scalable authentication systems with role-based access, token handling, and session management. From login flows to enterprise-grade user management, I keep your platform safe and smooth."
+  };
+  return intros[agentName] || `Hi, I’m ${agentName}, your intelligent assistant.`;
+}
+
+
+window.addEventListener("DOMContentLoaded", () => {
+  const firstCard = document.querySelector(".project-card");
+  if (firstCard) {
+    firstCard.click();
+  }
+});
+</script>
+
+
+</body>
+
 </html>

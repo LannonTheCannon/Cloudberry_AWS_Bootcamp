@@ -16,7 +16,8 @@ import os
 import sys
 from utils.ai_pipeline import run_clean_pipeline, get_openai_api_key
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
+import openai
+import time
 
 # from utils.s3_secrets import get_s3_config
 
@@ -301,143 +302,95 @@ def show_blog_post(slug):
         print(f"No blog found for slug: {slug}")
         abort(404)
 
-# projects = {
-#     "data-forge-plus": {
-#         "title": "Data Forge Plus",
-#         "description": "Data Forge helps you ask the right questions on your dataset AND helps you visualize them.",
-#         "tech": ["Flask", "Streamlit", "AWS Lambda", "S3", "RDS", "OpenAI"],
-#         "author": "Lannon Khau",
-#         "image1": "static/images/magma.png",
-#         "icon": "static/images/forge_icon.svg",
-#         "template": "data-forge-plus.html",
-#         "login_req": "True",
-#     },
-#     "exo-land": {
-#         "title": "Exo-Explorer",
-#         "description": "Ever wanted to see what the surface of our nearest exoplanet, Kepler 22B, looked like?",
-#         "tech": ["Pandas", "Scikit-Learn", "OpenAI", "DALL·E", "Streamlit", "Flask"],
-#         "author": "Lannon Khau",
-#         "image1": "static/images/ship.jpg",
-#         "icon": "static/images/planet_icon.svg",
-#         "template": "exo-land.html",
-#         "login_req": "False",
-
-#     },
-#     "Octopus Books": {
-#         "title": "Octopus Books",
-#         "description": (
-#             "Generate a thorough and detailed summary of any book! This web app is for those who occasionally forget what they read and would like a summary of their current place in the book (no spoilers)!"
-#         ),
-#         "tech": ["OCR", "LangChain", "OpenAI", "Streamlit / Discord", "Pinecone", "PDF Parsing"],
-#         "author": "Lannon Khau",
-#         "image1": "static/images/octo.svg",
-#         "icon": "static/images/bookstar.png",
-#         "template": "quote-able.html",
-#         "login_req": "False",
-#     }
-# }
-# @app.route('/projects')
-# def show_projects():
-#     return render_template('projects.html', projects=projects)
-
-# @app.route('/projects/<slug>')
-# def show_project(slug):
-#     project = projects.get(slug)
-#     if project:
-#         try:
-#             return render_template(
-#                 f"projects/{project['template']}",
-#                 title=project["title"],
-#                 description=project["description"],
-#                 tech=project["tech"],
-#                 author=project["author"],
-#                 image=project["image1"]
-#             )
-#         except TemplateNotFound:
-#             abort(404)
-#     else:
-#         abort(404)
 
 # ─── Services Section  ──────────────────────────────────────────────────────────────────────
 
 services = {
     "data-vis-agent": {
-        "title": "Data Visualization Agent",
-        "description": "Turn raw numbers into meaning with intelligent dashboards and RAG-powered visual insights.",
+        "title": "Data Visualization AI Agent",
+        "name": "Nova Lens",
+        "description": "Generate Interactive Plotly Objects",
         "tech": ["LangChain", "OpenAI", "Streamlit", "Pandas AI", "NL2SQL", "RAG Pipelines"],
         "content": "This service acts as your visual co-pilot. I combine RAG pipelines with AI tools like Pandas AI and Streamlit to produce conversational dashboards, enabling business leaders and analysts to explore data through natural language and see patterns come alive visually.",
         "author": "Lannon Khau",
-        "image1": "static/images/learn.svg",
+        "image1": "static/images/agent1.jpg",
         "icon": "static/images/agent1.jpg",
         "template": "data-vis-agent.html"
     },
     "data-wrangling-agent": {
-        "title": "Data Wrangling Agent",
-        "description": "Automate and clean your datasets with Python-native preprocessing tools.",
+        "title": "Data Wrangling AI Agent",
+        "name": "Orion Flux",
+        "description": "Generates Data Table and Charting Code",
         "tech": ["Flask", "React", "TailwindCSS", "SQLAlchemy", "AWS", "Docker"],
         "content": "Designed for engineers and analysts, this agent automates dataset ingestion, cleanup, and transformation. I use Flask and React for frontend/backends, with SQLAlchemy and Dockerized deployments to ensure your data systems stay robust and scalable.",
         "author": "Lannon Khau",
-        "image1": "static/images/mars.png",
+        "image1": "static/images/agent2.jpg",
         "icon": "static/images/agent2.jpg",
         "template": "data-wrangling-agent.html"
     },
     "feature-engineering-agent": {
-        "title": "Feature Engineering Agent",
-        "description": "Extract powerful features from raw data to optimize machine learning models.",
+        "title": "Feature Engineering AI Agent",
+        "name": "Vega Byte",
+        "description": "Performs One-Hot Encoding on Categorical Features",
         "tech": ["Python", "Pandas", "NumPy", "Scikit-learn", "Pickle", "SQL", "Airflow"],
         "content": "I build intelligent feature pipelines that make raw datasets machine-learning ready. From scaling and encoding to custom time-series features, this agent transforms unstructured or messy inputs into optimized model-ready formats—ready to feed your AI systems.",
         "author": "Lannon Khau",
-        "image1": "static/images/competition.jpg",
+        "image1": "static/images/agent3.jpg",
         "icon": "static/images/agent3.jpg",
         "template": "feature-engineering-agent.html"
     },
     "sql-agent": {
         "title": "Business SQL Agent",
-        "description": "Ask business questions. Get SQL answers. No manual querying required.",
+        "name": "Cosmo Link",
+        "description": "Ask business questions. Get SQL answers.",
         "tech": ["LangChain", "OpenAI", "SQL", "PostgreSQL", "Flask", "NL2SQL"],
         "content": "This service converts natural language into business-grade SQL queries. I build agents that connect to your database, interpret your intent using NLP, and return actionable insights. Perfect for teams that want to self-serve data without knowing SQL.",
         "author": "Lannon Khau",
-        "image1": "static/images/sql-agent.png",
+        "image1": "static/images/agent4.jpg",
         "icon": "static/images/agent4.jpg",
         "template": "sql-agent.html"
     },
     "rag-qa-agent": {
-    "title": "RAG Q&A Agent",
-    "description": "Bring context-aware intelligence to your internal docs and data with Retrieval-Augmented Generation.",
-    "tech": ["LangChain", "OpenAI", "ChromaDB", "PDF Parsers", "Tiktoken", "Pinecone"],
-    "content": "This agent enables AI systems to retrieve and synthesize answers from your documents, PDFs, or proprietary datasets using vector search. I build RAG pipelines that deliver grounded responses, reduce hallucinations, and scale with your business context.",
-    "author": "Lannon Khau",
-    "image1": "static/images/rag-agent.png",
-    "icon": "static/images/agent5.jpg",
-    "template": "rag-qa-agent.html"
+        "title": "Vector Store Q&A Agent",
+        "name": "Luma Code",
+        "description": "Context Aware Retrieval Augmentented Generation Co-Pilot",
+        "tech": ["LangChain", "OpenAI", "ChromaDB", "PDF Parsers", "Tiktoken", "Pinecone"],
+        "content": "This agent enables AI systems to retrieve and synthesize answers from your documents, PDFs, or proprietary datasets using vector search. I build RAG pipelines that deliver grounded responses, reduce hallucinations, and scale with your business context.",
+        "author": "Lannon Khau",
+        "image1": "static/images/agent5.jpg",
+        "icon": "static/images/agent5.jpg",
+        "template": "rag-qa-agent.html"
     },
     "etl-agent": {
         "title": "ETL Automation Agent",
-        "description": "Build fast, fault-tolerant pipelines for extracting, transforming, and loading data at scale.",
+        "name": "Atlas Core",
+        "description": "Agentic Orchestrator - Data Ingestion",
         "tech": ["Airflow", "Pandas", "SQL", "AWS Lambda", "S3", "PostgreSQL"],
         "content": "This agent is ideal for teams that need clean, reliable pipelines to manage large data flows. I design ETL jobs using Airflow or serverless tools to move data between cloud sources, clean it up, and make it queryable—without manual upkeep.",
         "author": "Lannon Khau",
-        "image1": "static/images/etl-pipeline.png",
+        "image1": "static/images/agent6.jpg",
         "icon": "static/images/agent6.jpg",
         "template": "etl-agent.html"
     },
     "llm-eval-agent": {
         "title": "LLM Evaluation Agent",
-        "description": "Measure, test, and improve large language models with custom eval pipelines.",
+        "name": "Echo Beam",
+        "description": "Measure, Test, and Improve Model Responses",
         "tech": ["Python", "Jupyter", "LangChain", "OpenAI Eval", "Datasets", "JSONL"],
         "content": "I build tools that help you evaluate LLM outputs against golden datasets or prompt variants. This agent tracks hallucinations, factual accuracy, and formatting to ensure your models improve with each iteration—perfect for R&D and internal tuning.",
         "author": "Lannon Khau",
-        "image1": "static/images/llm-eval.png",
+        "image1": "static/images/agent7.jpg",
         "icon": "static/images/agent7.jpg",
         "template": "llm-eval-agent.html"
     },
     "user-auth-agent": {
         "title": "User Auth Agent",
-        "description": "Secure authentication and role-based access control for your web and AI apps.",
+        "name": "Synth Muse",
+        "description": "Secure Authentication Monitor",
         "tech": ["Flask", "JWT", "OAuth2", "SQLAlchemy", "Firebase", "AWS Cognito"],
         "content": "This service ensures your app has a secure login system with role-based permissions, token handling, and scalable session storage. Whether you're launching an LMS or an enterprise AI assistant, this agent keeps your users safe and data private.",
         "author": "Lannon Khau",
-        "image1": "static/images/auth.png",
+        "image1": "static/images/agent8.jpg",
         "icon": "static/images/agent8.jpg",
         "template": "user-auth-agent.html"
     }
@@ -730,66 +683,6 @@ def get_logs(file_id):
 
 #------------------------ Front facing chatbot ---------------------------------------#
 
-import openai
-
-openai.api_key = get_openai_api_key()
-
-@app.route('/ask', methods=['POST'])
-def ask_openai():
-    try:
-        user_input = request.json.get("query")
-
-        print("🧠 User said:", user_input)
-
-        # Create a thread
-        # thread = openai.beta.threads.create()
-
-        thread_id = session.get("openai_thread_id")
-        if not thread_id:
-            thread = openai.beta.threads.create()
-            thread_id = thread.id
-            session["openai_thread_id"] = thread_id  # Save thread in session
-            print(f"🧵 Created new thread: {thread_id}")
-        else:
-            print(f"📎 Using existing thread: {thread_id}")
-
-        # Add user's message
-        openai.beta.threads.messages.create(
-            thread_id=thread_id,
-            role="user",
-            content=user_input
-        )
-
-        # Start the assistant run
-        run = openai.beta.threads.runs.create(
-            thread_id=thread_id,
-            assistant_id="asst_mc0taWOrYfoUTuh15ePGWal8",
-        )
-
-        # Wait until complete
-        while True:
-            run_status = openai.beta.threads.runs.retrieve(
-                thread_id=thread_id,
-                run_id=run.id
-            )
-            if run_status.status == "completed":
-                break
-            elif run_status.status in ("failed", "cancelled"):
-                return jsonify({"response": "❌ Assistant failed to respond"}), 500
-
-        # Fetch latest message
-        messages = openai.beta.threads.messages.list(thread_id=thread_id)
-        latest = messages.data[0]
-        response_text = latest.content[0].text.value.strip()
-
-        print(f"🤖 Assistant: {response_text}")
-        return jsonify({"response": response_text})
-
-    except Exception as e:
-        print(f"💥 Error: {e}")
-        return jsonify({"response": "⚠️ Something went wrong on the server."}), 500
-
-#
 
 if __name__ == '__main__':
     print("Running db.create_all()")
