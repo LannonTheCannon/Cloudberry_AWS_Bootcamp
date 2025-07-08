@@ -2,6 +2,7 @@ from flask import (
     Flask, render_template, request, redirect,
     url_for, flash, session, g, jsonify
 )
+from flask import Flask, send_from_directory
 
 from flask_sqlalchemy import SQLAlchemy
 from jinja2 import TemplateNotFound
@@ -308,7 +309,6 @@ def show_blog_post(slug):
 services = {
     "data-vis-agent": {
         "title": "Data Visualization AI Agent",
-        "name": "Nova Lens",
         "description": "Generate Interactive Plotly Objects",
         "tech": ["LangChain", "OpenAI", "Streamlit", "Pandas AI", "NL2SQL", "RAG Pipelines"],
         "content": "This service acts as your visual co-pilot. I combine RAG pipelines with AI tools like Pandas AI and Streamlit to produce conversational dashboards, enabling business leaders and analysts to explore data through natural language and see patterns come alive visually.",
@@ -319,7 +319,6 @@ services = {
     },
     "data-wrangling-agent": {
         "title": "Data Wrangling AI Agent",
-        "name": "Orion Flux",
         "description": "Generates Data Table and Charting Code",
         "tech": ["Flask", "React", "TailwindCSS", "SQLAlchemy", "AWS", "Docker"],
         "content": "Designed for engineers and analysts, this agent automates dataset ingestion, cleanup, and transformation. I use Flask and React for frontend/backends, with SQLAlchemy and Dockerized deployments to ensure your data systems stay robust and scalable.",
@@ -330,7 +329,6 @@ services = {
     },
     "feature-engineering-agent": {
         "title": "Feature Engineering AI Agent",
-        "name": "Vega Byte",
         "description": "Performs One-Hot Encoding on Categorical Features",
         "tech": ["Python", "Pandas", "NumPy", "Scikit-learn", "Pickle", "SQL", "Airflow"],
         "content": "I build intelligent feature pipelines that make raw datasets machine-learning ready. From scaling and encoding to custom time-series features, this agent transforms unstructured or messy inputs into optimized model-ready formats—ready to feed your AI systems.",
@@ -339,9 +337,8 @@ services = {
         "icon": "static/images/agent3.jpg",
         "template": "feature-engineering-agent.html"
     },
-    "sql-agent": {
-        "title": "Business SQL Agent",
-        "name": "Cosmo Link",
+    "business-intelligence-SQL-agent": {
+        "title": "Business Intelligence SQL Agent",
         "description": "Ask business questions. Get SQL answers.",
         "tech": ["LangChain", "OpenAI", "SQL", "PostgreSQL", "Flask", "NL2SQL"],
         "content": "This service converts natural language into business-grade SQL queries. I build agents that connect to your database, interpret your intent using NLP, and return actionable insights. Perfect for teams that want to self-serve data without knowing SQL.",
@@ -352,7 +349,6 @@ services = {
     },
     "rag-qa-agent": {
         "title": "Vector Store Q&A Agent",
-        "name": "Luma Code",
         "description": "Context Aware Retrieval Augmentented Generation Co-Pilot",
         "tech": ["LangChain", "OpenAI", "ChromaDB", "PDF Parsers", "Tiktoken", "Pinecone"],
         "content": "This agent enables AI systems to retrieve and synthesize answers from your documents, PDFs, or proprietary datasets using vector search. I build RAG pipelines that deliver grounded responses, reduce hallucinations, and scale with your business context.",
@@ -361,9 +357,8 @@ services = {
         "icon": "static/images/agent5.jpg",
         "template": "rag-qa-agent.html"
     },
-    "etl-agent": {
-        "title": "ETL Automation Agent",
-        "name": "Atlas Core",
+    "data-cleaning-etl-agent": {
+        "title": "Data Cleaning ETL Agent",
         "description": "Agentic Orchestrator - Data Ingestion",
         "tech": ["Airflow", "Pandas", "SQL", "AWS Lambda", "S3", "PostgreSQL"],
         "content": "This agent is ideal for teams that need clean, reliable pipelines to manage large data flows. I design ETL jobs using Airflow or serverless tools to move data between cloud sources, clean it up, and make it queryable—without manual upkeep.",
@@ -374,7 +369,6 @@ services = {
     },
     "llm-eval-agent": {
         "title": "LLM Evaluation Agent",
-        "name": "Echo Beam",
         "description": "Measure, Test, and Improve Model Responses",
         "tech": ["Python", "Jupyter", "LangChain", "OpenAI Eval", "Datasets", "JSONL"],
         "content": "I build tools that help you evaluate LLM outputs against golden datasets or prompt variants. This agent tracks hallucinations, factual accuracy, and formatting to ensure your models improve with each iteration—perfect for R&D and internal tuning.",
@@ -385,7 +379,6 @@ services = {
     },
     "user-auth-agent": {
         "title": "User Auth Agent",
-        "name": "Synth Muse",
         "description": "Secure Authentication Monitor",
         "tech": ["Flask", "JWT", "OAuth2", "SQLAlchemy", "Firebase", "AWS Cognito"],
         "content": "This service ensures your app has a secure login system with role-based permissions, token handling, and scalable session storage. Whether you're launching an LMS or an enterprise AI assistant, this agent keeps your users safe and data private.",
@@ -395,6 +388,13 @@ services = {
         "template": "user-auth-agent.html"
     }
 }
+
+# On the dashboard i'd like to see how many missions they've been on
+# which teams each agent is has been on 
+# some basic statistics in the mission log like "I just analyzed 300 reports in less than 23 minutes"
+# which projects? or that kind of sounds like mission 
+# 
+
 
 @app.route('/service')
 def show_service():
@@ -680,6 +680,14 @@ def get_logs(file_id):
         status = "failed"
 
     return jsonify({"status": status, "logs": logs})
+
+@app.route("/diagram")
+def serve_diagram():
+    return send_from_directory("static/react-diagram", "index.html")
+
+@app.route("/diagram/<path:path>")
+def serve_diagram_assets(path):
+    return send_from_directory("static/react-diagram", path)
 
 #------------------------ Front facing chatbot ---------------------------------------#
 
