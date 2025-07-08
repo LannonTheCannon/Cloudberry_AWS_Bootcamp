@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>React Flow Overview</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://unpkg.com/reactflow@11.6.0/dist/style.css" />
+    <style>
+      html, body, #root {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        font-family: sans-serif;
+        background-color: #1f2937;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Load React and ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Load React Flow -->
+    <script src="https://unpkg.com/reactflow@11.6.0/dist/umd/react-flow.production.min.js"></script>
+
+    <!-- Render Diagram -->
+    <script type="text/javascript">
+      const { createElement, useCallback } = React;
+      const { render } = ReactDOM;
+      const {
+        ReactFlow,
+        Background,
+        Controls,
+        MiniMap,
+        addEdge,
+        useNodesState,
+        useEdgesState,
+        MarkerType,
+      } = window.ReactFlow;
+
+      const initialNodes = [
+        {
+          id: '1',
+          type: 'input',
+          data: { label: 'Input Node' },
+          position: { x: 250, y: 5 },
+        },
+        {
+          id: '2',
+          data: { label: 'Default Node' },
+          position: { x: 100, y: 100 },
+        },
+        {
+          id: '3',
+          type: 'output',
+          data: { label: 'Output Node' },
+          position: { x: 400, y: 100 },
+        },
+      ];
+
+      const initialEdges = [
+        {
+          id: 'e1-2',
+          source: '1',
+          target: '2',
+        },
+        {
+          id: 'e1-3',
+          source: '1',
+          target: '3',
+          animated: true,
+        },
+      ];
+
+      function FlowDiagram() {
+        const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+        const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
+        const onConnect = useCallback(
+          (params) => setEdges((eds) => addEdge(params, eds)),
+          [setEdges]
+        );
+
+        return createElement(
+          'div',
+          { style: { width: '100%', height: '100%' } },
+          createElement(ReactFlow, {
+            nodes,
+            edges,
+            onNodesChange,
+            onEdgesChange,
+            onConnect,
+            fitView: true,
+            children: [
+              createElement(Controls, { key: 'controls' }),
+              createElement(Background, { key: 'background', gap: 16 }),
+              createElement(MiniMap, { key: 'minimap' }),
+            ],
+          })
+        );
+      }
+
+      render(createElement(FlowDiagram), document.getElementById('root'));
+    </script>
+  </body>
+</html>

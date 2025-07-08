@@ -130,118 +130,79 @@
         <div
             class="stat-grid grid grid-cols-1 sm:grid-cols-4 gap-6 text-center bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-6">
             <div class="flex flex-col items-center">
-
                 <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="137">0
                 </div>
-
                 <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Commits per Week</p>
-
             </div>
 
             <div class="flex flex-col items-center">
-
                 <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="2">0
                 </div>
-
                 <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Feature Branch Merged</p>
-
             </div>
 
             <div class="flex flex-col items-center">
-
                 <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="5">0
                 </div>
-
                 <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Average Commit Size</p>
-
             </div>
 
             <div class="flex flex-col items-center">
-
                 <div class="text-5xl font-extrabold font-mono text-indigo-300 counter tracking-wide" data-target="145">0
                 </div>
-
                 <p class="text-xs text-gray-400 font-mono tracking-widest uppercase mt-2">Lines Ratio</p>
-
             </div>
-
         </div>
 
         <!-- Mission Log + Skill Chart Grid -->
-
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 -mt-6">
-
             <!-- Mission Log -->
-
             <div
                 class="mission-log bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 font-mono text-sm text-gray-300">
-
                 <h4
                     class="text-lg font-bold text-indigo-300 mb-4 tracking-widest uppercase border-b border-white/10 pb-2">
                     Motion Mission Log</h4>
-
                 <ul class="space-y-3">
-
                     <li>
-
                         <span class="text-xs text-gray-400">[05.31.2025 – 20:15]</span><br>
-
                         <span class="text-indigo-200">Pushed 6 commits to `data-forge-plus`</span>
-
                     </li>
-
                     <li>
-
                         <span class="text-xs text-gray-400">[05.31.2025 – 18:42]</span><br>
-
                         <span class="text-indigo-200">Refactored OpenAI Assistant Memory</span>
-
                     </li>
-
                     <li>
-
                         <span class="text-xs text-gray-400">[05.31.2025 – 17:08]</span><br>
-
                         <span class="text-indigo-200">Added new mission card interface</span>
-
                     </li>
-
                     <li>
-
                         <span class="text-xs text-gray-400">[05.30.2025 – 22:01]</span><br>
-
                         <span class="text-indigo-200">Deployed `quote-ability` static blog</span>
-
                     </li>
-
                     <li>
-
                         <span class="text-xs text-gray-400">[05.30.2025 – 09:14]</span><br>
-
                         <span class="text-indigo-200">Read 28 pages of *The War of Art*</span>
-
                     </li>
-
                 </ul>
-
             </div>
 
             <!-- Skill Activity Chart -->
 
-            <div class="skill-chart bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 shadow-lg">
-
-                <h4
-                    class="text-lg font-bold text-indigo-300 mb-4 tracking-widest uppercase border-b border-white/10 pb-2 font-mono">
-                    Skill Activity</h4>
-
-                <canvas id="skillBarChart" class="w-full h-[280px]"></canvas>
-
-            </div>
-
+          <div class="skill-chart bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 shadow-lg">
+            <h4 class="text-lg font-bold text-indigo-300 mb-4 tracking-widest uppercase border-b border-white/10 pb-2 font-mono">
+              BI Agent Workflow
+            </h4>
+              <iframe
+                src="https://codesandbox.io/embed/7yj7vk?fontsize=14&hidenavigation=1&theme=dark"
+                style="width: 100%; height: 800px; border: 0; border-radius: 8px; overflow: hidden;"
+                title="React Flow Diagram"
+                allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+                sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+              ></iframe>
+          </div>
         </div>
 
     </div>
-
 </section>
 
   <!-- Footer -->
@@ -264,59 +225,47 @@
   </footer>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/reactflow@11.10.4/dist/index.umd.js"></script>
 
-  <script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
-  const ctx = document.getElementById("skillBarChart").getContext("2d");
+  const { ReactFlow, Controls, Background } = window.ReactFlow;
 
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['May 25', 'May 26', 'May 27', 'May 28', 'May 29', 'May 30', 'May 31'],
-      datasets: [
-        {
-          label: 'Lines Added',
-          data: [120, 150, 80, 200, 180, 160, 210],
-          borderColor: '#4ADE80',
-          backgroundColor: 'rgba(74, 222, 128, 0.1)',
-          tension: 0.3,
-          fill: true,
-        },
-        {
-          label: 'Lines Removed',
-          data: [20, 60, 40, 50, 70, 30, 90],
-          borderColor: '#F87171',
-          backgroundColor: 'rgba(248, 113, 113, 0.1)',
-          tension: 0.3,
-          fill: true,
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          labels: {
-            color: '#e2e8f0',
-            font: {
-              family: 'monospace'
-            }
-          }
-        }
+  const initialNodes = [
+    { id: '1', type: 'input', data: { label: 'Start' }, position: { x: 100, y: 100 } },
+    { id: '2', data: { label: 'Ingest Data' }, position: { x: 300, y: 100 } },
+    { id: '3', data: { label: 'Analyze & Visualize' }, position: { x: 500, y: 100 } },
+    { id: '4', type: 'output', data: { label: 'Complete' }, position: { x: 700, y: 100 } },
+  ];
+
+  const initialEdges = [
+    { id: 'e1-2', source: '1', target: '2', animated: true },
+    { id: 'e2-3', source: '2', target: '3', animated: true },
+    { id: 'e3-4', source: '3', target: '4', animated: true },
+  ];
+
+  const Flow = () => {
+    return React.createElement(
+      ReactFlow,
+      {
+        nodes: initialNodes,
+        edges: initialEdges,
+        fitView: true,
+        style: { background: '#1f2937', width: '100%', height: '100%' },
+        attributionPosition: 'bottom-left',
       },
-      scales: {
-        x: {
-          ticks: { color: '#cbd5e1' },
-          grid: { color: 'rgba(255,255,255,0.05)' }
-        },
-        y: {
-          ticks: { color: '#cbd5e1' },
-          grid: { color: 'rgba(255,255,255,0.05)' }
-        }
-      }
-    }
-  });
+      React.createElement(Controls),
+      React.createElement(Background, { color: '#4b5563', gap: 16 })
+    );
+  };
+
+  const container = document.getElementById('react-flow-container');
+  if (container) {
+    const root = ReactDOM.createRoot(container);
+    root.render(React.createElement(Flow));
+  }
 });
 </script>
 
@@ -325,273 +274,72 @@ document.addEventListener("DOMContentLoaded", () => {
   const statsSection = document.querySelector(".stat-grid");
   const missionLog = document.querySelector(".mission-log");
   const skillChart = document.querySelector(".skill-chart");
-const projectData = {
-  "data-vis-agent": {
-    stats: [156, 3, 6, 165],
-    log: [
-      "[06.28.2025 – 15:12] Built RAG pipeline for SQL-based agent",
-      "[06.27.2025 – 18:22] Launched data-to-graph NL2SQL prototype"
-    ]
-  },
-  "data-wrangling-agent": {
-    stats: [124, 5, 8, 137],
-    log: [
-      "[06.26.2025 – 16:01] Refactored Flask backend for ETL agent",
-      "[06.25.2025 – 14:33] Dockerized API and deployed to AWS EC2"
-    ]
-  },
-  "feature-engineering-agent": {
-    stats: [109, 4, 7, 120],
-    log: [
-      "[06.24.2025 – 12:30] Tuned LightGBM model features",
-      "[06.23.2025 – 11:11] Generated 10K synthetic samples via Python"
-    ]
-  },
-  "sql-agent": {
-    stats: [95, 2, 6, 102],
-    log: [
-      "[06.22.2025 – 13:45] Added SQL caching mechanism",
-      "[06.21.2025 – 10:17] Launched GPT-backed DB assistant"
-    ]
-  },
-  "rag-qa-agent": {
-    stats: [132, 3, 5, 140],
-    log: [
-      "[06.20.2025 – 17:40] Embedded 200+ docs into vector DB",
-      "[06.19.2025 – 09:25] Integrated PDF parsing pipeline for RAG"
-    ]
-  },
-  "etl-agent": {
-    stats: [121, 6, 7, 134],
-    log: [
-      "[06.18.2025 – 12:00] Deployed Airflow DAG for S3 ingestion",
-      "[06.17.2025 – 08:15] Completed full ETL for daily sales data"
-    ]
-  },
-  "llm-eval-agent": {
-    stats: [88, 3, 4, 95],
-    log: [
-      "[06.16.2025 – 15:45] Evaluated GPT outputs using JSONL gold set",
-      "[06.15.2025 – 10:00] Built prompt variation tracker for eval suite"
-    ]
-  },
-  "user-auth-agent": {
-    stats: [101, 2, 5, 108],
-    log: [
-      "[06.14.2025 – 19:20] Implemented JWT and OAuth2 flow",
-      "[06.13.2025 – 11:33] Added RBAC for admin/mod/user tiers"
-    ]
-  }
-};
-
-  function animateCount(el, target) {
-    let current = 0;
-    const increment = Math.ceil(target / 40);
-    const interval = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        el.textContent = target;
-        clearInterval(interval);
-      } else {
-        el.textContent = current;
-      }
-    }, 20);
-  }
-
-  projectCards.forEach(card => {
-    card.addEventListener("click", () => {
-      // Remove .selected from all cards
-      projectCards.forEach(c => c.classList.remove("selected"));
-      // Add .selected to clicked one
-      card.classList.add("selected");
-
-      const selected = card.dataset.project;
-      const newStats = projectData[selected].stats;
-      const newLog = projectData[selected].log;
-
-      // Animate fade out
-      statsSection.classList.add("opacity-0", "transition", "duration-300");
-      missionLog.classList.add("opacity-0", "transition", "duration-300");
-      skillChart.classList.add("opacity-0", "transition", "duration-300");
-
-      setTimeout(() => {
-        // Update stats counters
-        const counters = statsSection.querySelectorAll(".counter");
-        counters.forEach((el, i) => {
-          el.textContent = "0"; // Reset first
-          animateCount(el, newStats[i]);
-        });
-
-        // Update mission log
-        const ul = missionLog.querySelector("ul");
-        ul.innerHTML = newLog.map(log => `
-          <li>
-            <span class="text-xs text-gray-400">${log.split(']')[0]}]</span><br>
-            <span class="text-indigo-200">${log.split(']')[1].trim()}</span>
-          </li>
-        `).join("");
-
-        // Fade back in
-        statsSection.classList.remove("opacity-0");
-        missionLog.classList.remove("opacity-0");
-        skillChart.classList.remove("opacity-0");
-      }, 300);
-    });
-  });
-  </script>
-
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const defaultProject = "data-forge-plus";
-  const defaultCard = document.querySelector(`.project-card[data-project="${defaultProject}"]`);
-
-  if (defaultCard) {
-    defaultCard.classList.add("selected");
-
-    const newStats = projectData[defaultProject].stats;
-    const newLog = projectData[defaultProject].log;
-
-    // Update stat counters
-    const counters = statsSection.querySelectorAll(".counter");
-    counters.forEach((el, i) => {
-      el.textContent = "0"; // Reset
-      animateCount(el, newStats[i]);
-    });
-
-    // Update mission log
-    const ul = missionLog.querySelector("ul");
-    ul.innerHTML = newLog.map(log => `
-      <li>
-        <span class="text-xs text-gray-400">${log.split(']')[0]}]</span><br>
-        <span class="text-indigo-200">${log.split(']')[1].trim()}</span>
-      </li>
-    `).join("");
-
-    // Reset & rebuild skill chart
-    const ctx = document.getElementById("skillBarChart").getContext("2d");
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: ['May 25', 'May 26', 'May 27', 'May 28', 'May 29', 'May 30', 'May 31'],
-        datasets: [
-          {
-            label: 'Lines Added',
-            data: [120, 150, 80, 200, 180, 160, 210],
-            borderColor: '#4ADE80',
-            backgroundColor: 'rgba(74, 222, 128, 0.1)',
-            tension: 0.3,
-            fill: true,
-          },
-          {
-            label: 'Lines Removed',
-            data: [20, 60, 40, 50, 70, 30, 90],
-            borderColor: '#F87171',
-            backgroundColor: 'rgba(248, 113, 113, 0.1)',
-            tension: 0.3,
-            fill: true,
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            labels: {
-              color: '#e2e8f0',
-              font: { family: 'monospace' }
-            }
-          }
-        },
-        scales: {
-          x: {
-            ticks: { color: '#cbd5e1' },
-            grid: { color: 'rgba(255,255,255,0.05)' }
-          },
-          y: {
-            ticks: { color: '#cbd5e1' },
-            grid: { color: 'rgba(255,255,255,0.05)' }
-          }
-        }
-      }
-    });
-  }
-});
-  </script>
-
-  <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const defaultProject = "data-forge-plus";
-        const defaultCard = document.querySelector(`.project-card[data-project="${defaultProject}"]`);
-
-        if (defaultCard) {
-          defaultCard.classList.add("selected");
-
-          const newStats = projectData[defaultProject].stats;
-          const newLog = projectData[defaultProject].log;
-
-          const counters = statsSection.querySelectorAll(".counter");
-          counters.forEach((el, i) => {
-            el.textContent = "0"; // Reset first
-            animateCount(el, newStats[i]);
-          });
-
-          const ul = missionLog.querySelector("ul");
-          ul.innerHTML = newLog.map(log => `
-            <li>
-              <span class="text-xs text-gray-400">${log.split(']')[0]}]</span><br>
-              <span class="text-indigo-200">${log.split(']')[1].trim()}</span>
-            </li>
-          `).join("");
-        }
-      });
-  </script>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.remove("opacity-0", "translate-y-10");
-          entry.target.classList.add("opacity-100", "translate-y-0");
-          entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.25 });
-
-    document.querySelectorAll('.fade-in-up').forEach((el) => {
-      observer.observe(el);
-    });
-  });
-  </script>
-
-  <script>
-  const projectCards = document.querySelectorAll(".project-card");
-  const statsSection = document.querySelector(".stat-grid");
-  const missionLog = document.querySelector(".mission-log");
-  const skillChart = document.querySelector(".skill-chart");
+  const iframe = document.getElementById("agent-diagram");
 
   const projectData = {
-    "data-forge-plus": {
-      stats: [137, 2, 5, 145],
+    "data-vis-agent": {
+      stats: [156, 3, 6, 165],
       log: [
-        "[05.31.2025 – 20:15] Pushed 6 commits to `data-forge-plus`",
-        "[05.31.2025 – 18:42] Refactored OpenAI Assistant Memory"
-      ]
+        "[06.28.2025 – 15:12] Built RAG pipeline for SQL-based agent",
+        "[06.27.2025 – 18:22] Launched data-to-graph NL2SQL prototype"
+      ],
+      iframe: "https://codesandbox.io/embed/vis-agent-id?fontsize=14&theme=dark"
     },
-    "exo-land": {
-      stats: [89, 4, 7, 122],
+    "data-wrangling-agent": {
+      stats: [124, 5, 8, 137],
       log: [
-        "[05.30.2025 – 16:09] Rendered 14 planets with DALL·E 3",
-        "[05.30.2025 – 13:32] Merged `habitability-score` pipeline"
-      ]
+        "[06.26.2025 – 16:01] Refactored Flask backend for ETL agent",
+        "[06.25.2025 – 14:33] Dockerized API and deployed to AWS EC2"
+      ],
+      iframe: "https://codesandbox.io/embed/wrangling-agent-id?fontsize=14&theme=dark"
     },
-    "quote-ability": {
-      stats: [42, 3, 6, 90],
+    "feature-engineering-agent": {
+      stats: [109, 4, 7, 120],
       log: [
-        "[05.30.2025 – 09:14] Indexed 3 books into vector DB",
-        "[05.29.2025 – 21:22] Launched quote scheduler"
-      ]
+        "[06.24.2025 – 12:30] Tuned LightGBM model features",
+        "[06.23.2025 – 11:11] Generated 10K synthetic samples via Python"
+      ],
+      iframe: "https://codesandbox.io/embed/feature-agent-id?fontsize=14&theme=dark"
+    },
+    "sql-agent": {
+      stats: [95, 2, 6, 102],
+      log: [
+        "[06.22.2025 – 13:45] Added SQL caching mechanism",
+        "[06.21.2025 – 10:17] Launched GPT-backed DB assistant"
+      ],
+      iframe: "https://codesandbox.io/embed/sql-agent-id?fontsize=14&theme=dark"
+    },
+    "rag-qa-agent": {
+      stats: [132, 3, 5, 140],
+      log: [
+        "[06.20.2025 – 17:40] Embedded 200+ docs into vector DB",
+        "[06.19.2025 – 09:25] Integrated PDF parsing pipeline for RAG"
+      ],
+      iframe: "https://codesandbox.io/embed/rag-agent-id?fontsize=14&theme=dark"
+    },
+    "etl-agent": {
+      stats: [121, 6, 7, 134],
+      log: [
+        "[06.18.2025 – 12:00] Deployed Airflow DAG for S3 ingestion",
+        "[06.17.2025 – 08:15] Completed full ETL for daily sales data"
+      ],
+      iframe: "https://codesandbox.io/embed/etl-agent-id?fontsize=14&theme=dark"
+    },
+    "llm-eval-agent": {
+      stats: [88, 3, 4, 95],
+      log: [
+        "[06.16.2025 – 15:45] Evaluated GPT outputs using JSONL gold set",
+        "[06.15.2025 – 10:00] Built prompt variation tracker for eval suite"
+      ],
+      iframe: "https://codesandbox.io/embed/eval-agent-id?fontsize=14&theme=dark"
+    },
+    "user-auth-agent": {
+      stats: [101, 2, 5, 108],
+      log: [
+        "[06.14.2025 – 19:20] Implemented JWT and OAuth2 flow",
+        "[06.13.2025 – 11:33] Added RBAC for admin/mod/user tiers"
+      ],
+      iframe: "https://codesandbox.io/embed/auth-agent-id?fontsize=14&theme=dark"
     }
   };
 
@@ -649,7 +397,55 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 300);
     });
   });
-</script>
+  </script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Change this to match your actual project slugs
+    const defaultProject = "data-vis-agent"; // or whatever your first card's data-project is
+    const defaultCard = document.querySelector(`.project-card[data-project="${defaultProject}"]`);
+
+    if (defaultCard) {
+      defaultCard.classList.add("selected");
+
+      const newStats = projectData[defaultProject].stats;
+      const newLog = projectData[defaultProject].log;
+
+      const counters = document.querySelectorAll(".counter"); // Remove statsSection reference
+      counters.forEach((el, i) => {
+        el.textContent = "0";
+        animateCount(el, newStats[i]);
+      });
+
+      const ul = document.querySelector(".mission-log ul"); // Direct selection
+      ul.innerHTML = newLog.map(log => `
+        <li>
+          <span class="text-xs text-gray-400">${log.split(']')[0]}]</span><br>
+          <span class="text-indigo-200">${log.split(']')[1].trim()}</span>
+        </li>
+      `).join("");
+    }
+  });
+  </script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove("opacity-0", "translate-y-10");
+          entry.target.classList.add("opacity-100", "translate-y-0");
+          entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    document.querySelectorAll('.fade-in-up').forEach((el) => {
+      observer.observe(el);
+    });
+  });
+  </script>
 
 </body>
 </html>
