@@ -193,6 +193,7 @@
               BI Agent Workflow
             </h4>
               <iframe
+                id="agent-diagram"
                 src="https://codesandbox.io/embed/7yj7vk?fontsize=14&hidenavigation=1&theme=dark"
                 style="width: 100%; height: 800px; border: 0; border-radius: 8px; overflow: hidden;"
                 title="React Flow Diagram"
@@ -283,7 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "[06.28.2025 – 15:12] Built RAG pipeline for SQL-based agent",
         "[06.27.2025 – 18:22] Launched data-to-graph NL2SQL prototype"
       ],
-      iframe: "https://codesandbox.io/embed/vis-agent-id?fontsize=14&theme=dark"
+      iframe: "https://codesandbox.io/embed/7yj7vk?fontsize=14&hidenavigation=1&theme=dark"
     },
     "data-wrangling-agent": {
       stats: [124, 5, 8, 137],
@@ -291,7 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "[06.26.2025 – 16:01] Refactored Flask backend for ETL agent",
         "[06.25.2025 – 14:33] Dockerized API and deployed to AWS EC2"
       ],
-      iframe: "https://codesandbox.io/embed/wrangling-agent-id?fontsize=14&theme=dark"
+      iframe: "https://codesandbox.io/embed/n5vgcc?fontsize=14&hidenavigation=1&theme=dark"
     },
     "feature-engineering-agent": {
       stats: [109, 4, 7, 120],
@@ -367,6 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const selected = card.dataset.project;
       const newStats = projectData[selected].stats;
       const newLog = projectData[selected].log;
+      iframe.src = projectData[selected].iframe;
 
       // Animate fade out
       statsSection.classList.add("opacity-0", "transition", "duration-300");
