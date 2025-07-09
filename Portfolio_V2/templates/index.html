@@ -211,15 +211,16 @@
       z-index: -1;
     }
 
-    .project-card.selected .card-glow {
-      opacity: 1;
+    /* Replace your existing .selected class in the <style> section with this stronger version */
+    .project-card.selected {
+      border-color: rgba(255, 255, 255, 0.9) !important;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.75) !important;
     }
-
-    /* Your existing .selected class styling */
+    /* Your existing .selected class styling
     .selected {
       border-color: rgba(255, 255, 255, 0.9);
       box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.75);
-    }
+    } */
 
   @keyframes rotate-border {
     0% {
@@ -577,7 +578,7 @@ into insights, and insights into action.
             data-agent-name="{{ agent.title }}"
             data-agent-role="{{ agent.description }}"
             data-agent-image="{{ agent.image1 }}"
-            class="project-card {% if loop.first %}selected{% endif %} bg-white/5 border border-white/10 rounded-xl md:rounded-2xl p-3 md:p-6 transform-gpu transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer relative">
+            class="project-card {% if loop.first %}selected{% endif %} bg-white/5 border border-white/10 rounded-xl md:rounded-2xl p-3 md:p-6 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer relative">
 
             <!-- Add the glow element -->
             <div class="card-glow"></div>
