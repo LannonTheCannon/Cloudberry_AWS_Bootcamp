@@ -288,7 +288,7 @@ section, div {
     <h1 class="text-xl font-bold tracking-tight">Lannon Khau</h1>
     <nav class="space-x-6 text-sm">
       <a href="/" class="text-indigo-400 font-semibold">Home</a>
-      <a href="/service" class="hover:text-indigo-400">Services</a>
+      <!-- <a href="/service" class="hover:text-indigo-400">Services</a> -->
       <a href="/about" class="hover:text-indigo-400">Mission</a>
       <a href="/projects" class="hover:text-indigo-400">Projects</a>
       <a href="/blog" class="hover:text-indigo-400">Blog</a>
@@ -684,7 +684,6 @@ Generate Interactive Plotly Objects
 
 
 
-
 <section id="multi-agent-orchestration"
   class="mt-4 fade-in-up px-4 md:px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700">
 
@@ -694,24 +693,24 @@ Generate Interactive Plotly Objects
 
   <!-- Connection Text -->
   <div class="max-w-4xl mx-auto text-center mb-12 md:mb-16 px-4">
-    <p class="text-base md:text-lg text-gray-300 leading-relaxed">
+    <p class="mb-8 text-base md:text-lg text-gray-300 leading-relaxed">
       Individual agents are powerful, but <span class="text-indigo-400 font-semibold">teams of agents</span>
       solve complex business problems. Here's how I orchestrate specialized AI agents into
       <span class="text-indigo-400 font-semibold">intelligent workflows</span> that deliver results.
     </p>
   </div>
 
-  <!-- Workflow Cards -->
-  <div class="max-w-5xl mx-auto space-y-6 md:space-y-6">
+  <!-- Workflow Cards - 2x2 Grid on Desktop, 1 Column on Mobile -->
+  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-2">
 
     <!-- Marketing Analytics Workflow -->
-    <div class="mt-8 group relative w-full bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-4 md:p-8 shadow-2xl transition-all duration-500 ease-out hover:shadow-xl hover:border-white/30 cursor-pointer overflow-hidden">
+    <div class="group relative w-full bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-4 md:p-8 shadow-2xl transition-all duration-500 ease-out hover:shadow-xl hover:border-white/30 cursor-pointer overflow-hidden">
       
       <!-- Subtle background glow -->
       <div class="absolute inset-0 bg-gradient-to-r from-white/5 to-gray-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       
-      <!-- Mobile Layout: Stacked -->
-      <div class="relative z-10 flex flex-col space-y-4 md:hidden">
+      <!-- Card Content -->
+      <div class="relative z-10 flex flex-col space-y-4">
         <!-- Icon and Title Row -->
         <div class="flex items-center space-x-4">
           <div class="relative w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm flex-shrink-0">
@@ -728,7 +727,7 @@ Generate Interactive Plotly Objects
         
         <!-- Description -->
         <p class="text-sm text-gray-300 leading-relaxed">
-          Full-stack campaign intelligence system that automates marketing analytics from data ingestion to interactive dashboards.
+          Full-stack campaign intelligence system that automates marketing analytics from data ingestion to interactive dashboards. Transforms raw campaign data into actionable insights with real-time performance tracking and predictive ROI modeling.
         </p>
         
         <!-- Process Flow -->
@@ -780,81 +779,6 @@ Generate Interactive Plotly Objects
           </div>
         </div>
       </div>
-
-      <!-- Desktop Layout: Original Grid -->
-      <div class="relative z-10 hidden md:grid grid-cols-12 gap-8 items-center">
-        <!-- Left: Icon (takes 2 columns) -->
-        <div class="col-span-2 flex justify-center">
-          <div class="relative w-24 h-24 rounded-full bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm">
-            <div class="icon-border-glow"></div>
-            <div class="icon-inner">
-              <img src="static/icons/market.svg" class="w-16 h-16 filter brightness-110 transition-all duration-300 group-hover:brightness-125 group-hover:scale-110" alt="Marketing Analytics">
-            </div>
-          </div>
-        </div>
-        
-        <!-- Middle: Title & Description (takes 6 columns) -->
-        <div class="col-span-6 space-y-3">
-          <div class="flex items-center space-x-3">
-            <h3 class="text-2xl font-bold text-white tracking-tight">Marketing Analytics</h3>
-            <span class="text-xs text-gray-400 group-hover:text-green-400 font-mono transition-colors duration-300 bg-gray-900/50 rounded-full px-2 py-1">◉ 4 AGENTS ACTIVE</span>
-          </div>
-          <p class="text-sm text-gray-300 leading-relaxed">
-            Full-stack campaign intelligence system that automates marketing analytics from data ingestion to interactive dashboards.
-          </p>
-          <div class="flex items-center space-x-4 text-xs text-gray-400 font-mono">
-            <span>Data ingestion</span>
-            <span>→</span>
-            <span>Analysis</span>
-            <span>→</span>
-            <span>Insights</span>
-            <span>→</span>
-            <span>Visualization</span>
-          </div>
-        </div>
-        
-        <!-- Right: Agent Swarm (takes 4 columns) -->
-        <div class="col-span-4 space-y-4">
-          <div class="text-right">
-            <span class="text-xs text-gray-300 font-mono tracking-wider">ORCHESTRATOR: LANNON</span>
-          </div>
-          
-          <!-- Agent Pills in Organic Formation -->
-          <div class="flex flex-wrap gap-2 justify-end">
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-1">
-              <img src="static/images/agent1.jpg" class="w-5 h-5 rounded-full border border-white/30 transition-all duration-300 group-hover:border-green-400/60 group-hover:shadow-sm group-hover:shadow-green-400/30" alt="Data Vis">
-              <span class="text-xs text-white font-medium">Data Vis</span>
-              <span class="text-xs text-gray-400 group-hover:text-green-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform -rotate-1">
-              <img src="static/images/agent4.jpg" class="w-5 h-5 rounded-full border border-white/30 transition-all duration-300 group-hover:border-green-400/60 group-hover:shadow-sm group-hover:shadow-green-400/30" alt="SQL Agent">
-              <span class="text-xs text-white font-medium">SQL</span>
-              <span class="text-xs text-gray-400 group-hover:text-green-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-2">
-              <img src="static/images/agent6.jpg" class="w-5 h-5 rounded-full border border-white/30 transition-all duration-300 group-hover:border-green-400/60 group-hover:shadow-sm group-hover:shadow-green-400/30" alt="ETL Agent">
-              <span class="text-xs text-white font-medium">ETL</span>
-              <span class="text-xs text-gray-400 group-hover:text-green-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform -rotate-2">
-              <img src="static/images/agent5.jpg" class="w-5 h-5 rounded-full border border-white/30 transition-all duration-300 group-hover:border-green-400/60 group-hover:shadow-sm group-hover:shadow-green-400/30" alt="RAG Agent">
-              <span class="text-xs text-white font-medium">RAG</span>
-              <span class="text-xs text-gray-400 group-hover:text-green-400 transition-colors duration-300">●</span>
-            </div>
-          </div>
-          
-          <!-- Status Indicator -->
-          <div class="bg-gray-900/70 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/20 group-hover:border-indigo-400/40 transition-all duration-300">
-            <div class="flex items-center justify-between">
-              <span class="text-xs text-gray-300 group-hover:text-indigo-400 font-bold tracking-wide transition-colors duration-300">WORKFLOW STATUS</span>
-              <div class="flex items-center space-x-2">
-                <span class="w-2 h-2 bg-white group-hover:bg-indigo-400 rounded-full animate-pulse transition-colors duration-300"></span>
-                <span class="text-xs text-gray-300 group-hover:text-indigo-400 font-mono transition-colors duration-300">ACTIVE</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       
       <!-- Footer -->
       <div class="relative z-10 pt-4 mt-4 md:mt-6 border-t border-white/20 text-xs text-gray-400 font-mono flex justify-between">
@@ -869,8 +793,8 @@ Generate Interactive Plotly Objects
       <!-- Subtle background glow -->
       <div class="absolute inset-0 bg-gradient-to-r from-white/5 to-gray-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       
-      <!-- Mobile Layout: Stacked -->
-      <div class="relative z-10 flex flex-col space-y-4 md:hidden">
+      <!-- Card Content -->
+      <div class="relative z-10 flex flex-col space-y-4">
         <!-- Icon and Title Row -->
         <div class="flex items-center space-x-4">
           <div class="relative w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm flex-shrink-0">
@@ -949,91 +873,6 @@ Generate Interactive Plotly Objects
           </div>
         </div>
       </div>
-
-      <!-- Desktop Layout: Original Grid -->
-      <div class="relative z-10 hidden md:grid grid-cols-12 gap-8 items-center">
-        <!-- Left: Icon (takes 2 columns) -->
-        <div class="col-span-2 flex justify-center">
-          <div class="relative w-24 h-24 rounded-full bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm">
-            <div class="icon-border-glow"></div>
-            <div class="icon-inner">
-              <img src="static/icons/datapip.svg" class="w-16 h-16 filter brightness-110 transition-all duration-300 group-hover:brightness-125 group-hover:scale-110" alt="Data Science">
-            </div>
-          </div>
-        </div>
-        
-        <!-- Middle: Title & Description (takes 6 columns) -->
-        <div class="col-span-6 space-y-3">
-          <div class="flex items-center space-x-3">
-            <h3 class="text-2xl font-bold text-white tracking-tight">Data Science Pipeline</h3>
-            <span class="text-xs text-gray-400 group-hover:text-green-400 font-mono transition-colors duration-300 bg-gray-900/50 rounded-full px-2 py-1">◉ 6 AGENTS ACTIVE</span>
-          </div>
-          <p class="text-sm text-gray-300 leading-relaxed">
-            End-to-end machine learning operations platform with automated model lifecycle management and production deployment.
-          </p>
-          <div class="flex items-center space-x-4 text-xs text-gray-400 font-mono">
-            <span>Raw data</span>
-            <span>→</span>
-            <span>Feature engineering</span>
-            <span>→</span>
-            <span>Model training</span>
-            <span>→</span>
-            <span>Production</span>
-          </div>
-        </div>
-        
-        <!-- Right: Agent Swarm (takes 4 columns) -->
-        <div class="col-span-4 space-y-4">
-          <div class="text-right">
-            <span class="text-xs text-gray-300 font-mono tracking-wider">ORCHESTRATOR: LANNON</span>
-          </div>
-          
-          <!-- Agent Pills in Organic Formation -->
-          <div class="flex flex-wrap gap-2 justify-end">
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform -rotate-1">
-              <img src="static/images/agent2.jpg" class="w-5 h-5 rounded-full border border-white/30 transition-all duration-300 group-hover:border-green-400/60 group-hover:shadow-sm group-hover:shadow-green-400/30" alt="Data Wrangling">
-              <span class="text-xs text-white font-medium">Wrangling</span>
-              <span class="text-xs text-gray-400 group-hover:text-green-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-1">
-              <img src="static/images/agent3.jpg" class="w-5 h-5 rounded-full border border-white/30 transition-all duration-300 group-hover:border-green-400/60 group-hover:shadow-sm group-hover:shadow-green-400/30" alt="Feature Eng">
-              <span class="text-xs text-white font-medium">Feature Eng</span>
-              <span class="text-xs text-gray-400 group-hover:text-green-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform -rotate-2">
-              <img src="static/images/agent7.jpg" class="w-5 h-5 rounded-full border border-white/30 transition-all duration-300 group-hover:border-green-400/60 group-hover:shadow-sm group-hover:shadow-green-400/30" alt="LLM Eval">
-              <span class="text-xs text-white font-medium">LLM Eval</span>
-              <span class="text-xs text-gray-400 group-hover:text-green-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-2">
-              <img src="static/images/agent6.jpg" class="w-5 h-5 rounded-full border border-white/30 transition-all duration-300 group-hover:border-green-400/60 group-hover:shadow-sm group-hover:shadow-green-400/30" alt="ETL">
-              <span class="text-xs text-white font-medium">ETL</span>
-              <span class="text-xs text-gray-400 group-hover:text-green-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform -rotate-1">
-              <img src="static/images/agent8.jpg" class="w-5 h-5 rounded-full border border-white/30 transition-all duration-300 group-hover:border-green-400/60 group-hover:shadow-sm group-hover:shadow-green-400/30" alt="Model Deploy">
-              <span class="text-xs text-white font-medium">Deploy</span>
-              <span class="text-xs text-gray-400 group-hover:text-green-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-1">
-              <img src="static/images/agent1.jpg" class="w-5 h-5 rounded-full border border-white/30 transition-all duration-300 group-hover:border-green-400/60 group-hover:shadow-sm group-hover:shadow-green-400/30" alt="Monitor">
-              <span class="text-xs text-white font-medium">Monitor</span>
-              <span class="text-xs text-gray-400 group-hover:text-green-400 transition-colors duration-300">●</span>
-            </div>
-          </div>
-          
-          <!-- Status Indicator -->
-          <div class="bg-gray-900/70 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/20 group-hover:border-indigo-400/40 transition-all duration-300">
-            <div class="flex items-center justify-between">
-              <span class="text-xs text-gray-300 group-hover:text-indigo-400 font-bold tracking-wide transition-colors duration-300">WORKFLOW STATUS</span>
-              <div class="flex items-center space-x-2">
-                <span class="w-2 h-2 bg-white group-hover:bg-indigo-400 rounded-full animate-pulse transition-colors duration-300"></span>
-                <span class="text-xs text-gray-300 group-hover:text-indigo-400 font-mono transition-colors duration-300">ACTIVE</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       
       <!-- Footer -->
       <div class="relative z-10 pt-4 mt-4 md:mt-6 border-t border-white/20 text-xs text-gray-400 font-mono flex justify-between">
@@ -1046,10 +885,10 @@ Generate Interactive Plotly Objects
     <div class="group relative w-full bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-4 md:p-8 shadow-2xl transition-all duration-500 ease-out hover:shadow-xl hover:border-white/30 cursor-pointer overflow-hidden">
       
       <!-- Subtle background glow -->
-      <!-- <div class="absolute inset-0 bg-gradient-to-r from-white/5 to-gray-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div> -->
+      <div class="absolute inset-0 bg-gradient-to-r from-white/5 to-gray-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       
-      <!-- Mobile Layout: Stacked -->
-      <div class="relative z-10 flex flex-col space-y-4 md:hidden">
+      <!-- Card Content -->
+      <div class="relative z-10 flex flex-col space-y-4">
         <!-- Icon and Title Row -->
         <div class="flex items-center space-x-4">
           <div class="relative w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm flex-shrink-0">
@@ -1118,81 +957,6 @@ Generate Interactive Plotly Objects
           </div>
         </div>
       </div>
-
-      <!-- Desktop Layout: Original Grid -->
-      <div class="relative z-10 hidden md:grid grid-cols-12 gap-8 items-center">
-        <!-- Left: Icon (takes 2 columns) -->
-        <div class="col-span-2 flex justify-center">
-          <div class="relative w-24 h-24 rounded-full bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm">
-            <div class="icon-border-glow"></div>
-            <div class="icon-inner">
-              <img src="static/icons/secure.svg" class="w-16 h-16 filter brightness-110 transition-all duration-300 group-hover:brightness-125 group-hover:scale-110" alt="Security">
-            </div>
-          </div>
-        </div>
-        
-        <!-- Middle: Title & Description (takes 6 columns) -->
-        <div class="col-span-6 space-y-3">
-          <div class="flex items-center space-x-3">
-            <h3 class="text-2xl font-bold text-white tracking-tight">Enterprise Security</h3>
-            <span class="text-xs text-gray-400 group-hover:text-green-400 font-mono transition-colors duration-300 bg-gray-900/50 rounded-full px-2 py-1">◉ 3 AGENTS ACTIVE</span>
-          </div>
-          <p class="text-sm text-gray-300 leading-relaxed">
-            Zero-trust security orchestration platform with comprehensive identity and access management for enterprise environments.
-          </p>
-          <div class="flex items-center space-x-4 text-xs text-gray-400 font-mono">
-            <span>Identity verification</span>
-            <span>→</span>
-            <span>Access control</span>
-            <span>→</span>
-            <span>Audit logging</span>
-          </div>
-        </div>
-        
-        <!-- Right: Agent Swarm (takes 4 columns) -->
-        <div class="col-span-4 space-y-4">
-          <div class="text-right">
-            <span class="text-xs text-gray-300 font-mono tracking-wider">ORCHESTRATOR: LANNON</span>
-          </div>
-          
-          <!-- Agent Pills in Organic Formation -->
-          <div class="flex flex-wrap gap-2 justify-end">
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-1">
-              <img src="static/images/agent8.jpg" class="w-5 h-5 rounded-full border border-white/30 transition-all duration-300 group-hover:border-green-400/60 group-hover:shadow-sm group-hover:shadow-green-400/30" alt="User Auth">
-              <span class="text-xs text-white font-medium">User Auth</span>
-              <span class="text-xs text-gray-400 group-hover:text-green-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform -rotate-1">
-              <img src="static/images/agent5.jpg" class="w-5 h-5 rounded-full border border-white/30 transition-all duration-300 group-hover:border-green-400/60 group-hover:shadow-sm group-hover:shadow-green-400/30" alt="RAG Agent">
-              <span class="text-xs text-white font-medium">RAG</span>
-              <span class="text-xs text-gray-400 group-hover:text-green-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-2">
-              <img src="static/images/agent7.jpg" class="w-5 h-5 rounded-full border border-white/30 transition-all duration-300 group-hover:border-green-400/60 group-hover:shadow-sm group-hover:shadow-green-400/30" alt="LLM Eval">
-              <span class="text-xs text-white font-medium">LLM Eval</span>
-              <span class="text-xs text-gray-400 group-hover:text-green-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 border-dashed transform -rotate-2">
-              <div class="w-5 h-5 rounded-full bg-gray-700/50 border border-white/30 flex items-center justify-center">
-                <span class="text-xs text-gray-400">+3</span>
-              </div>
-              <span class="text-xs text-gray-400 font-medium">Expanding</span>
-              <span class="text-xs text-gray-500">●</span>
-            </div>
-          </div>
-          
-          <!-- Status Indicator -->
-          <div class="bg-gray-900/70 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/20 group-hover:border-indigo-400/40 transition-all duration-300">
-            <div class="flex items-center justify-between">
-              <span class="text-xs text-gray-300 group-hover:text-indigo-400 font-bold tracking-wide transition-colors duration-300">WORKFLOW STATUS</span>
-              <div class="flex items-center space-x-2">
-                <span class="w-2 h-2 bg-white group-hover:bg-indigo-400 rounded-full animate-pulse transition-colors duration-300"></span>
-                <span class="text-xs text-gray-300 group-hover:text-indigo-400 font-mono transition-colors duration-300">ACTIVE</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       
       <!-- Footer -->
       <div class="relative z-10 pt-4 mt-4 md:mt-6 border-t border-white/20 text-xs text-gray-400 font-mono flex justify-between">
@@ -1201,18 +965,60 @@ Generate Interactive Plotly Objects
       </div>
     </div>
 
+    <!-- Fourth Card Placeholder (for future expansion) -->
+    <div class="group relative w-full bg-white/5 backdrop-blur-xl border border-white/20 border-dashed rounded-2xl p-4 md:p-8 shadow-2xl transition-all duration-500 ease-out hover:shadow-xl hover:border-white/30 cursor-pointer overflow-hidden opacity-60">
+      
+      <!-- Card Content -->
+      <div class="relative z-10 flex flex-col space-y-4">
+        <!-- Icon and Title Row -->
+        <div class="flex items-center space-x-4">
+          <div class="relative w-16 h-16 rounded-full bg-gray-700/50 border border-white/20 border-dashed flex items-center justify-center backdrop-blur-sm flex-shrink-0">
+            <span class="text-2xl text-gray-400">+</span>
+          </div>
+          <div class="min-w-0">
+            <h3 class="text-lg font-bold text-gray-400 tracking-tight">More Teams Coming Soon</h3>
+            <span class="text-xs text-gray-500 font-mono transition-colors duration-300 bg-gray-900/50 rounded-full px-2 py-1 inline-block mt-1">◉ EXPANDING</span>
+          </div>
+        </div>
+        
+        <!-- Description -->
+        <p class="text-sm text-gray-400 leading-relaxed">
+          Additional AI workflow teams are in development. Stay tuned for more specialized agent orchestrations.
+        </p>
+        
+        <!-- Process Flow -->
+        <div class="flex flex-wrap items-center gap-2 text-xs text-gray-500 font-mono">
+          <span>Planning</span>
+          <span>→</span>
+          <span>Development</span>
+          <span>→</span>
+          <span>Testing</span>
+          <span>→</span>
+          <span>Launch</span>
+        </div>
+      </div>
+      
+      <!-- Footer -->
+      <div class="relative z-10 pt-4 mt-4 md:mt-6 border-t border-white/20 text-xs text-gray-500 font-mono flex justify-between">
+        <span>SYS-ID: TEAM-004</span>
+        <span>SECTOR: TBD</span>
+      </div>
+    </div>
+
   </div>
 
   <!-- Call to Action -->
-  <div class="text-center">
-    <a href="/service" class="mt-12 inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-6 md:px-8 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-indigo-500/25">
+  <!-- <div class="text-center mt-12 md:mt-16">
+    <a href="/service" class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-6 md:px-8 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-indigo-500/25">
       Explore More AI Teams 
-      <!-- <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-      </svg> -->
+      </svg>
     </a>
-  </div>
+  </div> -->
 </section>
+
+
 
       
   
