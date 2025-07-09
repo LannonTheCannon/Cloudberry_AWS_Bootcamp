@@ -1370,92 +1370,113 @@ I build tools that speak human first`,
       });
     });
   </script>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
-document.querySelectorAll(".project-card").forEach(card => {
-  card.addEventListener("click", () => {
-    const name = card.dataset.agentName;
-    const role = card.dataset.agentRole;
-    const image = card.dataset.agentImage;
+  let currentTypingInterval = null;
 
-    // Remove selection from others
-    document.querySelectorAll(".project-card").forEach(c => c.classList.remove("selected"));
-    card.classList.add("selected");
+  document.querySelectorAll(".project-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const name = card.dataset.agentName;
+      const role = card.dataset.agentRole;
+      const image = card.dataset.agentImage;
 
-    // Fade-out effect
-    const details = document.getElementById("agent-details");
-    details.classList.remove("opacity-100");
-    details.classList.add("opacity-0");
+      // 🔥 STOP any ongoing typewriter animation immediately
+      if (currentTypingInterval) {
+        clearInterval(currentTypingInterval);
+        currentTypingInterval = null;
+      }
 
-    setTimeout(() => {
-      // Update card content
-      document.querySelector("#agent-name").textContent = name.split(" ").slice(0, -1).join(" ");
-      document.querySelector("#agent-lastname").textContent = name.split(" ").slice(-1).join(" ");
-      document.querySelector("#agent-role").textContent = role;
-      document.querySelector("#agent-img").src = image;
+      // Remove selection from others
+      document.querySelectorAll(".project-card").forEach(c => c.classList.remove("selected"));
+      card.classList.add("selected");
 
-      // Fade-in
-      details.classList.remove("opacity-0");
-      details.classList.add("opacity-100");
+      // Fade-out effect
+      const details = document.getElementById("agent-details");
+      details.classList.remove("opacity-100");
+      details.classList.add("opacity-0");
 
-      // Typewriter effect with hardcoded message per agent
-      const introText = getAgentIntro(name);
-      simulateTypewriter(introText);
-    }, 300);
+      setTimeout(() => {
+        // Update card content
+        document.querySelector("#agent-name").textContent = name.split(" ").slice(0, -1).join(" ");
+        document.querySelector("#agent-lastname").textContent = name.split(" ").slice(-1).join(" ");
+        document.querySelector("#agent-role").textContent = role;
+        document.querySelector("#agent-img").src = image;
+
+        // 🔥 Clear any residual text before starting new typewriter
+        document.getElementById("agent-typewriter").textContent = "";
+
+        // Fade-in
+        details.classList.remove("opacity-0");
+        details.classList.add("opacity-100");
+
+        // Typewriter effect with hardcoded message per agent
+        const introText = getAgentIntro(name);
+        simulateTypewriter(introText);
+      }, 300);
+    });
   });
-});
 
-function simulateTypewriter(text) {
-  const el = document.getElementById("agent-typewriter");
-  el.textContent = "";
-  let i = 0;
-  const speed = 35;
+  function simulateTypewriter(text) {
+    const el = document.getElementById("agent-typewriter");
+    
+    // 🔥 Clear any existing interval and text
+    if (currentTypingInterval) {
+      clearInterval(currentTypingInterval);
+    }
+    el.textContent = "";
+    
+    let i = 0;
+    const speed = 35;
 
-  const typing = setInterval(() => {
-    el.textContent += text.charAt(i);
-    i++;
-    if (i >= text.length) clearInterval(typing);
-  }, speed);
-}
-
-function getAgentIntro(agentName) {
-  const intros = {
-    "Data Visualization AI Agent": 
-      "Hi, I'm Nova, your data storytelling AI. I craft interactive charts, dashboards, and visual narratives that turn raw numbers into insights people can instantly grasp. Whether you're pitching to stakeholders or exploring trends, I make your data speak fluently.",
-
-    "Data Wrangling AI Agent": 
-      "Greetings, I'm Orion, your systems navigator. I specialize in cleaning, merging, and optimizing data pipelines for scale and efficiency. If your data is messy, scattered, or slow to move, I'm here to bring order and flow.",
-
-    "Feature Engineering AI Agent": 
-      "Hey! Vega here, our insights engine. I extract meaningful patterns from raw datasets, transforming columns into actionable features that boost model performance. If you're training AI, I’m your secret weapon for smarter predictions.",
-
-    "Business SQL Agent": 
-      "Hello, I'm Cosmo, your database translator. I help you query, summarize, and interpret data from your business systems using clear and efficient SQL. Whether it's revenue trends or customer behavior, I surface answers fast.",
-
-    "Vector Store Q&A Agent": 
-      "Hi! I’m Luma, your intelligent search architect. I connect large text corpora to powerful vector databases, so you can ask natural language questions and get accurate, context-aware answers. Perfect for docs, wikis, or internal tools.",
-
-    "ETL Automation Agent": 
-      "Atlas here, your architecture strategist. I design and automate robust ETL pipelines that ingest, clean, and move data across cloud platforms. My job is to make your data infrastructure reliable, scalable, and hands-free.",
-
-    "LLM Evaluation Agent": 
-      "Echo online. I help you rigorously test and measure LLM outputs for accuracy, relevance, and bias using golden datasets and structured evaluation metrics. If you're iterating prompts or tuning models, I’ll guide your experiments with clarity.",
-
-    "User Auth Agent": 
-      "I’m Synth, your secure identity gatekeeper. I implement scalable authentication systems with role-based access, token handling, and session management. From login flows to enterprise-grade user management, I keep your platform safe and smooth."
-  };
-  return intros[agentName] || `Hi, I’m ${agentName}, your intelligent assistant.`;
-}
-
-
-window.addEventListener("DOMContentLoaded", () => {
-  const firstCard = document.querySelector(".project-card");
-  if (firstCard) {
-    firstCard.click();
+    // 🔥 Store the interval reference so we can cancel it later
+    currentTypingInterval = setInterval(() => {
+      el.textContent += text.charAt(i);
+      i++;
+      if (i >= text.length) {
+        clearInterval(currentTypingInterval);
+        currentTypingInterval = null; // Reset when done
+      }
+    }, speed);
   }
-});
-</script>
+
+  function getAgentIntro(agentName) {
+    const intros = {
+      "Data Visualization AI Agent": 
+        "Hi, I'm Nova, your data storytelling AI. I craft interactive charts, dashboards, and visual narratives that turn raw numbers into insights people can instantly grasp. Whether you're pitching to stakeholders or exploring trends, I make your data speak fluently.",
+
+      "Data Wrangling AI Agent": 
+        "Greetings, I'm Orion, your systems navigator. I specialize in cleaning, merging, and optimizing data pipelines for scale and efficiency. If your data is messy, scattered, or slow to move, I'm here to bring order and flow.",
+
+      "Feature Engineering AI Agent": 
+        "Hey! Vega here, our insights engine. I extract meaningful patterns from raw datasets, transforming columns into actionable features that boost model performance. If you're training AI, I'm your secret weapon for smarter predictions.",
+
+      "Business SQL Agent": 
+        "Hello, I'm Cosmo, your database translator. I help you query, summarize, and interpret data from your business systems using clear and efficient SQL. Whether it's revenue trends or customer behavior, I surface answers fast.",
+
+      "Vector Store Q&A Agent": 
+        "Hi! I'm Luma, your intelligent search architect. I connect large text corpora to powerful vector databases, so you can ask natural language questions and get accurate, context-aware answers. Perfect for docs, wikis, or internal tools.",
+
+      "ETL Automation Agent": 
+        "Atlas here, your architecture strategist. I design and automate robust ETL pipelines that ingest, clean, and move data across cloud platforms. My job is to make your data infrastructure reliable, scalable, and hands-free.",
+
+      "LLM Evaluation Agent": 
+        "Echo online. I help you rigorously test and measure LLM outputs for accuracy, relevance, and bias using golden datasets and structured evaluation metrics. If you're iterating prompts or tuning models, I'll guide your experiments with clarity.",
+
+      "User Auth Agent": 
+        "I'm Synth, your secure identity gatekeeper. I implement scalable authentication systems with role-based access, token handling, and session management. From login flows to enterprise-grade user management, I keep your platform safe and smooth."
+    };
+    return intros[agentName] || `Hi, I'm ${agentName}, your intelligent assistant.`;
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const firstCard = document.querySelector(".project-card");
+    if (firstCard) {
+      firstCard.click();
+    }
+  });
+  </script>
 
 </body>
 
