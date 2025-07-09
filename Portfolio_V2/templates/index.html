@@ -262,14 +262,26 @@
     justify-content: center;
   }
 
+  html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Prevent any wide elements */
+section, div {
+  max-width: 100%;
+}
+
 
   </style>
 
 </head>
 
-<body
-  class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col overflow-x-hidden">
-
+<body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col overflow-x-hidden">
   <!-- Nav -->
   <header
     class="w-full px-6 py-4 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-6">
@@ -286,7 +298,7 @@
 
   <!-- Hero -->
   <section
-    class="fade-in-up opacity-0 mt-12 translate-y-10 transition duration-700 flex-1 flex flex-col justify-center items-center text-center px-20 mt-10 py-2">
+    class="fade-in-up opacity-0 mt-12 translate-y-10 transition duration-700 flex-1 flex flex-col justify-center items-center text-center md:px-20 mt-10 py-2">
     <h1 class="font-serif text-4xl md:text-5xl font-bold mb-4 leading-tight">
       From prototype to production, <span class="text-indigo-400">tell your story.</span>
     </h1>
@@ -554,17 +566,17 @@ into insights, and insights into action.
 
 
   <section id="projects-and-stats"
-    class="-mt-4 fade-in-up px-4 md:px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700">
+    class="-mt-4 fade-in-up px-4 md:px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700 justify-center">
 
     <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 mt-16 text-white">
       <span class="text-indigo-400">AI Agents</span> Data Team
     </h2>
 
     <!-- Unified Grid Container -->
-    <div class="max-w-6xl mx-auto grid grid-cols-1 gap-12">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 gap-12 ">
 
-      <!-- Project Cards Row -->
-      <div class="-mt-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 -mb-6 pt-10">
+      <!-- Project Cards Row - FIXED CENTERING -->
+      <div class="-mt-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 -mb-6 pt-10 justify-center mx-auto">
         {% for slug, agent in services.items() %}
           <a
             data-project="{{ slug }}"
@@ -1034,7 +1046,7 @@ Generate Interactive Plotly Objects
     <div class="group relative w-full bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-4 md:p-8 shadow-2xl transition-all duration-500 ease-out hover:shadow-xl hover:border-white/30 cursor-pointer overflow-hidden">
       
       <!-- Subtle background glow -->
-      <div class="absolute inset-0 bg-gradient-to-r from-white/5 to-gray-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <!-- <div class="absolute inset-0 bg-gradient-to-r from-white/5 to-gray-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div> -->
       
       <!-- Mobile Layout: Stacked -->
       <div class="relative z-10 flex flex-col space-y-4 md:hidden">
