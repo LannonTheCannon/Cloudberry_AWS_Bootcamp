@@ -6,6 +6,19 @@
   <title>Contact – Lannon Khau</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="/static/favicon.ico" />
+  <style>
+  .contact-card {
+    border-color: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
+    transform: translateY(-4px) !important;
+  }
+
+  .contact-card:hover {
+    border-color: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 9px 0px rgba(197, 200, 202, 1) !important;
+    transform: translateY(-12px) !important;
+  }
+  </style> 
 </head>
 <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
 
@@ -31,7 +44,7 @@
       <h2 class="text-4xl mb-8 md:text-5xl font-serif font-bold mb-4 leading-tight">Let's<span class="text-indigo-400"> connect.</span></h2>
 
 
-    <div class="tilt-card relative z-10 w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl text-left space-y-6 transition-transform duration-300 ease-out will-change-transform">
+    <div class="contact-card relative z-10 w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl text-left space-y-6 transition-transform duration-300 ease-out will-change-transform">
 
       <!-- Header -->
       <div class="flex items-center justify-between">

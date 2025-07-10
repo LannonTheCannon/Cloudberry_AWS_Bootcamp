@@ -81,6 +81,19 @@
       }
     }
 
+      .project-card {
+    border-color: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
+    transform: translateY(-4px) !important;
+  }
+
+  .project-card:hover {
+    border-color: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 9px 0px rgba(197, 200, 202, 1) !important;
+    transform: translateY(-12px) !important;
+  }
+
+
   </style>
 </head>
 <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
@@ -113,7 +126,7 @@
       <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {% for slug, project in projects.items() %}
         <a href="{{ url_for('show_project', slug=slug) }}"
-           class="relative w-full h-[480px] bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
+           class="project-card relative w-full h-[480px] bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl p-6 shadow-xl flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer overflow-hidden">
 
           <!-- Header Row -->
           <div class="flex items-start justify-between mb-4">
