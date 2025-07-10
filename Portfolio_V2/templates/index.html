@@ -180,7 +180,7 @@
 
   .card-glow {
     position: absolute;
-    inset: -30px;
+    inset: 0px;
     z-index: -1;
     pointer-events: none;
     opacity: 0;
@@ -193,15 +193,22 @@
     inset: 0;
     background: radial-gradient(ellipse at center,
         rgba(173, 216, 255, 0.9),
-        rgba(173, 216, 255, 0.05) 20%,
-        transparent 100%);
-    filter: blur(80px);
+        rgba(249, 249, 249, 0.05) 70%,
+        transparent 80%);
+    filter: blur(60px);
     z-index: -1;
   }
 
+  /* 🔥 Trigger glow when project card is selected */
+  .project-card.selected .card-glow {
+    opacity: 0.2 !important;
+  }
+
+  /* Enhanced selection effect */
   .project-card.selected {
-    border-color: rgba(255, 255, 255, 0.9) !important;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.75) !important;
+    border-color: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
+    transform: translateY(-4px) !important;
   }
 
   @keyframes rotate-border {
