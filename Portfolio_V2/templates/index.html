@@ -19,6 +19,18 @@
   transition: all 0.3s ease-out;
 } */
 
+.grain-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.28;
+  mix-blend-mode: soft-light;
+  background-repeat: repeat;
+  background-size: 250px 250px;
+}
+
 
   .typing-ball {
     width: 10px;
@@ -368,7 +380,13 @@
 
 </head>
 
+
+
+
 <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col overflow-x-hidden">
+  
+  <div class="grain-overlay pointer-events-none fixed inset-0 z-0"></div>
+  
   <!-- Nav -->
   <header
     class="w-full px-6 py-4 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-6">
