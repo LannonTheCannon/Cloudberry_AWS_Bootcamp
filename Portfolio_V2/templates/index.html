@@ -401,7 +401,9 @@
       <span class="text-xl">★★★★</span>
       <span class="text-white/30">|</span>
       <div class="relative overflow-hidden h-[2.5em] flex items-center">
-        <span id="quote-display" class="italic transition-opacity duration-500 ease-in-out"></span>
+        <span id="quote-display" class="italic transition-opacity duration-500 ease-in-out">
+          Curious about my latest projects? Just ask!
+        </span>
       </div>
     </div>
 
@@ -1225,240 +1227,96 @@ Generate Interactive Plotly Objects
   <script src="{{ url_for('static', filename='js/tilt.js') }}"></script>
   <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const typeTarget = document.getElementById("typewriter");
-      const input = document.getElementById("user-query");
-      const sendButton = document.getElementById("query-send");
-      const typingDots = document.getElementById("typing-indicator");
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const typeTarget = document.getElementById("typewriter");
+  const input = document.getElementById("user-query");
+  const sendButton = document.getElementById("query-send");
+  const typingDots = document.getElementById("typing-indicator");
 
-      const states = [
-        `Humans speak at ~130 words per minute  
-But we type only ~40  
-So we build tools that think faster than our fingers`,
+  const states = [
+    `90% of AI apps are wrappers\nThe rest? Systems with soul\nI build the second kind`,
+    `Design is not how it looks\nIt's how confidently you move through it\nThat's the UI/UX difference`,
+    `Code is a means\nClarity is the goal\nI build tools that speak human first`
+  ];
 
-        `The average person spends 6.3 hours daily on screens  
-Only 11% say they feel in control  
-I design systems to restore that balance`,
+  let currentState = 0;
+  let hasUserInteracted = false;
 
-        `AI doesn’t “understand”, it predicts  
-Yet clarity often *feels* like understanding  
-That’s the UX magic I chase`,
+  function updateText() {
+    if (hasUserInteracted) return;
+    
+    // Smooth transition effect
+    typeTarget.style.transition = 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out';
+    typeTarget.style.opacity = '0';
+    typeTarget.style.transform = 'translateY(10px)';
+    
+    setTimeout(() => {
+      typeTarget.textContent = states[currentState];
+      typeTarget.style.opacity = '1';
+      typeTarget.style.transform = 'translateY(0)';
+      
+      currentState = (currentState + 1) % states.length;
+      
+      // Wait 4 seconds before next transition
+      setTimeout(updateText, 4000);
+    }, 500);
+  }
 
-        `RAG Systems reduce token bloat by 70%  
-If used right, they outperform fine-tuned models  
-Clean context beats raw power`,
+  function showTypingDots() {
+    if (typingDots) {
+      typingDots.classList.remove("hidden");
+      typingDots.classList.add("inline-block");
+    }
+  }
 
-        `Most dashboards go unused after week 3  
-Not because of data but friction  
-I make interfaces that invite return`,
+  function hideTypingDots() {
+    if (typingDots) {
+      typingDots.classList.add("hidden");
+      typingDots.classList.remove("inline-block");
+    }
+  }
 
-        `One second of page delay can drop conversions by 20%  
-Performance is UX  
-Speed is emotion`,
+  // Single sendButton event listener
+  sendButton.addEventListener("click", () => {
+    const query = input.value.trim();
+    if (!query) return;
 
-        `A good prompt can save 40 minutes of engineering time  
-But only if the interface invites the right question  
-That’s where design meets intelligence`,
+    hasUserInteracted = true;
+    
+    // Smooth transition for user queries
+    typeTarget.style.transition = 'opacity 0.3s ease-in-out';
+    typeTarget.style.opacity = '0';
 
-        `Data ≠ Insight  
-Insight = Pattern + Action + Timing  
-That’s the game I play`,
+    setTimeout(() => {
+      showTypingDots();
 
-        `90% of AI apps are wrappers  
-The rest? Systems with soul  
-I build the second kind`,
+      fetch("/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query })
+      })
+        .then(res => res.json())
+        .then(data => {
+          hideTypingDots();
+          typeTarget.textContent = data.response;
+          typeTarget.style.opacity = '1';
+          input.value = "";
+        })
+        .catch(err => {
+          hideTypingDots();
+          typeTarget.textContent = "⚠️ Something went wrong.";
+          typeTarget.style.opacity = '1';
+          console.error("❌ Error:", err);
+        });
+    }, 300);
+  });
 
-        `80% of enterprise data is unstructured  
-Yet most tools read it like static text  
-I build AI that listens between the lines`,
+  // Start the rotation after 1 second
+  setTimeout(updateText, 1000);
+});
+</script>
 
-        `Design is not how it looks  
-It’s how confidently you move through it  
-That’s the difference between UI and UX`,
-
-        `95% of analytics dashboards are glanced at once  
-Then forgotten  
-I build flows, not reports`,
-
-        `Latency under 100ms feels “instant”  
-Even if you're faking it  
-UX is a magic trick rooted in truth`,
-
-        `The best AIs aren’t smart, they’re composed  
-Systems that orchestrate, not just answer  
-That’s the heart of agentic thinking`,
-
-        `Tokens cost cents  
-But user trust is priceless  
-So I optimize context with care`,
-
-        `“Explainable AI” isn't about math  
-It’s about story  
-I make interfaces that narrate insight`,
-
-        `Over 70% of users abandon apps mid-onboarding  
-Confusion kills curiosity  
-I design to reward momentum`,
-
-        `Scaling is easy  
-Maintaining soul is the art  
-That’s why I handcraft even the edge cases`,
-
-        `Code is a means  
-Clarity is the goal  
-I build tools that speak human first`,
-
-      ];
-      let currentPhraseIndex = 0;
-      let currentCharIndex = 0;
-      let typingPaused = false;
-      let hasUserInteracted = false;
-
-      function getTypingDelay(char) {
-        if ([".", "!", "?"].includes(char)) return (200 + Math.random() * 100);
-        if ([",", ";", ":"].includes(char)) return (100 + Math.random() * 50);
-        if (char === " ") return (30 + Math.random() * 20);
-        return (12 + Math.random() * 30);
-      }
-
-      let currentState = 0;
-
-      function rotateCardText() {
-        if (typingPaused || hasUserInteracted) return;
-
-        const phrase = states[currentState];
-        currentCharIndex = 0;
-
-        function typeChar() {
-          if (typingPaused || hasUserInteracted) return;
-
-          const char = phrase[currentCharIndex];
-          const visibleText = phrase.slice(0, currentCharIndex);
-          typeTarget.textContent = visibleText;
-
-          // Auto-scroll down
-          const container = document.getElementById("typewriter-container");
-          container.scrollTop = container.scrollHeight;
-
-          if (currentCharIndex < phrase.length) {
-            currentCharIndex++;
-            const delay = getTypingDelay(char);
-            setTimeout(typeChar, delay);
-          } else {
-            setTimeout(() => {
-              typeTarget.classList.add("opacity-0", "transition-opacity", "duration-500");
-              setTimeout(() => {
-                typeTarget.textContent = "";
-                typeTarget.classList.remove("opacity-0");
-                currentState = (currentState + 1) % states.length;
-                rotateCardText();
-              }, 500);
-            }, 3000);
-          }
-        }
-
-        typeChar();
-      }
-
-      sendButton.addEventListener("click", () => {
-        const query = input.value.trim();
-        if (!query) return;
-
-        typingPaused = true;
-        hasUserInteracted = true;
-
-        typeTarget.classList.add("opacity-0", "transition-opacity", "duration-300");
-
-        setTimeout(() => {
-          typeTarget.textContentHTML = "";;
-          showTypingDots();
-
-          fetch("/ask", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ query })
-          })
-            .then(res => res.json())
-            .then(data => {
-              console.log("✅ FULL response object:", data);
-              console.log("✅ Assistant response (data.response):", data.response);
-              hideTypingDots();
-              typeTarget.classList.remove("opacity-0");
-              animateTyping(data.response);
-              input.value = "";
-            })
-            .catch(err => {
-              hideTypingDots();
-              typeTarget.classList.remove("opacity-0");
-              typeTarget.textContent = "⚠️ Oops, something went wrong.";
-              console.error("❌ Error:", err);
-            });
-        }, 300);
-      });
-
-      function animateTyping(text) {
-        let i = 0;
-        function typeChar() {
-          if (i <= text.length) {
-            typeTarget.textContent = text.slice(0, i++);
-
-            // Auto-scroll as content builds
-            const container = document.getElementById("typewriter-container");
-            if (container) {
-              container.scrollTop = container.scrollHeight;
-            }
-
-            setTimeout(typeChar, getTypingDelay(text[i] || ""));
-          }
-        }
-        typeChar();
-      }
-      function showTypingDots() {
-        typingDots.classList.remove("hidden");
-        typingDots.classList.add("inline-block");
-      }
-
-      function hideTypingDots() {
-        typingDots.classList.add("hidden");
-        typingDots.classList.remove("inline-block");
-      }
-
-      rotateCardText();
-    });
-  </script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const quotes = [
-        `Ask any question you'd like to know about Lannon below!`,
-        `Feel free to ask me anything about my projects, skills, or interests.`,
-        `I'm here to help with any questions you have about my work or experience.`,
-        `Curious about my latest projects? Just ask!`,
-        `Want to know more about my skills or background? I'm happy to share!`,
-        `Have a question about AI, data, or software development?`,
-        `Looking for insights on my engineering journey? Just type your question!`,
-        `Interested in my approach to building AI systems? Ask away!`,
-        `Feel free to ask about my latest projects or technologies I work with.`,
-        `What would you like to know?`
-      ];
-
-      const display = document.getElementById("quote-display");
-      let index = 0;
-
-      display.textContent = quotes[0]
-
-      setInterval(() => {
-        display.classList.add("opacity-0"); // fade out
-
-        setTimeout(() => {
-          index = (index + 1) % quotes.length;
-          display.textContent = quotes[index];
-          display.classList.remove("opacity-0"); // fade in
-        }, 500); // match transition duration
-      }, 6000); // every 6 seconds
-    });
-  </script>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {

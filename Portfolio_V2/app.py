@@ -90,6 +90,48 @@ class File(db.Model):
 
     user = db.relationship('User', backref='files')
 
+# ─── Hero Section  ──────────────────────────────────────────────────────────────────────
+
+@app.route('/ask', methods=['POST'])
+def ask():
+    try:
+        # Get the JSON data from the request
+        data = request.get_json()
+        query = data.get('query', '')
+        
+        if not query:
+            return jsonify({'error': 'No query provided'}), 400
+        
+        # 🔥 THIS IS WHERE THE AI LOGIC HAPPENS (in Python, not JavaScript)
+        api_key = get_openai_api_key()
+        openai.api_key = api_key
+        
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {
+                    "role": "system", 
+                    "content": "You are Lannon's AI assistant. Help visitors understand his portfolio and expertise."
+                },
+                {
+                    "role": "user", 
+                    "content": query
+                }
+            ],
+            max_tokens=200,
+            temperature=0.7
+        )
+        
+        ai_response = response.choices[0].message.content.strip()
+        
+        # 🔥 SEND BACK TO FRONTEND
+        return jsonify({'response': ai_response})
+    
+    except Exception as e:
+        print(f"Error in /ask route: {e}")
+        return jsonify({'error': 'Sorry, I encountered an error.'}), 500
+
+
 # ─── About Me Section  ──────────────────────────────────────────────────────────────────────
 
 @app.route('/about')
@@ -308,7 +350,7 @@ def show_blog_post(slug):
 
 services = {
     "data-vis-agent": {
-        "title": "Data Visualization AI Agent",
+        "title": "Multi-agent Marketing Analytics System",
         "description": "Generate Interactive Plotly Objects",
         "tech": ["LangChain", "OpenAI", "Streamlit", "Pandas AI", "NL2SQL", "RAG Pipelines"],
         "content": "This service acts as your visual co-pilot. I combine RAG pipelines with AI tools like Pandas AI and Streamlit to produce conversational dashboards, enabling business leaders and analysts to explore data through natural language and see patterns come alive visually.",
