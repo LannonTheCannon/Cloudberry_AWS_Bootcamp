@@ -23,20 +23,19 @@
   pointer-events: none;
   position: fixed;
   inset: 0;
-  z-index: 1;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.28;
-  mix-blend-mode: soft-light;
+  z-index: 0;
+  background-image: url("/static/images/5419.jpg");
   background-repeat: repeat;
-  background-size: 250px 250px;
+  background-size: 300px 300px;
+  mix-blend-mode: overlay;
+  opacity: 0.38;
 }
 
-
-  .typing-ball {
-    width: 10px;
-    height: 10px;
-    background-color: white;
-    border-radius: 50%;
+.typing-ball {
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
     animation: bounce 1.2s infinite ease-in-out;
     opacity: 0.6;
   }
@@ -380,12 +379,12 @@
 
 </head>
 
+  <div class="grain-overlay pointer-events-none fixed inset-0 z-1"></div>
 
 
 
 <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col overflow-x-hidden">
   
-  <div class="grain-overlay pointer-events-none fixed inset-0 z-0"></div>
   
   <!-- Nav -->
   <header
