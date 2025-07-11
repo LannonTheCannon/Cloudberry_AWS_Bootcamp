@@ -196,18 +196,32 @@
     transition: opacity 0.5s ease;
   }
 
-  .card-glow::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center,
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    /* Organic noise texture */
+    repeating-conic-gradient(from 0deg at 50% 50%, 
+      transparent 0deg, 
+      rgba(255,255,255,0.015) 1deg, 
+      transparent 2deg, 
+      rgba(255,255,255,0.01) 3deg, 
+      transparent 4deg
+    ),
+    repeating-conic-gradient(from 45deg at 30% 70%, 
+      transparent 0deg, 
+      rgba(173,216,255,0.02) 1deg, 
+      transparent 2deg
+    ),
+    /* Your beautiful main gradient */
+    radial-gradient(ellipse at center,
         rgba(173, 216, 255, 0.9),
         rgba(249, 249, 249, 0.05) 70%,
         transparent 80%);
-    filter: blur(80px);
-    z-index: -1;
-  }
-
+  filter: blur(80px);
+  z-index: -1;
+}
   /* 🔥 Trigger glow when project card is selected */
   .project-card.selected .card-glow {
     opacity: 0.2 !important;
