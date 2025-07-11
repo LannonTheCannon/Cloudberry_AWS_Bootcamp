@@ -24,12 +24,12 @@
   position: fixed;
   inset: 0;
   z-index: 0;
-  background-image: url("/static/images/grain.jpg");
+  background-image: url("/static/images/grain2.jpg");
   background-repeat: no-repeat;
   background-size: cover;  /* Covers entire viewport */
   background-position: center;
   mix-blend-mode: overlay;
-  opacity: 0.10;
+  opacity: 0.12;
 }
 
 .typing-ball {
@@ -675,14 +675,14 @@ into insights, and insights into action.
 
 
   <section id="projects-and-stats"
-    class="-mt-4 fade-in-up px-4 md:px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700 justify-center">
+    class="relative z-10 -mt-4 fade-in-up px-4 md:px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700 justify-center">
 
     <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 mt-16 text-white">
       <span class="text-indigo-400">AI Agents</span> Task Force
     </h2>
 
   <!-- Connection Text -->
-  <div class="max-w-4xl mx-auto text-center mb-12 md:mb-16 px-4">
+  <div class="relative z-10 max-w-4xl mx-auto text-center mb-12 md:mb-16 px-4">
 <p class="mb-8 text-base md:text-lg text-gray-300 leading-relaxed">
 AI agents are <span class="text-indigo-400 font-semibold">precision instruments</span>
 built for singular tasks. Here's how I design intelligent specialists that
@@ -691,17 +691,17 @@ built for singular tasks. Here's how I design intelligent specialists that
   </div>
 
     <!-- Unified Grid Container -->
-    <div class="max-w-6xl mx-auto grid grid-cols-1 gap-12 ">
+    <div class="relative z-10 max-w-6xl mx-auto grid grid-cols-1 gap-12 ">
 
       <!-- Project Cards Row - FIXED CENTERING -->
-      <div class="-mt-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 -mb-6 pt-10 justify-center mx-auto">
+      <div class="relative z-10 -mt-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 -mb-6 pt-10 justify-center mx-auto">
       {% for slug, agent in services.items() %}
         <a
         data-project="{{ slug }}"
         data-agent-name="{{ agent.title }}"
         data-agent-role="{{ agent.description }}"
         data-agent-image="{{ agent.image1 }}"
-        class="project-card {% if loop.first %}selected{% endif %} bg-white/5 border border-white/10 rounded-xl md:rounded-2xl p-3 md:p-6 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer relative text-white">
+        class="relative z-10 project-card {% if loop.first %}selected{% endif %} bg-white/5 border border-white/10 rounded-xl md:rounded-2xl p-3 md:p-6 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer relative text-white">
 
         <!-- Add the glow element -->
         <div class="card-glow"></div>
