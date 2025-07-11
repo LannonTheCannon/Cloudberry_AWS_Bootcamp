@@ -14,7 +14,7 @@
 
   /* .tilt-card {
   border-color: rgba(255, 255, 255, 0.9) !important;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 1s), 0 5px 0px rgba(197, 200, 202, 1) !important;
   transform: translateY(-4px) !important;
   transition: all 0.3s ease-out;
 } */
@@ -29,7 +29,7 @@
   background-size: cover;  /* Covers entire viewport */
   background-position: center;
   mix-blend-mode: overlay;
-  opacity: 0.12;
+  opacity: 0.18;
 }
 
 .typing-ball {
@@ -381,7 +381,7 @@
   border-color: rgba(255, 255, 255, 0.05) !important;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
   transform: translateY(-4px) !important;
-  z-index: 1000; 
+  z-index: 1000;
 }
 
 /* 🔥 Trigger glow when agent card is selected */
@@ -421,7 +421,7 @@
       From prototype to production, <span class="text-indigo-400">tell your story.</span>
     </h1>
     <p class="text-gray-300 max-w-xl mb-6">
-      My name is Lannon, and I build with intention, curiosity, and a quiet fire to explore the unknown.
+Building with intention, curiosity, and a quiet fire to explore the unknown.
     </p>
     <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-16 ">
       <a href="/projects"
@@ -443,16 +443,14 @@
     </div>
 
     <div class="flex justify-center items-center space-x-2 text-lg text-white/70 tracking-wide font-serif leading-none">
-      <span class="text-xl">★★★★</span>
+      <span class="text-xl">✦✦✦✦</span>
       <span class="text-white/30">|</span>
       <div class="relative overflow-hidden h-[2.5em] flex items-center">
         <span id="quote-display" class="italic transition-opacity duration-500 ease-in-out">
-          Curious about my latest projects? Just ask!
+Reading in-between the excel sheets.
         </span>
       </div>
     </div>
-
-
 
     <!-- Spaceship Image Overlapping Right Side (no blur) -->
     <div class="relative w-full overflow-hidden">
@@ -521,120 +519,107 @@
   </section>
 
 
-
-  <section
-    class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative z-[30] flex justify-center items-center px-8 pt-2 pb-2"
-    data-delay="600ms">
-    <div class="w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md">
-      <div class="flex space-x-4">
-        <input id="user-query" type="text" placeholder="Ask me anything..."
-          class="flex-1 bg-transparent border-none text-sm text-gray-100 placeholder-gray-400 focus:outline-none" />
-        <button id="query-send" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition">
-          Send
-        </button>
-      </div>
-    </div>
-  </section>
+  
 
 
-  <section class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-24 -mt-16 max-w-7xl mx-auto"
-    data-delay="200ms">
-    <h2 class="text-4xl font-bold text-center mb-14 mt-14 text-white">
-      <span class="text-indigo-400">About</span> Me
-    </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-      <!-- LEFT COLUMN: About Content -->
-      <div class="text-lg text-slate-300">
-        <blockquote class="text-xl leading-8 text-slate-400">
-          <span class="font-serif text-8xl text-slate-100 float-left mr-2 leading-none">I</span>
+<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-24 -mt-16 max-w-7xl mx-auto" data-delay="200ms">
+  <h2 class="text-4xl font-bold text-center mb-14 mt-14 text-white">
+    <span class="text-indigo-400">About</span> Me
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+    <!-- LEFT COLUMN: About Content -->
+    <div class="text-lg text-slate-300">
+      <blockquote class="text-xl leading-8 text-slate-400">
+        <span class="font-serif text-[115px] text-slate-100 float-left mr-4 leading-none -mt-2">I</span>
+        <span class="block pl-2">
 ’m Lannon Khau, a full-stack engineer with a passion for building AI-powered systems that solve real problems
 and spark curiosity.
+        </span>
+      </blockquote>
 
-My journey began with a fascination for code and a drive to make the invisible visible, transforming raw data
-into insights, and insights into action.
-        </blockquote>
+      <p class="text-slate-400 mt-4 indent-8">
+        My journey started with a desire to build—and evolved into an obsession with integrating AI to create
+        smarter, more human tools. Along the way, I’ve learned that great systems don’t just function—they listen,
+        adapt, and invite us to explore ideas we never knew we had.
+      </p>
 
-        <div class="flex justify-center mt-10">
-          <img src="/static/images/avatar.png" alt="Portrait of Lannon Khau"
-            class="w-60 h-60 object-cover object-[center_bottom] rounded-full border-4 border-white/20 shadow-lg" />
-        </div>
-
-        <div class="prose prose-lg prose-invert prose-indigo max-w-none mt-12">
-          <h3 class="text-2xl font-bold leading-6 text-white">Engineer. Builder. Explorer.</h3>
-          <p class="text-slate-400 mt-4">
-            My journey started with a desire to build—and evolved into an obsession with integrating AI to create
-            smarter, more human tools.
-          </p>
-
-          <blockquote class="mt-3 border-l-4 pl-4 italic text-indigo-300">
-            “I build AI-powered systems that explore the unknown and turn raw data into insight, clarity, and creative
-            tools.”
-          </blockquote>
-        </div>
+      <div class="flex justify-center mt-10">
+        <img src="/static/images/avatar.png" alt="Portrait of Lannon Khau"
+             class="w-60 h-60 object-cover object-[center_bottom] rounded-full border-4 border-white/20 shadow-lg" />
       </div>
 
-      <!-- RIGHT COLUMN: Timeline -->
-      <div class="relative border-l border-white/10 pl-6 space-y-8 self-start">
+      <div class="prose prose-lg prose-invert prose-indigo max-w-none mt-12">
+        <h3 class="text-2xl font-bold leading-6 text-white">Engineer. Builder. Explorer.</h3>
 
-                <!-- 2021 Entry -->
-          <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="300ms">
-            <div class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
-            <p class="text-sm text-gray-400 mb-1 ml-2">2021</p>
-            <h4 class="text-white font-semibold ml-2">Graduated & Began Teaching Code</h4>
-            <p class="text-gray-400 text-sm mt-2 ml-2">
-              Earned my B.S. in Information Systems from Cal State Fullerton. Taught IoT programming to 150+ students
-              through a district-wide tech education initiative.
-            </p>
-          </div>
+        <p class="text-slate-400 mt-4 indent-8">
+          I believe in building systems that capture human intelligence through visual mind mapping. By learning from behavior and real-time patterns,
+          these systems can continually train AI to make more informed, context-aware decisions—not just outputs based on static training data.
+          When we align AI with human intent, its responses become more focused, adaptive, and meaningful.
+        </p>
 
-          <!-- 2022 Entry -->
-          <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="400ms">
-            <div class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
-            <p class="text-sm text-gray-400 mb-1 ml-2">2022</p>
-            <h4 class="text-white font-semibold ml-2">Full-Stack Dev at Creative Core</h4>
-            <p class="text-gray-400 text-sm mt-2 ml-2">
-              Built LMS platforms using Flask, React, and AWS. Deployed ML models for personalized learning and
-              auto-feedback systems—improving student outcomes and grading speed.
-            </p>
-          </div>
-
-          <!-- 2023 Entry -->
-          <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="500ms">
-            <div class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
-            <p class="text-sm text-gray-400 mb-1 ml-2">2023</p>
-            <h4 class="text-white font-semibold ml-2">LLM Engineer at Scale AI</h4>
-            <p class="text-gray-400 text-sm mt-2 ml-2">
-              Produced 2,500+ code-focused prompts for LLM tuning. Scripted automation tools and prompt evaluations to
-              improve model quality and alignment.
-            </p>
-          </div>
-
-          <!-- 2024 Entry -->
-          <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="600ms">
-            <div class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
-            <p class="text-sm text-gray-400 mb-1 ml-2">2024</p>
-            <h4 class="text-white font-semibold ml-2">Launched Data Forge & Property Pulse</h4>
-            <p class="text-gray-400 text-sm mt-2 ml-2">
-              Built AI-powered apps for EDA and real estate search. Integrated OpenAI APIs and RAG pipelines with NLP,
-              achieving high accuracy and sub-2s query speeds.
-            </p>
-          </div>
-
-          <!-- 2025 Entry -->
-          <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="700ms">
-            <div class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
-            <p class="text-sm text-gray-400 mb-1 ml-2">2025</p>
-            <h4 class="text-white font-semibold ml-2">Bootcamps, Hackathons, Next Chapter</h4>
-            <p class="text-gray-400 text-sm mt-2 ml-2">
-              Completed Cloudberry AWS Bootcamp and GenAI systems training. Submitted Data Forge to Microsoft Reactor
-              Hackathon and began development on my next big build.
-            </p>
-          </div>
-
+        <blockquote class="mt-3 border-l-4 pl-4 italic text-indigo-300">
+          “I build AI-powered systems that explore the unknown and turn raw data into insight, clarity, and creative tools.”
+        </blockquote>
       </div>
     </div>
-  </section>
+
+    <!-- RIGHT COLUMN: Timeline -->
+    <div class="relative border-l border-white/10 pl-6 space-y-8 self-start">
+
+      <!-- 2021 -->
+      <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="200ms">
+        <div class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+        <p class="text-sm text-gray-400 mb-1 ml-2">2021</p>
+        <h4 class="text-white font-semibold ml-2">Graduated from CSUF & Rhombus Systems</h4>
+        <p class="text-gray-400 text-sm mt-2 ml-2">
+          Earned my B.S. in Information Systems from Cal State Fullerton. Interned at Rhombus Systems, where I contributed to Python backend services for smart security platforms—deepening my interest in real-time systems, APIs, and turning raw data into insight.
+        </p>
+      </div>
+
+      <!-- 2022 -->
+      <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="400ms">
+        <div class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+        <p class="text-sm text-gray-400 mb-1 ml-2">2022</p>
+        <h4 class="text-white font-semibold ml-2">Full-Stack Dev at Creative Core</h4>
+        <p class="text-gray-400 text-sm mt-2 ml-2">
+          Led development of a learning platform for K–12 afterschool programs using Flask, React, and AWS. Integrated ML-powered feedback and personalized learning paths, boosting certification pass rates from 60% to 87% while cutting grading time by 50%.
+        </p>
+      </div>
+
+      <!-- 2023 -->
+      <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="500ms">
+        <div class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+        <p class="text-sm text-gray-400 mb-1 ml-2">2023</p>
+        <h4 class="text-white font-semibold ml-2">LLM Engineer at Scale AI</h4>
+        <p class="text-gray-400 text-sm mt-2 ml-2">
+          Produced 2,500+ code prompts for LLM fine-tuning, contributing to a 93% quality benchmark. Built automation tools that improved model alignment and reduced manual QA by 40%.
+        </p>
+      </div>
+
+      <!-- 2024 -->
+      <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="600ms">
+        <div class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+        <p class="text-sm text-gray-400 mb-1 ml-2">2024</p>
+        <h4 class="text-white font-semibold ml-2">Launched Data Forge Plus</h4>
+        <p class="text-gray-400 text-sm mt-2 ml-2">
+          Launched Data Forge, an AI-powered EDA app for analysts and educators needing fast insights from messy financial data. Built secure NL2SQL pipelines using OpenAI APIs and RAG, reducing exploration time from hours to seconds with sub-2s query performance across 1.7M+ transactions.
+        </p>
+      </div>
+
+      <!-- 2025 -->
+      <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="700ms">
+        <div class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+        <p class="text-sm text-gray-400 mb-1 ml-2">2025</p>
+        <h4 class="text-white font-semibold ml-2">Bootcamps, Hackathons, Next Chapter</h4>
+        <p class="text-gray-400 text-sm mt-2 ml-2">
+          Completed Cloudberry AWS Bootcamp and advanced GenAI systems training. Submitted <span class="text-white font-semibold">Data Forge</span> to the Microsoft Reactor Hackathon—receiving strong feedback and using it as a springboard for my next production-grade build.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- Labs Showcase -->
   <section class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-12 -mt-20 max-w-7xl mx-auto"
@@ -1270,13 +1255,9 @@ Generate Interactive Plotly Objects
 
   <script src="{{ url_for('static', filename='js/tilt.js') }}"></script>
   <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const typeTarget = document.getElementById("typewriter");
-  const input = document.getElementById("user-query");
-  const sendButton = document.getElementById("query-send");
-  const typingDots = document.getElementById("typing-indicator");
 
   const states = [
     `90% of AI apps are wrappers\nThe rest? Systems with soul\nI build the second kind`,
@@ -1285,164 +1266,64 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   let currentState = 0;
-  let hasUserInteracted = false;
+
+  function simulateChatGPTStyleFadeMultiLine(textBlock, el) {
+    el.innerHTML = "";
+    const lines = textBlock.split("\n");
+    let delay = 0;
+
+    lines.forEach(line => {
+      const lineWrapper = document.createElement("div");
+      lineWrapper.className = "mb-1";
+
+      const words = line.split(" ");
+      words.forEach(word => {
+        const span = document.createElement("span");
+        span.textContent = word;
+        span.style.opacity = 0;
+        span.style.transform = "translateY(4px)";
+        span.style.display = "inline-block";
+        span.style.marginRight = "0.5ch";
+        span.style.transition = "opacity 0.9s ease, transform 0.9s ease";
+
+        lineWrapper.appendChild(span);
+
+        setTimeout(() => {
+          span.style.opacity = 1;
+          span.style.transform = "translateY(0)";
+        }, delay);
+
+        delay += 150;
+      });
+
+      el.appendChild(lineWrapper);
+    });
+  }
 
   function updateText() {
-    if (hasUserInteracted) return;
-    
-    // Smooth transition effect
-    typeTarget.style.transition = 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out';
+    // Transition out
+    typeTarget.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
     typeTarget.style.opacity = '0';
     typeTarget.style.transform = 'translateY(10px)';
-    
+
     setTimeout(() => {
-      typeTarget.textContent = states[currentState];
+      // Reset animation target
       typeTarget.style.opacity = '1';
       typeTarget.style.transform = 'translateY(0)';
-      
+
+      // Fade in next block with word-by-word animation
+      simulateChatGPTStyleFadeMultiLine(states[currentState], typeTarget);
       currentState = (currentState + 1) % states.length;
-      
-      // Wait 4 seconds before next transition
-      setTimeout(updateText, 4000);
-    }, 500);
+
+      // Wait 6 seconds before showing next block
+      setTimeout(updateText, 6000);
+    }, 400);
   }
 
-  function showTypingDots() {
-    if (typingDots) {
-      typingDots.classList.remove("hidden");
-      typingDots.classList.add("inline-block");
-    }
-  }
-
-  function hideTypingDots() {
-    if (typingDots) {
-      typingDots.classList.add("hidden");
-      typingDots.classList.remove("inline-block");
-    }
-  }
-
-  // 🔥 AGENT CARD CLICK HANDLING WITH Z-INDEX FIX
-  document.querySelectorAll(".agent-card").forEach(card => {
-    card.addEventListener("click", () => {
-      const agentName = card.dataset.agentName;
-      
-      // 🔥 FORCE Z-INDEX TO TOP
-      card.style.zIndex = "9999";
-      card.parentElement.style.zIndex = "9999";
-      const section = document.getElementById("projects-and-stats");
-      if (section) {
-        section.style.zIndex = "9999";
-      }
-      
-      // Remove selection from all agent cards and reset their z-index
-      document.querySelectorAll(".agent-card").forEach(c => {
-        c.classList.remove("selected");
-        if (c !== card) {
-          c.style.zIndex = "100"; // Reset non-selected cards
-        }
-      });
-      
-      // Add selection to clicked card
-      card.classList.add("selected");
-      
-      // Stop auto-rotation and use agent-specific message
-      hasUserInteracted = true;
-      
-      // Smooth transition for agent selection
-      typeTarget.style.transition = 'opacity 0.3s ease-in-out';
-      typeTarget.style.opacity = '0';
-
-      setTimeout(() => {
-        // Get agent-specific intro message
-        const agentIntro = getAgentIntro(agentName);
-        typeTarget.textContent = agentIntro;
-        typeTarget.style.opacity = '1';
-      }, 300);
-    });
-  });
-
-  // Chat functionality for the main input
-  sendButton.addEventListener("click", () => {
-    const query = input.value.trim();
-    if (!query) return;
-
-    hasUserInteracted = true;
-    
-    // Smooth transition for user queries
-    typeTarget.style.transition = 'opacity 0.3s ease-in-out';
-    typeTarget.style.opacity = '0';
-
-    setTimeout(() => {
-      showTypingDots();
-
-      fetch("/ask", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query })
-      })
-        .then(res => res.json())
-        .then(data => {
-          hideTypingDots();
-          typeTarget.textContent = data.response;
-          typeTarget.style.opacity = '1';
-          input.value = "";
-        })
-        .catch(err => {
-          hideTypingDots();
-          typeTarget.textContent = "⚠️ Something went wrong.";
-          typeTarget.style.opacity = '1';
-          console.error("❌ Error:", err);
-        });
-    }, 300);
-  });
-
-  // Agent intro messages
-  function getAgentIntro(agentName) {
-    const intros = {
-      "Data Visualization AI Agent": 
-        "Hi, I'm Nova, your data storytelling AI. I craft interactive charts, dashboards, and visual narratives that turn raw numbers into insights people can instantly grasp.",
-
-      "Data Wrangling AI Agent": 
-        "Greetings, I'm Orion, your systems navigator. I specialize in cleaning, merging, and optimizing data pipelines for scale and efficiency.",
-
-      "Feature Engineering AI Agent": 
-        "Hey! Vega here, our insights engine. I extract meaningful patterns from raw datasets, transforming columns into actionable features.",
-
-      "Business SQL Agent": 
-        "Hello, I'm Cosmo, your database translator. I help you query, summarize, and interpret data from your business systems using clear SQL.",
-
-      "Vector Store Q&A Agent": 
-        "Hi! I'm Luma, your intelligent search architect. I connect large text corpora to powerful vector databases for natural language queries.",
-
-      "ETL Automation Agent": 
-        "Atlas here, your architecture strategist. I design and automate robust ETL pipelines that make your data infrastructure reliable and scalable.",
-
-      "LLM Evaluation Agent": 
-        "Echo online. I help you rigorously test and measure LLM outputs for accuracy, relevance, and bias using structured evaluation metrics.",
-
-      "User Auth Agent": 
-        "I'm Synth, your secure identity gatekeeper. I implement scalable authentication systems with role-based access and session management."
-    };
-    return intros[agentName] || `Hi, I'm ${agentName}, your intelligent assistant.`;
-  }
-
-  // Initialize first agent card as selected
-  window.addEventListener("DOMContentLoaded", () => {
-    const firstAgentCard = document.querySelector(".agent-card");
-    if (firstAgentCard) {
-      firstAgentCard.click();
-    }
-  });
-
-  // Start the rotation after 1 second (only if no agent interaction)
-  setTimeout(() => {
-    if (!hasUserInteracted) {
-      updateText();
-    }
-  }, 1000);
+  // Start after 1 second
+  setTimeout(updateText, 1000);
 });
 </script>
-
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -1505,33 +1386,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Typewriter effect with hardcoded message per agent
         const introText = getAgentIntro(name);
-        simulateTypewriter(introText);
+        simulateChatGPTStyleFade(introText);
       }, 300);
     });
   });
 
-  function simulateTypewriter(text) {
-    const el = document.getElementById("agent-typewriter");
-    
-    // 🔥 Clear any existing interval and text
-    if (currentTypingInterval) {
-      clearInterval(currentTypingInterval);
-    }
-    el.textContent = "";
-    
-    let i = 0;
-    const speed = 35;
+function simulateChatGPTStyleFade(text) {
+  const el = document.getElementById("agent-typewriter");
+  el.innerHTML = "";
 
-    // 🔥 Store the interval reference so we can cancel it later
-    currentTypingInterval = setInterval(() => {
-      el.textContent += text.charAt(i);
-      i++;
-      if (i >= text.length) {
-        clearInterval(currentTypingInterval);
-        currentTypingInterval = null; // Reset when done
-      }
-    }, speed);
-  }
+  const words = text.split(" ");
+  let delay = 0;
+
+  words.forEach((word, index) => {
+    const span = document.createElement("span");
+    span.textContent = word;
+    span.style.opacity = 0;
+    span.style.transform = "translateY(4px)";
+    span.style.display = "inline-block";
+    span.style.marginRight = "0.5ch"; // ← adds spacing between words
+    span.style.transition = "opacity 0.9s ease, transform 0.9s ease";
+
+    el.appendChild(span);
+
+    setTimeout(() => {
+      span.style.opacity = 1;
+      span.style.transform = "translateY(0)";
+    }, delay);
+
+    delay += 150; // tweak for rhythm
+  });
+}
+
 
   function getAgentIntro(agentName) {
     const intros = {
