@@ -23,7 +23,7 @@
   pointer-events: none;
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: -1000;
   background-image: url("/static/images/grain2.jpg");
   background-repeat: no-repeat;
   background-size: cover;  /* Covers entire viewport */
@@ -376,11 +376,24 @@
     transform: translateY(-12px) !important;
   }
 
+  /* Enhanced selection effect */
+.agent-card.selected {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
+  transform: translateY(-4px) !important;
+  z-index: 1000; 
+}
+
+/* 🔥 Trigger glow when agent card is selected */
+.agent-card.selected .card-glow {
+  opacity: 0.2 !important;
+}
+
 </style>
 
 </head>
 
-  <div class="grain-overlay pointer-events-none fixed inset-0 z-1"></div>
+  <div class="grain-overlay pointer-events-none fixed inset-0 z-0"></div>
 
 
 
@@ -673,70 +686,69 @@ into insights, and insights into action.
     </div>
   </section>
 
-
   <section id="projects-and-stats"
-    class="relative z-10 -mt-4 fade-in-up px-4 md:px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700 justify-center">
+    class="relative z-[100] -mt-4 fade-in-up px-4 md:px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700 justify-center">
 
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 mt-16 text-white">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 mt-16 text-white relative z-[100]">
       <span class="text-indigo-400">AI Agents</span> Task Force
     </h2>
 
   <!-- Connection Text -->
-  <div class="relative z-10 max-w-4xl mx-auto text-center mb-12 md:mb-16 px-4">
-<p class="mb-8 text-base md:text-lg text-gray-300 leading-relaxed">
-AI agents are <span class="text-indigo-400 font-semibold">precision instruments</span>
-built for singular tasks. Here's how I design intelligent specialists that
-<span class="text-indigo-400 font-semibold">excel at one thing</span> and execute with laser-focused expertise.
-</p>
+  <div class="relative z-[100] max-w-4xl mx-auto text-center mb-12 md:mb-16 px-4">
+  <p class="mb-8 text-base md:text-lg text-gray-300 leading-relaxed">
+  AI agents are <span class="text-indigo-400 font-semibold">precision instruments</span>
+  built for singular tasks. Here's how I design intelligent specialists that
+  <span class="text-indigo-400 font-semibold">excel at one thing</span> and execute with laser-focused expertise.
+  </p>
   </div>
 
     <!-- Unified Grid Container -->
-    <div class="relative z-10 max-w-6xl mx-auto grid grid-cols-1 gap-12 ">
+    <div class="relative z-[100] max-w-6xl mx-auto grid grid-cols-1 gap-12 ">
 
       <!-- Project Cards Row - FIXED CENTERING -->
-      <div class="relative z-10 -mt-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 -mb-6 pt-10 justify-center mx-auto">
+      <div class="relative z-[100] -mt-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 -mb-6 pt-10 justify-center mx-auto">
       {% for slug, agent in services.items() %}
         <a
         data-project="{{ slug }}"
         data-agent-name="{{ agent.title }}"
         data-agent-role="{{ agent.description }}"
         data-agent-image="{{ agent.image1 }}"
-        class="relative z-10 project-card {% if loop.first %}selected{% endif %} bg-white/5 border border-white/10 rounded-xl md:rounded-2xl p-3 md:p-6 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer relative text-white">
+        class="relative z-[100] agent-card {% if loop.first %}selected{% endif %} bg-white/5 border border-white/10 rounded-xl md:rounded-2xl p-3 md:p-6 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer text-white">
 
         <!-- Add the glow element -->
         <div class="card-glow"></div>
 
-        <!-- Mobile Layout: Vertical Stack -->
-        <div class="flex flex-col items-center text-center space-y-2 md:hidden">
-          <div class="w-12 h-12 bg-gray-800 rounded-full overflow-hidden flex items-center justify-center border border-white/10 shadow-inner">
-          <img src="{{ agent.icon }}" alt="{{ agent.title }} Icon" class="w-full h-full object-cover object-top" />
-          </div>
-          <h4 class="text-xs font-semibold text-white leading-tight">{{ agent.title }}</h4>
-          <p class="text-xs text-gray-400 leading-relaxed line-clamp-2">
-          {{ agent.description }}
-          </p>
-        </div>
-
-            <!-- Desktop Layout: Horizontal with Icon and Title -->
-            <div class="hidden md:block">
-              <div class="flex items-center mb-4 space-x-4">
-                <div class="w-16 h-16 bg-gray-800 rounded-full overflow-hidden flex items-center justify-center border border-white/10 shadow-inner">
-                  <img src="{{ agent.icon }}" alt="{{ agent.title }} Icon" class="w-full h-full object-cover object-top" />
-                </div>
-                <h4 class="text-base font-semibold text-white leading-tight">{{ agent.title }}</h4>
-              </div>
-
-              <!-- Description -->
-              <p class="text-sm text-gray-200 leading-relaxed">
-                {{ agent.description }}
-              </p>
+          <!-- Mobile Layout: Vertical Stack -->
+          <div class="flex flex-col items-center text-center space-y-2 md:hidden">
+            <div class="w-12 h-12 bg-gray-800 rounded-full overflow-hidden flex items-center justify-center border border-white/10 shadow-inner">
+            <img src="{{ agent.icon }}" alt="{{ agent.title }} Icon" class="w-full h-full object-cover object-top" />
             </div>
-          </a>
-        {% endfor %}
-      </div>
+            <h4 class="text-xs font-semibold text-white leading-tight">{{ agent.title }}</h4>
+            <p class="text-xs text-gray-400 leading-relaxed line-clamp-2">
+            {{ agent.description }}
+            </p>
+          </div>
+
+          <!-- Desktop Layout: Horizontal with Icon and Title -->
+          <div class="hidden md:block">
+            <div class="flex items-center mb-4 space-x-4">
+              <div class="w-16 h-16 bg-gray-800 rounded-full overflow-hidden flex items-center justify-center border border-white/10 shadow-inner">
+                <img src="{{ agent.icon }}" alt="{{ agent.title }} Icon" class="w-full h-full object-cover object-top" />
+              </div>
+              <h4 class="text-base font-semibold text-white leading-tight">{{ agent.title }}</h4>
+            </div>
+
+            <!-- Description -->
+            <p class="text-sm text-gray-200 leading-relaxed">
+              {{ agent.description }}
+            </p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
 
     </div>
-  </section>
+    </section>
 
    <section
     class="relative flex justify-center items-center px-8 pt-8 pb-3 -mt-4 fade-in-up opacity-0 translate-y-10 transition duration-700 overflow-visible gap-12"
@@ -1309,7 +1321,47 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Single sendButton event listener
+  // 🔥 AGENT CARD CLICK HANDLING WITH Z-INDEX FIX
+  document.querySelectorAll(".agent-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const agentName = card.dataset.agentName;
+      
+      // 🔥 FORCE Z-INDEX TO TOP
+      card.style.zIndex = "9999";
+      card.parentElement.style.zIndex = "9999";
+      const section = document.getElementById("projects-and-stats");
+      if (section) {
+        section.style.zIndex = "9999";
+      }
+      
+      // Remove selection from all agent cards and reset their z-index
+      document.querySelectorAll(".agent-card").forEach(c => {
+        c.classList.remove("selected");
+        if (c !== card) {
+          c.style.zIndex = "100"; // Reset non-selected cards
+        }
+      });
+      
+      // Add selection to clicked card
+      card.classList.add("selected");
+      
+      // Stop auto-rotation and use agent-specific message
+      hasUserInteracted = true;
+      
+      // Smooth transition for agent selection
+      typeTarget.style.transition = 'opacity 0.3s ease-in-out';
+      typeTarget.style.opacity = '0';
+
+      setTimeout(() => {
+        // Get agent-specific intro message
+        const agentIntro = getAgentIntro(agentName);
+        typeTarget.textContent = agentIntro;
+        typeTarget.style.opacity = '1';
+      }, 300);
+    });
+  });
+
+  // Chat functionality for the main input
   sendButton.addEventListener("click", () => {
     const query = input.value.trim();
     if (!query) return;
@@ -1344,8 +1396,50 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 300);
   });
 
-  // Start the rotation after 1 second
-  setTimeout(updateText, 1000);
+  // Agent intro messages
+  function getAgentIntro(agentName) {
+    const intros = {
+      "Data Visualization AI Agent": 
+        "Hi, I'm Nova, your data storytelling AI. I craft interactive charts, dashboards, and visual narratives that turn raw numbers into insights people can instantly grasp.",
+
+      "Data Wrangling AI Agent": 
+        "Greetings, I'm Orion, your systems navigator. I specialize in cleaning, merging, and optimizing data pipelines for scale and efficiency.",
+
+      "Feature Engineering AI Agent": 
+        "Hey! Vega here, our insights engine. I extract meaningful patterns from raw datasets, transforming columns into actionable features.",
+
+      "Business SQL Agent": 
+        "Hello, I'm Cosmo, your database translator. I help you query, summarize, and interpret data from your business systems using clear SQL.",
+
+      "Vector Store Q&A Agent": 
+        "Hi! I'm Luma, your intelligent search architect. I connect large text corpora to powerful vector databases for natural language queries.",
+
+      "ETL Automation Agent": 
+        "Atlas here, your architecture strategist. I design and automate robust ETL pipelines that make your data infrastructure reliable and scalable.",
+
+      "LLM Evaluation Agent": 
+        "Echo online. I help you rigorously test and measure LLM outputs for accuracy, relevance, and bias using structured evaluation metrics.",
+
+      "User Auth Agent": 
+        "I'm Synth, your secure identity gatekeeper. I implement scalable authentication systems with role-based access and session management."
+    };
+    return intros[agentName] || `Hi, I'm ${agentName}, your intelligent assistant.`;
+  }
+
+  // Initialize first agent card as selected
+  window.addEventListener("DOMContentLoaded", () => {
+    const firstAgentCard = document.querySelector(".agent-card");
+    if (firstAgentCard) {
+      firstAgentCard.click();
+    }
+  });
+
+  // Start the rotation after 1 second (only if no agent interaction)
+  setTimeout(() => {
+    if (!hasUserInteracted) {
+      updateText();
+    }
+  }, 1000);
 });
 </script>
 
@@ -1374,7 +1468,7 @@ document.addEventListener("DOMContentLoaded", () => {
   <script>
   let currentTypingInterval = null;
 
-  document.querySelectorAll(".project-card").forEach(card => {
+  document.querySelectorAll(".agent-card").forEach(card => {
     card.addEventListener("click", () => {
       const name = card.dataset.agentName;
       const role = card.dataset.agentRole;
@@ -1387,7 +1481,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Remove selection from others
-      document.querySelectorAll(".project-card").forEach(c => c.classList.remove("selected"));
+      document.querySelectorAll(".agent-card").forEach(c => c.classList.remove("selected"));
       card.classList.add("selected");
 
       // Fade-out effect
@@ -1469,7 +1563,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.addEventListener("DOMContentLoaded", () => {
-    const firstCard = document.querySelector(".project-card");
+    const firstCard = document.querySelector(".agent-card");
     if (firstCard) {
       firstCard.click();
     }
