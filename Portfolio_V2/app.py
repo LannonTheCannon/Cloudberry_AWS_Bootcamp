@@ -102,16 +102,20 @@ def ask():
         if not query:
             return jsonify({'error': 'No query provided'}), 400
         
-        # 🔥 THIS IS WHERE THE AI LOGIC HAPPENS (in Python, not JavaScript)
+        # Get OpenAI API key
         api_key = get_openai_api_key()
-        openai.api_key = api_key
         
-        response = openai.ChatCompletion.create(
+        # Set up OpenAI client (updated for newer versions)
+        from openai import OpenAI
+        client = OpenAI(api_key=api_key)
+        
+        # Create chat completion
+        response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {
                     "role": "system", 
-                    "content": "You are Lannon's AI assistant. Help visitors understand his portfolio and expertise."
+                    "content": "You are Lannon Khau's AI assistant. Help visitors understand his portfolio, projects, and expertise in AI/ML engineering, full-stack development, and data science. Be concise, professional, and helpful."
                 },
                 {
                     "role": "user", 
@@ -124,13 +128,11 @@ def ask():
         
         ai_response = response.choices[0].message.content.strip()
         
-        # 🔥 SEND BACK TO FRONTEND
         return jsonify({'response': ai_response})
     
     except Exception as e:
         print(f"Error in /ask route: {e}")
-        return jsonify({'error': 'Sorry, I encountered an error.'}), 500
-
+        return jsonify({'error': f'Sorry, I encountered an error: {str(e)}'}), 500
 
 # ─── About Me Section  ──────────────────────────────────────────────────────────────────────
 
