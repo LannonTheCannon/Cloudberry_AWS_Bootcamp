@@ -800,7 +800,7 @@ Generate Interactive Plotly Objects
 
 
 <section id="multi-agent-orchestration"
-  class="mt-4 fade-in-up px-4 md:px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition duration-700">
+  class="mt-4 fade-in-up px-4 md:px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition mx-auto duration-700">
 
   <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 mt-16 text-white">
     <span class="text-indigo-400">Distributed AI </span> Workflows
@@ -816,7 +816,7 @@ Generate Interactive Plotly Objects
   </div>
 
   <!-- Workflow Cards - 2x2 Grid on Desktop, 1 Column on Mobile -->
-  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-2">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-4">
 
     <!-- Marketing Analytics Workflow -->
     <div class="workflow-card active group relative w-full bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-4 md:p-8 shadow-2xl transition-all duration-500 ease-out hover:shadow-xl hover:border-white/30 cursor-pointer overflow-hidden">
@@ -1255,75 +1255,86 @@ Generate Interactive Plotly Objects
 
   <script src="{{ url_for('static', filename='js/tilt.js') }}"></script>
   <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const typeTarget = document.getElementById("typewriter");
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const typeTarget = document.getElementById("typewriter");
 
-  const states = [
-    `90% of AI apps are wrappers\nThe rest? Systems with soul\nI build the second kind`,
-    `Design is not how it looks\nIt's how confidently you move through it\nThat's the UI/UX difference`,
-    `Code is a means\nClarity is the goal\nI build tools that speak human first`
-  ];
+    const states = [
+      `Most AI apps are copy-paste.\nThe good ones think.\nThe best ones feel.`,
+      
+      `I don’t just ship features.\nI architect clarity.\nThat’s what great UX delivers.`,
+      
+      `AI isn’t magic.\nIt’s pattern recognition\nwrapped in human intuition.`,
 
-  let currentState = 0;
+      `Your data’s talking.\nBut is your system listening?\nI build the bridge.`,
 
-  function simulateChatGPTStyleFadeMultiLine(textBlock, el) {
-    el.innerHTML = "";
-    const lines = textBlock.split("\n");
-    let delay = 0;
+      `Clean UI is table stakes.\nReal design invites movement.\nMine sparks confidence.`,
 
-    lines.forEach(line => {
-      const lineWrapper = document.createElement("div");
-      lineWrapper.className = "mb-1";
+      `Anyone can code prompts.\nFew engineer purpose.\nThat’s the difference.`,
 
-      const words = line.split(" ");
-      words.forEach(word => {
-        const span = document.createElement("span");
-        span.textContent = word;
-        span.style.opacity = 0;
-        span.style.transform = "translateY(4px)";
-        span.style.display = "inline-block";
-        span.style.marginRight = "0.5ch";
-        span.style.transition = "opacity 0.9s ease, transform 0.9s ease";
+      `Tech should simplify.\nNot impress.\nI build for the human on the other side.`
+    ];
 
-        lineWrapper.appendChild(span);
+    let currentState = 0;
 
-        setTimeout(() => {
-          span.style.opacity = 1;
-          span.style.transform = "translateY(0)";
-        }, delay);
+    function simulateChatGPTStyleFadeMultiLine(textBlock, el) {
+      el.innerHTML = "";
+      const lines = textBlock.split("\n");
+      let delay = 0;
 
-        delay += 150;
+      lines.forEach(line => {
+        const lineWrapper = document.createElement("div");
+        lineWrapper.className = "mb-1";
+
+        const words = line.split(" ");
+        words.forEach(word => {
+          const span = document.createElement("span");
+          span.textContent = word;
+          span.style.opacity = 0;
+          span.style.transform = "translateY(4px)";
+          span.style.display = "inline-block";
+          span.style.marginRight = "0.5ch";
+          span.style.transition = "opacity 0.9s ease, transform 0.5s ease";
+
+          lineWrapper.appendChild(span);
+
+          setTimeout(() => {
+            span.style.opacity = 1;
+            span.style.transform = "translateY(0)";
+          }, delay);
+
+          delay += 150;
+        });
+
+        el.appendChild(lineWrapper);
       });
+    }
 
-      el.appendChild(lineWrapper);
-    });
-  }
+    function updateText() {
+      // Transition out
+      typeTarget.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
+      typeTarget.style.opacity = '0';
+      typeTarget.style.transform = 'translateY(10px)';
 
-  function updateText() {
-    // Transition out
-    typeTarget.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
-    typeTarget.style.opacity = '0';
-    typeTarget.style.transform = 'translateY(10px)';
+      setTimeout(() => {
+        // Reset animation target
+        typeTarget.style.opacity = '1';
+        typeTarget.style.transform = 'translateY(0)';
 
-    setTimeout(() => {
-      // Reset animation target
-      typeTarget.style.opacity = '1';
-      typeTarget.style.transform = 'translateY(0)';
+        // Fade in next block with word-by-word animation
+        simulateChatGPTStyleFadeMultiLine(states[currentState], typeTarget);
+        currentState = (currentState + 1) % states.length;
 
-      // Fade in next block with word-by-word animation
-      simulateChatGPTStyleFadeMultiLine(states[currentState], typeTarget);
-      currentState = (currentState + 1) % states.length;
+        // Wait 6 seconds before showing next block
+        setTimeout(updateText, 6000);
+      }, 400);
+    }
 
-      // Wait 6 seconds before showing next block
-      setTimeout(updateText, 6000);
-    }, 400);
-  }
+    // Start after 1 second
+    setTimeout(updateText, 1000);
+  });
+  </script>
 
-  // Start after 1 second
-  setTimeout(updateText, 1000);
-});
-</script>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
