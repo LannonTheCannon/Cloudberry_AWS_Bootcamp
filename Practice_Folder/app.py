@@ -63,6 +63,15 @@ class User(db.Model):
     def check_password(self, pw):
         return check_password_hash(self.password_hash, pw)
 
+class ContactMessage(db.Model):
+    __tablename__ = 'contact_message'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    subject = db.Column(db.String(255))
+    message = db.Column(db.Text, nullable=False)
+    submitted_at = db.Column(db.DateTime, default=datetime.utcnow)
+
 class File(db.Model):
     __tablename__ = 'file'
 
@@ -77,7 +86,7 @@ class File(db.Model):
     cleaned_key = db.Column(db.String(512))
 
     user = db.relationship('User', backref='files')
-
+    
 # ─── DEBUG ROUTES ───────────────────────────────────────────────────────────────
 
 # @app.route('/debug-users-full')
@@ -208,11 +217,28 @@ def home():
 def show_projects():
     return render_template('projects.html', projects=projects)
 
-@app.route('/contact', methods=['GET','POST'])
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
-        flash('Thanks for your message!', 'success')
-        return redirect(url_for('contact'))
+        name    = request.form['name'].strip()
+        email   = request.form['email'].strip()
+        subject = request.form.get('subject', '').strip()
+        message = request.form['message'].strip()
+
+        if not name or not email or not message:
+            flash('Name, email, and message are required.', 'warning')
+        else:
+            new_msg = ContactMessage(
+                name=name,
+                email=email,
+                subject=subject,
+                message=message
+            )
+            db.session.add(new_msg)
+            db.session.commit()
+            flash('Thanks for your message!', 'success')
+            return redirect(url_for('contact'))
+
     return render_template('contact.html')
 
 @app.route('/data-forge-lite')
@@ -359,7 +385,7 @@ def clean_file(file_id):
 
 # ─── ENTRYPOINT ────────────────────────────────────────────────────────────────
 
-# if __name__ == '__main__':
-#     with app.app_context():
-#         db.create_all()
-#     app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)
