@@ -14,12 +14,18 @@ from io import BytesIO
 from datetime import datetime
 import json
 import uuid
+import openai 
+from utils.ai_pipeline import get_openai_api_key
+
 
 # ─── SETUP ──────────────────────────────────────────────────────────────────────
 
 load_dotenv()
 app = Flask(__name__)
 app.secret_key = 'SuperSecretKey'
+
+THREAD_ID = 'thread_LGQV4Dbxch9nmCLS44Rlswon'
+ASSISTANT_ID = "asst_6gmouMfvq4cpc99N74qKV6qY"
 
 try:
     if os.environ.get("FLASK_ENV") == "production":
@@ -381,6 +387,51 @@ def clean_file(file_id):
         flash(f"Error triggering Lambda: {e}", "danger")
 
     return redirect(url_for('dashboard'))
+
+@app.route("/ask", methods=["POST"])
+def ask_openai():
+
+    openai.apikey = get_openai_api_key() 
+
+    data = request.json
+    user_input = data.get("message")
+
+    if not user_input:
+        return jsonify({"error": "No input provided"}), 400
+
+    try:
+        # Add user message to thread
+        openai.beta.threads.messages.create(
+            thread_id=THREAD_ID,
+            role="user",
+            content=user_input
+        )
+
+        # Run assistant
+        run = openai.beta.threads.runs.create(
+            thread_id=THREAD_ID,
+            assistant_id=ASSISTANT_ID
+        )
+
+        # Poll until complete
+        import time
+        while True:
+            run_status = openai.beta.threads.runs.retrieve(
+                thread_id=THREAD_ID,
+                run_id=run.id
+            )
+            if run_status.status == "completed":
+                break
+            time.sleep(0.5)
+
+        # Get latest message from assistant
+        messages = openai.beta.threads.messages.list(thread_id=THREAD_ID)
+        last_msg = messages.data[0].content[0].text.value
+
+        return jsonify({"response": last_msg})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 # ─── ENTRYPOINT ────────────────────────────────────────────────────────────────
 

@@ -389,6 +389,20 @@
   opacity: 0.2 !important;
 }
 
+/* Rotates the entire icon */
+.rotate-225 {
+  transform: rotate(225deg);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.pulse {
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
 </style>
 
 </head>
@@ -462,69 +476,109 @@ Reading in-between the excel sheets.
   </section>
 
 
-  <section
-    class="relative flex justify-center items-center px-8 pt-8 pb-3 -mt-4 fade-in-up opacity-0 translate-y-10 transition duration-700 overflow-visible gap-12"
-    data-delay="400ms">
+<section
+  class="relative flex justify-center items-center px-8 pt-8 pb-3 -mt-4 fade-in-up opacity-0 translate-y-10 transition duration-700 overflow-visible gap-12"
+  data-delay="400ms">
 
-    <!-- Glow Behind Card -->
-    <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-indigo-400/20 blur-[100px] z-10 pointer-events-none">
+  <!-- Glow Behind Card -->
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-indigo-400/20 blur-[100px] z-10 pointer-events-none">
+  </div>
+
+  <!-- Tilt Card -->
+  <div
+    class="tilt-card -mt-6 relative z-20 w-full max-w-2xl h-[335px] bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform overflow-visible"
+    style="border-color: rgba(255, 255, 255, 0.9) !important; box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important; transform: translateY(-4px) !important; transform-style: preserve-3d;">
+
+    <!-- Top Row -->
+    <div class="flex items-start justify-between z-20">
+      <!-- Profile Bubble -->
+      <div class="w-28 h-28 rounded-full overflow-hidden border border-white/20">
+        <img src="/static/images/space_commander.png" alt="Profile" class="object-cover w-full h-full" />
+      </div>
+      <!-- ID Title -->
+      <div class="flex flex-col mt-1">
+        <h4 class="text-2xl sm:text-3xl font-extrabold text-gray-100 tracking-wide text-right block">
+          Lannon <span class="text-indigo-400">Khau</span>
+        </h4>
+        <div class="mt-1 w-full border-t border-white/10"></div>
+        <span class="text-xs text-white-400 font-mono tracking-widest uppercase mt-1 text-right block">
+          Full-Stack AI/ML Engineer
+        </span>
+      </div>
     </div>
 
-    <!-- Tilt Card -->
-    <div
-      class="tilt-card -mt-6 relative z-20 w-full max-w-2xl h-[335px] bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform overflow-visible"
-      style="border-color: rgba(255, 255, 255, 0.9) !important; box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important; transform: translateY(-4px) !important; transform-style: preserve-3d;">
+    <!-- Scrollable Typewriter Output -->
+    <div id="typewriter-container"
+      class="-mt-1 relative flex-1 overflow-y-auto px-4 max-w-xl mx-auto custom-scrollbar text-left">
+      <p id="typewriter"
+        class="-mt-1 text-base leading-relaxed text-grey-900 font-light whitespace-pre-line text-left"></p>
+    </div>
 
-      <!-- Top Row -->
-      <div class="flex items-start justify-between">
-        <!-- Profile Bubble -->
-        <div class="w-28 h-28 rounded-full overflow-hidden border border-white/20">
-          <img src="/static/images/space_commander.png" alt="Profile" class="object-cover w-full h-full" />
-        </div>
-        <!-- ID Title -->
-        <div class="flex flex-col mt-1">
-          <h4 class="text-2xl sm:text-3xl font-extrabold text-gray-100 tracking-wide text-right block">
-            Lannon <span class="text-indigo-400">Khau</span>
-          </h4>
-          <div class="mt-1 w-full border-t border-white/10"></div>
-          <span class="text-xs text-white-400 font-mono tracking-widest uppercase mt-1 text-right block">
-            Full-Stack AI/ML Engineer
-          </span>
-        </div>
+    <!-- Typing Indicator -->
+    <div class="relative h-6 mt-[-4px]">
+      <div id="typing-indicator" class="absolute top-0 left-0 flex gap-2 hidden">
+        <span class="typing-ball dot1"></span>
+        <span class="typing-ball dot2"></span>
+        <span class="typing-ball dot3"></span>
       </div>
-
-      <!-- Scrollable Typewriter Output -->
-      <div id="typewriter-container"
-        class="-mt-1 relative flex-1 overflow-y-auto px-4 max-w-xl mx-auto custom-scrollbar text-left">
-        <p id="typewriter"
-          class="-mt-1 text-base leading-relaxed text-grey-900 font-light whitespace-pre-line text-left"></p>
-      </div>
-
-      <!-- Typing Indicator -->
-      <div class="relative h-6 mt-[-4px]">
-        <div id="typing-indicator" class="absolute top-0 left-0 flex gap-2 hidden">
-          <span class="typing-ball dot1"></span>
-          <span class="typing-ball dot2"></span>
-          <span class="typing-ball dot3"></span>
+    </div>
+    <!-- Footer Row (polished design) -->
+    <div class="relative mt-6">
+      <!-- Full-width divider line with a break for the button -->
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="w-full border-t border-white/10 relative">
+          <!-- Button-shaped cutout illusion -->
+          <div class="absolute left-1/2 -translate-x-1/2 bg-transparent w-12 h-6 z-10"></div>
         </div>
       </div>
 
-      <!-- Footer Row -->
-      <div class="pt-1 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between">
+      <!-- Footer Content -->
+      <div class="relative z-20 flex items-center justify-between text-xs text-gray-400 font-mono px-4 pt-6">
         <span>BUSINESS-CARD-079</span>
+
+        <!-- Plus Button -->
+        <button
+          id="add-thought-btn"
+          class="absolute left-1/2 -translate-x-1/2 top-0 bg-transparent text-white rounded-full w-10 h-10 flex items-center justify-center shadow-md border border-white/20 hover:scale-105 transition-transform duration-200"
+          aria-label="Ask me anything...">
+<svg xmlns="http://www.w3.org/2000/svg"
+     class="icon-transition w-5 h-5 transition-transform duration-500 ease-in-out"
+     fill="none" viewBox="0 0 24 24"
+     stroke="currentColor" stroke-width="2">
+  <line x1="12" y1="6" x2="12" y2="18" stroke="currentColor" class="line-vert transition-transform duration-500 ease-in-out" />
+  <line x1="6" y1="12" x2="18" y2="12" stroke="currentColor" class="line-horiz transition-transform duration-500 ease-in-out" />
+</svg>
+        </button>
+
         <span>SECTOR: DATA OPS</span>
       </div>
     </div>
-  </section>
-
-
-  
 
 
 
-<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-24 -mt-16 max-w-7xl mx-auto" data-delay="200ms">
-  <h2 class="text-4xl font-bold text-center mb-14 mt-14 text-white">
+</section>
+
+  <!-- Input Box (initially hidden) -->
+<section id="quote-input-section"
+  class="transition-all duration-500 opacity-0 translate-y-6 pointer-events-none mt-4 relative z-20 flex justify-center items-center px-8">
+  <div class="w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md">
+    <div class="flex space-x-4">
+<input
+  id="user-query"
+  type="text"
+  placeholder="Ask me anything!"
+  class="flex-1 bg-transparent border-none text-sm text-gray-100 placeholder-gray-400 focus:outline-none"
+/>
+<button id="query-send" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition">
+  Send
+</button>
+    </div>
+  </div>
+</section>
+
+<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-24 max-w-7xl mx-auto z-0" data-delay="200ms">
+  <h2 class="text-4xl font-bold text-center mb-14 text-white">
     <span class="text-indigo-400">About</span> Me
   </h2>
 
@@ -1260,19 +1314,99 @@ Generate Interactive Plotly Objects
     const typeTarget = document.getElementById("typewriter");
 
     const states = [
-      `Most AI apps are copy-paste.\nThe good ones think.\nThe best ones feel.`,
-      
-      `I don’t just ship features.\nI architect clarity.\nThat’s what great UX delivers.`,
-      
-      `AI isn’t magic.\nIt’s pattern recognition\nwrapped in human intuition.`,
+  `Good AI doesn’t impress.\nIt gets out of the way.\nIt helps people think.`,
 
-      `Your data’s talking.\nBut is your system listening?\nI build the bridge.`,
+  `Most products talk too much.\nThe best ones listen quietly.\nThat’s where trust begins.`,
 
-      `Clean UI is table stakes.\nReal design invites movement.\nMine sparks confidence.`,
+  `Data isn’t insight.\nIt’s just weight.\nHow you shape it matters.`,
 
-      `Anyone can code prompts.\nFew engineer purpose.\nThat’s the difference.`,
+  `Uptime is easy.\nClarity under pressure isn’t.\nThat’s what I build for.`,
 
-      `Tech should simplify.\nNot impress.\nI build for the human on the other side.`
+  `I don’t build fast.\nI build real.\nThere’s a difference.`,
+
+  `The more choices you give,\nthe less people choose.\nDesign should know that.`,
+
+  `Every system lies a little.\nIt’s my job to know where.\nAnd fix it.`,
+
+  `Most bugs are misunderstandings.\nBetween intention and code.\nI close that gap.`,
+
+  `Not every problem needs AI.\nSometimes it just needs care.\nI’m okay with that.`,
+
+  `I’ve learned to value silence.\nIn code, in UX,\nin how we ship.`,
+
+  `Frameworks change.\nTech stacks come and go.\nBut clarity stays.`,
+
+  `When people feel calm,\nthey think better.\nI design for that.`,
+
+  `Every tool makes tradeoffs.\nI just want to know mine.\nAnd own them.`,
+
+  `A model is only as useful\nas the questions it's built around.\nThat’s where I start.`,
+
+  `Most dashboards look smart.\nI care if they make people smarter.\nThat’s the test.`,
+
+  `I’ve broken prod before.\nIt taught me how to build with grace.\nNow I plan for failure.`,
+
+  `An LLM isn’t intelligence.\nIt’s compression.\nUnderstanding lives upstream.`,
+
+  `I build with guardrails in mind.\nNot just for users,\nbut for future me.`,
+
+  `Most pipelines drift over time.\nI monitor behavior,\nnot just metrics.`,
+
+  `The backend isn't magic.\nIt’s tradeoffs made quietly.\nAnd I own every one.`,
+
+  `Latency matters.\nBut confidence matters more.\nEspecially in AI.`,
+
+  `I’ve written code I no longer understand.\nNow I write less,\nand document more.`,
+
+  `Not all APIs are bridges.\nSome are landmines.\nI build the first kind.`,
+
+  `Most errors hide in edge cases.\nI go looking for them,\nbefore they find users.`,
+
+  `Logs are conversations.\nIf you know how to read them,\nthey tell you what’s next.`,
+
+  `I used to deploy blindly.\nNow I deploy with observability.\nIt feels like maturity.`,
+
+  `You can’t automate what you don’t understand.\nSo I map before I build.\nEvery time.`,
+
+  `I work with models.\nBut I design the surrounding system\nto keep them honest.`,
+
+  `I don’t just handle data.\nI listen to it.\nStructure tells a story.`,
+
+  `AI isn’t the hard part.\nIntegration is.\nThat’s where systems fail.`,
+
+  `I measure performance.\nBut I design for resilience.\nOne bad spike shouldn't sink you.`,
+
+  `Real scalability\nis about knowing when not to scale.\nAnd saying no.`,
+
+  `Data Forge taught me this:\nSpeed isn’t power.\nClarity is.`,
+
+  `Latency is easy to track.\nConfusion isn’t.\nThat’s the harder bug.`,
+
+  `You can’t scale noise.\nYou can only scale clarity.\nThat’s product work.`,
+
+  `A system should teach you\nhow to use it.\nQuietly, in motion.`,
+
+  `If the feature needs explaining,\nit probably needs deleting.\nI’ve learned to let go.`,
+
+  `The best decisions I’ve made\nweren’t clever.\nThey were honest.`,
+
+  `Users don’t care about models.\nThey care about results.\nI never forget that.`,
+
+  `Most teams overbuild.\nThe best ones remove.\nSubtraction is design.`,
+
+  `I’d rather ship late\nthan ship forgettable.\nDeadlines don’t remember.`,
+
+  `I test ideas with questions,\nnot code.\nCode comes second.`,
+
+  `Clean design isn’t polish.\nIt’s respect.\nFor the person using it.`,
+
+  `I don’t chase perfect.\nI chase patterns.\nPatterns tell the truth.`,
+
+  `I’ve built for silence.\nWhen nothing breaks,\nyou did it right.`,
+
+  `Not everything needs AI.\nBut everything needs intention.\nThat’s where I start.`,
+
+  `Sometimes I delete more than I ship.\nThat’s progress too.\nThat’s taste.`
     ];
 
     let currentState = 0;
@@ -1480,8 +1614,74 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const plusButton = document.getElementById('add-thought-btn');
+  const svg = plusButton.querySelector('svg');
+  const inputSection = document.getElementById('quote-input-section');
+
+  let isOpen = false;
+
+  plusButton.addEventListener('click', () => {
+    isOpen = !isOpen;
+
+    // Morph icon
+    svg.classList.toggle('rotate-225');
+    svg.classList.toggle('cross');
+
+    // Animate input box
+    if (isOpen) {
+      inputSection.classList.remove('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
+      inputSection.classList.add('opacity-100', 'scale-y-100');
+    } else {
+      inputSection.classList.remove('opacity-100', 'scale-y-100');
+      inputSection.classList.add('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
+    }
+  });
+});
+
+
 </script>
-  
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const sendButton = document.getElementById('query-send');
+    const inputField = document.getElementById('user-query');
+
+    sendButton.addEventListener('click', async () => {
+      const message = inputField.value.trim();
+      console.log("Sending message:", message); // ← check this logs correctly
+      if (!message) return;
+
+      sendButton.innerText = "Sending...";
+      sendButton.disabled = true;
+
+      try {
+        const res = await fetch('/ask', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message })
+        });
+
+        const data = await res.json();
+        console.log("AI Response:", data);
+
+        if (data.response) {
+          // TODO: insert response into the DOM
+          alert(data.response); // Or add to chat log
+        } else {
+          console.error("AI Error:", data.error);
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
+      }
+
+      inputField.value = '';
+      sendButton.innerText = "Send";
+      sendButton.disabled = false;
+    });
+  });
+</script>
   
 
 </body>
