@@ -19,6 +19,12 @@ from utils.ai_pipeline import run_clean_pipeline, get_openai_api_key
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import openai
 import time
+# Try importing - if it fails, we'll define it inline
+try:
+    from utils.standalone_assistant_manager import StandaloneAssistantManager
+except ImportError:
+    print("Import failed, defining StandaloneAssistantManager inline...")
+    pass 
 
 # from utils.s3_secrets import get_s3_config
 
@@ -92,48 +98,39 @@ class File(db.Model):
 
 # ─── Hero Section  ──────────────────────────────────────────────────────────────────────
 
-@app.route('/ask', methods=['POST'])
+@app.route("/ask", methods=["POST"])
 def ask():
+    data = request.get_json()
+    user_input = data.get("query") if data else None
+        # Your constants
+    ASSISTANT_ID = 'asst_6gmouMfvq4cpc99N74qKV6qY'
+    THREAD_ID = 'thread_LGQV4Dbxch9nmCLS44Rlswon'
+
+    if not user_input or not user_input.strip():
+        return jsonify({"error": "No query provided"}), 400
+
     try:
-        # Get the JSON data from the request
-        data = request.get_json()
-        query = data.get('query', '')
-        
-        if not query:
-            return jsonify({'error': 'No query provided'}), 400
-        
-        # Get OpenAI API key
-        api_key = get_openai_api_key()
-        
-        # Set up OpenAI client (updated for newer versions)
-        from openai import OpenAI
-        client = OpenAI(api_key=api_key)
-        
-        # Create chat completion
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {
-                    "role": "system", 
-                    "content": "You are Lannon Khau's AI assistant. Help visitors understand his portfolio, projects, and expertise in AI/ML engineering, full-stack development, and data science. Be concise, professional, and helpful."
-                },
-                {
-                    "role": "user", 
-                    "content": query
-                }
-            ],
-            max_tokens=200,
-            temperature=0.7
+        # Create standalone assistant manager
+        assistant_manager = StandaloneAssistantManager(
+            api_key=get_openai_api_key(),
+            assistant_id=ASSISTANT_ID,
+            thread_id=THREAD_ID
         )
         
-        ai_response = response.choices[0].message.content.strip()
+        # Get response
+        response = assistant_manager.run_assistant(user_input)
+        print(f'🔥 Assistant response: {response}')
         
-        return jsonify({'response': ai_response})
-    
+        if response:
+            return jsonify({"response": response})
+        else:
+            return jsonify({"error": "Failed to get assistant response"}), 500
+            
     except Exception as e:
-        print(f"Error in /ask route: {e}")
-        return jsonify({'error': f'Sorry, I encountered an error: {str(e)}'}), 500
-
+        print(f"🔥 Error in ask_openai: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
 # ─── About Me Section  ──────────────────────────────────────────────────────────────────────
 
 @app.route('/about')

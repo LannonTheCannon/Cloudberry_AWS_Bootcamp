@@ -19,6 +19,11 @@ from utils.ai_pipeline import get_openai_api_key
 from flask_cors import CORS
 import time
 from utils.assistant_manager import AssistantManager
+try:
+    from utils.standalone_assistant_manager import StandaloneAssistantManager
+except ImportError:
+    print("Import failed, defining StandaloneAssistantManager inline...")
+    pass 
 
 
 # ─── SETUP ──────────────────────────────────────────────────────────────────────
@@ -395,6 +400,7 @@ def clean_file(file_id):
     return redirect(url_for('dashboard'))
 
 
+
 @app.route("/ask", methods=["POST"])
 def ask_openai():
     data = request.get_json()
@@ -404,8 +410,8 @@ def ask_openai():
         return jsonify({"error": "No query provided"}), 400
 
     try:
-        # Create assistant manager
-        assistant_manager = AssistantManager(
+        # Create standalone assistant manager
+        assistant_manager = StandaloneAssistantManager(
             api_key=get_openai_api_key(),
             assistant_id=ASSISTANT_ID,
             thread_id=THREAD_ID
@@ -413,7 +419,8 @@ def ask_openai():
         
         # Get response
         response = assistant_manager.run_assistant(user_input)
-        print(f'response {response}')
+        print(f'🔥 Assistant response: {response}')
+        
         if response:
             return jsonify({"response": response})
         else:
@@ -421,6 +428,8 @@ def ask_openai():
             
     except Exception as e:
         print(f"🔥 Error in ask_openai: {e}")
+        import traceback
+        traceback.print_exc()
         return jsonify({"error": str(e)}), 500
 # ─── ENTRYPOINT ────────────────────────────────────────────────────────────────
 
