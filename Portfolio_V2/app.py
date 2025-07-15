@@ -131,6 +131,101 @@ def ask():
         import traceback
         traceback.print_exc()
         return jsonify({"error": str(e)}), 500
+    
+
+# 🔥 Agent configurations with their own assistant IDs
+AGENT_CONFIGS = {
+    "Data Visualization AI Agent": {
+        "assistant_id": "asst_SrQiMK3v7lkZmUipEhY0ReIh",
+        "system_prompt": "You are Nova, a data visualization AI specialist. You help create interactive charts, dashboards, and visual narratives."
+    },
+    "Data Wrangling AI Agent": {
+        "assistant_id": "asst_R5zIDy8Q3LW0TCcWdhlIPTj3", 
+        "system_prompt": "You are Orion, a data wrangling specialist. You help clean, merge, and optimize data pipelines."
+    },
+    "Feature Engineering AI Agent": {
+        "assistant_id": "asst_RPlJ9yluhaAzS4Tj6TUvuAB5",
+        "system_prompt": "You are Vega, a feature engineering expert. You extract meaningful patterns and transform data for ML models."
+    },
+    "Business SQL Agent": {
+        "assistant_id": "asst_Bvd1I7VoqDYA8uoMFW4vBTSe",
+        "system_prompt": "You are Cosmo, a SQL expert. You help query, analyze, and interpret business data."
+    },
+    "Vector Store Q&A Agent": {
+        "assistant_id": "asst_XdJtC6N7BuT4PvVnw877KaFK",
+        "system_prompt": "You are Luma, a vector search specialist. You help with semantic search and RAG implementations."
+    },
+    "ETL Automation Agent": {
+        "assistant_id": "asst_MQI4tSxv5NZZngwS9qOPKGR9",
+        "system_prompt": "You are Atlas, an ETL automation expert. You design robust data pipelines and infrastructure."
+    },
+    "LLM Evaluation Agent": {
+        "assistant_id": "asst_HuLj0I4GO4taz7qU7atKzRnC",
+        "system_prompt": "You are Echo, an LLM evaluation specialist. You help test and measure AI model performance."
+    },
+    "User Auth Agent": {
+        "assistant_id": "asst_p0imYKyt9G0CTLD9Z5qqtcb3",
+        "system_prompt": "You are Synth, a security and authentication expert. You help with user management and access control."
+    }
+}
+
+# 🔥 Store agent-specific thread IDs (in production, use a database)
+agent_threads = {}
+
+@app.route('/ask_agent', methods=['POST'])
+def ask_agent():
+    try:
+        data = request.get_json()
+        user_query = data.get('query', '').strip()
+        agent_name = data.get('agent_name', '').strip()
+        
+        if not user_query:
+            return jsonify({"error": "No query provided"}), 400
+            
+        if not agent_name or agent_name not in AGENT_CONFIGS:
+            return jsonify({"error": f"Unknown agent: {agent_name}"}), 400
+        
+        print(f"🔥 Agent Query: {agent_name} - {user_query}")
+        
+        # Get agent config
+        agent_config = AGENT_CONFIGS[agent_name]
+        assistant_id = agent_config["assistant_id"]
+        
+        # 🔥 Get or create thread for this agent
+        thread_id = agent_threads.get(agent_name)
+        
+        # 🔥 Create assistant manager (will create thread if needed)
+        assistant_manager = StandaloneAssistantManager(
+            api_key=get_openai_api_key(),
+            assistant_id=assistant_id,
+            thread_id=thread_id
+        )
+        
+        # 🔥 Store the thread ID if it was newly created
+        if agent_name not in agent_threads:
+            agent_threads[agent_name] = assistant_manager.thread_id
+            print(f"🔥 Stored new thread for {agent_name}: {assistant_manager.thread_id}")
+        
+        # Get response from the specific agent
+        agent_response = assistant_manager.run_assistant(user_query)
+        
+        if agent_response:
+            print(f"🔥 Agent Response from {agent_name}: {agent_response[:100]}...")
+            
+            return jsonify({
+                "response": agent_response,
+                "agent": agent_name,
+                "thread_id": assistant_manager.thread_id
+            })
+        else:
+            return jsonify({"error": "Failed to get agent response"}), 500
+            
+    except Exception as e:
+        print(f"Error in ask_agent: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({"error": "Internal server error"}), 500
+
 # ─── About Me Section  ──────────────────────────────────────────────────────────────────────
 
 @app.route('/about')
@@ -349,7 +444,7 @@ def show_blog_post(slug):
 
 services = {
     "data-vis-agent": {
-        "title": "Multi-agent Marketing Analytics System",
+        "title": "Data Visualization AI Agent",  # ← Changed from "Multi-agent Marketing Analytics System"
         "description": "Generate Interactive Plotly Objects",
         "tech": ["LangChain", "OpenAI", "Streamlit", "Pandas AI", "NL2SQL", "RAG Pipelines"],
         "content": "This service acts as your visual co-pilot. I combine RAG pipelines with AI tools like Pandas AI and Streamlit to produce conversational dashboards, enabling business leaders and analysts to explore data through natural language and see patterns come alive visually.",
