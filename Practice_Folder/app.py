@@ -16,12 +16,16 @@ import json
 import uuid
 import openai 
 from utils.ai_pipeline import get_openai_api_key
+from flask_cors import CORS
 
 
 # ─── SETUP ──────────────────────────────────────────────────────────────────────
 
 load_dotenv()
 app = Flask(__name__)
+CORS(app)
+
+
 app.secret_key = 'SuperSecretKey'
 
 THREAD_ID = 'thread_LGQV4Dbxch9nmCLS44Rlswon'
@@ -388,51 +392,87 @@ def clean_file(file_id):
 
     return redirect(url_for('dashboard'))
 
+
 @app.route("/ask", methods=["POST"])
 def ask_openai():
+    openai.api_key = get_openai_api_key()
 
-    openai.apikey = get_openai_api_key() 
+    data = request.get_json()
+    print("DEBUG Incoming JSON:", data)
 
-    data = request.json
-    user_input = data.get("message")
+    user_input = data.get("query") if data else None
 
-    if not user_input:
-        return jsonify({"error": "No input provided"}), 400
+    if not user_input or not user_input.strip():
+        return jsonify({"error": "No query provided"}), 400
 
     try:
-        # Add user message to thread
-        openai.beta.threads.messages.create(
+        print(f"🔥 Using THREAD_ID: {THREAD_ID}")
+        print(f"🔥 Using ASSISTANT_ID: {ASSISTANT_ID}")
+
+        # Add user input to the thread
+        message = openai.beta.threads.messages.create(
             thread_id=THREAD_ID,
             role="user",
             content=user_input
         )
+        print(f"🔥 Created message: {message.id}")
+
+        # 🔥 DEBUG: Check thread history BEFORE running
+        before_messages = openai.beta.threads.messages.list(
+            thread_id=THREAD_ID,
+            limit=5  # Show last 5 messages
+        )
+        print(f"🔥 Thread history before run ({len(before_messages.data)} messages):")
+        for msg in before_messages.data:
+            content = msg.content[0].text.value[:100] + "..." if len(msg.content[0].text.value) > 100 else msg.content[0].text.value
+            print(f"   {msg.role}: {content}")
 
         # Run assistant
         run = openai.beta.threads.runs.create(
             thread_id=THREAD_ID,
             assistant_id=ASSISTANT_ID
         )
+        print(f"🔥 Created run: {run.id}")
 
-        # Poll until complete
-        import time
+        # Poll for run completion
         while True:
             run_status = openai.beta.threads.runs.retrieve(
                 thread_id=THREAD_ID,
                 run_id=run.id
             )
+            print(f"🔥 Run status: {run_status.status}")
+            
             if run_status.status == "completed":
                 break
+            elif run_status.status in ["failed", "cancelled", "expired"]:
+                print(f"🔥 Run failed with status: {run_status.status}")
+                if hasattr(run_status, 'last_error'):
+                    print(f"🔥 Error details: {run_status.last_error}")
+                return jsonify({"error": f"Run failed: {run_status.status}"}), 500
             time.sleep(0.5)
 
-        # Get latest message from assistant
-        messages = openai.beta.threads.messages.list(thread_id=THREAD_ID)
-        last_msg = messages.data[0].content[0].text.value
+        # Get messages after run
+        messages = openai.beta.threads.messages.list(
+            thread_id=THREAD_ID,
+            order="desc"
+        )
+        
+        print(f"🔥 Total messages after run: {len(messages.data)}")
+        
+        # Get the most recent assistant message
+        for message in messages.data:
+            if message.role == "assistant":
+                last_msg = message.content[0].text.value
+                print(f"🔥 Assistant response: {last_msg[:200]}...")
+                return jsonify({"response": last_msg})
 
-        return jsonify({"response": last_msg})
+        return jsonify({"error": "No assistant response found."}), 500
 
     except Exception as e:
+        print(f"🔥 Error in ask_openai: {e}")
+        import traceback
+        traceback.print_exc()
         return jsonify({"error": str(e)}), 500
-
 # ─── ENTRYPOINT ────────────────────────────────────────────────────────────────
 
 # if __name__ == '__main__':
