@@ -798,56 +798,102 @@ and spark curiosity.
       class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-4/4 w-[420px] h-[420px] rounded-full bg-indigo-400/5 blur-[90px] z-10 pointer-events-none">
     </div>
 
-    <div
-      class="tilt-card -mt-6 relative z-20 w-full max-w-2xl h-[335px] bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform overflow-visible"
-      style="border-color: rgba(255, 255, 255, 0.9) !important; box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important; transform: translateY(-4px) !important; transform-style: preserve-3d;">
+  <!-- Replace your agent display card section with this: -->
+<div
+  id="agent-display-card"
+  class="tilt-card -mt-6 relative z-20 w-full max-w-2xl h-[335px] bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform overflow-visible"
+  style="border-color: rgba(255, 255, 255, 0.9) !important; box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important; transform: translateY(-4px) !important; transform-style: preserve-3d;">
 
-      <div id="agent-details" class="transition-opacity duration-300 ease-in-out opacity-100">
-        <div class="flex items-start justify-between">
-          <!-- Avatar -->
-          <div class="w-28 h-28 rounded-full overflow-hidden border border-white/20">
-            <img id="agent-img" src="/static/images/agent1.jpg" alt="Profile"
-              class="object-cover w-full h-full transition duration-300 ease-in-out scale-100" />
-          </div>
-
-          <!-- Name & Role -->
-          <div class="flex flex-col mt-1 text-right">
-            <h4 class="text-2xl sm:text-3xl font-extrabold text-gray-100 tracking-wide block">
-              <span id="agent-name">Data Visualization</span>
-              <span id="agent-lastname" class="text-indigo-400">AI Agent</span>
-            </h4>
-            <div class="mt-1 w-full border-t border-white/10"></div>
-            <span id="agent-role" class="text-xs text-white-400 font-mono tracking-widest uppercase mt-1 block">
-Generate Interactive Plotly Objects
-            </span>
-          </div>
-        </div>
+  <div id="agent-details" class="transition-opacity duration-300 ease-in-out opacity-100">
+    <div class="flex items-start justify-between">
+      <!-- Avatar -->
+      <div class="w-28 h-28 rounded-full overflow-hidden border border-white/20">
+        <img id="agent-img" src="/static/images/agent1.jpg" alt="Profile"
+          class="object-cover w-full h-full transition duration-300 ease-in-out scale-100" />
       </div>
 
-      <!-- Scrollable Typewriter Output -->
-      <div id="typewriter-container"
-              class="-mt-1 relative flex-1 overflow-y-auto px-4 max-w-xl mx-auto custom-scrollbar text-left">
-        <p id="agent-typewriter"
-        data-agent=""
-        class="-mt-1 text-base leading-tight text-grey-900 font-light whitespace-pre-line text-left"></p>
-        </div>
-
-      <!-- Typing Indicator -->
-      <div class="relative h-6 mt-[-4px]">
-        <div id="agent-typing-indicator" class="absolute top-0 left-0 flex gap-2 hidden">
-          <span class="typing-ball dot1"></span>
-          <span class="typing-ball dot2"></span>
-          <span class="typing-ball dot3"></span>
-        </div>
-      </div>
-
-      <!-- Footer Row -->
-      <div class="pt-1 border-t border-white/10 text-xs text-gray-400 font-mono flex justify-between">
-        <span>BUSINESS-CARD-079</span>
-        <span>SECTOR: DATA OPS</span>
+      <!-- Name & Role -->
+      <div class="flex flex-col mt-1 text-right">
+        <h4 class="text-2xl sm:text-3xl font-extrabold text-gray-100 tracking-wide block">
+          <span id="agent-name">Data Visualization</span>
+          <span id="agent-lastname" class="text-indigo-400">AI Agent</span>
+        </h4>
+        <div class="mt-1 w-full border-t border-white/10"></div>
+        <span id="agent-role" class="text-xs text-white-400 font-mono tracking-widest uppercase mt-1 block">
+          Generate Interactive Plotly Objects
+        </span>
       </div>
     </div>
-  </section>
+  </div>
+
+  <!-- Scrollable Typewriter Output -->
+  <div id="typewriter-container"
+    class="-mt-1 relative flex-1 overflow-y-auto px-4 max-w-xl mx-auto custom-scrollbar text-left">
+    <p id="agent-typewriter"
+      data-agent=""
+      class="-mt-1 text-base leading-tight text-grey-900 font-light whitespace-pre-line text-left"></p>
+  </div>
+
+  <!-- Typing Indicator -->
+  <div class="relative h-6 mt-[-4px]">
+    <div id="agent-typing-indicator" class="absolute top-0 left-0 flex gap-2 hidden">
+      <span class="typing-ball dot1"></span>
+      <span class="typing-ball dot2"></span>
+      <span class="typing-ball dot3"></span>
+    </div>
+  </div>
+
+  <!-- Footer Row with Plus Button -->
+  <div class="relative mt-6">
+    <!-- Full-width divider line with a break for the button -->
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="w-full border-t border-white/10 relative">
+        <!-- Button-shaped cutout illusion -->
+        <div class="absolute left-1/2 -translate-x-1/2 bg-transparent w-12 h-6 z-10"></div>
+      </div>
+    </div>
+
+    <!-- Footer Content -->
+    <div class="relative z-20 flex items-center justify-between text-xs text-gray-400 font-mono px-4 pt-6">
+      <span>BUSINESS-CARD-079</span>
+    
+      <!-- Plus Button for Agent Chat -->
+      <button id="agent-chat-btn"
+        class="absolute left-1/2 -translate-x-1/2 top-0 bg-transparent text-white rounded-full w-10 h-10 flex items-center justify-center shadow-md border border-white/20 hover:scale-105 transition-transform duration-200"
+        aria-label="Chat with this agent...">
+        <svg xmlns="http://www.w3.org/2000/svg"
+          class="icon-transition w-5 h-5 transition-transform duration-500 ease-in-out" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="6" x2="12" y2="18" stroke="currentColor"
+            class="line-vert transition-transform duration-500 ease-in-out" />
+          <line x1="6" y1="12" x2="18" y2="12" stroke="currentColor"
+            class="line-horiz transition-transform duration-500 ease-in-out" />
+        </svg>
+      </button>
+    
+      <span>SECTOR: DATA OPS</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Agent Input Box (initially hidden) -->
+<section id="agent-input-section"
+  class="transition-all duration-500 opacity-0 translate-y-6 pointer-events-none mt-4 relative z-20 flex justify-center items-center px-8">
+  <div class="w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md">
+    <div class="flex space-x-4">
+      <input
+        id="agent-query"
+        type="text"
+        placeholder="Chat with this agent..."
+        class="flex-1 bg-transparent border-none text-sm text-gray-100 placeholder-gray-400 focus:outline-none"
+      />
+      <button id="agent-send" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition">
+        Send
+      </button>
+    </div>
+  </div>
+</section>
 
 
 
@@ -1462,116 +1508,6 @@ document.addEventListener("DOMContentLoaded", () => {
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
-  let currentTypingInterval = null;
-
-  document.querySelectorAll(".agent-card").forEach(card => {
-    card.addEventListener("click", () => {
-      const name = card.dataset.agentName;
-      const role = card.dataset.agentRole;
-      const image = card.dataset.agentImage;
-
-      // 🔥 STOP any ongoing typewriter animation immediately
-      if (currentTypingInterval) {
-        clearInterval(currentTypingInterval);
-        currentTypingInterval = null;
-      }
-
-      // Remove selection from others
-      document.querySelectorAll(".agent-card").forEach(c => c.classList.remove("selected"));
-      card.classList.add("selected");
-
-      // Fade-out effect
-      const details = document.getElementById("agent-details");
-      details.classList.remove("opacity-100");
-      details.classList.add("opacity-0");
-
-      setTimeout(() => {
-        // Update card content
-        document.querySelector("#agent-name").textContent = name.split(" ").slice(0, -1).join(" ");
-        document.querySelector("#agent-lastname").textContent = name.split(" ").slice(-1).join(" ");
-        document.querySelector("#agent-role").textContent = role;
-        document.querySelector("#agent-img").src = image;
-
-        // 🔥 Clear any residual text before starting new typewriter
-        document.getElementById("agent-typewriter").textContent = "";
-
-        // Fade-in
-        details.classList.remove("opacity-0");
-        details.classList.add("opacity-100");
-
-        // Typewriter effect with hardcoded message per agent
-        const introText = getAgentIntro(name);
-        simulateChatGPTStyleFade(introText);
-      }, 300);
-    });
-  });
-
-function simulateChatGPTStyleFade(text) {
-  const el = document.getElementById("agent-typewriter");
-  el.innerHTML = "";
-
-  const words = text.split(" ");
-  let delay = 0;
-
-  words.forEach((word, index) => {
-    const span = document.createElement("span");
-    span.textContent = word;
-    span.style.opacity = 0;
-    span.style.transform = "translateY(4px)";
-    span.style.display = "inline-block";
-    span.style.marginRight = "0.5ch"; // ← adds spacing between words
-    span.style.transition = "opacity 0.9s ease, transform 0.9s ease";
-
-    el.appendChild(span);
-
-    setTimeout(() => {
-      span.style.opacity = 1;
-      span.style.transform = "translateY(0)";
-    }, delay);
-
-    delay += 150; // tweak for rhythm
-  });
-}
-
-
-  function getAgentIntro(agentName) {
-    const intros = {
-      "Data Visualization AI Agent": 
-        "Hi, I'm Nova, your data storytelling AI. I craft interactive charts, dashboards, and visual narratives that turn raw numbers into insights people can instantly grasp. Whether you're pitching to stakeholders or exploring trends, I make your data speak fluently.",
-
-      "Data Wrangling AI Agent": 
-        "Greetings, I'm Orion, your systems navigator. I specialize in cleaning, merging, and optimizing data pipelines for scale and efficiency. If your data is messy, scattered, or slow to move, I'm here to bring order and flow.",
-
-      "Feature Engineering AI Agent": 
-        "Hey! Vega here, our insights engine. I extract meaningful patterns from raw datasets, transforming columns into actionable features that boost model performance. If you're training AI, I'm your secret weapon for smarter predictions.",
-
-      "Business SQL Agent": 
-        "Hello, I'm Cosmo, your database translator. I help you query, summarize, and interpret data from your business systems using clear and efficient SQL. Whether it's revenue trends or customer behavior, I surface answers fast.",
-
-      "Vector Store Q&A Agent": 
-        "Hi! I'm Luma, your intelligent search architect. I connect large text corpora to powerful vector databases, so you can ask natural language questions and get accurate, context-aware answers. Perfect for docs, wikis, or internal tools.",
-
-      "ETL Automation Agent": 
-        "Atlas here, your architecture strategist. I design and automate robust ETL pipelines that ingest, clean, and move data across cloud platforms. My job is to make your data infrastructure reliable, scalable, and hands-free.",
-
-      "LLM Evaluation Agent": 
-        "Echo online. I help you rigorously test and measure LLM outputs for accuracy, relevance, and bias using golden datasets and structured evaluation metrics. If you're iterating prompts or tuning models, I'll guide your experiments with clarity.",
-
-      "User Auth Agent": 
-        "I'm Synth, your secure identity gatekeeper. I implement scalable authentication systems with role-based access, token handling, and session management. From login flows to enterprise-grade user management, I keep your platform safe and smooth."
-    };
-    return intros[agentName] || `Hi, I'm ${agentName}, your intelligent assistant.`;
-  }
-
-  window.addEventListener("DOMContentLoaded", () => {
-    const firstCard = document.querySelector(".agent-card");
-    if (firstCard) {
-      firstCard.click();
-    }
-  });
-  </script>
-
-  <script>
 document.addEventListener("DOMContentLoaded", () => {
   // Handle workflow card clicks
   document.querySelectorAll(".workflow-card").forEach(card => {
@@ -1722,7 +1658,209 @@ function simulateChatGPTStyleFadeMultiLine(textBlock, el) {
   });
 }
 </script>
+
+
+<script>
+let currentTypingInterval = null;
+
+document.querySelectorAll(".agent-card").forEach(card => {
+  card.addEventListener("click", () => {
+    console.log("🔥 Agent card clicked!"); // Debug log
+    
+    const name = card.dataset.agentName;
+    const role = card.dataset.agentRole;
+    const image = card.dataset.agentImage;
+
+    console.log("🔥 Agent data:", { name, role, image }); // Debug log
+
+    // Remove selection from others
+    document.querySelectorAll(".agent-card").forEach(c => c.classList.remove("selected"));
+    card.classList.add("selected");
+
+    // 🔥 Use the unique ID instead of complex selector
+    const agentCard = document.getElementById('agent-display-card');
+    
+    console.log("🔥 Found agent card:", agentCard); // Debug log
+    
+    if (!agentCard) {
+      console.error("🔥 Agent display card not found!");
+      return;
+    }
+    
+    // 🔥 DRAMATIC FADE OUT - entire card slides down and fades
+    agentCard.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+    agentCard.style.opacity = '0';
+    agentCard.style.transform = 'translateY(30px) scale(0.95)';
+    
+    console.log("🔥 Starting fade out..."); // Debug log
+    
+    setTimeout(() => {
+      console.log("🔥 Updating content..."); // Debug log
+      
+      // Update all content while card is invisible
+      const agentNameEl = document.querySelector("#agent-name");
+      const agentLastnameEl = document.querySelector("#agent-lastname");
+      const agentRoleEl = document.querySelector("#agent-role");
+      const agentImgEl = document.querySelector("#agent-img");
+      const agentTypewriterEl = document.getElementById("agent-typewriter");
+      
+      if (agentNameEl) agentNameEl.textContent = name.split(" ").slice(0, -1).join(" ");
+      if (agentLastnameEl) agentLastnameEl.textContent = name.split(" ").slice(-1).join(" ");
+      if (agentRoleEl) agentRoleEl.textContent = role;
+      if (agentImgEl) agentImgEl.src = image;
+      if (agentTypewriterEl) agentTypewriterEl.textContent = "";
+
+      // 🔥 DRAMATIC FADE IN - card slides up and fades in
+      agentCard.style.opacity = '1';
+      agentCard.style.transform = 'translateY(-4px) scale(1)'; // Back to original position
+      
+      console.log("🔥 Starting fade in..."); // Debug log
+      
+      // Start typewriter effect after card is visible
+      setTimeout(() => {
+        console.log("🔥 Starting typewriter..."); // Debug log
+        const introText = getAgentIntro(name);
+        simulateChatGPTStyleFade(introText);
+      }, 200); // Small delay for smooth transition
+      
+    }, 500); // Wait for fade out to complete
+  });
+});
+
+function simulateChatGPTStyleFade(text) {
+  const el = document.getElementById("agent-typewriter");
+  if (!el) {
+    console.error("🔥 agent-typewriter element not found!");
+    return;
+  }
   
+  console.log("🔥 Running typewriter for:", text.substring(0, 50) + "..."); // Debug log
+  
+  el.innerHTML = "";
+
+  const words = text.split(" ");
+  let delay = 0;
+
+  words.forEach((word, index) => {
+    const span = document.createElement("span");
+    span.textContent = word;
+    span.style.opacity = 0;
+    span.style.transform = "translateY(4px)";
+    span.style.display = "inline-block";
+    span.style.marginRight = "0.5ch";
+    span.style.transition = "opacity 0.9s ease, transform 0.9s ease";
+
+    el.appendChild(span);
+
+    setTimeout(() => {
+      span.style.opacity = 1;
+      span.style.transform = "translateY(0)";
+    }, delay);
+
+    delay += 150;
+  });
+}
+
+function getAgentIntro(agentName) {
+  const intros = {
+    "Data Visualization AI Agent": 
+      "Hi, I'm Nova, your data storytelling AI. I craft interactive charts, dashboards, and visual narratives that turn raw numbers into insights people can instantly grasp. Whether you're pitching to stakeholders or exploring trends, I make your data speak fluently.",
+
+    "Data Wrangling AI Agent": 
+      "Greetings, I'm Orion, your systems navigator. I specialize in cleaning, merging, and optimizing data pipelines for scale and efficiency. If your data is messy, scattered, or slow to move, I'm here to bring order and flow.",
+
+    "Feature Engineering AI Agent": 
+      "Hey! Vega here, our insights engine. I extract meaningful patterns from raw datasets, transforming columns into actionable features that boost model performance. If you're training AI, I'm your secret weapon for smarter predictions.",
+
+    "Business SQL Agent": 
+      "Hello, I'm Cosmo, your database translator. I help you query, summarize, and interpret data from your business systems using clear and efficient SQL. Whether it's revenue trends or customer behavior, I surface answers fast.",
+
+    "Vector Store Q&A Agent": 
+      "Hi! I'm Luma, your intelligent search architect. I connect large text corpora to powerful vector databases, so you can ask natural language questions and get accurate, context-aware answers. Perfect for docs, wikis, or internal tools.",
+
+    "ETL Automation Agent": 
+      "Atlas here, your architecture strategist. I design and automate robust ETL pipelines that ingest, clean, and move data across cloud platforms. My job is to make your data infrastructure reliable, scalable, and hands-free.",
+
+    "LLM Evaluation Agent": 
+      "Echo online. I help you rigorously test and measure LLM outputs for accuracy, relevance, and bias using golden datasets and structured evaluation metrics. If you're iterating prompts or tuning models, I'll guide your experiments with clarity.",
+
+    "User Auth Agent": 
+      "I'm Synth, your secure identity gatekeeper. I implement scalable authentication systems with role-based access, token handling, and session management. From login flows to enterprise-grade user management, I keep your platform safe and smooth."
+  };
+  return intros[agentName] || `Hi, I'm ${agentName}, your intelligent assistant.`;
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  console.log("🔥 DOM loaded, clicking first card..."); // Debug log
+  const firstCard = document.querySelector(".agent-card");
+  if (firstCard) {
+    console.log("🔥 First card found:", firstCard); // Debug log
+    firstCard.click();
+  } else {
+    console.error("🔥 No agent cards found!");
+  }
+});
+</script>
+
+<script>
+// Agent Chat Button Functionality
+document.addEventListener('DOMContentLoaded', () => {
+  const agentChatButton = document.getElementById('agent-chat-btn');
+  const agentSvg = agentChatButton.querySelector('svg');
+  const agentInputSection = document.getElementById('agent-input-section');
+
+  let isAgentChatOpen = false;
+
+  agentChatButton.addEventListener('click', () => {
+    isAgentChatOpen = !isAgentChatOpen;
+
+    console.log("🔥 Agent chat button clicked! Open:", isAgentChatOpen); // Debug log
+
+    // Morph icon (same animation as main button)
+    agentSvg.classList.toggle('rotate-225');
+    agentSvg.classList.toggle('cross');
+
+    // Animate input box
+    if (isAgentChatOpen) {
+      agentInputSection.classList.remove('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
+      agentInputSection.classList.add('opacity-100', 'scale-y-100');
+      
+      // Focus the input field
+      setTimeout(() => {
+        document.getElementById('agent-query').focus();
+      }, 300);
+    } else {
+      agentInputSection.classList.remove('opacity-100', 'scale-y-100');
+      agentInputSection.classList.add('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
+    }
+  });
+
+  // Handle Enter key in agent input
+  document.getElementById('agent-query').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      document.getElementById('agent-send').click();
+    }
+  });
+
+  // Agent Send Button (placeholder for now)
+  document.getElementById('agent-send').addEventListener('click', () => {
+    const agentQuery = document.getElementById('agent-query').value.trim();
+    
+    if (!agentQuery) {
+      console.warn("Empty agent query. Not sending.");
+      return;
+    }
+
+    console.log("🔥 Agent query:", agentQuery);
+    
+    // For now, just clear the input
+    document.getElementById('agent-query').value = '';
+    
+    // TODO: Add agent-specific chat functionality here
+    alert(`Chatting with agent: "${agentQuery}"`);
+  });
+});
+</script>
 
 </body>
 
