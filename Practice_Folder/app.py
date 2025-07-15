@@ -17,6 +17,8 @@ import uuid
 import openai 
 from utils.ai_pipeline import get_openai_api_key
 from flask_cors import CORS
+import time
+from utils.assistant_manager import AssistantManager
 
 
 # ─── SETUP ──────────────────────────────────────────────────────────────────────
@@ -395,83 +397,30 @@ def clean_file(file_id):
 
 @app.route("/ask", methods=["POST"])
 def ask_openai():
-    openai.api_key = get_openai_api_key()
-
     data = request.get_json()
-    print("DEBUG Incoming JSON:", data)
-
     user_input = data.get("query") if data else None
 
     if not user_input or not user_input.strip():
         return jsonify({"error": "No query provided"}), 400
 
     try:
-        print(f"🔥 Using THREAD_ID: {THREAD_ID}")
-        print(f"🔥 Using ASSISTANT_ID: {ASSISTANT_ID}")
-
-        # Add user input to the thread
-        message = openai.beta.threads.messages.create(
-            thread_id=THREAD_ID,
-            role="user",
-            content=user_input
+        # Create assistant manager
+        assistant_manager = AssistantManager(
+            api_key=get_openai_api_key(),
+            assistant_id=ASSISTANT_ID,
+            thread_id=THREAD_ID
         )
-        print(f"🔥 Created message: {message.id}")
-
-        # 🔥 DEBUG: Check thread history BEFORE running
-        before_messages = openai.beta.threads.messages.list(
-            thread_id=THREAD_ID,
-            limit=5  # Show last 5 messages
-        )
-        print(f"🔥 Thread history before run ({len(before_messages.data)} messages):")
-        for msg in before_messages.data:
-            content = msg.content[0].text.value[:100] + "..." if len(msg.content[0].text.value) > 100 else msg.content[0].text.value
-            print(f"   {msg.role}: {content}")
-
-        # Run assistant
-        run = openai.beta.threads.runs.create(
-            thread_id=THREAD_ID,
-            assistant_id=ASSISTANT_ID
-        )
-        print(f"🔥 Created run: {run.id}")
-
-        # Poll for run completion
-        while True:
-            run_status = openai.beta.threads.runs.retrieve(
-                thread_id=THREAD_ID,
-                run_id=run.id
-            )
-            print(f"🔥 Run status: {run_status.status}")
+        
+        # Get response
+        response = assistant_manager.run_assistant(user_input)
+        print(f'response {response}')
+        if response:
+            return jsonify({"response": response})
+        else:
+            return jsonify({"error": "Failed to get assistant response"}), 500
             
-            if run_status.status == "completed":
-                break
-            elif run_status.status in ["failed", "cancelled", "expired"]:
-                print(f"🔥 Run failed with status: {run_status.status}")
-                if hasattr(run_status, 'last_error'):
-                    print(f"🔥 Error details: {run_status.last_error}")
-                return jsonify({"error": f"Run failed: {run_status.status}"}), 500
-            time.sleep(0.5)
-
-        # Get messages after run
-        messages = openai.beta.threads.messages.list(
-            thread_id=THREAD_ID,
-            order="desc"
-        )
-        
-        print(f"🔥 Total messages after run: {len(messages.data)}")
-        
-        # Get the most recent assistant message
-        for message in messages.data:
-            if message.role == "assistant":
-                last_msg = message.content[0].text.value
-                print(f"🔥 Assistant response: {last_msg[:200]}...")
-                return jsonify({"response": last_msg})
-
-        return jsonify({"error": "No assistant response found."}), 500
-
     except Exception as e:
         print(f"🔥 Error in ask_openai: {e}")
-        import traceback
-        traceback.print_exc()
         return jsonify({"error": str(e)}), 500
 # ─── ENTRYPOINT ────────────────────────────────────────────────────────────────
 
