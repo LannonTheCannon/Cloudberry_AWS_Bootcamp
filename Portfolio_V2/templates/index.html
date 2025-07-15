@@ -536,24 +536,24 @@ Reading in-between the excel sheets.
       <!-- Footer Content -->
       <div class="relative z-20 flex items-center justify-between text-xs text-gray-400 font-mono px-4 pt-6">
         <span>BUSINESS-CARD-079</span>
-
+      
         <!-- Plus Button -->
-        <button
-          id="add-thought-btn"
+        <button id="add-thought-btn"
           class="absolute left-1/2 -translate-x-1/2 top-0 bg-transparent text-white rounded-full w-10 h-10 flex items-center justify-center shadow-md border border-white/20 hover:scale-105 transition-transform duration-200"
           aria-label="Ask me anything...">
-<svg xmlns="http://www.w3.org/2000/svg"
-     class="icon-transition w-5 h-5 transition-transform duration-500 ease-in-out"
-     fill="none" viewBox="0 0 24 24"
-     stroke="currentColor" stroke-width="2">
-  <line x1="12" y1="6" x2="12" y2="18" stroke="currentColor" class="line-vert transition-transform duration-500 ease-in-out" />
-  <line x1="6" y1="12" x2="18" y2="12" stroke="currentColor" class="line-horiz transition-transform duration-500 ease-in-out" />
-</svg>
+          <svg xmlns="http://www.w3.org/2000/svg"
+            class="icon-transition w-5 h-5 transition-transform duration-500 ease-in-out" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="6" x2="12" y2="18" stroke="currentColor"
+              class="line-vert transition-transform duration-500 ease-in-out" />
+            <line x1="6" y1="12" x2="18" y2="12" stroke="currentColor"
+              class="line-horiz transition-transform duration-500 ease-in-out" />
+          </svg>
         </button>
-
+      
         <span>SECTOR: DATA OPS</span>
       </div>
-    </div>
+      </div>
 
 
 
@@ -1309,164 +1309,135 @@ Generate Interactive Plotly Objects
   <script src="{{ url_for('static', filename='js/tilt.js') }}"></script>
   <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
   <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const typeTarget = document.getElementById("typewriter");
+document.addEventListener("DOMContentLoaded", () => {
+  const typeTarget = document.getElementById("typewriter");
 
-    const states = [
-  `Good AI doesn’t impress.\nIt gets out of the way.\nIt helps people think.`,
+  const states = [
+    `Good AI doesn't impress.\nIt gets out of the way.\nIt helps people think.`,
+    `Most products talk too much.\nThe best ones listen quietly.\nThat's where trust begins.`,
+    `Data isn't insight.\nIt's just weight.\nHow you shape it matters.`,
+    `Uptime is easy.\nClarity under pressure isn't.\nThat's what I build for.`,
+    `I don't build fast.\nI build real.\nThere's a difference.`,
+    `The more choices you give,\nthe less people choose.\nDesign should know that.`,
+    `Every system lies a little.\nIt's my job to know where.\nAnd fix it.`,
+    `Most bugs are misunderstandings.\nBetween intention and code.\nI close that gap.`,
+    `Not every problem needs AI.\nSometimes it just needs care.\nI'm okay with that.`,
+    `I've learned to value silence.\nIn code, in UX,\nin how we ship.`,
+    `Frameworks change.\nTech stacks come and go.\nBut clarity stays.`,
+    `When people feel calm,\nthey think better.\nI design for that.`,
+    `Every tool makes tradeoffs.\nI just want to know mine.\nAnd own them.`,
+    `A model is only as useful\nas the questions it's built around.\nThat's where I start.`,
+    `Most dashboards look smart.\nI care if they make people smarter.\nThat's the test.`,
+    `I've broken prod before.\nIt taught me how to build with grace.\nNow I plan for failure.`,
+    `An LLM isn't intelligence.\nIt's compression.\nUnderstanding lives upstream.`,
+    `I build with guardrails in mind.\nNot just for users,\nbut for future me.`,
+    `Most pipelines drift over time.\nI monitor behavior,\nnot just metrics.`,
+    `The backend isn't magic.\nIt's tradeoffs made quietly.\nAnd I own every one.`,
+    `Latency matters.\nBut confidence matters more.\nEspecially in AI.`,
+    `I've written code I no longer understand.\nNow I write less,\nand document more.`,
+    `Not all APIs are bridges.\nSome are landmines.\nI build the first kind.`,
+    `Most errors hide in edge cases.\nI go looking for them,\nbefore they find users.`,
+    `Logs are conversations.\nIf you know how to read them,\nthey tell you what's next.`,
+    `I used to deploy blindly.\nNow I deploy with observability.\nIt feels like maturity.`,
+    `You can't automate what you don't understand.\nSo I map before I build.\nEvery time.`,
+    `I work with models.\nBut I design the surrounding system\nto keep them honest.`,
+    `I don't just handle data.\nI listen to it.\nStructure tells a story.`,
+    `AI isn't the hard part.\nIntegration is.\nThat's where systems fail.`,
+    `I measure performance.\nBut I design for resilience.\nOne bad spike shouldn't sink you.`,
+    `Real scalability\nis about knowing when not to scale.\nAnd saying no.`,
+    `Data Forge taught me this:\nSpeed isn't power.\nClarity is.`,
+    `Latency is easy to track.\nConfusion isn't.\nThat's the harder bug.`,
+    `You can't scale noise.\nYou can only scale clarity.\nThat's product work.`,
+    `A system should teach you\nhow to use it.\nQuietly, in motion.`,
+    `If the feature needs explaining,\nit probably needs deleting.\nI've learned to let go.`,
+    `The best decisions I've made\nweren't clever.\nThey were honest.`,
+    `Users don't care about models.\nThey care about results.\nI never forget that.`,
+    `Most teams overbuild.\nThe best ones remove.\nSubtraction is design.`,
+    `I'd rather ship late\nthan ship forgettable.\nDeadlines don't remember.`,
+    `I test ideas with questions,\nnot code.\nCode comes second.`,
+    `Clean design isn't polish.\nIt's respect.\nFor the person using it.`,
+    `I don't chase perfect.\nI chase patterns.\nPatterns tell the truth.`,
+    `I've built for silence.\nWhen nothing breaks,\nyou did it right.`,
+    `Not everything needs AI.\nBut everything needs intention.\nThat's where I start.`,
+    `Sometimes I delete more than I ship.\nThat's progress too.\nThat's taste.`
+  ];
 
-  `Most products talk too much.\nThe best ones listen quietly.\nThat’s where trust begins.`,
+  let currentState = 0;
+  let hasUserInteracted = false; // 🔥 Track user interaction
+  let rotationTimeout = null; // 🔥 Track the rotation timer
 
-  `Data isn’t insight.\nIt’s just weight.\nHow you shape it matters.`,
+  function simulateChatGPTStyleFadeMultiLine(textBlock, el) {
+    el.innerHTML = "";
+    const lines = textBlock.split("\n");
+    let delay = 0;
 
-  `Uptime is easy.\nClarity under pressure isn’t.\nThat’s what I build for.`,
+    lines.forEach(line => {
+      const lineWrapper = document.createElement("div");
+      lineWrapper.className = "mb-1";
 
-  `I don’t build fast.\nI build real.\nThere’s a difference.`,
+      const words = line.split(" ");
+      words.forEach(word => {
+        const span = document.createElement("span");
+        span.textContent = word;
+        span.style.opacity = 0;
+        span.style.transform = "translateY(4px)";
+        span.style.display = "inline-block";
+        span.style.marginRight = "0.5ch";
+        span.style.transition = "opacity 0.9s ease, transform 0.5s ease";
 
-  `The more choices you give,\nthe less people choose.\nDesign should know that.`,
+        lineWrapper.appendChild(span);
 
-  `Every system lies a little.\nIt’s my job to know where.\nAnd fix it.`,
+        setTimeout(() => {
+          span.style.opacity = 1;
+          span.style.transform = "translateY(0)";
+        }, delay);
 
-  `Most bugs are misunderstandings.\nBetween intention and code.\nI close that gap.`,
-
-  `Not every problem needs AI.\nSometimes it just needs care.\nI’m okay with that.`,
-
-  `I’ve learned to value silence.\nIn code, in UX,\nin how we ship.`,
-
-  `Frameworks change.\nTech stacks come and go.\nBut clarity stays.`,
-
-  `When people feel calm,\nthey think better.\nI design for that.`,
-
-  `Every tool makes tradeoffs.\nI just want to know mine.\nAnd own them.`,
-
-  `A model is only as useful\nas the questions it's built around.\nThat’s where I start.`,
-
-  `Most dashboards look smart.\nI care if they make people smarter.\nThat’s the test.`,
-
-  `I’ve broken prod before.\nIt taught me how to build with grace.\nNow I plan for failure.`,
-
-  `An LLM isn’t intelligence.\nIt’s compression.\nUnderstanding lives upstream.`,
-
-  `I build with guardrails in mind.\nNot just for users,\nbut for future me.`,
-
-  `Most pipelines drift over time.\nI monitor behavior,\nnot just metrics.`,
-
-  `The backend isn't magic.\nIt’s tradeoffs made quietly.\nAnd I own every one.`,
-
-  `Latency matters.\nBut confidence matters more.\nEspecially in AI.`,
-
-  `I’ve written code I no longer understand.\nNow I write less,\nand document more.`,
-
-  `Not all APIs are bridges.\nSome are landmines.\nI build the first kind.`,
-
-  `Most errors hide in edge cases.\nI go looking for them,\nbefore they find users.`,
-
-  `Logs are conversations.\nIf you know how to read them,\nthey tell you what’s next.`,
-
-  `I used to deploy blindly.\nNow I deploy with observability.\nIt feels like maturity.`,
-
-  `You can’t automate what you don’t understand.\nSo I map before I build.\nEvery time.`,
-
-  `I work with models.\nBut I design the surrounding system\nto keep them honest.`,
-
-  `I don’t just handle data.\nI listen to it.\nStructure tells a story.`,
-
-  `AI isn’t the hard part.\nIntegration is.\nThat’s where systems fail.`,
-
-  `I measure performance.\nBut I design for resilience.\nOne bad spike shouldn't sink you.`,
-
-  `Real scalability\nis about knowing when not to scale.\nAnd saying no.`,
-
-  `Data Forge taught me this:\nSpeed isn’t power.\nClarity is.`,
-
-  `Latency is easy to track.\nConfusion isn’t.\nThat’s the harder bug.`,
-
-  `You can’t scale noise.\nYou can only scale clarity.\nThat’s product work.`,
-
-  `A system should teach you\nhow to use it.\nQuietly, in motion.`,
-
-  `If the feature needs explaining,\nit probably needs deleting.\nI’ve learned to let go.`,
-
-  `The best decisions I’ve made\nweren’t clever.\nThey were honest.`,
-
-  `Users don’t care about models.\nThey care about results.\nI never forget that.`,
-
-  `Most teams overbuild.\nThe best ones remove.\nSubtraction is design.`,
-
-  `I’d rather ship late\nthan ship forgettable.\nDeadlines don’t remember.`,
-
-  `I test ideas with questions,\nnot code.\nCode comes second.`,
-
-  `Clean design isn’t polish.\nIt’s respect.\nFor the person using it.`,
-
-  `I don’t chase perfect.\nI chase patterns.\nPatterns tell the truth.`,
-
-  `I’ve built for silence.\nWhen nothing breaks,\nyou did it right.`,
-
-  `Not everything needs AI.\nBut everything needs intention.\nThat’s where I start.`,
-
-  `Sometimes I delete more than I ship.\nThat’s progress too.\nThat’s taste.`
-    ];
-
-    let currentState = 0;
-
-    function simulateChatGPTStyleFadeMultiLine(textBlock, el) {
-      el.innerHTML = "";
-      const lines = textBlock.split("\n");
-      let delay = 0;
-
-      lines.forEach(line => {
-        const lineWrapper = document.createElement("div");
-        lineWrapper.className = "mb-1";
-
-        const words = line.split(" ");
-        words.forEach(word => {
-          const span = document.createElement("span");
-          span.textContent = word;
-          span.style.opacity = 0;
-          span.style.transform = "translateY(4px)";
-          span.style.display = "inline-block";
-          span.style.marginRight = "0.5ch";
-          span.style.transition = "opacity 0.9s ease, transform 0.5s ease";
-
-          lineWrapper.appendChild(span);
-
-          setTimeout(() => {
-            span.style.opacity = 1;
-            span.style.transform = "translateY(0)";
-          }, delay);
-
-          delay += 150;
-        });
-
-        el.appendChild(lineWrapper);
+        delay += 150;
       });
+
+      el.appendChild(lineWrapper);
+    });
+  }
+
+  function updateText() {
+    // 🔥 STOP rotation if user has interacted
+    if (hasUserInteracted) return;
+
+    // Transition out
+    typeTarget.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
+    typeTarget.style.opacity = '0';
+    typeTarget.style.transform = 'translateY(10px)';
+
+    setTimeout(() => {
+      // Reset animation target
+      typeTarget.style.opacity = '1';
+      typeTarget.style.transform = 'translateY(0)';
+
+      // Fade in next block with word-by-word animation
+      simulateChatGPTStyleFadeMultiLine(states[currentState], typeTarget);
+      currentState = (currentState + 1) % states.length;
+
+      // 🔥 Store the timeout so we can clear it later
+      rotationTimeout = setTimeout(updateText, 6000);
+    }, 400);
+  }
+
+  // 🔥 Function to stop rotation permanently
+  function stopRotation() {
+    hasUserInteracted = true;
+    if (rotationTimeout) {
+      clearTimeout(rotationTimeout);
+      rotationTimeout = null;
     }
+  }
 
-    function updateText() {
-      // Transition out
-      typeTarget.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
-      typeTarget.style.opacity = '0';
-      typeTarget.style.transform = 'translateY(10px)';
+  // 🔥 Make stopRotation available globally for the send button
+  window.stopTypewriterRotation = stopRotation;
 
-      setTimeout(() => {
-        // Reset animation target
-        typeTarget.style.opacity = '1';
-        typeTarget.style.transform = 'translateY(0)';
-
-        // Fade in next block with word-by-word animation
-        simulateChatGPTStyleFadeMultiLine(states[currentState], typeTarget);
-        currentState = (currentState + 1) % states.length;
-
-        // Wait 6 seconds before showing next block
-        setTimeout(updateText, 6000);
-      }, 400);
-    }
-
-    // Start after 1 second
-    setTimeout(updateText, 1000);
-  });
-  </script>
+  // Start after 1 second
+  setTimeout(updateText, 1000);
+});
+</script>
 
 
   <script>
@@ -1643,43 +1614,113 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const sendButton = document.getElementById('query-send');
-    const inputField = document.getElementById('user-query');
+const sendButton = document.getElementById('query-send');
+const inputField = document.getElementById('user-query');
 
-    sendButton.addEventListener('click', async () => {
-      const message = inputField.value.trim();
-      console.log("Sending message:", message); // ← check this logs correctly
-      if (!message) return;
+sendButton.addEventListener('click', async () => {
+  const userInput = inputField.value.trim();
 
-      sendButton.innerText = "Sending...";
-      sendButton.disabled = true;
+  if (!userInput) {
+    console.warn("Empty input. Not sending.");
+    return;
+  }
 
-      try {
-        const res = await fetch('/ask', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message })
-        });
+  // 🔥 STOP the rotation permanently when user interacts
+  if (window.stopTypewriterRotation) {
+    window.stopTypewriterRotation();
+  }
 
-        const data = await res.json();
-        console.log("AI Response:", data);
+  // Show loading state
+  sendButton.textContent = "Sending...";
+  sendButton.disabled = true;
 
-        if (data.response) {
-          // TODO: insert response into the DOM
-          alert(data.response); // Or add to chat log
-        } else {
-          console.error("AI Error:", data.error);
-        }
-      } catch (err) {
-        console.error("Fetch error:", err);
-      }
-
-      inputField.value = '';
-      sendButton.innerText = "Send";
-      sendButton.disabled = false;
+  try {
+    const response = await fetch("/ask", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ query: userInput })
     });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error("AI Error:", data.error);
+      const typewriter = document.getElementById('typewriter');
+      // 🔥 Use the same fade animation for errors
+      simulateChatGPTStyleFadeMultiLine("Sorry, something went wrong. Please try again.", typewriter);
+      return;
+    }
+
+    console.log("AI Response:", data.response);
+    
+    // 🔥 Show response with the SAME beautiful animation
+    const typewriter = document.getElementById('typewriter');
+    typewriter.style.transition = 'opacity 0.3s ease-in-out';
+    typewriter.style.opacity = '0';
+    
+    setTimeout(() => {
+      // 🔥 Use the same simulateChatGPTStyleFadeMultiLine function
+      simulateChatGPTStyleFadeMultiLine(data.response, typewriter);
+      typewriter.style.opacity = '1';
+    }, 300);
+
+    // 🔥 ONLY clear input, DON'T close the input box
+    inputField.value = '';
+
+  } catch (err) {
+    console.error("Fetch failed:", err);
+    const typewriter = document.getElementById('typewriter');
+    // 🔥 Use the same fade animation for network errors
+    simulateChatGPTStyleFadeMultiLine("Network error. Please check your connection.", typewriter);
+  } finally {
+    // Reset button
+    sendButton.textContent = "Send";
+    sendButton.disabled = false;
+  }
+});
+
+// Handle Enter key
+inputField.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    sendButton.click();
+  }
+});
+
+// 🔥 Make sure this function is available globally
+function simulateChatGPTStyleFadeMultiLine(textBlock, el) {
+  el.innerHTML = "";
+  const lines = textBlock.split("\n");
+  let delay = 0;
+
+  lines.forEach(line => {
+    const lineWrapper = document.createElement("div");
+    lineWrapper.className = "mb-1";
+
+    const words = line.split(" ");
+    words.forEach(word => {
+      const span = document.createElement("span");
+      span.textContent = word;
+      span.style.opacity = 0;
+      span.style.transform = "translateY(4px)";
+      span.style.display = "inline-block";
+      span.style.marginRight = "0.5ch";
+      span.style.transition = "opacity 0.9s ease, transform 0.5s ease";
+
+      lineWrapper.appendChild(span);
+
+      setTimeout(() => {
+        span.style.opacity = 1;
+        span.style.transform = "translateY(0)";
+      }, delay);
+
+      delay += 150;
+    });
+
+    el.appendChild(lineWrapper);
   });
+}
 </script>
   
 
