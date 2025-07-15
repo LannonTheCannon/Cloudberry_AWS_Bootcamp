@@ -801,7 +801,7 @@ and spark curiosity.
   <!-- Replace your agent display card section with this: -->
 <div
   id="agent-display-card"
-  class="tilt-card -mt-6 relative z-20 w-full max-w-2xl h-[335px] bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform overflow-visible"
+  class="-mt-6 relative z-20 w-full max-w-2xl h-[335px] bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl p-4 shadow-2xl text-left flex flex-col space-y-4 transition-transform duration-300 ease-out will-change-transform overflow-visible"
   style="border-color: rgba(255, 255, 255, 0.9) !important; box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important; transform: translateY(-4px) !important; transform-style: preserve-3d;">
 
   <div id="agent-details" class="transition-opacity duration-300 ease-in-out opacity-100">
@@ -1660,8 +1660,11 @@ function simulateChatGPTStyleFadeMultiLine(textBlock, el) {
 </script>
 
 
+
 <script>
 let currentTypingInterval = null;
+// 🔥 Store last AGENT responses per agent (not user messages)
+let lastAgentResponses = {};
 
 document.querySelectorAll(".agent-card").forEach(card => {
   card.addEventListener("click", () => {
@@ -1719,8 +1722,13 @@ document.querySelectorAll(".agent-card").forEach(card => {
       // Start typewriter effect after card is visible
       setTimeout(() => {
         console.log("🔥 Starting typewriter..."); // Debug log
-        const introText = getAgentIntro(name);
-        simulateChatGPTStyleFade(introText);
+        
+        // 🔥 Show either last AGENT RESPONSE or intro with fade-in effect
+        const messageToShow = lastAgentResponses[name] || getAgentIntro(name);
+        const isLastResponse = !!lastAgentResponses[name];
+        
+        console.log("🔥 Showing message:", isLastResponse ? "Last agent response" : "Agent intro");
+        simulateChatGPTStyleFade(messageToShow);
       }, 200); // Small delay for smooth transition
       
     }, 500); // Wait for fade out to complete
@@ -1810,11 +1818,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const agentInputSection = document.getElementById('agent-input-section');
 
   let isAgentChatOpen = false;
+  let currentAgentName = null;
 
   agentChatButton.addEventListener('click', () => {
     isAgentChatOpen = !isAgentChatOpen;
 
-    console.log("🔥 Agent chat button clicked! Open:", isAgentChatOpen); // Debug log
+    console.log("🔥 Agent chat button clicked! Open:", isAgentChatOpen);
 
     // Morph icon (same animation as main button)
     agentSvg.classList.toggle('rotate-225');
@@ -1825,9 +1834,17 @@ document.addEventListener('DOMContentLoaded', () => {
       agentInputSection.classList.remove('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
       agentInputSection.classList.add('opacity-100', 'scale-y-100');
       
+      // 🔥 Get the currently selected agent
+      currentAgentName = document.querySelector("#agent-name").textContent + " " + 
+                       document.querySelector("#agent-lastname").textContent;
+      
+      // 🔥 Update placeholder with agent name
+      const agentInput = document.getElementById('agent-query');
+      agentInput.placeholder = `Chat with ${currentAgentName}...`;
+      
       // Focus the input field
       setTimeout(() => {
-        document.getElementById('agent-query').focus();
+        agentInput.focus();
       }, 300);
     } else {
       agentInputSection.classList.remove('opacity-100', 'scale-y-100');
@@ -1842,22 +1859,73 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Agent Send Button (placeholder for now)
-  document.getElementById('agent-send').addEventListener('click', () => {
+  // 🔥 Agent Send Button - Now sends to specific agent endpoint
+  document.getElementById('agent-send').addEventListener('click', async () => {
     const agentQuery = document.getElementById('agent-query').value.trim();
+    const sendButton = document.getElementById('agent-send');
     
     if (!agentQuery) {
       console.warn("Empty agent query. Not sending.");
       return;
     }
 
-    console.log("🔥 Agent query:", agentQuery);
-    
-    // For now, just clear the input
-    document.getElementById('agent-query').value = '';
-    
-    // TODO: Add agent-specific chat functionality here
-    alert(`Chatting with agent: "${agentQuery}"`);
+    // Get current agent name
+    const agentName = document.querySelector("#agent-name").textContent + " " + 
+                     document.querySelector("#agent-lastname").textContent;
+
+    console.log("🔥 Sending query to agent:", agentName, "Query:", agentQuery);
+
+    // Show loading state
+    sendButton.textContent = "Sending...";
+    sendButton.disabled = true;
+
+    try {
+      // 🔥 Send to agent-specific endpoint
+      const response = await fetch("/ask_agent", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ 
+          query: agentQuery,
+          agent_name: agentName
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error("Agent Error:", data.error);
+        simulateChatGPTStyleFade("Sorry, something went wrong. Please try again.");
+        return;
+      }
+
+      console.log("🔥 Agent Response:", data.response);
+      
+      // 🔥 Show response in the agent typewriter area with beautiful animation
+      const agentTypewriter = document.getElementById('agent-typewriter');
+      agentTypewriter.style.transition = 'opacity 0.3s ease-in-out';
+      agentTypewriter.style.opacity = '0';
+      
+      setTimeout(() => {
+        simulateChatGPTStyleFade(data.response);
+        agentTypewriter.style.opacity = '1';
+      }, 300);
+
+      // 🔥 Store the AGENT'S RESPONSE (not user message)
+      lastAgentResponses[agentName] = data.response;
+
+      // Clear input
+      document.getElementById('agent-query').value = '';
+
+    } catch (err) {
+      console.error("Fetch failed:", err);
+      simulateChatGPTStyleFade("Network error. Please check your connection.");
+    } finally {
+      // Reset button
+      sendButton.textContent = "Send";
+      sendButton.disabled = false;
+    }
   });
 });
 </script>
