@@ -103,8 +103,8 @@ def ask():
     data = request.get_json()
     user_input = data.get("query") if data else None
         # Your constants
-    ASSISTANT_ID = 'asst_6gmouMfvq4cpc99N74qKV6qY'
-    THREAD_ID = 'thread_LGQV4Dbxch9nmCLS44Rlswon'
+    ASSISTANT_ID = 'asst_lWehPiZNA8pnJqZiIRf0oZjd'
+    THREAD_ID = 'thread_SvWn7zjRtUFwjOMGHBYbRzjV'
 
     if not user_input or not user_input.strip():
         return jsonify({"error": "No query provided"}), 400

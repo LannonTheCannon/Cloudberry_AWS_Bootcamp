@@ -403,6 +403,15 @@
   animation: pulse 2.5s ease-in-out infinite;
 }
 
+#typewriter {
+  color: rgb(243, 244, 246) !important; /* gray-100 */
+  line-height: 1.625 !important; /* leading-relaxed */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  min-height: 1.5em;
+}
+
 </style>
 
 </head>
@@ -512,7 +521,7 @@ Reading in-between the excel sheets.
     <div id="typewriter-container"
       class="-mt-1 relative flex-1 overflow-y-auto px-4 max-w-xl mx-auto custom-scrollbar text-left">
       <p id="typewriter"
-        class="-mt-1 text-base leading-snug text-grey-900 font-light whitespace-pre-line text-left"></p>
+        class="-mt-1 text-base leading-normal text-grey-900 font-light whitespace-pre-line text-left"></p>
     </div>
 
     <!-- Typing Indicator -->
@@ -1614,7 +1623,7 @@ sendButton.addEventListener('click', async () => {
     // Reset button
     sendButton.textContent = "Send";
     sendButton.disabled = false;
-  }d
+  }
 });
 
 // Handle Enter key
