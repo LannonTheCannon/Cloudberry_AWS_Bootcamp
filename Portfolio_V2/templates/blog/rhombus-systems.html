@@ -7,6 +7,20 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="/static/favicon.ico" />
     <style>
+    .grain-overlay {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: -1000;
+      background-image: url("/static/images/grain2.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      /* Covers entire viewport */
+      background-position: center;
+      mix-blend-mode: overlay;
+      opacity: 0.18;
+    }
+
     @keyframes draw-border {
       0% {
         border-width: 0;
@@ -77,6 +91,10 @@
 
   </style>
 </head>
+
+<div class="grain-overlay pointer-events-none fixed inset-0 z-0"></div>
+
+
 <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
 
   <!-- Nav -->
