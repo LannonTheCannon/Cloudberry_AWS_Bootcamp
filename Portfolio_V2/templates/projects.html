@@ -13,6 +13,20 @@
   <title>All Projects</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    .grain-overlay {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: -1000;
+      background-image: url("/static/images/grain2.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      /* Covers entire viewport */
+      background-position: center;
+      mix-blend-mode: overlay;
+      opacity: 0.18;
+    }
+
     @keyframes draw-border {
       0% {
         border-width: 0;
@@ -35,10 +49,13 @@
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
       }
     }
+
     .floating-star {
       position: absolute;
-      top: -1rem;         /* Adjust vertical alignment */
-      right: -6rem;      /* Push out horizontally to "hover" next to the block */
+      top: -1rem;
+      /* Adjust vertical alignment */
+      right: -6rem;
+      /* Push out horizontally to "hover" next to the block */
       z-index: 10;
       pointer-events: none;
     }
@@ -52,16 +69,15 @@
 
       width: 200%;
       height: 120px;
-      background: radial-gradient(
-        ellipse at center,
-        rgba(173, 216, 255, 0.6),
-        rgba(173, 216, 255, 0.05) 70%,
-        transparent 100%
-      );
+      background: radial-gradient(ellipse at center,
+          rgba(173, 216, 255, 0.6),
+          rgba(173, 216, 255, 0.05) 70%,
+          transparent 100%);
       filter: blur(80px);
       opacity: 0.9;
       z-index: -1;
     }
+
     @media (max-width: 540px) {
       .floating-star {
         position: relative !important;
@@ -81,21 +97,23 @@
       }
     }
 
-      .project-card {
-    border-color: rgba(255, 255, 255, 0.9) !important;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
-    transform: translateY(-4px) !important;
-  }
+    .project-card {
+      border-color: rgba(255, 255, 255, 0.9) !important;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
+      transform: translateY(-4px) !important;
+    }
 
-  .project-card:hover {
-    border-color: rgba(255, 255, 255, 0.9) !important;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 9px 0px rgba(197, 200, 202, 1) !important;
-    transform: translateY(-12px) !important;
-  }
-
-
+    .project-card:hover {
+      border-color: rgba(255, 255, 255, 0.9) !important;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 9px 0px rgba(197, 200, 202, 1) !important;
+      transform: translateY(-12px) !important;
+    }
   </style>
 </head>
+
+<div class="grain-overlay pointer-events-none fixed inset-0 z-0"></div>
+
+
 <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col">
 
   <!-- Nav -->
