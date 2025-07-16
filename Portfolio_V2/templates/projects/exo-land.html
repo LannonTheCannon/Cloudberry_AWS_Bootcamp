@@ -49,6 +49,7 @@
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
       }
     }
+
     .border-animate {
       border: 1px solid rgba(255, 255, 255, 0.2);
       animation: draw-border 1.2s ease-out forwards;
@@ -58,8 +59,10 @@
 
     .floating-star {
       position: absolute;
-      top: -7rem;         /* Adjust vertical alignment */
-      right: -7rem;      /* Push out horizontally to "hover" next to the block */
+      top: -7rem;
+      /* Adjust vertical alignment */
+      right: -7rem;
+      /* Push out horizontally to "hover" next to the block */
       z-index: 10;
       pointer-events: none;
     }
@@ -73,18 +76,16 @@
 
       width: 100%;
       height: 130px;
-      background: radial-gradient(
-        ellipse at center,
-        rgba(173, 216, 255, 0.6),
-        rgba(173, 216, 255, 0.05) 70%,
-        transparent 100%
-      );
+      background: radial-gradient(ellipse at center,
+          rgba(173, 216, 255, 0.6),
+          rgba(173, 216, 255, 0.05) 70%,
+          transparent 100%);
       filter: blur(60px);
       opacity: 1.99;
       z-index: -1;
     }
 
-        @media (max-width: 540px) {
+    @media (max-width: 540px) {
       .floating-star {
         position: relative !important;
         top: 0 !important;
@@ -106,13 +107,14 @@
 
 </head>
 
+
   <div class="grain-overlay pointer-events-none fixed inset-0 z-0"></div>
-
-
+ß
 <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white min-h-screen">
 
   <!-- Nav -->
-    <header class="w-full px-6 py-4 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-6">
+  <header
+    class="w-full px-6 py-4 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-6">
     <h1 class="text-xl font-bold tracking-tight"><a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
     </h1>
     <nav class="space-x-6 text-sm">
@@ -125,9 +127,11 @@
     </nav>
   </header>
 
-<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center px-8 py-20 overflow-hidden" data-delay="200ms">
-  <div class="relative mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-3xl w-full">
-    <!-- Your awesome content -->
+  <section
+    class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center px-8 py-20 overflow-hidden"
+    data-delay="200ms">
+    <div class="relative mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-3xl w-full">
+      <!-- Your awesome content -->
       <!-- <section class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center py-20 overflow-hidden">
   <div class="w-full px-4 sm:px-6 lg:px-8 max-w-screen-xl"> 
 
@@ -139,13 +143,9 @@
 
         <!-- floating star element -->
         <div
-          class="absolute top-[-2rem] sm:right-[-1rem] right-0 z-10 flex justify-center sm:justify-end floating-star"
-        >
-      <img
-        src="/static/images/staro.png"
-        alt="Blue Scorpion"
-        class="w-40 sm:w-60 opacity-96 pointer-events-none select-none sm:rotate-[17deg]"
-      />
+          class="absolute top-[-2rem] sm:right-[-1rem] right-0 z-10 flex justify-center sm:justify-end floating-star">
+          <img src="/static/images/staro.png" alt="Blue Scorpion"
+            class="w-40 sm:w-60 opacity-96 pointer-events-none select-none sm:rotate-[17deg]" />
         </div>
 
 
@@ -163,28 +163,27 @@
           </div>
         </div>
 
-      <div class="z-0 mt-8 flex space-x-4">
-        <!-- GitHub -->
-        <a href="https://github.com/LannonTheCannon/gen_ai_bootcamp" target="_blank" rel="noopener noreferrer">
-          <button type="button"
-            class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
-            GitHub
-          </button>
-        </a>
+        <div class="z-0 mt-8 flex space-x-4">
+          <!-- GitHub -->
+          <a href="https://github.com/LannonTheCannon/gen_ai_bootcamp" target="_blank" rel="noopener noreferrer">
+            <button type="button"
+              class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
+              GitHub
+            </button>
+          </a>
 
-        <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank" rel="noopener noreferrer">
-          <button type="button"
-            class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
-            LinkedIn
-          </button>
-        </a>
-      </div>
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank" rel="noopener noreferrer">
+            <button type="button"
+              class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
+              LinkedIn
+            </button>
+          </a>
+        </div>
       </div>
 
       <div class="relative w-full pb-[56.25%] mt-12 rounded-lg overflow-hidden border border-white/10 shadow-md">
-        <iframe class="absolute top-0 left-0 w-full h-full"
-          src="https://www.youtube.com/embed/oqLplNXimR8"
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/oqLplNXimR8"
           title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen></iframe>
@@ -195,8 +194,11 @@
         <!-- LEFT COLUMN -->
         <div class="text-lg text-slate-300">
           <blockquote class="text-xl leading-8 text-slate-400">
-          <span class="font-serif text-8xl text-slate-100 float-left mr-2 leading-none">E</span>
-          xo-Explorer, an AI-powered web app that cleans, engineers, and analyzes NASA's extensive exo-planetary data to predict habitability scores. Built with GPT-4o, LangGraph, and H2O AutoML, it automates scientific discovery, combining rule-based filtering with probabilistic modeling to surface potentially life-supporting worlds across the galaxy.
+            <span class="font-serif text-8xl text-slate-100 float-left mr-2 leading-none">E</span>
+            xo-Explorer, an AI-powered web app that cleans, engineers, and analyzes NASA's extensive exo-planetary data
+            to predict habitability scores. Built with GPT-4o, LangGraph, and H2O AutoML, it automates scientific
+            discovery, combining rule-based filtering with probabilistic modeling to surface potentially life-supporting
+            worlds across the galaxy.
 
             <hr class="mt-6 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
@@ -204,12 +206,18 @@
             <!-- 🧠 Architecture -->
             <h3 class="mt-6 text-2xl font-bold leading-6 text-white mb-4">🧠 Local AI Architecture</h3>
             <ul class="space-y-4 text-sm text-slate-300">
-              <li><span class="text-indigo-400 font-semibold">Streamlit</span>: Frontend interface for interactive exploration</li>
-              <li><span class="text-indigo-400 font-semibold">LangGraph + GPT-4o</span>: Orchestrates a modular data-cleaning agent with memory and human-in-the-loop review</li>
-              <li><span class="text-indigo-400 font-semibold">Pandas + SQLite</span>: Stores planetary data and model outputs locally</li>
-              <li><span class="text-indigo-400 font-semibold">H2O AutoML</span>: Trains models to predict exoplanet habitability with automated feature selection and tuning</li>
-              <li><span class="text-indigo-400 font-semibold">OpenAI + LangChain</span>: Powers agent-based code generation and reasoning</li>
-              <li><span class="text-indigo-400 font-semibold">Local CSV & SQL Storage</span>: Persist cleaned datasets and predictions for download or analysis</li>
+              <li><span class="text-indigo-400 font-semibold">Streamlit</span>: Frontend interface for interactive
+                exploration</li>
+              <li><span class="text-indigo-400 font-semibold">LangGraph + GPT-4o</span>: Orchestrates a modular
+                data-cleaning agent with memory and human-in-the-loop review</li>
+              <li><span class="text-indigo-400 font-semibold">Pandas + SQLite</span>: Stores planetary data and model
+                outputs locally</li>
+              <li><span class="text-indigo-400 font-semibold">H2O AutoML</span>: Trains models to predict exoplanet
+                habitability with automated feature selection and tuning</li>
+              <li><span class="text-indigo-400 font-semibold">OpenAI + LangChain</span>: Powers agent-based code
+                generation and reasoning</li>
+              <li><span class="text-indigo-400 font-semibold">Local CSV & SQL Storage</span>: Persist cleaned datasets
+                and predictions for download or analysis</li>
             </ul>
 
             <hr class="mt-6 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -312,7 +320,8 @@
             <p class="text-sm text-gray-400 mb-1 ml-2">Step 1: Open the App</p>
             <h4 class="text-white font-semibold ml-2">ExoExplorer uses NASA Exoplanet Archive</h4>
             <p class="text-gray-400 text-sm mt-2 ml-2">
-              Users first visualize the dataset in a Streamlit dashboard. The app connects to the NASA Exoplanet Archive and it ready for H2O AutoML predictive analysis.</A>
+              Users first visualize the dataset in a Streamlit dashboard. The app connects to the NASA Exoplanet Archive
+              and it ready for H2O AutoML predictive analysis.</A>
             </p>
           </div>
 
@@ -343,10 +352,10 @@
             <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
             <p class="text-sm text-gray-400 mb-1 ml-2">Step 4: Probability-Habitability Column now Fulfilled</p>
             <h4 class="text-white font-semibold ml-2">Each Planet Record now Contains Habitability Score/h4>
-            <p class="text-gray-400 text-sm mt-2 ml-2">
-              The best model's predictions are saved back to the SQLite database, enriching each planet record with a
-              habitability score. This allows users to filter and explore potentially habitable worlds.
-            </p>
+              <p class="text-gray-400 text-sm mt-2 ml-2">
+                The best model's predictions are saved back to the SQLite database, enriching each planet record with a
+                habitability score. This allows users to filter and explore potentially habitable worlds.
+              </p>
           </div>
 
           <!-- Step 5: Explore -->
@@ -355,7 +364,8 @@
             <p class="text-sm text-gray-400 mb-1 ml-2">Step 5: Explore The Exoplanet</p>
             <h4 class="text-white font-semibold ml-2">Planets With Highest Habitability Score</h4>
             <p class="text-gray-400 text-sm mt-2 ml-2">
-              Explore the actual worlds with the highest habitability scores. Visit the NASA Exoplanet Archive to view the 
+              Explore the actual worlds with the highest habitability scores. Visit the NASA Exoplanet Archive to view
+              the
               full details of each planet, including its characteristics and potenital for supporting life.
             </p>
           </div>
@@ -366,8 +376,8 @@
           <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm hover:shadow-md transition">
             <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">📁 Repository Structure
             </h4>
-              <pre
-                class="text-sm text-slate-300 font-mono leading-6 whitespace-pre overflow-x-auto bg-black rounded-md p-4 border border-white/5">
+            <pre
+              class="text-sm text-slate-300 font-mono leading-6 whitespace-pre overflow-x-auto bg-black rounded-md p-4 border border-white/5">
 ExoExplorer/
 │
 ├── Exo_Explorer.py                  # Streamlit app for exoplanet habitability
@@ -396,9 +406,9 @@ ExoExplorer/
         </div>
       </div>
 
-          <div class="mt-6 bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm hover:shadow-md transition">
-            <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">📁 Run Locally</h4>
-<pre class="bg-black text-slate-300 text-sm p-4 rounded-md overflow-x-auto whitespace-pre">
+      <div class="mt-6 bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+        <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">📁 Run Locally</h4>
+        <pre class="bg-black text-slate-300 text-sm p-4 rounded-md overflow-x-auto whitespace-pre">
   git clone https://github.com/LannonTheCannon/gen_ai_bootcamp.git
   cd Week3
   python3 -m venv venv
@@ -406,7 +416,7 @@ ExoExplorer/
   pip install -r requirements.txt
   streamlit run Exo_Explorer.py
 </pre>
-          </div>
+      </div>
 
       <!-- Call to Action -->
       <div class="mt-16 flex flex-col sm:flex-row justify-center items-center gap-4">
@@ -431,42 +441,42 @@ ExoExplorer/
     &copy; 2025 Lannon Khau. Welcome aboard, cadet.
   </footer>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const elements = document.querySelectorAll('.fade-in-up');
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const elements = document.querySelectorAll('.fade-in-up');
 
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.remove("opacity-0", "translate-y-10");
-            entry.target.classList.add("opacity-100", "translate-y-0");
-            entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.05 }); // LOWERED threshold for better triggering
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove("opacity-0", "translate-y-10");
+              entry.target.classList.add("opacity-100", "translate-y-0");
+              entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.05 }); // LOWERED threshold for better triggering
 
-      elements.forEach((el) => observer.observe(el));
+        elements.forEach((el) => observer.observe(el));
 
-      // 🔐 Fallback guarantee: force visibility after 1s if no animation triggered
-      setTimeout(() => {
+        // 🔐 Fallback guarantee: force visibility after 1s if no animation triggered
+        setTimeout(() => {
+          elements.forEach(el => {
+            if (el.classList.contains('opacity-0')) {
+              el.classList.remove('opacity-0', 'translate-y-10');
+              el.classList.add('opacity-100', 'translate-y-0');
+            }
+          });
+        }, 1000); // adjust to match your transition duration
+      } else {
+        // Older browsers fallback
         elements.forEach(el => {
-          if (el.classList.contains('opacity-0')) {
-            el.classList.remove('opacity-0', 'translate-y-10');
-            el.classList.add('opacity-100', 'translate-y-0');
-          }
+          el.classList.remove('opacity-0', 'translate-y-10');
+          el.classList.add('opacity-100', 'translate-y-0');
         });
-      }, 1000); // adjust to match your transition duration
-    } else {
-      // Older browsers fallback
-      elements.forEach(el => {
-        el.classList.remove('opacity-0', 'translate-y-10');
-        el.classList.add('opacity-100', 'translate-y-0');
-      });
-    }
-  });
-</script>
+      }
+    });
+  </script>
 
 </body>
 
