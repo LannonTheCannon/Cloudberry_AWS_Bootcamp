@@ -11,7 +11,16 @@
   <link rel="icon" href="/static/favicon.ico" />
 
 <style>
-
+#agent-query,
+#user-query {
+  font-size: 16px !important;
+}
+@media (min-width: 640px) {
+  #agent-query,
+  #user-query {
+    font-size: 14px !important;
+  }
+}
   /* .tilt-card {
   border-color: rgba(255, 255, 255, 0.9) !important;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 1s), 0 5px 0px rgba(197, 200, 202, 1) !important;
@@ -1001,7 +1010,7 @@ and spark curiosity.
         id="agent-query"
         type="text"
         placeholder="Chat with this agent..."
-        class="flex-1 bg-transparent border-none text-sm text-gray-100 placeholder-gray-400 focus:outline-none"
+        class="flex-1 bg-transparent border-none text-base sm:text-sm text-gray-100 placeholder-gray-400 focus:outline-none"
       />
       <button id="agent-send" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition">
         Send
