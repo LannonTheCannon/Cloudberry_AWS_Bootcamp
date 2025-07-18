@@ -911,30 +911,36 @@ and spark curiosity.
                          0 5px 0 rgba(197,200,202,1);
               transform:translateY(-4px);transform-style:preserve-3d;">
 
-    <!-- Top Row -->
-    <div class="flex flex-col sm:flex-row items-center sm:items-start
-                justify-center sm:justify-between gap-3 z-20">
-      <!-- Avatar -->
-      <div class="mb-3 sm:ml-4 w-32 h-32 sm:w-28 sm:h-28 rounded-full
-                  overflow-hidden border border-white/20">
-        <img id="agent-img" src="/static/images/agent1.jpg" alt="Agent Avatar"
-             class="object-cover w-full h-full" />
-      </div>
+<!-- Top Row -->
+<div class="flex flex-col sm:flex-row items-center sm:items-start
+            justify-center sm:justify-between gap-3 z-20">
 
-      <!-- Name + Role -->
-      <div class="flex flex-col items-center sm:mt-8">
-        <h4 class="-mt-6 sm:-mt-8 text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-100">
-          <span id="agent-name">Data&nbsp;Visualization</span>
-          <span class="text-indigo-400">AI&nbsp;Agent</span>
-        </h4>
-        <div class="hidden sm:block mt-1 w-full border-t border-white/10"></div>
-        <span id="agent-role"
-              class="text-[10px] sm:text-xs text-white-400 font-mono
-                     tracking-widest uppercase mt-1 mb-4">
-          Generate&nbsp;Interactive&nbsp;Plotly&nbsp;Objects
-        </span>
-      </div>
-    </div>
+  <!-- Avatar -->
+  <div class="mb-3 sm:ml-4 w-32 h-32 sm:w-28 sm:h-28 rounded-full
+              overflow-hidden border border-white/20">
+    <img id="agent-img" src="/static/images/agent1.jpg" alt="Agent Avatar"
+         class="object-cover w-full h-full" />
+  </div>
+
+  <!-- Name + Role -->
+  <div class="flex flex-col items-center sm:mt-8">
+    <h4 class="-mt-6 sm:-mt-8 text-xl sm:text-2xl md:text-3xl font-extrabold
+               text-gray-100 text-center">
+      <span id="agent-name" class="block">
+        Data&nbsp;Visualization <span class="text-indigo-400">AI&nbsp;Agent</span>
+      </span>
+    </h4>
+
+    <!-- subtle divider only ≥ sm -->
+    <div class="hidden sm:block mt-1 w-full border-t border-white/10"></div>
+
+    <span id="agent-role"
+          class="block text-center text-[10px] sm:text-xs text-white-400 font-mono
+                 tracking-widest uppercase mt-1 mb-4 leading-tight">
+      Generate&nbsp;Interactive&nbsp;Plotly&nbsp;Objects
+    </span>
+  </div>
+</div>
 
     <!-- Typewriter -->
     <div id="typewriter-container"
@@ -987,23 +993,20 @@ and spark curiosity.
   </div>
 </section>
 
-<!-- =========  AGENT INPUT BAR  (same width chain)  ========= -->
 <section id="agent-input-section"
-         class="transition-all duration-500 opacity-0 translate-y-6 pointer-events-none
-                mt-8 sm:mt-4 relative z-20 flex justify-center items-center px-4">
-
-  <div class="w-full max-w-xs sm:max-w-xl md:max-w-2xl
-              bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl
-              px-3 py-2 shadow-md flex items-center">
-    <input id="agent-query" type="text"
-           placeholder="Chat with this agent..."
-           class="flex-1 bg-transparent border-none text-sm max-[360px]:text-xs
-                  text-gray-100 placeholder-gray-400 focus:outline-none" />
-    <button id="agent-send" type="button"
-            class="ml-2 text-sm max-[360px]:text-xs font-semibold
-                   text-indigo-400 hover:text-indigo-300">
-      Send
-    </button>
+  class="transition-all duration-500 opacity-0 translate-y-6 pointer-events-none mt-4 relative z-20 flex justify-center items-center px-8">
+  <div class="w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md">
+    <div class="flex space-x-4">
+      <input
+        id="agent-query"
+        type="text"
+        placeholder="Chat with this agent..."
+        class="flex-1 bg-transparent border-none text-sm text-gray-100 placeholder-gray-400 focus:outline-none"
+      />
+      <button id="agent-send" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition">
+        Send
+      </button>
+    </div>
   </div>
 </section>
 
@@ -1908,29 +1911,29 @@ function simulateChatGPTStyleFade(text) {
 
 function getAgentIntro(agentName) {
   const intros = {
-    "Data Visualization AI Agent": 
-      "Hi, I'm Nova, your data storytelling AI. I craft interactive charts, dashboards, and visual narratives that turn raw numbers into insights people can instantly grasp. Whether you're pitching to stakeholders or exploring trends, I make your data speak fluently.",
-
-    "Data Wrangling AI Agent": 
-      "Greetings, I'm Orion, your systems navigator. I specialize in cleaning, merging, and optimizing data pipelines for scale and efficiency. If your data is messy, scattered, or slow to move, I'm here to bring order and flow.",
-
-    "Feature Engineering AI Agent": 
-      "Hey! Vega here, our insights engine. I extract meaningful patterns from raw datasets, transforming columns into actionable features that boost model performance. If you're training AI, I'm your secret weapon for smarter predictions.",
-
-    "Business SQL Agent": 
-      "Hello, I'm Cosmo, your database translator. I help you query, summarize, and interpret data from your business systems using clear and efficient SQL. Whether it's revenue trends or customer behavior, I surface answers fast.",
-
-    "Vector Store Q&A Agent": 
-      "Hi! I'm Luma, your intelligent search architect. I connect large text corpora to powerful vector databases, so you can ask natural language questions and get accurate, context-aware answers. Perfect for docs, wikis, or internal tools.",
-
-    "ETL Automation Agent": 
-      "Atlas here, your architecture strategist. I design and automate robust ETL pipelines that ingest, clean, and move data across cloud platforms. My job is to make your data infrastructure reliable, scalable, and hands-free.",
-
-    "LLM Evaluation Agent": 
-      "Echo online. I help you rigorously test and measure LLM outputs for accuracy, relevance, and bias using golden datasets and structured evaluation metrics. If you're iterating prompts or tuning models, I'll guide your experiments with clarity.",
-
-    "User Auth Agent": 
-      "I'm Synth, your secure identity gatekeeper. I implement scalable authentication systems with role-based access, token handling, and session management. From login flows to enterprise-grade user management, I keep your platform safe and smooth."
+    "Data Visualization AI Agent":
+      "Nova • Turns natural-language questions into interactive, drillable charts and living dashboards your team can act on.",
+    
+    "Data Wrangling AI Agent":
+      "Orion • Cleans, merges, validates, and reshapes messy multi-source data into consistent, analysis-ready tables.",
+    
+    "Feature Engineering AI Agent":
+      "Vega • Extracts high-signal, well-documented features (encodings, aggregations, time windows) that lift model performance.",
+    
+    "Business SQL Agent":
+      "Cosmo • Translates plain business questions into optimized, safe SQL and returns concise, decision-ready summaries.",
+    
+    "Vector Store Q&A Agent":
+      "Luma • Retrieves grounded passages from your document corpus and synthesizes accurate, context-aware answers.",
+    
+    "ETL Automation Agent":
+      "Atlas • Orchestrates ingest, cleaning, schema alignment, and load jobs so pipelines stay reliable and low-maintenance.",
+    
+    "LLM Evaluation Agent":
+      "Echo • Benchmarks prompts and model outputs for accuracy, regressions, and drift—tracking metrics over time.",
+    
+    "User Auth Agent":
+      "Synth • Delivers secure auth (RBAC, tokens, sessions) with auditability and scalable identity lifecycle management."
   };
   return intros[agentName] || `Hi, I'm ${agentName}, your intelligent assistant.`;
 }

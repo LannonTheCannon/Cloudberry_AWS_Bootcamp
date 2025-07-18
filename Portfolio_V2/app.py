@@ -444,88 +444,126 @@ def show_blog_post(slug):
 
 services = {
     "data-vis-agent": {
-        "title": "Data Visualization AI Agent",  # ← Changed from "Multi-agent Marketing Analytics System"
+        "title": "Data Visualization AI Agent",
         "description": "Generate Interactive Plotly Objects",
         "tech": ["LangChain", "OpenAI", "Streamlit", "Pandas AI", "NL2SQL", "RAG Pipelines"],
-        "content": "This service acts as your visual co-pilot. I combine RAG pipelines with AI tools like Pandas AI and Streamlit to produce conversational dashboards, enabling business leaders and analysts to explore data through natural language and see patterns come alive visually.",
-        "team": ['Product Expert AI', 'Business Intelligence AI', 'Marketing Email Writer AI'],
+        "content": (
+            "This service acts as your visual co-pilot. I combine RAG pipelines with AI tools like "
+            "Pandas AI and Streamlit to produce conversational dashboards, enabling business leaders "
+            "and analysts to explore data through natural language and see patterns come alive visually."
+        ),
+        "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
         "author": "Lannon Khau",
         "image1": "static/images/agent1.jpg",
         "icon": "static/images/agent1.jpg",
         "template": "data-vis-agent.html"
     },
+
     "data-wrangling-agent": {
         "title": "Data Wrangling AI Agent",
         "description": "Generates Data Table and Charting Code",
         "tech": ["Flask", "React", "TailwindCSS", "SQLAlchemy", "AWS", "Docker"],
-        "content": "Designed for engineers and analysts, this agent automates dataset ingestion, cleanup, and transformation. I use Flask and React for frontend/backends, with SQLAlchemy and Dockerized deployments to ensure your data systems stay robust and scalable.",
-        "team": ['Product Expert AI', 'Business Intelligence AI', 'Marketing Email Writer AI'],
+        "content": (
+            "Designed for engineers and analysts, this agent automates dataset ingestion, cleanup, "
+            "and transformation. I use Flask and React for front/back ends with SQLAlchemy and "
+            "Dockerized deployments to keep data systems robust and scalable."
+        ),
+        "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
         "author": "Lannon Khau",
         "image1": "static/images/agent2.jpg",
         "icon": "static/images/agent2.jpg",
         "template": "data-wrangling-agent.html"
     },
+
     "feature-engineering-agent": {
         "title": "Feature Engineering AI Agent",
         "description": "Performs One-Hot Encoding on Categorical Features",
         "tech": ["Python", "Pandas", "NumPy", "Scikit-learn", "Pickle", "SQL", "Airflow"],
-        "content": "I build intelligent feature pipelines that make raw datasets machine-learning ready. From scaling and encoding to custom time-series features, this agent transforms unstructured or messy inputs into optimized model-ready formats—ready to feed your AI systems.",
-        "team": ['Product Expert AI', 'Business Intelligence AI', 'Marketing Email Writer AI'],
+        "content": (
+            "I build intelligent feature pipelines that make raw datasets machine-learning ready. "
+            "From scaling and encoding to custom time-series features, this agent transforms messy "
+            "inputs into optimized model-ready formats."
+        ),
+        "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
         "author": "Lannon Khau",
         "image1": "static/images/agent3.jpg",
         "icon": "static/images/agent3.jpg",
         "template": "feature-engineering-agent.html"
     },
+
     "business-intelligence-SQL-agent": {
-        "title": "Business Intelligence SQL Agent",
-        "description": "Ask business questions. Get SQL answers.",
+        "title": "Business SQL Agent",   # renamed to match getAgentIntro
+        "description": "Ask Business Questions. Get SQL Answers.",
         "tech": ["LangChain", "OpenAI", "SQL", "PostgreSQL", "Flask", "NL2SQL"],
-        "content": "This service converts natural language into business-grade SQL queries. I build agents that connect to your database, interpret your intent using NLP, and return actionable insights. Perfect for teams that want to self-serve data without knowing SQL.",
-        "team": ['Product Expert AI', 'Business Intelligence AI', 'Marketing Email Writer AI'],
+        "content": (
+            "This service converts natural language into business-grade SQL queries. It connects "
+            "to your database, interprets intent using NLP, and returns actionable insights—perfect "
+            "for teams that want self-serve analytics without writing SQL."
+        ),
+        "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
         "author": "Lannon Khau",
         "image1": "static/images/agent4.jpg",
         "icon": "static/images/agent4.jpg",
         "template": "sql-agent.html"
     },
+
     "rag-qa-agent": {
         "title": "Vector Store Q&A Agent",
-        "description": "Context Aware Retrieval Augmentented Generation Co-Pilot",
+        "description": "Context Aware Retrieval Augmented Generation Co-Pilot",
         "tech": ["LangChain", "OpenAI", "ChromaDB", "PDF Parsers", "Tiktoken", "Pinecone"],
-        "content": "This agent enables AI systems to retrieve and synthesize answers from your documents, PDFs, or proprietary datasets using vector search. I build RAG pipelines that deliver grounded responses, reduce hallucinations, and scale with your business context.",
-        "team": ['Product Expert AI', 'Business Intelligence AI', 'Marketing Email Writer AI'],
+        "content": (
+            "This agent retrieves and synthesizes answers from documents, PDFs, or proprietary "
+            "datasets using vector search. It delivers grounded responses, reduces hallucinations, "
+            "and scales with your domain context."
+        ),
+        "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
         "author": "Lannon Khau",
         "image1": "static/images/agent5.jpg",
         "icon": "static/images/agent5.jpg",
         "template": "rag-qa-agent.html"
     },
+
     "data-cleaning-etl-agent": {
-        "title": "Data Cleaning ETL Agent",
+        "title": "ETL Automation Agent",   # renamed to match getAgentIntro
         "description": "Agentic Orchestrator - Data Ingestion",
         "tech": ["Airflow", "Pandas", "SQL", "AWS Lambda", "S3", "PostgreSQL"],
-        "content": "This agent is ideal for teams that need clean, reliable pipelines to manage large data flows. I design ETL jobs using Airflow or serverless tools to move data between cloud sources, clean it up, and make it queryable—without manual upkeep.",
-        "team": ['Product Expert AI', 'Business Intelligence AI', 'Marketing Email Writer AI'],
+        "content": (
+            "Ideal for teams needing clean, reliable movement of large data flows. This agent "
+            "builds and automates ETL jobs with Airflow or serverless patterns to ingest, clean, "
+            "and prepare data without manual upkeep."
+        ),
+        "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
         "author": "Lannon Khau",
         "image1": "static/images/agent6.jpg",
         "icon": "static/images/agent6.jpg",
         "template": "etl-agent.html"
     },
+
     "llm-eval-agent": {
         "title": "LLM Evaluation Agent",
         "description": "Measure, Test, and Improve Model Responses",
         "tech": ["Python", "Jupyter", "LangChain", "OpenAI Eval", "Datasets", "JSONL"],
-        "content": "I build tools that help you evaluate LLM outputs against golden datasets or prompt variants. This agent tracks hallucinations, factual accuracy, and formatting to ensure your models improve with each iteration—perfect for R&D and internal tuning.",
-        "team": ['Product Expert AI', 'Business Intelligence AI', 'Marketing Email Writer AI'],
+        "content": (
+            "Tools to evaluate LLM outputs against golden datasets or prompt variants. Tracks "
+            "hallucinations, factual accuracy, formatting, and regression over time to guide prompt "
+            "and model iteration."
+        ),
+        "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
         "author": "Lannon Khau",
         "image1": "static/images/agent7.jpg",
         "icon": "static/images/agent7.jpg",
         "template": "llm-eval-agent.html"
     },
+
     "user-auth-agent": {
         "title": "User Auth Agent",
         "description": "Secure Authentication Monitor",
         "tech": ["Flask", "JWT", "OAuth2", "SQLAlchemy", "Firebase", "AWS Cognito"],
-        "content": "This service ensures your app has a secure login system with role-based permissions, token handling, and scalable session storage. Whether you're launching an LMS or an enterprise AI assistant, this agent keeps your users safe and data private.",
-        "team": ['Product Expert AI', 'Business Intelligence AI', 'Marketing Email Writer AI'],
+        "content": (
+            "Implements secure login flows with role-based access, token lifecycle management, "
+            "and scalable session storage. Suitable for SaaS dashboards, LMS platforms, and internal AI tools."
+        ),
+        "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
         "author": "Lannon Khau",
         "image1": "static/images/agent8.jpg",
         "icon": "static/images/agent8.jpg",
