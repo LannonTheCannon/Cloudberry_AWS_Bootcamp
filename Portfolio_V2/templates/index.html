@@ -438,26 +438,39 @@
     </nav>
   </header>
 
+<!-- 1️⃣ keep the viewport tag in your <head> -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 <section
-  class="fade-in-up opacity-0 translate-y-10 transition duration-700 flex-1 flex flex-col justify-center items-center text-center md:px-20 mt-12 py-2">   <!-- removed duplicate mt-10 -->
-  <h1 class="font-serif font-bold leading-tight text-4xl md:text-5xl">
-    <span class="block whitespace-nowrap">From prototype to</span>
-    <span class="block whitespace-nowrap">
+  class="fade-in-up opacity-0 translate-y-10 transition duration-700
+         flex-1 flex flex-col justify-center items-center text-center
+         px-4 md:px-20 mt-12 py-2">
+  
+  <!-- 2️⃣ headline -->
+  <h1 class="font-serif font-bold leading-tight
+             text-3xl sm:text-4xl md:text-5xl">
+    <span class="block sm:whitespace-nowrap">From prototype to</span>
+    <span class="block sm:whitespace-nowrap">
       production,&nbsp;<span class="text-indigo-400">tell your story.</span>
     </span>
   </h1>
 
-  <p class="text-gray-300 max-w-xl mt-2 mb-6">
+  <!-- 3️⃣ sub-headline -->
+  <p class="text-gray-300 max-w-xs sm:max-w-md md:max-w-xl mt-2 mb-6">
     Building with intention, curiosity, and a quiet fire to explore the unknown.
   </p>
 
-  <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-16">
+  <!-- 4️⃣ CTAs -->
+  <div class="flex flex-col sm:flex-row
+              space-y-3 sm:space-y-0 sm:space-x-4 mb-16">
     <a href="/projects"
-       class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-xl transition text-center">
+       class="bg-indigo-600 hover:bg-indigo-700 text-white
+              px-5 py-2 rounded-xl transition text-center">
       Explore Projects
     </a>
     <a href="/contact"
-       class="bg-white text-gray-800 hover:bg-gray-200 px-5 py-2 rounded-xl transition text-center">
+       class="bg-white text-gray-800 hover:bg-gray-200
+              px-5 py-2 rounded-xl transition text-center">
       Contact Me
     </a>
   </div>
@@ -527,7 +540,9 @@ Reading in-between the spreadsheets.
     <div id="typewriter-container"
       class="-mt-1 relative flex-1 overflow-y-auto px-4 max-w-xl mx-auto custom-scrollbar text-left">
       <p id="typewriter"
-        class="text-base text-grey-900 font-light whitespace-pre-line text-left"></p>
+        class="text-base max-[360px]:text-sm    
+                text-grey-900 font-light leading-snug
+                whitespace-pre-line"></p>
     </div>
 
 
@@ -537,29 +552,34 @@ Reading in-between the spreadsheets.
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="w-full border-t border-white/10 relative">
           <!-- Button-shaped cutout illusion -->
-          <div class="absolute left-1/2 -translate-x-1/2 bg-transparent w-12 h-6 z-10"></div>
+          <div class="absolute left-1/2 -translate-x-1/2 bg-transparent w-12 h- z-10"></div>
         </div>
       </div>
 
       <!-- Footer Content -->
-      <div class="relative z-20 flex items-center justify-between text-xs text-gray-400 font-mono px-4 pt-6">
-        <span>BUSINESS-CARD-079</span>
-      
-        <!-- Plus Button -->
+      <div class="relative z-20 flex items-center justify-between
+                  text-xs text-gray-400 font-mono px-4 pt-6">
+        <!-- hide label below 640 px -->
+        <span class="hidden sm:inline">BUSINESS-CARD-079</span>
+
+        <!-- plus button – untouched -->
         <button id="add-thought-btn"
-          class="absolute left-1/2 -translate-x-1/2 top-0 bg-transparent text-white rounded-full w-10 h-10 flex items-center justify-center shadow-md border border-white/20 hover:scale-105 transition-transform duration-200"
-          aria-label="Ask me anything...">
+                class="absolute left-1/2 -translate-x-1/2 top-0
+                      -translate-y-2 sm:translate-y-0
+                      bg-transparent text-white rounded-full w-10 h-10
+                      flex items-center justify-center shadow-md
+                      border border-white/20 hover:scale-105
+                      transition-transform duration-200">
           <svg xmlns="http://www.w3.org/2000/svg"
-            class="icon-transition w-5 h-5 transition-transform duration-500 ease-in-out" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor" stroke-width="2">
-            <line x1="12" y1="6" x2="12" y2="18" stroke="currentColor"
-              class="line-vert transition-transform duration-500 ease-in-out" />
-            <line x1="6" y1="12" x2="18" y2="12" stroke="currentColor"
-              class="line-horiz transition-transform duration-500 ease-in-out" />
+              class="icon-transition w-5 h-7 transition-transform duration-500 ease-in-out"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="6"  x2="12" y2="18" />
+            <line x1="6"  y1="12" x2="18" y2="12" />
           </svg>
         </button>
-      
-        <span>SECTOR: DATA OPS</span>
+
+        <!-- hide label below 640 px -->
+        <span class="hidden sm:inline">SECTOR:&nbsp;DATA&nbsp;OPS</span>
       </div>
       </div>
 
