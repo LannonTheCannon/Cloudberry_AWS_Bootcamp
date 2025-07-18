@@ -1799,97 +1799,135 @@ function simulateChatGPTStyleFadeMultiLine(textBlock, el) {
 }
 </script>
 
-
-
 <script>
-let currentTypingInterval = null;
-// 🔥 Store last AGENT responses per agent (not user messages)
 let lastAgentResponses = {};
+let isAgentChatOpen = false; // track the input open state globally
 
+// === AGENT CARD CLICK HANDLER ===
 document.querySelectorAll(".agent-card").forEach(card => {
   card.addEventListener("click", () => {
-    console.log("🔥 Agent card clicked!"); // Debug log
-    
     const name = card.dataset.agentName;
     const role = card.dataset.agentRole;
     const image = card.dataset.agentImage;
 
-    console.log("🔥 Agent data:", { name, role, image }); // Debug log
-
-    // Remove selection from others
+    // Card select
     document.querySelectorAll(".agent-card").forEach(c => c.classList.remove("selected"));
     card.classList.add("selected");
 
-    // 🔥 Use the unique ID instead of complex selector
+    // ==== CLOSE chat input and reset SVG on card change ====
+    const agentInputSection = document.getElementById('agent-input-section');
+    const agentChatButton = document.getElementById('agent-chat-btn');
+    const agentSvg = agentChatButton.querySelector('svg');
+    isAgentChatOpen = false;
+    agentInputSection.classList.remove('opacity-100', 'scale-y-100');
+    agentInputSection.classList.add('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
+    agentSvg.classList.remove('rotate-225', 'cross');
+
+    // Animate card change
     const agentCard = document.getElementById('agent-display-card');
-    
-    console.log("🔥 Found agent card:", agentCard); // Debug log
-    
-    if (!agentCard) {
-      console.error("🔥 Agent display card not found!");
-      return;
-    }
-    
-    // 🔥 DRAMATIC FADE OUT - entire card slides down and fades
+    const agentNameEl = document.querySelector("#agent-name");
+    const agentRoleEl = document.querySelector("#agent-role");
+    const agentImgEl = document.getElementById("agent-img");
+    const agentTypewriterEl = document.getElementById("agent-typewriter");
+
     agentCard.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
     agentCard.style.opacity = '0';
     agentCard.style.transform = 'translateY(30px) scale(0.95)';
-    
-    console.log("🔥 Starting fade out..."); // Debug log
-    
+
     setTimeout(() => {
-      console.log("🔥 Updating content..."); // Debug log
-      
-      // Update all content while card is invisible
-      const agentNameEl = document.querySelector("#agent-name");
-      const agentLastnameEl = document.querySelector("#agent-lastname");
-      const agentRoleEl = document.querySelector("#agent-role");
-      const agentImgEl = document.querySelector("#agent-img");
-      const agentTypewriterEl = document.getElementById("agent-typewriter");
-      
-      if (agentNameEl) agentNameEl.textContent = name.split(" ").slice(0, -1).join(" ");
-      if (agentLastnameEl) agentLastnameEl.textContent = name.split(" ").slice(-1).join(" ");
+      if (agentNameEl) agentNameEl.textContent = name;
       if (agentRoleEl) agentRoleEl.textContent = role;
       if (agentImgEl) agentImgEl.src = image;
       if (agentTypewriterEl) agentTypewriterEl.textContent = "";
 
-      // 🔥 DRAMATIC FADE IN - card slides up and fades in
       agentCard.style.opacity = '1';
-      agentCard.style.transform = 'translateY(-4px) scale(1)'; // Back to original position
-      
-      console.log("🔥 Starting fade in..."); // Debug log
-      
-      // Start typewriter effect after card is visible
+      agentCard.style.transform = 'translateY(-4px) scale(1)';
+
       setTimeout(() => {
-        console.log("🔥 Starting typewriter..."); // Debug log
-        
-        // 🔥 Show either last AGENT RESPONSE or intro with fade-in effect
         const messageToShow = lastAgentResponses[name] || getAgentIntro(name);
-        const isLastResponse = !!lastAgentResponses[name];
-        
-        console.log("🔥 Showing message:", isLastResponse ? "Last agent response" : "Agent intro");
         simulateChatGPTStyleFade(messageToShow);
-      }, 200); // Small delay for smooth transition
-      
-    }, 500); // Wait for fade out to complete
+      }, 200);
+
+    }, 500);
   });
 });
 
+// === AGENT CHAT BUTTON + SEND FUNCTIONALITY ===
+document.addEventListener('DOMContentLoaded', () => {
+  const agentChatButton = document.getElementById('agent-chat-btn');
+  const agentSvg = agentChatButton.querySelector('svg');
+  const agentInputSection = document.getElementById('agent-input-section');
+
+  agentChatButton.addEventListener('click', () => {
+    isAgentChatOpen = !isAgentChatOpen;
+    agentSvg.classList.toggle('rotate-225');
+    agentSvg.classList.toggle('cross');
+    agentInputSection.classList.toggle('opacity-0', !isAgentChatOpen);
+    agentInputSection.classList.toggle('pointer-events-none', !isAgentChatOpen);
+    agentInputSection.classList.toggle('opacity-100', isAgentChatOpen);
+    agentInputSection.classList.toggle('scale-y-100', isAgentChatOpen);
+
+    if (isAgentChatOpen) {
+      const agentName = document.querySelector("#agent-name").textContent;
+      const agentInput = document.getElementById('agent-query');
+      agentInput.placeholder = `Chat with ${agentName}...`;
+      setTimeout(() => agentInput.focus(), 300);
+    }
+  });
+
+  document.getElementById('agent-query').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') document.getElementById('agent-send').click();
+  });
+
+  document.getElementById('agent-send').addEventListener('click', async () => {
+    const agentQuery = document.getElementById('agent-query').value.trim();
+    const sendButton = document.getElementById('agent-send');
+    if (!agentQuery) return;
+    const agentName = document.querySelector("#agent-name").textContent;
+
+    sendButton.textContent = "Sending...";
+    sendButton.disabled = true;
+
+    try {
+      const response = await fetch("/ask_agent", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ query: agentQuery, agent_name: agentName })
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        simulateChatGPTStyleFade("Sorry, something went wrong. Please try again.");
+        return;
+      }
+
+      const agentTypewriter = document.getElementById('agent-typewriter');
+      agentTypewriter.style.transition = 'opacity 0.3s ease-in-out';
+      agentTypewriter.style.opacity = '0';
+      setTimeout(() => {
+        simulateChatGPTStyleFade(data.response);
+        agentTypewriter.style.opacity = '1';
+      }, 300);
+
+      lastAgentResponses[agentName] = data.response;
+      document.getElementById('agent-query').value = '';
+    } catch (err) {
+      simulateChatGPTStyleFade("Network error. Please check your connection.");
+    } finally {
+      sendButton.textContent = "Send";
+      sendButton.disabled = false;
+    }
+  });
+});
+
+// === TYPEWRITER ANIMATION & AGENT INTRO ===
 function simulateChatGPTStyleFade(text) {
   const el = document.getElementById("agent-typewriter");
-  if (!el) {
-    console.error("🔥 agent-typewriter element not found!");
-    return;
-  }
-  
-  console.log("🔥 Running typewriter for:", text.substring(0, 50) + "..."); // Debug log
-  
+  if (!el) return;
   el.innerHTML = "";
-
   const words = text.split(" ");
   let delay = 0;
-
-  words.forEach((word, index) => {
+  words.forEach(word => {
     const span = document.createElement("span");
     span.textContent = word;
     span.style.opacity = 0;
@@ -1897,7 +1935,6 @@ function simulateChatGPTStyleFade(text) {
     span.style.display = "inline-block";
     span.style.marginRight = "0.5ch";
     span.style.transition = "opacity 0.9s ease, transform 0.9s ease";
-
     el.appendChild(span);
 
     setTimeout(() => {
@@ -1911,162 +1948,22 @@ function simulateChatGPTStyleFade(text) {
 
 function getAgentIntro(agentName) {
   const intros = {
-    "Data Visualization AI Agent":
-      "Nova • Turns natural-language questions into interactive, drillable charts and living dashboards your team can act on.",
-    
-    "Data Wrangling AI Agent":
-      "Orion • Cleans, merges, validates, and reshapes messy multi-source data into consistent, analysis-ready tables.",
-    
-    "Feature Engineering AI Agent":
-      "Vega • Extracts high-signal, well-documented features (encodings, aggregations, time windows) that lift model performance.",
-    
-    "Business SQL Agent":
-      "Cosmo • Translates plain business questions into optimized, safe SQL and returns concise, decision-ready summaries.",
-    
-    "Vector Store Q&A Agent":
-      "Luma • Retrieves grounded passages from your document corpus and synthesizes accurate, context-aware answers.",
-    
-    "ETL Automation Agent":
-      "Atlas • Orchestrates ingest, cleaning, schema alignment, and load jobs so pipelines stay reliable and low-maintenance.",
-    
-    "LLM Evaluation Agent":
-      "Echo • Benchmarks prompts and model outputs for accuracy, regressions, and drift—tracking metrics over time.",
-    
-    "User Auth Agent":
-      "Synth • Delivers secure auth (RBAC, tokens, sessions) with auditability and scalable identity lifecycle management."
+    "Data Visualization AI Agent": "Nova • Turns natural-language questions into interactive, drillable charts and living dashboards your team can act on.",
+    "Data Wrangling AI Agent": "Orion • Cleans, merges, validates, and reshapes messy multi-source data into consistent, analysis-ready tables.",
+    "Feature Engineering AI Agent": "Vega • Extracts high-signal, well-documented features (encodings, aggregations, time windows) that lift model performance.",
+    "Business SQL Agent": "Cosmo • Translates plain business questions into optimized, safe SQL and returns concise, decision-ready summaries.",
+    "Vector Store Q&A Agent": "Luma • Retrieves grounded passages from your document corpus and synthesizes accurate, context-aware answers.",
+    "ETL Automation Agent": "Atlas • Orchestrates ingest, cleaning, schema alignment, and load jobs so pipelines stay reliable and low-maintenance.",
+    "LLM Evaluation Agent": "Echo • Benchmarks prompts and model outputs for accuracy, regressions, and drift—tracking metrics over time.",
+    "User Auth Agent": "Synth • Delivers secure auth (RBAC, tokens, sessions) with auditability and scalable identity lifecycle management."
   };
   return intros[agentName] || `Hi, I'm ${agentName}, your intelligent assistant.`;
 }
 
+// Select first agent card on page load
 window.addEventListener("DOMContentLoaded", () => {
-  console.log("🔥 DOM loaded, clicking first card..."); // Debug log
   const firstCard = document.querySelector(".agent-card");
-  if (firstCard) {
-    console.log("🔥 First card found:", firstCard); // Debug log
-    firstCard.click();
-  } else {
-    console.error("🔥 No agent cards found!");
-  }
-});
-</script>
-
-<script>
-// Agent Chat Button Functionality
-document.addEventListener('DOMContentLoaded', () => {
-  const agentChatButton = document.getElementById('agent-chat-btn');
-  const agentSvg = agentChatButton.querySelector('svg');
-  const agentInputSection = document.getElementById('agent-input-section');
-
-  let isAgentChatOpen = false;
-  let currentAgentName = null;
-
-  agentChatButton.addEventListener('click', () => {
-    isAgentChatOpen = !isAgentChatOpen;
-
-    console.log("🔥 Agent chat button clicked! Open:", isAgentChatOpen);
-
-    // Morph icon (same animation as main button)
-    agentSvg.classList.toggle('rotate-225');
-    agentSvg.classList.toggle('cross');
-
-    // Animate input box
-    if (isAgentChatOpen) {
-      agentInputSection.classList.remove('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
-      agentInputSection.classList.add('opacity-100', 'scale-y-100');
-      
-      // 🔥 Get the currently selected agent
-      currentAgentName = document.querySelector("#agent-name").textContent + " " + 
-                       document.querySelector("#agent-lastname").textContent;
-      
-      // 🔥 Update placeholder with agent name
-      const agentInput = document.getElementById('agent-query');
-      agentInput.placeholder = `Chat with ${currentAgentName}...`;
-      
-      // Focus the input field
-      setTimeout(() => {
-        agentInput.focus();
-      }, 300);
-    } else {
-      agentInputSection.classList.remove('opacity-100', 'scale-y-100');
-      agentInputSection.classList.add('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
-    }
-  });
-
-  // Handle Enter key in agent input
-  document.getElementById('agent-query').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      document.getElementById('agent-send').click();
-    }
-  });
-
-  // 🔥 Agent Send Button - Now sends to specific agent endpoint
-  document.getElementById('agent-send').addEventListener('click', async () => {
-    const agentQuery = document.getElementById('agent-query').value.trim();
-    const sendButton = document.getElementById('agent-send');
-    
-    if (!agentQuery) {
-      console.warn("Empty agent query. Not sending.");
-      return;
-    }
-
-    // Get current agent name
-    const agentName = document.querySelector("#agent-name").textContent + " " + 
-                     document.querySelector("#agent-lastname").textContent;
-
-    console.log("🔥 Sending query to agent:", agentName, "Query:", agentQuery);
-
-    // Show loading state
-    sendButton.textContent = "Sending...";
-    sendButton.disabled = true;
-
-    try {
-      // 🔥 Send to agent-specific endpoint
-      const response = await fetch("/ask_agent", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ 
-          query: agentQuery,
-          agent_name: agentName
-        })
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        console.error("Agent Error:", data.error);
-        simulateChatGPTStyleFade("Sorry, something went wrong. Please try again.");
-        return;
-      }
-
-      console.log("🔥 Agent Response:", data.response);
-      
-      // 🔥 Show response in the agent typewriter area with beautiful animation
-      const agentTypewriter = document.getElementById('agent-typewriter');
-      agentTypewriter.style.transition = 'opacity 0.3s ease-in-out';
-      agentTypewriter.style.opacity = '0';
-      
-      setTimeout(() => {
-        simulateChatGPTStyleFade(data.response);
-        agentTypewriter.style.opacity = '1';
-      }, 300);
-
-      // 🔥 Store the AGENT'S RESPONSE (not user message)
-      lastAgentResponses[agentName] = data.response;
-
-      // Clear input
-      document.getElementById('agent-query').value = '';
-
-    } catch (err) {
-      console.error("Fetch failed:", err);
-      simulateChatGPTStyleFade("Network error. Please check your connection.");
-    } finally {
-      // Reset button
-      sendButton.textContent = "Send";
-      sendButton.disabled = false;
-    }
-  });
+  if (firstCard) firstCard.click();
 });
 </script>
 
