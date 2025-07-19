@@ -413,6 +413,16 @@ blogs = {
         "icon": "static/icons/3.svg",
         "template": "hack-fy2025.html"
     },
+    "marketing-analytics-team": {
+        "title": "AI Marketing Analytics Team",
+        "description": "How to build an AI-powered marketing analytics team from the ground up using Python and generative AI.",
+        "tech": ["Python", "Flask", "SQLAlchemy", "Streamlit", "LangChain", "OpenAI"],
+        "content": "Step-by-step playbook for setting up AI-driven marketing analytics: collect data, automate insights, and build dashboards that matter. Fast, actionable, and scalable.",
+        "author": "Lannon Khau",
+        "image1": "static/images/marketing.jpg",
+        "icon": "static/icons/3.svg",
+        "template": "playbook1.html"
+    }
 
 }
 
