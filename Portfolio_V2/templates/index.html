@@ -1955,16 +1955,31 @@ function simulateChatGPTStyleFade(text) {
 }
 
 function getAgentIntro(agentName) {
-  const intros = {
-    "Data Visualization AI Agent": "Nova • Turns natural-language questions into interactive, drillable charts and living dashboards your team can act on.",
-    "Data Wrangling AI Agent": "Orion • Cleans, merges, validates, and reshapes messy multi-source data into consistent, analysis-ready tables.",
-    "Feature Engineering AI Agent": "Vega • Extracts high-signal, well-documented features (encodings, aggregations, time windows) that lift model performance.",
-    "Business SQL Agent": "Cosmo • Translates plain business questions into optimized, safe SQL and returns concise, decision-ready summaries.",
-    "Vector Store Q&A Agent": "Luma • Retrieves grounded passages from your document corpus and synthesizes accurate, context-aware answers.",
-    "ETL Automation Agent": "Atlas • Orchestrates ingest, cleaning, schema alignment, and load jobs so pipelines stay reliable and low-maintenance.",
-    "LLM Evaluation Agent": "Echo • Benchmarks prompts and model outputs for accuracy, regressions, and drift—tracking metrics over time.",
-    "User Auth Agent": "Synth • Delivers secure auth (RBAC, tokens, sessions) with auditability and scalable identity lifecycle management."
-  };
+const intros = {
+  "Data Visualization AI Agent":
+    "Nova • Turns natural-language questions into interactive, drillable charts and dashboards your team can act on. Instantly spot trends and insights without writing code.",
+
+  "Data Wrangling AI Agent":
+    "Orion • Cleans, merges, validates, and reshapes messy, multi-source data into consistent, analysis-ready tables. Spend less time cleaning and more time analyzing.",
+
+  "Feature Engineering AI Agent":
+    "Vega • Extracts high-signal features like encodings and aggregations to lift model performance. Quickly turn raw data into machine learning-ready inputs.",
+
+  "Business SQL Agent":
+    "Cosmo • Translates business questions into optimized SQL and decision-ready summaries. Get fast, reliable data answers without knowing SQL.",
+
+  "Vector Store Q&A Agent":
+    "Luma • Retrieves grounded passages and synthesizes accurate, context-aware answers from your documents. Find what matters in large knowledge bases fast.",
+
+  "ETL Automation Agent":
+    "Atlas • Orchestrates ingest, cleaning, schema alignment, and load jobs for reliable data pipelines. Automate and monitor ETL with minimal maintenance.",
+
+  "LLM Evaluation Agent":
+    "Echo • Benchmarks prompts and model outputs for accuracy, regressions, and drift. Track LLM performance and spot issues before they impact users.",
+
+  "User Auth Agent":
+    "Synth • Delivers secure auth with RBAC, tokens, and sessions for your app. Scale access control and user management with peace of mind."
+};
   return intros[agentName] || `Hi, I'm ${agentName}, your intelligent assistant.`;
 }
 
