@@ -15,16 +15,10 @@ import pandas as pd
 from io import BytesIO
 import os
 import sys
-# from .db_secrets import get_db_secret
-# from .openai_secret import get_openai_api_key
-# from .s3_secrets import get_s3_config
-from utils.ai_pipeline import run_clean_pipeline
-from utils.email_utils import send_contact_notification
-
+from utils.ai_pipeline import run_clean_pipeline, get_openai_api_key
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import openai
 import time
-
 # Try importing - if it fails, we'll define it inline
 try:
     from utils.standalone_assistant_manager import StandaloneAssistantManager
