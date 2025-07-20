@@ -15,13 +15,11 @@ import pandas as pd
 from io import BytesIO
 import os
 import sys
-from utils import (
-    get_db_secret, 
-    get_openai_api_key, 
-    get_s3_config, 
-    run_clean_pipeline, 
-    send_contact_notification
-)
+# from .db_secrets import get_db_secret
+# from .openai_secret import get_openai_api_key
+# from .s3_secrets import get_s3_config
+from utils.ai_pipeline import run_clean_pipeline
+from utils.email_utils import send_contact_notification
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import openai
