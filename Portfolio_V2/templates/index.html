@@ -613,37 +613,28 @@ Reading in-between the spreadsheets
         </span>
 
         <!-- Plus / Close Button -->
-        <button id="add-thought-btn" type="button"
-                class="absolute 
-                left-1/2 
-                -translate-x-1/2 
-                top-0
-                
-                sm:translate-y-0
-                bg-transparent 
-                text-white 
-                rounded-full 
-                w-10 
-                h-10
-                flex 
-                items-center 
-                justify-center 
-                shadow-md
-                border 
-                border-white/20 
-                hover:scale-105
-                transition-transform 
-                duration-200">
-
-          <svg xmlns="http://www.w3.org/2000/svg"
-               class="icon-transition w-5 h-7 transition-transform
-                      duration-500 ease-in-out"
-               viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2">
-            <line x1="12" y1="6"  x2="12" y2="18" />
-            <line x1="6"  y1="12" x2="18" y2="12" />
-          </svg>
-        </button>
+<button id="add-thought-btn" type="button"
+  class="absolute left-1/2 -translate-x-1/2 -top-1
+         bg-white/10 backdrop-blur-xl
+         text-white rounded-full w-12 h-12
+         flex items-center justify-center
+         border border-white/30 shadow-lg
+         hover:shadow-2xl hover:border-white/80
+         hover:bg-indigo-400/10
+         focus:outline-none focus:ring-2 focus:ring-indigo-400/40
+         transition-all duration-300
+         hover:scale-125 active:scale-95"
+  aria-label="Add Thought"
+  title="Add Thought"
+>
+  <svg xmlns="http://www.w3.org/2000/svg"
+    class="w-7 h-7 transition-transform duration-300"
+    viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2">
+    <line x1="12" y1="6"  x2="12" y2="18" />
+    <line x1="6"  y1="12" x2="18" y2="12" />
+  </svg>
+</button>
 
         <span>
           <span class="inline sm:hidden">DATA-OPS</span>
@@ -656,8 +647,23 @@ Reading in-between the spreadsheets
 
 
 <section id="quote-input-section"
-  class="transition-all duration-500 opacity-0 translate-y-6 pointer-events-none mt-4 relative z-20 flex justify-center items-center px-8">
-  <div class="mt-6 w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md">
+  class="transition-all 
+  duration-500 
+  opacity-0 
+  translate-y-6 
+  pointer-events-none 
+  mt-4 
+  relative 
+  z-20 
+  flex 
+  justify-center 
+  items-center 
+  px-8
+  ">
+  <div
+    class="mt-6 w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl px-4 py-3 shadow-2xl"
+    style="border-color:rgba(255,255,255,0.9);
+          box-shadow:0 0 0 1px rgba(255,255,255,1), 0 5px 0 rgba(197,200,202,1);">
     <div class="flex space-x-4">
       <input
         id="user-query"
@@ -980,15 +986,24 @@ and spark curiosity.
 
         <!-- Chat button toggles the agent input -->
         <button id="agent-chat-btn" type="button"
-                class="absolute left-1/2 -translate-x-1/2 top-0
-                       sm:translate-y-0
-                       bg-transparent text-white rounded-full w-10 h-10
-                       flex items-center justify-center shadow-md
-                       border border-white/20 hover:scale-105
-                       transition-transform duration-200">
+          class="absolute left-1/2 -translate-x-1/2 -top-1
+                sm:translate-y-0
+                bg-white/10 backdrop-blur-xl
+                text-white rounded-full w-12 h-12
+                flex items-center justify-center
+                border border-white/30 shadow-lg
+                hover:shadow-2xl hover:border-white/80
+                hover:bg-indigo-400/10
+                focus:outline-none focus:ring-2 focus:ring-indigo-400/40
+                transition-all duration-200
+                hover:scale-105 active:scale-95"
+          aria-label="Chat with Agent"
+          title="Chat with Agent"
+        >
           <svg xmlns="http://www.w3.org/2000/svg"
-               class="icon-transition w-5 h-7 transition-transform duration-500 ease-in-out"
-               viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            class="w-7 h-7 transition-transform duration-200"
+            viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
             <line x1="12" y1="6"  x2="12" y2="18" />
             <line x1="6"  y1="12" x2="18" y2="12" />
           </svg>
@@ -1005,7 +1020,10 @@ and spark curiosity.
 
 <section id="agent-input-section"
   class="transition-all duration-500 opacity-0 translate-y-6 pointer-events-none mt-4 relative z-20 flex justify-center items-center px-8">
-  <div class="w-full max-w-2xl bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-4 py-3 shadow-md">
+  <div
+    class="w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl px-4 py-3 shadow-2xl"
+    style="border-color:rgba(255,255,255,0.9);
+           box-shadow:0 0 0 1px rgba(255,255,255,1),0 5px 0 rgba(197,200,202,1);">
     <div class="flex space-x-4">
       <input
         id="agent-query"
