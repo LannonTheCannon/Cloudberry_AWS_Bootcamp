@@ -470,6 +470,10 @@ services = {
         "template": "data-vis-agent.html"
     },
 
+
+
+
+
     "data-wrangling-agent": {
         "title": "Data Wrangling AI Agent",
         "description": "Generates Data Table and Charting Code",
