@@ -161,12 +161,12 @@
 
       <!-- Header -->
       <div class="text-left relative">
-        <h1 class="mb-8 font-serif text-2xl font-bold tracking-tight text-white md:text-6xl relative">
-Business Intelligence Analyst Team<span class="text-indigo-400"> Playbook</span>
+        <h1 class="mb-8 font-serif text-4xl font-bold tracking-tight text-white md:text-6xl relative">
+          Marketing Analytics Team<span class="text-indigo-400"> Playbook</span>
         </h1>
         <!-- floating star element -->
         <div
-          class="absolute top-[3rem] sm:right-[-10rem] right-0 z-10 flex justify-center sm:justify-end floating-star"
+          class="absolute top-[-0rem] sm:right-[-10rem] right-0 z-10 flex justify-center sm:justify-end floating-star"
         >
             <img
             src="/static/images/marketing.png"
@@ -211,7 +211,7 @@ Business Intelligence Analyst Team<span class="text-indigo-400"> Playbook</span>
 
       <div class="flex justify-center mt-10">
         <img 
-            src="/static/images/intel_copilot2.png" 
+            src="/static/images/SQL_Business_Agent.png" 
             alt="Analytics Team Orchestration Diagram"
             class="w-full max-w-3xl rounded-xl shadow-lg border border-white/10"
         />
@@ -232,7 +232,7 @@ Business Intelligence Analyst Team<span class="text-indigo-400"> Playbook</span>
             <blockquote class="leading-8 text-slate-300 mb-8">
             <span class="font-serif text-[115px] text-gray-300 float-left mr-4 leading-none -mt-2">T</span>
             <span class="block pl-2">
-                his playbook is your guide building an interactive AI Copilot for business intelligence. Orchestrates natural language SQL agents, data validation, and visualization modules to let you query, analyze, and visualize any business database with plain English—no manual SQL required.
+                his playbook is your guide to building a fully AI-powered analytics system that transforms raw business data into fast, actionable insights. By leveraging a modular “AI Data Science Team” of SQL and visualization agents, this repo makes it easy to:
             </span>
             </blockquote>
 
@@ -384,12 +384,30 @@ Business Intelligence Analyst Team<span class="text-indigo-400"> Playbook</span>
                     Each chapter guides you through designing and wiring up modular agents—so you can ask complex business questions in plain English and get back SQL, clean data, or beautiful visualizations instantly. Every step of the pipeline for your own business needs.
                 </p>
 
+
+
             </div>
 
         </div>
 
         <!-- RIGHT COLUMN: Timeline or Features -->
         <div class="relative border-l border-white/10 pl-6 space-y-8 self-start">
+
+            {% set agent_keys = ['data-vis-agent', 'business-intelligence-SQL-agent', 'data-wrangling-agent', 'feature-engineering-agent'] %}
+
+            <h3 class="text-xl font-bold text-white mb-2">Agents in This Architecture</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            {% for key in agent_keys %}
+                {% set agent = services[key] %}
+                <div class="bg-white/10 border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center h-44 shadow-md hover:shadow-2xl transition-all duration-300">
+                <img src="{{ agent.image1 }}"
+                    alt="{{ agent.title }} Icon"
+                    class="w-14 h-14 object-cover bg-white/10 border border-black rounded-full mb-3" />
+                <h4 class="text-base font-bold text-white mb-1 text-center">{{ agent.title | replace(' AI Agent', '') }}</h4>
+                </div>
+            {% endfor %}
+            </div>
+
             <h3 class="text-2xl font-bold leading-6 text-white mb-6">📚 Playbook Chapters</h3>
 
             <!-- Chapter 1: ML Lead Scoring (H2O) -->
@@ -475,6 +493,13 @@ Business Intelligence Analyst Team<span class="text-indigo-400"> Playbook</span>
 
           <hr class="my-16 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
+
+
+        </div>
+      </div>
+
+
+
           <!-- Repo Structure -->
           <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm hover:shadow-md transition">
             <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">📁 Repository Structure
@@ -508,8 +533,6 @@ sql_agent_orchestration/
                 </pre>
           </div>
 
-        </div>
-      </div>
 
         <div class="mt-6 bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm hover:shadow-md transition">
           <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">📁 Run Locally</h4>

@@ -419,8 +419,8 @@ blogs = {
         "tech": ["Python", "Flask", "SQLAlchemy", "Streamlit", "LangChain", "OpenAI"],
         "content": "Step-by-step playbook for setting up AI-driven marketing analytics: collect data, automate insights, and build dashboards that matter. Fast, actionable, and scalable.",
         "author": "Lannon Khau",
-        "image1": "static/images/marketing.jpg",
-        "icon": "static/icons/3.svg",
+        "image1": "static/images/ai_team.png",
+        "icon": "static/icons/purp.svg",
         "template": "playbook1.html"
     }
 
@@ -440,7 +440,8 @@ def show_blog_post(slug):
                 f"blog/{blog['template']}",
                 title=blog["title"],
                 author=blog["author"],
-                content=blog["content"]
+                content=blog["content"],
+                services=services
             )
         except TemplateNotFound as e:
             print(f"Template not found: {e}")
@@ -464,8 +465,8 @@ services = {
         ),
         "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
         "author": "Lannon Khau",
-        "image1": "static/images/agent1.jpg",
-        "icon": "static/images/agent1.jpg",
+        "image1": "/static/images/agent1.jpg",
+        "icon": "/static/images/agent1.jpg",
         "template": "data-vis-agent.html"
     },
 
@@ -480,8 +481,8 @@ services = {
         ),
         "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
         "author": "Lannon Khau",
-        "image1": "static/images/agent2.jpg",
-        "icon": "static/images/agent2.jpg",
+        "image1": "/static/images/agent2.jpg",
+        "icon": "/static/images/agent2.jpg",
         "template": "data-wrangling-agent.html"
     },
 
@@ -496,8 +497,8 @@ services = {
         ),
         "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
         "author": "Lannon Khau",
-        "image1": "static/images/agent3.jpg",
-        "icon": "static/images/agent3.jpg",
+        "image1": "/static/images/agent3.jpg",
+        "icon": "/static/images/agent3.jpg",
         "template": "feature-engineering-agent.html"
     },
 
@@ -512,8 +513,8 @@ services = {
         ),
         "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
         "author": "Lannon Khau",
-        "image1": "static/images/agent4.jpg",
-        "icon": "static/images/agent4.jpg",
+        "image1": "/static/images/agent4.jpg",
+        "icon": "/static/images/agent4.jpg",
         "template": "sql-agent.html"
     },
 
@@ -528,8 +529,8 @@ services = {
         ),
         "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
         "author": "Lannon Khau",
-        "image1": "static/images/agent5.jpg",
-        "icon": "static/images/agent5.jpg",
+        "image1": "/static/images/agent5.jpg",
+        "icon": "/static/images/agent5.jpg",
         "template": "rag-qa-agent.html"
     },
 
@@ -544,8 +545,8 @@ services = {
         ),
         "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
         "author": "Lannon Khau",
-        "image1": "static/images/agent6.jpg",
-        "icon": "static/images/agent6.jpg",
+        "image1": "/static/images/agent6.jpg",
+        "icon": "/static/images/agent6.jpg",
         "template": "etl-agent.html"
     },
 
@@ -560,8 +561,8 @@ services = {
         ),
         "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
         "author": "Lannon Khau",
-        "image1": "static/images/agent7.jpg",
-        "icon": "static/images/agent7.jpg",
+        "image1": "/static/images/agent7.jpg",
+        "icon": "/static/images/agent7.jpg",
         "template": "llm-eval-agent.html"
     },
 
@@ -575,8 +576,8 @@ services = {
         ),
         "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
         "author": "Lannon Khau",
-        "image1": "static/images/agent8.jpg",
-        "icon": "static/images/agent8.jpg",
+        "image1": "/static/images/agent8.jpg",
+        "icon": "/static/images/agent8.jpg",
         "template": "user-auth-agent.html"
     }
 }
