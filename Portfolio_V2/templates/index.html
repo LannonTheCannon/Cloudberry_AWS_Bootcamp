@@ -461,6 +461,41 @@
   to { transform: rotate(360deg); }
 }
 
+/* Agent rotating text (same as main but with different class) */
+.agent-rotating-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.agent-rotating-text svg {
+  width: 100%;
+  height: 100%;
+  animation: rotate 10s linear infinite;
+}
+
+.agent-rotating-text text {
+  fill: rgba(255, 255, 255, 0.9);
+  font-size: 10px;
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-weight: 500;
+  letter-spacing: 3px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)) 
+          drop-shadow(0 0 8px rgba(99, 102, 241, 0.3));
+}
+
+/* Hide the agent rotating text when input is open */
+.agent-rotating-text.hidden {
+  opacity: 0;
+}
+
 
 </style>
 
@@ -1062,6 +1097,20 @@ and spark curiosity.
             <line x1="6"  y1="12" x2="18" y2="12" />
           </svg>
         </button>
+
+        <!-- Add the rotating text for agent button -->
+        <div class="agent-rotating-text">
+          <svg viewBox="0 0 120 120">
+            <!-- Change the radius from 50 to a smaller value, like 35 -->
+            <path id="agent-circle-path" d="M 60, 60 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" 
+                  fill="none" stroke="none"/>
+            <text>
+              <textPath href="#agent-circle-path" startOffset="0%">
+                CHAT NOW • ASK AGENT • CHAT NOW • ASK AGENT • 
+              </textPath>
+            </text>
+          </svg>
+        </div>
 
           <span>
           <span class="inline sm:hidden">DATA-OPS</span>
@@ -1919,11 +1968,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const agentChatButton = document.getElementById('agent-chat-btn');
   const agentSvg = agentChatButton.querySelector('svg');
   const agentInputSection = document.getElementById('agent-input-section');
+  const agentRotatingText = document.querySelector('.agent-rotating-text'); // 🔥 ADD THIS
 
   agentChatButton.addEventListener('click', () => {
     isAgentChatOpen = !isAgentChatOpen;
     agentSvg.classList.toggle('rotate-225');
     agentSvg.classList.toggle('cross');
+    
+    // 🔥 ADD ROTATING TEXT CONTROL
+    if (agentRotatingText) {
+      if (isAgentChatOpen) {
+        agentRotatingText.classList.add('hidden'); // Fade out when opening
+      } else {
+        agentRotatingText.classList.remove('hidden'); // Fade in when closing
+      }
+    }
+    
     agentInputSection.classList.toggle('opacity-0', !isAgentChatOpen);
     agentInputSection.classList.toggle('pointer-events-none', !isAgentChatOpen);
     agentInputSection.classList.toggle('opacity-100', isAgentChatOpen);
@@ -2097,6 +2157,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
+
 
 </script>
 
