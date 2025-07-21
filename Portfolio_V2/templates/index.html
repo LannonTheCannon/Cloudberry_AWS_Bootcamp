@@ -431,8 +431,8 @@
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: -1;
-  opacity: 1; /* Initial visible state */
-  transition: opacity 0.5s ease-out; /* Smooth transition */
+  opacity: 1; /* Add initial opacity */
+  transition: opacity 0.5s ease-out; /* Add smooth fade transition */
 }
 
 .rotating-text svg {
@@ -451,9 +451,9 @@
           drop-shadow(0 0 8px rgba(99, 102, 241, 0.3));
 }
 
-/* 🔥 FIX: Make sure hidden state overrides the default opacity */
+/* Hide the rotating text when input is open */
 .rotating-text.hidden {
-  opacity: 0 !important;
+  opacity: 0;
 }
 
 @keyframes rotate {
@@ -1042,7 +1042,7 @@ and spark curiosity.
         <button id="agent-chat-btn" type="button"
           class="absolute left-1/2 -translate-x-1/2 -top-1
                 sm:translate-y-0
-                
+                bg-white/10 backdrop-blur-xl
                 text-white rounded-full w-12 h-12
                 flex items-center justify-center
                 border border-white/30 shadow-lg
@@ -1748,31 +1748,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const plusButton = document.getElementById('add-thought-btn');
-  const svg = plusButton.querySelector('svg');
-  const inputSection = document.getElementById('quote-input-section');
-
-  let isOpen = false;
-
-  plusButton.addEventListener('click', () => {
-    isOpen = !isOpen;
-
-    // Morph icon
-    svg.classList.toggle('rotate-225');
-    svg.classList.toggle('cross');
-
-    // Animate input box
-    if (isOpen) {
-      inputSection.classList.remove('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
-      inputSection.classList.add('opacity-100', 'scale-y-100');
-    } else {
-      inputSection.classList.remove('opacity-100', 'scale-y-100');
-      inputSection.classList.add('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
-    }
-  });
-});
-
 
 </script>
 
@@ -2068,42 +2043,59 @@ window.addEventListener("DOMContentLoaded", () => {
   if (firstCard) firstCard.click();
 });
 
-// Update your existing button click handler
+// 🔥 DELETE ALL EXISTING add-thought-btn HANDLERS AND USE ONLY THIS ONE
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('Setting up main button handler...'); // Debug log
+  
   const plusButton = document.getElementById('add-thought-btn');
   const svg = plusButton.querySelector('svg');
   const inputSection = document.getElementById('quote-input-section');
   const rotatingText = document.querySelector('.rotating-text');
 
+  console.log('Elements found:', {
+    plusButton: !!plusButton,
+    svg: !!svg,
+    inputSection: !!inputSection,
+    rotatingText: !!rotatingText
+  }); // Debug log
+
   let isOpen = false;
 
-  plusButton.addEventListener('click', () => {
-    isOpen = !isOpen;
+  if (plusButton) {
+    plusButton.addEventListener('click', () => {
+      console.log('🔥 BUTTON CLICKED! isOpen:', isOpen, 'rotatingText:', !!rotatingText);
+      isOpen = !isOpen;
 
-    // Morph icon
-    svg.classList.toggle('rotate-225');
-    svg.classList.toggle('cross');
-
-    // Handle rotating text with proper transitions
-    if (rotatingText) {
-      if (isOpen) {
-        // Fade out smoothly
-        rotatingText.classList.add('hidden');
-      } else {
-        // Fade in smoothly
-        rotatingText.classList.remove('hidden');
+      // 🔥 ICON ROTATION (plus → X)
+      if (svg) {
+        svg.classList.toggle('rotate-225');
+        svg.classList.toggle('cross');
+        console.log('Icon rotated');
       }
-    }
 
-    // Animate input box
-    if (isOpen) {
-      inputSection.classList.remove('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
-      inputSection.classList.add('opacity-100', 'scale-y-100');
-    } else {
-      inputSection.classList.remove('opacity-100', 'scale-y-100');
-      inputSection.classList.add('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
-    }
-  });
+      // 🔥 ROTATING TEXT FADE IN/OUT
+      if (rotatingText) {
+        if (isOpen) {
+          rotatingText.classList.add('hidden');
+          console.log('Rotating text hidden');
+        } else {
+          rotatingText.classList.remove('hidden');
+          console.log('Rotating text shown');
+        }
+      }
+
+      // 🔥 INPUT BOX ANIMATION
+      if (inputSection) {
+        if (isOpen) {
+          inputSection.classList.remove('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
+          inputSection.classList.add('opacity-100', 'scale-y-100');
+        } else {
+          inputSection.classList.remove('opacity-100', 'scale-y-100');
+          inputSection.classList.add('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
+        }
+      }
+    });
+  }
 });
 
 </script>
