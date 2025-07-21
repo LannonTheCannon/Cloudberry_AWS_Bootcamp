@@ -431,8 +431,8 @@
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: -1;
-  opacity: 1; /* Add initial opacity */
-  transition: opacity 0.5s ease-out; /* Add smooth fade transition */
+  opacity: 1; /* Initial visible state */
+  transition: opacity 0.5s ease-out; /* Smooth transition */
 }
 
 .rotating-text svg {
@@ -451,9 +451,9 @@
           drop-shadow(0 0 8px rgba(99, 102, 241, 0.3));
 }
 
-/* Hide the rotating text when input is open */
+/* 🔥 FIX: Make sure hidden state overrides the default opacity */
 .rotating-text.hidden {
-  opacity: 0;
+  opacity: 0 !important;
 }
 
 @keyframes rotate {
@@ -1042,7 +1042,7 @@ and spark curiosity.
         <button id="agent-chat-btn" type="button"
           class="absolute left-1/2 -translate-x-1/2 -top-1
                 sm:translate-y-0
-                bg-white/10 backdrop-blur-xl
+                
                 text-white rounded-full w-12 h-12
                 flex items-center justify-center
                 border border-white/30 shadow-lg
