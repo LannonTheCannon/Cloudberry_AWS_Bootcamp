@@ -421,6 +421,45 @@
   min-height: 1.5em;
 }
 
+/* Add this to your existing <style> section - UPDATE the existing .rotating-text rules */
+.rotating-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.rotating-text svg {
+  width: 100%;
+  height: 100%;
+  animation: rotate 10s linear infinite; /* 🔥 This was missing! */
+}
+
+.rotating-text text {
+  fill: rgba(255, 255, 255, 0.4);
+  font-size: 10px;
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-weight: 500;
+  letter-spacing: 3px;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Hover effect - pause rotation and brighten text */
+#add-thought-btn:hover + .rotating-text svg {
+  animation-play-state: paused;
+}
+
+#add-thought-btn:hover + .rotating-text text {
+  fill: rgba(129, 140, 248, 0.7); /* indigo-400 */
+}
 
 </style>
 
@@ -613,28 +652,41 @@ Reading in-between the spreadsheets
         </span>
 
         <!-- Plus / Close Button -->
-<button id="add-thought-btn" type="button"
-  class="absolute left-1/2 -translate-x-1/2 -top-1
-         bg-white/10 backdrop-blur-xl
-         text-white rounded-full w-12 h-12
-         flex items-center justify-center
-         border border-white/30 shadow-lg
-         hover:shadow-2xl hover:border-white/80
-         hover:bg-indigo-400/10
-         focus:outline-none focus:ring-2 focus:ring-indigo-400/40
-         transition-all duration-300
-         hover:scale-105 active:scale-95"
-  aria-label="Add Thought"
-  title="Add Thought"
->
-  <svg xmlns="http://www.w3.org/2000/svg"
-    class="w-7 h-7 transition-transform duration-300"
-    viewBox="0 0 24 24" fill="none"
-    stroke="currentColor" stroke-width="2">
-    <line x1="12" y1="6"  x2="12" y2="18" />
-    <line x1="6"  y1="12" x2="18" y2="12" />
-  </svg>
-</button>
+        <button id="add-thought-btn" type="button"
+          class="absolute left-1/2 -translate-x-1/2 -top-1
+                  backdrop-blur-xl
+                text-white rounded-full w-12 h-12
+                flex items-center justify-center
+                border border-white/30 shadow-lg
+                hover:shadow-2xl hover:border-white/80
+                hover:bg-indigo-400/10
+                focus:outline-none focus:ring-2 focus:ring-indigo-400/40
+                transition-all duration-300
+                hover:scale-110 active:scale-90"
+          aria-label="Add Thought"
+          title="Add Thought"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg"
+            class="w-7 h-7 transition-transform duration-300"
+            viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="6"  x2="12" y2="18" />
+            <line x1="6"  y1="12" x2="18" y2="12" />
+          </svg>
+        </button>
+
+        <!-- Add the rotating text -->
+        <div class="rotating-text">
+          <svg viewBox="0 0 120 120">
+            <path id="circle-path" d="M 60, 60 m -50, 0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0" 
+                  fill="none" stroke="none"/>
+            <text>
+              <textPath href="#circle-path" startOffset="0%">
+                CLICK ME • ASK ANYTHING • CLICK ME • ASK ANYTHING • 
+              </textPath>
+            </text>
+          </svg>
+        </div>
 
         <span>
           <span class="inline sm:hidden">DATA-OPS</span>
