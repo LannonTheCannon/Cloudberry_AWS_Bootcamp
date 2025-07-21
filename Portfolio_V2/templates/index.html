@@ -439,14 +439,24 @@
   animation: rotate 10s linear infinite; /* 🔥 This was missing! */
 }
 
+/* Update your existing .rotating-text text styles */
 .rotating-text text {
-  fill: rgba(255, 255, 255, 0.4);
+  fill: rgba(255, 255, 255, 0.9);
   font-size: 10px;
   font-family: 'Monaco', 'Menlo', monospace;
   font-weight: 500;
   letter-spacing: 3px;
+  /* Add shadow effects */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)) 
+          drop-shadow(0 0 8px rgba(99, 102, 241, 0.3));
 }
 
+/* Enhanced hover effect with brighter shadow */
+#add-thought-btn:hover + .rotating-text text {
+  fill: rgba(129, 140, 248, 0.7); /* indigo-400 */
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7)) 
+          drop-shadow(0 0 12px rgba(129, 140, 248, 0.5));
+}
 @keyframes rotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -678,7 +688,8 @@ Reading in-between the spreadsheets
         <!-- Add the rotating text -->
         <div class="rotating-text">
           <svg viewBox="0 0 120 120">
-            <path id="circle-path" d="M 60, 60 m -50, 0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0" 
+            <!-- Change the radius from 50 to a smaller value, like 35 -->
+            <path id="circle-path" d="M 60, 60 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" 
                   fill="none" stroke="none"/>
             <text>
               <textPath href="#circle-path" startOffset="0%">
