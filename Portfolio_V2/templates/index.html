@@ -421,7 +421,7 @@
   min-height: 1.5em;
 }
 
-/* Add this to your existing <style> section - UPDATE the existing .rotating-text rules */
+/* Update your existing .rotating-text CSS */
 .rotating-text {
   position: absolute;
   top: 50%;
@@ -431,45 +431,36 @@
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: -1;
+  opacity: 1; /* Add initial opacity */
+  transition: opacity 0.5s ease-out; /* Add smooth fade transition */
 }
 
 .rotating-text svg {
   width: 100%;
   height: 100%;
-  animation: rotate 10s linear infinite; /* 🔥 This was missing! */
+  animation: rotate 10s linear infinite;
 }
 
-/* Update your existing .rotating-text text styles */
 .rotating-text text {
   fill: rgba(255, 255, 255, 0.9);
   font-size: 10px;
   font-family: 'Monaco', 'Menlo', monospace;
   font-weight: 500;
   letter-spacing: 3px;
-  /* Add shadow effects */
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)) 
           drop-shadow(0 0 8px rgba(99, 102, 241, 0.3));
 }
 
-/* Enhanced hover effect with brighter shadow */
-#add-thought-btn:hover + .rotating-text text {
-  fill: rgba(129, 140, 248, 0.7); /* indigo-400 */
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7)) 
-          drop-shadow(0 0 12px rgba(129, 140, 248, 0.5));
+/* Hide the rotating text when input is open */
+.rotating-text.hidden {
+  opacity: 0;
 }
+
 @keyframes rotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* Hover effect - pause rotation and brighten text */
-#add-thought-btn:hover + .rotating-text svg {
-  animation-play-state: paused;
-}
-
-#add-thought-btn:hover + .rotating-text text {
-  fill: rgba(129, 140, 248, 0.7); /* indigo-400 */
-}
 
 </style>
 
@@ -2076,6 +2067,45 @@ window.addEventListener("DOMContentLoaded", () => {
   const firstCard = document.querySelector(".agent-card");
   if (firstCard) firstCard.click();
 });
+
+// Update your existing button click handler
+document.addEventListener('DOMContentLoaded', () => {
+  const plusButton = document.getElementById('add-thought-btn');
+  const svg = plusButton.querySelector('svg');
+  const inputSection = document.getElementById('quote-input-section');
+  const rotatingText = document.querySelector('.rotating-text');
+
+  let isOpen = false;
+
+  plusButton.addEventListener('click', () => {
+    isOpen = !isOpen;
+
+    // Morph icon
+    svg.classList.toggle('rotate-225');
+    svg.classList.toggle('cross');
+
+    // Handle rotating text with proper transitions
+    if (rotatingText) {
+      if (isOpen) {
+        // Fade out smoothly
+        rotatingText.classList.add('hidden');
+      } else {
+        // Fade in smoothly
+        rotatingText.classList.remove('hidden');
+      }
+    }
+
+    // Animate input box
+    if (isOpen) {
+      inputSection.classList.remove('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
+      inputSection.classList.add('opacity-100', 'scale-y-100');
+    } else {
+      inputSection.classList.remove('opacity-100', 'scale-y-100');
+      inputSection.classList.add('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
+    }
+  });
+});
+
 </script>
 
 </body>
