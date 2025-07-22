@@ -10,191 +10,178 @@
     rel="stylesheet" />
   <link rel="icon" href="/static/favicon.ico" />
 
-<style>
-#agent-query,
-#user-query {
-  font-size: 16px !important;
-}
-@media (min-width: 640px) {
-  #agent-query,
-  #user-query {
-    font-size: 14px !important;
-  }
-}
-  /* .tilt-card {
+  <style>
+    #agent-query,
+    #user-query {
+      font-size: 16px !important;
+    }
+
+    @media (min-width: 640px) {
+
+      #agent-query,
+      #user-query {
+        font-size: 14px !important;
+      }
+    }
+
+    /* .tilt-card {
   border-color: rgba(255, 255, 255, 0.9) !important;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 1s), 0 5px 0px rgba(197, 200, 202, 1) !important;
   transform: translateY(-4px) !important;
   transition: all 0.3s ease-out;
 } */
 
-.grain-overlay {
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: -1000;
-  background-image: url("/static/images/grain2.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;  /* Covers entire viewport */
-  background-position: center;
-  mix-blend-mode: overlay;
-  opacity: 0.18;
-}
-
-.typing-ball {
-  width: 10px;
-  height: 10px;
-  background-color: white;
-  border-radius: 50%;
-    animation: bounce 1.2s infinite ease-in-out;
-    opacity: 0.6;
-  }
-
-  .dot1 {
-    animation-delay: 0s;
-  }
-
-  .dot2 {
-    animation-delay: 0.2s;
-  }
-
-  .dot3 {
-    animation-delay: 0.4s;
-  }
-
-  @keyframes bounce {
-    0%,
-    80%,
-    100% {
-      transform: scale(0.8);
-      opacity: 0.4;
+    .grain-overlay {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: -1000;
+      background-image: url("/static/images/grain2.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      /* Covers entire viewport */
+      background-position: center;
+      mix-blend-mode: overlay;
+      opacity: 0.18;
     }
 
-    40% {
-      transform: scale(1.4);
-      opacity: 1;
+    .typing-ball {
+      width: 10px;
+      height: 10px;
+      background-color: white;
+      border-radius: 50%;
+      animation: bounce 1.2s infinite ease-in-out;
+      opacity: 0.6;
     }
-  }
 
-  .custom-scrollbar {
-    scrollbar-width: none;
-    scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
-  }
+    .dot1 {
+      animation-delay: 0s;
+    }
 
-  .custom-scrollbar:hover {
-    scrollbar-width: thin;
-  }
+    .dot2 {
+      animation-delay: 0.2s;
+    }
 
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 4px;
-    background: transparent;
-  }
+    .dot3 {
+      animation-delay: 0.4s;
+    }
 
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent !important;
-    border: none;
-    border-radius: 0;
-  }
+    @keyframes bounce {
 
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-    border: none;
-    min-height: 20px;
-  }
+      0%,
+      80%,
+      100% {
+        transform: scale(0.8);
+        opacity: 0.4;
+      }
 
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: transparent;
-  }
+      40% {
+        transform: scale(1.4);
+        opacity: 1;
+      }
+    }
 
-  .custom-scrollbar:hover::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.5);
-  }
+    .custom-scrollbar {
+      scrollbar-width: none;
+      scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+    }
 
-  .custom-scrollbar::-webkit-scrollbar-corner {
-    background: transparent;
-  }
+    .custom-scrollbar:hover {
+      scrollbar-width: thin;
+    }
 
-  @keyframes draw-border {
-    0% {
-      border-width: 0;
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      background: transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent !important;
+      border: none;
+      border-radius: 0;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+      border: none;
+      min-height: 20px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
+
+    .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-corner {
+      background: transparent;
+    }
+
+    @keyframes draw-border {
+      0% {
+        border-width: 0;
+        clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+      }
+
+      25% {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      }
+
+      50% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
+      }
+
+      75% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+
+    .border-animate {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: draw-border 1.2s ease-out forwards;
+      border-radius: 1rem;
       clip-path: polygon(0 0, 0 0, 0 0, 0 0);
     }
 
-    25% {
-      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-    }
-
-    50% {
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
-    }
-
-    75% {
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
-
-    100% {
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
-  }
-
-  .border-animate {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    animation: draw-border 1.2s ease-out forwards;
-    border-radius: 1rem;
-    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
-  }
-
-  .floating-star {
-    position: absolute;
-    top: 0rem;
-    right: 0rem;
-    z-index: -100;
-    pointer-events: none;
-  }
-
-  .floating-star::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 200px;
-    background: radial-gradient(ellipse at center,
-        rgba(173, 216, 255, 0.6),
-        rgba(173, 216, 255, 0.05) 80%,
-        transparent 100%);
-    filter: blur(40px);
-    opacity: .55;
-    z-index: -100;
-  }
-
-  @media (max-width: 640px) {
     .floating-star {
-      position: relative !important;
-      top: 0 !important;
-      right: 0 !important;
-      margin: 0 auto 1.5rem auto !important;
-      width: 400px !important;
-      height: auto !important;
-      display: flex;
-      justify-content: center;
+      position: absolute;
+      top: 0rem;
+      right: 0rem;
+      z-index: -100;
+      pointer-events: none;
     }
 
-    .floating-star {
-      width: 100% !important;
-      height: auto !important;
-      transform: none !important;
+    .floating-star::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 200px;
+      background: radial-gradient(ellipse at center,
+          rgba(173, 216, 255, 0.6),
+          rgba(173, 216, 255, 0.05) 80%,
+          transparent 100%);
+      filter: blur(40px);
+      opacity: .55;
+      z-index: -100;
     }
 
-    @media (max-width: 540px) {
+    @media (max-width: 640px) {
       .floating-star {
         position: relative !important;
         top: 0 !important;
         right: 0 !important;
         margin: 0 auto 1.5rem auto !important;
-        width: 300px !important;
+        width: 400px !important;
         height: auto !important;
         display: flex;
         justify-content: center;
@@ -205,319 +192,357 @@
         height: auto !important;
         transform: none !important;
       }
+
+      @media (max-width: 540px) {
+        .floating-star {
+          position: relative !important;
+          top: 0 !important;
+          right: 0 !important;
+          margin: 0 auto 1.5rem auto !important;
+          width: 300px !important;
+          height: auto !important;
+          display: flex;
+          justify-content: center;
+        }
+
+        .floating-star {
+          width: 100% !important;
+          height: auto !important;
+          transform: none !important;
+        }
+      }
     }
-  }
 
-  .card-glow {
-    position: absolute;
-    inset: 0px;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-
-.card-glow::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: 
-    /* Organic noise texture */
-    repeating-conic-gradient(from 0deg at 50% 50%, 
-      transparent 0deg, 
-      rgba(255,255,255,0.015) 1deg, 
-      transparent 2deg, 
-      rgba(255,255,255,0.01) 3deg, 
-      transparent 4deg
-    ),
-    repeating-conic-gradient(from 45deg at 30% 70%, 
-      transparent 0deg, 
-      rgba(173,216,255,0.02) 1deg, 
-      transparent 2deg
-    ),
-    /* Your beautiful main gradient */
-    radial-gradient(ellipse at center,
-        rgba(173, 216, 255, 0.9),
-        rgba(249, 249, 249, 0.05) 70%,
-        transparent 80%);
-  filter: blur(80px);
-  z-index: -1;
-}
-  /* 🔥 Trigger glow when project card is selected */
-  .project-card.selected .card-glow {
-    opacity: 0.2 !important;
-  }
-
-  /* Enhanced selection effect */
-  .project-card.selected {
-    border-color: rgba(255, 255, 255, 0.05) !important;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
-    transform: translateY(-4px) !important;
-  }
-
-  @keyframes rotate-border {
-    0% {
-      transform: rotate(0deg);
+    .card-glow {
+      position: absolute;
+      inset: 0px;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
-    100% {
-      transform: rotate(360deg);
+
+    .card-glow::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        /* Organic noise texture */
+        repeating-conic-gradient(from 0deg at 50% 50%,
+          transparent 0deg,
+          rgba(255, 255, 255, 0.015) 1deg,
+          transparent 2deg,
+          rgba(255, 255, 255, 0.01) 3deg,
+          transparent 4deg),
+        repeating-conic-gradient(from 45deg at 30% 70%,
+          transparent 0deg,
+          rgba(173, 216, 255, 0.02) 1deg,
+          transparent 2deg),
+        /* Your beautiful main gradient */
+        radial-gradient(ellipse at center,
+          rgba(173, 216, 255, 0.9),
+          rgba(249, 249, 249, 0.05) 70%,
+          transparent 80%);
+      filter: blur(80px);
+      z-index: -1;
     }
-  }
-  
-  .icon-border-glow {
-    position: absolute;
-    inset: 0px;
-    border-radius: 100%;
-    padding: px;
-    background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-    opacity: 0;
-    animation: rotate-border 2s linear infinite;
-    transition: opacity 0.2s ease;
-  }
 
-/* 🔥 Speed up workflow card transitions */
-.workflow-card {
-  transition: all 0.2s ease-out; /* Changed from duration-500 to 0.2s */
-}
+    /* 🔥 Trigger glow when project card is selected */
+    .project-card.selected .card-glow {
+      opacity: 0.2 !important;
+    }
 
-.workflow-card.active {
-  border-color: rgba(255, 255, 255, 0.9) !important;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
-  transform: translateY(-4px) !important;
-  transition: all 0.15s ease-out; /* Even faster for active state */
-}
+    /* Enhanced selection effect */
+    .project-card.selected {
+      border-color: rgba(255, 255, 255, 0.05) !important;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
+      transform: translateY(-4px) !important;
+    }
 
-/* Speed up the glow transition too */
-.workflow-card .card-glow {
-  transition: opacity 0.2s ease; /* Changed from 0.5s to 0.2s */
-}
+    @keyframes rotate-border {
+      0% {
+        transform: rotate(0deg);
+      }
 
-/* Speed up individual effect transitions */
-.workflow-card.active .agent-status,
-.workflow-card.active .workflow-status-text,
-.workflow-card.active .workflow-status-dot,
-.workflow-card.active .workflow-border,
-.workflow-card.active .agent-border {
-  transition: all 0.15s ease;
-}
-  .workflow-card .card-glow::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center,
-        rgba(173, 216, 255, 0.9),
-        rgba(249, 249, 249, 0.05) 10%,
-        transparent 60%);
-    filter: blur(100px);
-    z-index: -1;
-  }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
 
-  /* 🔥 Trigger the same glow when workflow card is active */
-  .workflow-card.active .card-glow {
-    opacity: 0.2 !important;
-  }
+    .icon-border-glow {
+      position: absolute;
+      inset: 0px;
+      border-radius: 100%;
+      padding: px;
+      background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+      opacity: 0;
+      animation: rotate-border 2s linear infinite;
+      transition: opacity 0.2s ease;
+    }
 
-  /* Keep existing workflow effects but enhance them */
-  .workflow-card.active .agent-status {
-    color: rgb(34, 197, 94) !important; /* green-500 */
-  }
+    /* 🔥 Speed up workflow card transitions */
+    .workflow-card {
+      transition: all 0.2s ease-out;
+      /* Changed from duration-500 to 0.2s */
+    }
 
-  .workflow-card.active .workflow-status-text {
-    color: rgb(129, 140, 248) !important; /* indigo-400 */
-  }
+    .workflow-card.active {
+      border-color: rgba(255, 255, 255, 0.9) !important;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
+      transform: translateY(-4px) !important;
+      transition: all 0.15s ease-out;
+      /* Even faster for active state */
+    }
 
-  .workflow-card.active .workflow-status-dot {
-    background-color: rgb(129, 140, 248) !important; /* indigo-400 */
-  }
+    /* Speed up the glow transition too */
+    .workflow-card .card-glow {
+      transition: opacity 0.2s ease;
+      /* Changed from 0.5s to 0.2s */
+    }
 
-  .workflow-card.active .workflow-border {
-    border-color: rgba(129, 140, 248, 0.4) !important; /* indigo-400/40 */
-  }
+    /* Speed up individual effect transitions */
+    .workflow-card.active .agent-status,
+    .workflow-card.active .workflow-status-text,
+    .workflow-card.active .workflow-status-dot,
+    .workflow-card.active .workflow-border,
+    .workflow-card.active .agent-border {
+      transition: all 0.15s ease;
+    }
 
-  .workflow-card.active .workflow-glow {
-    opacity: 100;
-  }
+    .workflow-card .card-glow::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center,
+          rgba(173, 216, 255, 0.9),
+          rgba(249, 249, 249, 0.05) 10%,
+          transparent 60%);
+      filter: blur(100px);
+      z-index: -1;
+    }
 
-  .workflow-card.active .agent-border {
-    border-color: rgba(34, 197, 94, 0.6) !important; /* green-400/60 */
-  }
+    /* 🔥 Trigger the same glow when workflow card is active */
+    .workflow-card.active .card-glow {
+      opacity: 0.2 !important;
+    }
 
-  .workflow-card.active .icon-border-glow {
-    opacity: 1;
-  }
+    /* Keep existing workflow effects but enhance them */
+    .workflow-card.active .agent-status {
+      color: rgb(34, 197, 94) !important;
+      /* green-500 */
+    }
 
-  html, body {
-    overflow-x: hidden;
-    max-width: 100vw;
-  }
+    .workflow-card.active .workflow-status-text {
+      color: rgb(129, 140, 248) !important;
+      /* indigo-400 */
+    }
 
-  * {
-    box-sizing: border-box;
-  }
+    .workflow-card.active .workflow-status-dot {
+      background-color: rgb(129, 140, 248) !important;
+      /* indigo-400 */
+    }
 
-  section, div {
-    max-width: 100%;
-  }
+    .workflow-card.active .workflow-border {
+      border-color: rgba(129, 140, 248, 0.4) !important;
+      /* indigo-400/40 */
+    }
 
-  /* 🔥 Featured project cards with default border effect */
-.featured-project-card {
-  border-color: rgba(255, 255, 255, 0.9) !important;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
-  transform: translateY(-4px) !important;
-  transition: all 0.3s ease-out;
-}
+    .workflow-card.active .workflow-glow {
+      opacity: 100;
+    }
 
-/* Optional: Add subtle hover enhancement */
-.featured-project-card:hover {
-  transform: translateY(-12px) !important;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 8px 0px rgba(197, 200, 202, 1) !important;
-}
+    .workflow-card.active .agent-border {
+      border-color: rgba(34, 197, 94, 0.6) !important;
+      /* green-400/60 */
+    }
 
-  .contact-card {
-    border-color: rgba(255, 255, 255, 0.9) !important;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
-    transform: translateY(-4px) !important;
-  }
+    .workflow-card.active .icon-border-glow {
+      opacity: 1;
+    }
 
-  .contact-card:hover {
-    border-color: rgba(255, 255, 255, 0.9) !important;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 9px 0px rgba(197, 200, 202, 1) !important;
-    transform: translateY(-12px) !important;
-  }
+    html,
+    body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
 
-  /* Enhanced selection effect */
-.agent-card.selected {
-  border-color: rgba(255, 255, 255, 0.05) !important;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
-  transform: translateY(-4px) !important;
-  z-index: 1000;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-/* 🔥 Trigger glow when agent card is selected */
-.agent-card.selected .card-glow {
-  opacity: 0.2 !important;
-}
+    section,
+    div {
+      max-width: 100%;
+    }
 
-/* Rotates the entire icon */
-.rotate-225 {
-  transform: rotate(225deg);
-}
+    /* 🔥 Featured project cards with default border effect */
+    .featured-project-card {
+      border-color: rgba(255, 255, 255, 0.9) !important;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
+      transform: translateY(-4px) !important;
+      transition: all 0.3s ease-out;
+    }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
+    /* Optional: Add subtle hover enhancement */
+    .featured-project-card:hover {
+      transform: translateY(-12px) !important;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 8px 0px rgba(197, 200, 202, 1) !important;
+    }
 
-.pulse {
-  animation: pulse 2.5s ease-in-out infinite;
-}
+    .contact-card {
+      border-color: rgba(255, 255, 255, 0.9) !important;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
+      transform: translateY(-4px) !important;
+    }
 
-#typewriter {
-  color: rgb(243, 244, 246) !important; /* gray-100 */
-  line-height: 1.325 !important; /* leading-relaxed */
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
-  min-height: 1.5em;
-}
+    .contact-card:hover {
+      border-color: rgba(255, 255, 255, 0.9) !important;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 9px 0px rgba(197, 200, 202, 1) !important;
+      transform: translateY(-12px) !important;
+    }
 
-.rotating-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 125px;
-  height: 120px;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 10;
-  opacity: 1;
-  transition: opacity 0.5s ease-out;
-  
-  /* 🔥 CREATE REALISTIC DROP SHADOW FOR HEIGHT PERCEPTION */
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6))
-          drop-shadow(0 0px 20px rgba(0, 0, 0, 0.3))
-          drop-shadow(0 0 30px rgba(99, 102, 241, 0.3));
-}
+    /* Enhanced selection effect */
+    .agent-card.selected {
+      border-color: rgba(255, 255, 255, 0.05) !important;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 1), 0 5px 0px rgba(197, 200, 202, 1) !important;
+      transform: translateY(-4px) !important;
+      z-index: 1000;
+    }
 
-.rotating-text svg {
-  width: 100%;
-  height: 100%;
-  animation: rotate 10s linear infinite;
-  /* Remove filter from here since it's now on the container */
-}
+    /* 🔥 Trigger glow when agent card is selected */
+    .agent-card.selected .card-glow {
+      opacity: 0.2 !important;
+    }
 
-.rotating-text text {
-  fill: rgba(255, 255, 255, 0.95);
-  font-size: 10px;
-  font-family: 'Monaco', 'Menlo', monospace;
-  font-weight: 500;
-  letter-spacing: 3px;
-  /* Add subtle text shadow for extra depth */
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-}
+    /* Rotates the entire icon */
+    .rotate-225 {
+      transform: rotate(225deg);
+    }
 
-/* Hide the rotating text when input is open */
-.rotating-text.hidden {
-  opacity: 0;
-}
+    @keyframes pulse {
 
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+      0%,
+      100% {
+        transform: scale(1);
+      }
 
-/* Agent rotating text (same as main but with different class) */
-.agent-rotating-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 125px;
-  height: 120px;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 10;
-  opacity: 1;
-  transition: opacity 0.5s ease-out;
-  
-  /* 🔥 CREATE REALISTIC DROP SHADOW FOR HEIGHT PERCEPTION */
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6))
-          drop-shadow(0 0px 20px rgba(0, 0, 0, 0.3))
-          drop-shadow(0 0 30px rgba(99, 102, 241, 0.3));
-}
+      50% {
+        transform: scale(1.05);
+      }
+    }
 
-.agent-rotating-text svg {
-  width: 100%;
-  height: 100%;
-  animation: rotate 10s linear infinite;
-}
+    .pulse {
+      animation: pulse 2.5s ease-in-out infinite;
+    }
 
-.agent-rotating-text text {
-  fill: rgba(255, 255, 255, 0.95);
-  font-size: 10px;
-  font-family: 'Monaco', 'Menlo', monospace;
-  font-weight: 500;
-  letter-spacing: 3px;
-  /* Add subtle text shadow for extra depth */
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-}
+    #typewriter {
+      color: rgb(243, 244, 246) !important;
+      /* gray-100 */
+      line-height: 1.325 !important;
+      /* leading-relaxed */
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+      min-height: 1.5em;
+    }
 
-/* Hide the agent rotating text when input is open */
-.agent-rotating-text.hidden {
-  opacity: 0;
-}
+    .rotating-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 125px;
+      height: 120px;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 10;
+      opacity: 1;
+      transition: opacity 0.5s ease-out;
 
+      /* 🔥 CREATE REALISTIC DROP SHADOW FOR HEIGHT PERCEPTION */
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6)) drop-shadow(0 0px 20px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 30px rgba(99, 102, 241, 0.3));
+    }
 
-</style>
+    .rotating-text svg {
+      width: 100%;
+      height: 100%;
+      animation: rotate 10s linear infinite;
+      /* Remove filter from here since it's now on the container */
+    }
+
+    .rotating-text text {
+      fill: rgba(255, 255, 255, 0.95);
+      font-size: 10px;
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-weight: 500;
+      letter-spacing: 3px;
+      /* Add subtle text shadow for extra depth */
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Hide the rotating text when input is open */
+    .rotating-text.hidden {
+      opacity: 0;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Agent rotating text (same as main but with different class) */
+    .agent-rotating-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 125px;
+      height: 120px;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 10;
+      opacity: 1;
+      transition: opacity 0.5s ease-out;
+
+      /* 🔥 CREATE REALISTIC DROP SHADOW FOR HEIGHT PERCEPTION */
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6)) drop-shadow(0 0px 20px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 30px rgba(99, 102, 241, 0.3));
+    }
+
+    .agent-rotating-text svg {
+      width: 100%;
+      height: 100%;
+      animation: rotate 10s linear infinite;
+    }
+
+    .agent-rotating-text text {
+      fill: rgba(255, 255, 255, 0.95);
+      font-size: 10px;
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-weight: 500;
+      letter-spacing: 3px;
+      /* Add subtle text shadow for extra depth */
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Hide the agent rotating text when input is open */
+    .agent-rotating-text.hidden {
+      opacity: 0;
+    }
+  </style>
 
 </head>
 
-  <div class="grain-overlay pointer-events-none fixed inset-0 z-0"></div>
+<div class="grain-overlay pointer-events-none fixed inset-0 z-0"></div>
 
 
 
-<body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col overflow-x-hidden">
-  
-  
+<body
+  class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white font-sans min-h-screen flex flex-col overflow-x-hidden">
+
+
   <!-- Nav -->
   <header
     class="w-full px-6 py-4 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-6">
@@ -532,43 +557,40 @@
     </nav>
   </header>
 
-<!-- 1️⃣ keep the viewport tag in your <head> -->
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- 1️⃣ keep the viewport tag in your <head> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<section
-  class="fade-in-up opacity-0 translate-y-10 transition duration-700
+  <section class="fade-in-up opacity-0 translate-y-10 transition duration-700
          flex-1 flex flex-col justify-center items-center text-center
          px-4 md:px-20 mt-12 py-2">
-  
-  <!-- 2️⃣ headline -->
-  <h1 class="font-serif font-bold leading-tight
+
+    <!-- 2️⃣ headline -->
+    <h1 class="font-serif font-bold leading-tight
              text-4xl sm:text-4xl md:text-5xl">
-    <span class="block sm:whitespace-nowrap">From prototype to</span>
-    <span class="block sm:whitespace-nowrap">
-      production,&nbsp;<span class="text-indigo-400">tell your story.</span>
-    </span>
-  </h1>
+      <span class="block sm:whitespace-nowrap">From prototype to</span>
+      <span class="block sm:whitespace-nowrap">
+        production,&nbsp;<span class="text-indigo-400">tell your story.</span>
+      </span>
+    </h1>
 
-  <!-- 3️⃣ sub-headline -->
-  <p class="text-gray-300 max-w-xs sm:max-w-md md:max-w-xl mt-2 mb-6">
-    Building with intention, curiosity, and a quiet fire to explore the unknown.
-  </p>
+    <!-- 3️⃣ sub-headline -->
+    <p class="text-gray-300 max-w-xs sm:max-w-md md:max-w-xl mt-2 mb-6">
+      Building with intention, curiosity, and a quiet fire to explore the unknown.
+    </p>
 
-  <!-- 4️⃣ CTAs -->
-  <div class="flex flex-col sm:flex-row
+    <!-- 4️⃣ CTAs -->
+    <div class="flex flex-col sm:flex-row
               space-y-3 sm:space-y-0 sm:space-x-4 mb-16">
-    <a href="/projects"
-       class="bg-indigo-600 hover:bg-indigo-700 text-white
+      <a href="/projects" class="bg-indigo-600 hover:bg-indigo-700 text-white
               px-5 py-2 rounded-xl transition text-center">
-      Explore Projects
-    </a>
-    <a href="/contact"
-       class="bg-white text-gray-800 hover:bg-gray-200
+        Explore Projects
+      </a>
+      <a href="/contact" class="bg-white text-gray-800 hover:bg-gray-200
               px-5 py-2 rounded-xl transition text-center">
-      Contact Me
-    </a>
-  </div>
-</section>
+        Contact Me
+      </a>
+    </div>
+  </section>
 
   <section
     class="hidden sm:block fade-in-up opacity-0 translate-y-10 transition duration-700 text-white text-center -mt-10 mb-4 px-4"
@@ -583,7 +605,7 @@
       <span class="text-white/30">|</span>
       <div class="relative overflow-hidden h-[2.5em] flex items-center">
         <span id="quote-display" class="italic transition-opacity duration-500 ease-in-out">
-Reading in-between the spreadsheets
+          Reading in-between the spreadsheets
         </span>
       </div>
     </div>
@@ -599,22 +621,19 @@ Reading in-between the spreadsheets
 
 
 
-<!-- =====================  CARD + INPUT BAR SECTION  ===================== -->
+  <!-- =====================  CARD + INPUT BAR SECTION  ===================== -->
 
-<section
-  class="relative flex justify-center items-center px-8 pt-8 pb-3 -mt-4
+  <section class="relative flex justify-center items-center px-8 pt-8 pb-3 -mt-4
          fade-in-up opacity-0 translate-y-10 transition duration-700
-         overflow-visible gap-12"
-  data-delay="400ms">
+         overflow-visible gap-12" data-delay="400ms">
 
-  <!-- Glow Behind Card -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+    <!-- Glow Behind Card -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
               w-[420px] h-[420px] rounded-full bg-indigo-400/20 blur-[100px]
               z-10 pointer-events-none"></div>
 
-  <!-- ───────────────  Tilt Card  ─────────────── -->
-  <div
-    class="
+    <!-- ───────────────  Tilt Card  ─────────────── -->
+    <div class="
     tilt-card 
     relative 
     z-20 
@@ -640,73 +659,67 @@ Reading in-between the spreadsheets
     sm:h-[355px]
     md:max-w-2xl
     md:h-[345px]
-    "
-
-    style="border-color:rgba(255,255,255,0.9);
+    " style="border-color:rgba(255,255,255,0.9);
            box-shadow:0 0 0 1px rgba(255,255,255,1),0 5px 0 rgba(197,200,202,1);
            transform:translateY(-4px);transform-style:preserve-3d;">
 
-    <!-- Top Row -->
-    <div class="flex flex-col sm:flex-row items-center sm:items-start
+      <!-- Top Row -->
+      <div class="flex flex-col sm:flex-row items-center sm:items-start
                 justify-center sm:justify-between gap-3 z-20">
-      <!-- Avatar -->
-      <div class="mb-3 mt-2 sm:ml-2 w-32 h-32 sm:w-28 sm:h-28 rounded-full overflow-hidden
+        <!-- Avatar -->
+        <div class="mb-3 mt-2 sm:ml-2 w-32 h-32 sm:w-28 sm:h-28 rounded-full overflow-hidden
                   border border-white/20">
-        <img src="/static/images/space_commander.png"
-             alt="Profile" class="object-cover w-full h-full" />
-      </div>
-
-      <!-- Name and Title -->
-    <div class="flex flex-col items-center sm:mt-8">
-      <h4 class="-mt-6 sm:-mt-8 text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-100">
-        Lannon <span class="text-indigo-400">Khau</span>
-      </h4>
-        <div class="hidden sm:block mt-1 w-full border-t border-white/10"></div>
-        <span class="text-[10px] sm:text-xs text-white-400 font-mono
-                     tracking-widest uppercase mt-1 mb-4 ">
-          Full-Stack&nbsp;AI/ML&nbsp;Engineer
-        </span>
-
-        
-
-      </div>
-
-      <div class="block sm:hidden -mt-5 mb-2 w-1/2 border-t border-white/10"></div>
-
-    </div>
-
-    
-
-    <!-- Typewriter Output -->
-    <div id="typewriter-container"
-        class="relative flex-1 min-h-0 overflow-y-auto px-4
-                max-w-xs sm:max-w-xl mx-auto custom-scrollbar sm:mt-2 md:mt-0">
-      <p id="typewriter"
-        class="text-base max-[360px]:text-sm text-grey-900 font-light
-                leading-snug whitespace-pre-line"></p>
-    </div>
-
-    <!-- Footer -->
-    <div class="relative mt-6">
-      <!-- Divider with cut-out -->
-      <div class="absolute inset-0 flex items-center justify-center">
-        <div class="w-full border-t border-white/10 relative">
-          <div class="absolute left-1/2 -translate-x-1/2 bg-transparent
-                      w-12 h-6"></div>
+          <img src="/static/images/space_commander.png" alt="Profile" class="object-cover w-full h-full" />
         </div>
+
+        <!-- Name and Title -->
+        <div class="flex flex-col items-center sm:mt-8">
+          <h4 class="-mt-6 sm:-mt-8 text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-100">
+            Lannon <span class="text-indigo-400">Khau</span>
+          </h4>
+          <div class="hidden sm:block mt-1 w-full border-t border-white/10"></div>
+          <span class="text-[10px] sm:text-xs text-white-400 font-mono
+                     tracking-widest uppercase mt-1 mb-4 ">
+            Full-Stack&nbsp;AI/ML&nbsp;Engineer
+          </span>
+
+
+
+        </div>
+
+        <div class="block sm:hidden -mt-5 mb-2 w-1/2 border-t border-white/10"></div>
+
       </div>
 
-      <!-- Footer Content -->
-      <div class="relative z-20 flex items-center justify-between
-                  text-xs text-gray-400 font-mono px-4 pt-6">
-        <span>
-          <span class="inline sm:hidden">CARD-023</span>
-          <span class="hidden sm:inline">BUSINESS-CARD-023</span>
-        </span>
 
-        <!-- Plus / Close Button -->
-        <button id="add-thought-btn" type="button"
-          class="absolute left-1/2 -translate-x-1/2 -top-1
+
+      <!-- Typewriter Output -->
+      <div id="typewriter-container" class="relative flex-1 min-h-0 overflow-y-auto px-4
+                max-w-xs sm:max-w-xl mx-auto custom-scrollbar sm:mt-2 md:mt-0">
+        <p id="typewriter" class="text-base max-[360px]:text-sm text-grey-900 font-light
+                leading-snug whitespace-pre-line"></p>
+      </div>
+
+      <!-- Footer -->
+      <div class="relative mt-6">
+        <!-- Divider with cut-out -->
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-full border-t border-white/10 relative">
+            <div class="absolute left-1/2 -translate-x-1/2 bg-transparent
+                      w-12 h-6"></div>
+          </div>
+        </div>
+
+        <!-- Footer Content -->
+        <div class="relative z-20 flex items-center justify-between
+                  text-xs text-gray-400 font-mono px-4 pt-6">
+          <span>
+            <span class="inline sm:hidden">CARD-023</span>
+            <span class="hidden sm:inline">BUSINESS-CARD-023</span>
+          </span>
+
+          <!-- Plus / Close Button -->
+          <button id="add-thought-btn" type="button" class="absolute left-1/2 -translate-x-1/2 -top-1
                   backdrop-blur-xl
                 text-white rounded-full w-12 h-12
                 flex items-center justify-center
@@ -715,45 +728,39 @@ Reading in-between the spreadsheets
                 hover:bg-indigo-400/10
                 focus:outline-none focus:ring-2 focus:ring-indigo-400/40
                 transition-all duration-300
-                hover:scale-110 active:scale-90"
-          aria-label="Add Thought"
-          title="Add Thought"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg"
-            class="w-7 h-7 transition-transform duration-300"
-            viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2">
-            <line x1="12" y1="6"  x2="12" y2="18" />
-            <line x1="6"  y1="12" x2="18" y2="12" />
-          </svg>
-        </button>
+                hover:scale-110 active:scale-90" aria-label="Add Thought" title="Add Thought">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 transition-transform duration-300"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="6" x2="12" y2="18" />
+              <line x1="6" y1="12" x2="18" y2="12" />
+            </svg>
+          </button>
 
-        <!-- Add the rotating text -->
-        <div class="rotating-text">
-          <svg viewBox="0 0 120 120">
-            <!-- Change the radius from 50 to a smaller value, like 35 -->
-            <path id="circle-path" d="M 60, 60 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" 
-                  fill="none" stroke="none"/>
-            <text>
-              <textPath href="#circle-path" startOffset="0%">
-                CLICK ME • ASK ANYTHING • CLICK ME • ASK ANYTHING • 
-              </textPath>
-            </text>
-          </svg>
+          <!-- Add the rotating text -->
+          <div class="rotating-text">
+            <svg viewBox="0 0 120 120">
+              <!-- Change the radius from 50 to a smaller value, like 35 -->
+              <path id="circle-path" d="M 60, 60 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"
+                stroke="none" />
+              <text>
+                <textPath href="#circle-path" startOffset="0%">
+                  CLICK ME • ASK ANYTHING • CLICK ME • ASK ANYTHING •
+                </textPath>
+              </text>
+            </svg>
+          </div>
+
+          <span>
+            <span class="inline sm:hidden">DATA-OPS</span>
+            <span class="hidden sm:inline">SECTOR:&nbsp;DATA&nbsp;OPS</span>
+          </span>
         </div>
-
-        <span>
-          <span class="inline sm:hidden">DATA-OPS</span>
-          <span class="hidden sm:inline">SECTOR:&nbsp;DATA&nbsp;OPS</span>
-        </span>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
-<section id="quote-input-section"
-  class="transition-all 
+  <section id="quote-input-section" class="transition-all 
   duration-500 
   opacity-0 
   translate-y-6 
@@ -766,118 +773,136 @@ Reading in-between the spreadsheets
   items-center 
   px-8
   ">
-  <div
-    class="mt-6 w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl px-4 py-3 shadow-2xl"
-    style="border-color:rgba(255,255,255,0.9);
+    <div
+      class="mt-6 w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl px-4 py-3 shadow-2xl"
+      style="border-color:rgba(255,255,255,0.9);
           box-shadow:0 0 0 1px rgba(255,255,255,1), 0 5px 0 rgba(197,200,202,1);">
-    <div class="flex space-x-4">
-      <input
-        id="user-query"
-        type="text"
-        placeholder="Ask me anything!"
-        class="flex-1 bg-transparent border-none text-base sm:text-sm text-gray-100 placeholder-gray-400 focus:outline-none"
-      />
-      <button id="query-send" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition">
-        Send
-      </button>
-    </div>
-  </div>
-</section>
-
-
-<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-24 max-w-7xl mx-auto z-0" data-delay="200ms">
-  <h2 class="text-4xl font-bold text-center mb-14 text-white">
-    <span class="text-indigo-400">About</span> Me
-  </h2>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-    <!-- LEFT COLUMN: About Content -->
-    <div class="text-lg text-slate-300">
-      <blockquote class="text-xl leading-8 text-slate-400">
-        <span class="font-serif text-[115px] text-slate-100 float-left mr-4 leading-none -mt-2">I</span>
-        <span class="block pl-2">
-’m Lannon Khau, a full-stack engineer with a passion for building AI-powered systems that solve real problems
-and spark curiosity.
-        </span>
-      </blockquote>
-
-      <p class="text-slate-400 mt-4 indent-8">
-        My journey started with a desire to build and evolved into an obsession with integrating AI to create
-        smarter, more human tools. Along the way, I’ve learned that great systems don’t just function, they listen,
-        adapt, and invite us to explore ideas we never knew we had.
-      </p>
-
-      <div class="flex justify-center">
-        <img src="/static/images/avatar.png" alt="Portrait of Lannon Khau"
-             class="w-60 h-60 object-cover mt-8 object-[center_bottom] rounded-full border-4 border-white/20 shadow-lg" />
+      <div class="flex space-x-4">
+        <input id="user-query" type="text" placeholder="Ask me anything!"
+          class="flex-1 bg-transparent border-none text-base sm:text-sm text-gray-100 placeholder-gray-400 focus:outline-none" />
+        <button id="query-send" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition">
+          Send
+        </button>
       </div>
+    </div>
+  </section>
 
-      <div class="prose prose-lg prose-invert prose-indigo max-w-none mt-8">
-        <h3 class="text-2xl font-bold leading-6 text-white">Engineer. Builder. Explorer.</h3>
+
+  <section class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-24 max-w-7xl mx-auto z-0"
+    data-delay="200ms">
+    <h2 class="text-4xl font-bold text-center mb-14 text-white">
+      <span class="text-indigo-400">About</span> Me
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      <!-- LEFT COLUMN: About Content -->
+      <div class="text-lg text-slate-300">
+        <blockquote class="text-xl leading-8 text-slate-400">
+          <span class="font-serif text-[115px] text-slate-100 float-left mr-4 leading-none -mt-2">I</span>
+          <span class="block pl-2">
+            ’m Lannon Khau, a full-stack engineer with a passion for building AI-powered systems that solve real
+            problems
+            and spark curiosity.
+          </span>
+        </blockquote>
 
         <p class="text-slate-400 mt-4 indent-8">
-          I believe in building systems that capture human intelligence through visual mind mapping. By learning from behavior and real-time patterns,
-          these systems can continually train AI to make more informed, context-aware decisions and not just outputs based on static training data.
-          When we align AI with human intent, its responses become more focused, adaptive, and meaningful.
+          My journey started with a desire to build and evolved into an obsession with integrating AI to create
+          smarter, more human tools. Along the way, I’ve learned that great systems don’t just function, they listen,
+          adapt, and invite us to explore ideas we never knew we had.
         </p>
 
-        <blockquote class="mt-3 border-l-4 pl-4 italic text-indigo-300">
-          “I build AI-powered systems that explore the unknown and turn raw data into insight, clarity, and creative tools.”
-        </blockquote>
-      </div>
-    </div>
+        <div class="flex justify-center">
+          <img src="/static/images/avatar.png" alt="Portrait of Lannon Khau"
+            class="w-60 h-60 object-cover mt-8 object-[center_bottom] rounded-full border-4 border-white/20 shadow-lg" />
+        </div>
 
-    <!-- RIGHT COLUMN: Timeline -->
-    <div class="relative border-l border-white/10 pl-6 space-y-8 self-start">
+        <div class="prose prose-lg prose-invert prose-indigo max-w-none mt-8">
+          <h3 class="text-2xl font-bold leading-6 text-white">Engineer. Builder. Explorer.</h3>
 
-      <!-- 2021 -->
-      <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="200ms">
-        <div class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
-        <p class="text-sm text-gray-400 mb-1 ml-2">2021</p>
-        <h4 class="text-white font-semibold ml-2">Graduated from CSUF & Rhombus Systems</h4>
-          <p class="text-gray-400 text-sm mt-2 ml-2">
-            Earned my B.S. in Information Systems from <span class="text-white font-semibold">Cal State Fullerton</span>. Interned at Rhombus Systems, contributing to <span class="text-white font-semibold">Python backend services</span> for smart-security platforms and sharpening my passion for real-time data and APIs.
+          <p class="text-slate-400 mt-4 indent-8">
+            I believe in building systems that capture human intelligence through visual mind mapping. By learning from
+            behavior and real-time patterns,
+            these systems can continually train AI to make more informed, context-aware decisions and not just outputs
+            based on static training data.
+            When we align AI with human intent, its responses become more focused, adaptive, and meaningful.
           </p>
+
+          <blockquote class="mt-3 border-l-4 pl-4 italic text-indigo-300">
+            “I build AI-powered systems that explore the unknown and turn raw data into insight, clarity, and creative
+            tools.”
+          </blockquote>
+        </div>
       </div>
 
-      <!-- 2022 -->
-      <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="400ms">
-        <div class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
-        <p class="text-sm text-gray-400 mb-1 ml-2">2022</p>
-        <h4 class="text-white font-semibold ml-2">Full-Stack Dev at Creative Core</h4>
-        <p class="text-gray-400 text-sm mt-2 ml-2">
-          Led the build of a K-12 learning platform (Flask + React + AWS) that added
-          ML-driven feedback and personalized paths—raising certification pass rates to
-          <span class="text-white font-semibold">87 %</span> and trimming grading time by
-          <span class="text-white font-semibold">50 %</span>.
-        </p>
-      </div>
+      <!-- RIGHT COLUMN: Timeline -->
+      <div class="relative border-l border-white/10 pl-6 space-y-8 self-start">
 
-      <!-- 2023 -->
-      <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="500ms">
-        <div class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
-        <p class="text-sm text-gray-400 mb-1 ml-2">2023</p>
-        <h4 class="text-white font-semibold ml-2">LLM Engineer at Scale AI</h4>
+        <!-- 2021 -->
+        <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="200ms">
+          <div
+            class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full">
+          </div>
+          <p class="text-sm text-gray-400 mb-1 ml-2">2021</p>
+          <h4 class="text-white font-semibold ml-2">Graduated from CSUF & Rhombus Systems</h4>
           <p class="text-gray-400 text-sm mt-2 ml-2">
-            Produced <span class="text-white font-semibold">2,500 + training prompts</span> for LLM fine-tuning, hitting a 93 % quality benchmark and building automation that cut manual QA by <span class="text-white font-semibold">40 %</span>.
+            Earned my B.S. in Information Systems from <span class="text-white font-semibold">Cal State
+              Fullerton</span>. Interned at Rhombus Systems, contributing to <span
+              class="text-white font-semibold">Python backend services</span> for smart-security platforms and
+            sharpening my passion for real-time data and APIs.
           </p>
-      </div>
+        </div>
 
-      <!-- 2024 -->
-      <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="600ms">
-        <div class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
-        <p class="text-sm text-gray-400 mb-1 ml-2">2024</p>
-        <h4 class="text-white font-semibold ml-2">Launched Data Forge Plus</h4>
-        <p class="text-gray-400 text-sm mt-2 ml-2">
-          Launched <span class="text-white font-semibold">Data Forge</span>, an AI-powered EDA tool that turns messy financial data into insights in seconds, delivering <span class="text-white font-semibold">sub-2 s query performance</span> across 1.7 M+ transactions.
-        </p>
-      </div>
+        <!-- 2022 -->
+        <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="400ms">
+          <div
+            class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full">
+          </div>
+          <p class="text-sm text-gray-400 mb-1 ml-2">2022</p>
+          <h4 class="text-white font-semibold ml-2">Full-Stack Dev at Creative Core</h4>
+          <p class="text-gray-400 text-sm mt-2 ml-2">
+            Led the build of a K-12 learning platform (Flask + React + AWS) that added
+            ML-driven feedback and personalized paths—raising certification pass rates to
+            <span class="text-white font-semibold">87 %</span> and trimming grading time by
+            <span class="text-white font-semibold">50 %</span>.
+          </p>
+        </div>
 
-      <!-- 2025 -->
-      <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="700ms">
-        <div class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
-        <p class="text-sm text-gray-400 mb-1 ml-2">2025</p>
-        <h4 class="text-white font-semibold ml-2">Bootcamps, Hackathons, Sweet James LLP</h4>
+        <!-- 2023 -->
+        <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="500ms">
+          <div
+            class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full">
+          </div>
+          <p class="text-sm text-gray-400 mb-1 ml-2">2023</p>
+          <h4 class="text-white font-semibold ml-2">LLM Engineer at Scale AI</h4>
+          <p class="text-gray-400 text-sm mt-2 ml-2">
+            Produced <span class="text-white font-semibold">2,500 + training prompts</span> for LLM fine-tuning, hitting
+            a 93 % quality benchmark and building automation that cut manual QA by <span
+              class="text-white font-semibold">40 %</span>.
+          </p>
+        </div>
+
+        <!-- 2024 -->
+        <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="600ms">
+          <div
+            class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full">
+          </div>
+          <p class="text-sm text-gray-400 mb-1 ml-2">2024</p>
+          <h4 class="text-white font-semibold ml-2">Launched Data Forge Plus</h4>
+          <p class="text-gray-400 text-sm mt-2 ml-2">
+            Launched <span class="text-white font-semibold">Data Forge</span>, an AI-powered EDA tool that turns messy
+            financial data into insights in seconds, delivering <span class="text-white font-semibold">sub-2 s query
+              performance</span> across 1.7 M+ transactions.
+          </p>
+        </div>
+
+        <!-- 2025 -->
+        <div class="fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="700ms">
+          <div
+            class="timeline-bullet absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full">
+          </div>
+          <p class="text-sm text-gray-400 mb-1 ml-2">2025</p>
+          <h4 class="text-white font-semibold ml-2">Bootcamps, Hackathons, Sweet James LLP</h4>
           <p class="text-gray-400 text-sm mt-2 ml-2">
             Completed Cloudberry AWS Bootcamp and advanced GenAI systems training. Submitted
             <span class="text-white font-semibold">Data Forge</span> to the Microsoft Reactor Hackathon,
@@ -885,16 +910,26 @@ and spark curiosity.
             Recently accepted an offer letter to join <span class="text-white font-semibold">Sweet James</span>
             as a Full-Stack AI/ML Engineer, where I’ll be applying these skills in real legal workflows.
           </p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- Labs Showcase -->
   <section class="fade-in-up opacity-0 translate-y-10 transition duration-700 px-8 py-12 -mt-20 max-w-7xl mx-auto"
     data-delay="200ms">
     <h2 class="text-4xl font-bold text-center mb-12 mt-16 text-white"><span class="text-indigo-400">Featured </span>
       Projects</h2>
+
+
+    <div class="max-w-4xl mx-auto text-center mb-12 md:mb-12 px-4">
+      <p class="mb-8 text-base md:text-lg text-gray-300 leading-relaxed">
+        Dive into my <span class="text-indigo-400 font-semibold">featured projects</span> below. <span
+          class="text-indigo-400 font-semibold">Click on any project</span> to see details, the tech stack, and the
+        story behind the build. Every project reflects my hands-on work in <span
+          class="text-indigo-400 font-semibold">AI, automation, and data-driven apps</span>.
+      </p>
+    </div>
 
     <!--      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">-->
     <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
@@ -939,7 +974,7 @@ and spark curiosity.
       {% endfor %}
     </div>
 
-    
+
   </section>
 
   <section id="projects-and-stats"
@@ -949,155 +984,149 @@ and spark curiosity.
       <span class="text-indigo-400">AI Agents</span> Task Force
     </h2>
 
-  <!-- Connection Text -->
-  <div class="relative z-[100] max-w-4xl mx-auto text-center mb-12 md:mb-16 px-4">
-  <p class="mb-8 text-base md:text-lg text-gray-300 leading-relaxed">
-  AI agents are <span class="text-indigo-400 font-semibold">precision instruments</span>
-  built for singular tasks. I've designed these intelligent specialists that
-  <span class="text-indigo-400 font-semibold">excel at one thing</span> and execute with laser-focused expertise. 
-  <span class="text-indigo-400 font-semibold">Click on </span>any agent to chat with and learn about their unique capabilities and how they can assist you.
-  </p>
-  </div>
+    <!-- Connection Text -->
+    <div class="relative z-[100] max-w-4xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <p class="mb-8 text-base md:text-lg text-gray-300 leading-relaxed">
+        AI agents are <span class="text-indigo-400 font-semibold">precision instruments</span>
+        built for singular tasks. I've designed these intelligent specialists that
+        <span class="text-indigo-400 font-semibold">excel at one thing</span> and execute with laser-focused expertise.
+        <span class="text-indigo-400 font-semibold">Click on </span>any agent to chat with and learn about their unique
+        capabilities and how they can assist you.
+      </p>
+    </div>
 
     <!-- Unified Grid Container -->
     <div class="relative z-[100] max-w-6xl mx-auto grid grid-cols-1 gap-12 ">
 
-<!-- Project Cards Row - UPDATED RESPONSIVE GRID -->
-<div class="relative z-[100] -mt-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 -mb-6 pt-10 justify-center mx-auto">
-  {% for slug, agent in services.items() %}
-    <a
-    data-project="{{ slug }}"
-    data-agent-name="{{ agent.title }}"
-    data-agent-role="{{ agent.description }}"
-    data-agent-image="{{ agent.image1 }}"
-    class="relative z-[100] agent-card {% if loop.first %}selected{% endif %} bg-white/5 border border-white/10 rounded-xl md:rounded-2xl p-3 md:p-6 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer text-white">
+      <!-- Project Cards Row - UPDATED RESPONSIVE GRID -->
+      <div
+        class="relative z-[100] -mt-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 -mb-6 pt-10 justify-center mx-auto">
+        {% for slug, agent in services.items() %}
+        <a data-project="{{ slug }}" data-agent-name="{{ agent.title }}" data-agent-role="{{ agent.description }}"
+          data-agent-image="{{ agent.image1 }}"
+          class="relative z-[100] agent-card {% if loop.first %}selected{% endif %} bg-white/5 border border-white/10 rounded-xl md:rounded-2xl p-3 md:p-6 transform-gpu transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer text-white">
 
-    <!-- Add the glow element -->
-    <div class="card-glow"></div>
+          <!-- Add the glow element -->
+          <div class="card-glow"></div>
 
-      <!-- Mobile Layout: Vertical Stack -->
-      <div class="flex flex-col items-center text-center space-y-2 md:hidden">
-        <div class="w-12 h-12 bg-gray-800 rounded-full overflow-hidden flex items-center justify-center border border-white/10 shadow-inner">
-        <img src="{{ agent.icon }}" alt="{{ agent.title }} Icon" class="w-full h-full object-cover object-top" />
-        </div>
-        <h4 class="text-xs font-semibold text-white leading-tight">{{ agent.title }}</h4>
-        <p class="text-xs text-gray-400 leading-relaxed line-clamp-2">
-        {{ agent.description }}
-        </p>
-      </div>
-
-      <!-- Desktop Layout: Horizontal with Icon and Title -->
-      <div class="hidden md:block">
-        <div class="flex items-center mb-4 space-x-4">
-          <div class="w-16 h-16 bg-gray-800 rounded-full overflow-hidden flex items-center justify-center border border-white/10 shadow-inner">
-            <img src="{{ agent.icon }}" alt="{{ agent.title }} Icon" class="w-full h-full object-cover object-top" />
+          <!-- Mobile Layout: Vertical Stack -->
+          <div class="flex flex-col items-center text-center space-y-2 md:hidden">
+            <div
+              class="w-12 h-12 bg-gray-800 rounded-full overflow-hidden flex items-center justify-center border border-white/10 shadow-inner">
+              <img src="{{ agent.icon }}" alt="{{ agent.title }} Icon" class="w-full h-full object-cover object-top" />
+            </div>
+            <h4 class="text-xs font-semibold text-white leading-tight">{{ agent.title }}</h4>
+            <p class="text-xs text-gray-400 leading-relaxed line-clamp-2">
+              {{ agent.description }}
+            </p>
           </div>
-          <h4 class="text-base font-semibold text-white leading-tight">{{ agent.title }}</h4>
-        </div>
 
-        <!-- Description -->
-        <p class="text-sm text-gray-200 leading-relaxed">
-          {{ agent.description }}
-        </p>
+          <!-- Desktop Layout: Horizontal with Icon and Title -->
+          <div class="hidden md:block">
+            <div class="flex items-center mb-4 space-x-4">
+              <div
+                class="w-16 h-16 bg-gray-800 rounded-full overflow-hidden flex items-center justify-center border border-white/10 shadow-inner">
+                <img src="{{ agent.icon }}" alt="{{ agent.title }} Icon"
+                  class="w-full h-full object-cover object-top" />
+              </div>
+              <h4 class="text-base font-semibold text-white leading-tight">{{ agent.title }}</h4>
+            </div>
+
+            <!-- Description -->
+            <p class="text-sm text-gray-200 leading-relaxed">
+              {{ agent.description }}
+            </p>
+          </div>
+        </a>
+        {% endfor %}
       </div>
-    </a>
-  {% endfor %}
-</div>
 
     </div>
-    </section>
+  </section>
 
 
-<!-- === =.  =====  AGENT DISPLAY CARD  (visually identical to About-Me)  ========= -->
-<section
-  class="relative flex justify-center items-center px-8 pt-8 pb-3 -mt-4
+  <!-- === =.  =====  AGENT DISPLAY CARD  (visually identical to About-Me)  ========= -->
+  <section class="relative flex justify-center items-center px-8 pt-8 pb-3 -mt-4
          fade-in-up opacity-0 translate-y-10 transition duration-700
          overflow-visible gap-12" data-delay="400ms">
 
-  <!-- Glow -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+    <!-- Glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
               w-[420px] h-[420px] rounded-full bg-indigo-400/20 blur-[1000px]
               z-10 pointer-events-none"></div>
 
-  <!-- Card -->
-  <div id="agent-display-card"
-       class="relative z-20 flex flex-col w-full
+    <!-- Card -->
+    <div id="agent-display-card" class="relative z-20 flex flex-col w-full
               max-w-xs h-[445px]           
               sm:max-w-xl sm:h-[355px]     
               md:max-w-2xl md:h-[345px]   
               bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl
               p-4 shadow-2xl transition-transform duration-300 ease-out
-              will-change-transform"
-       style="border-color:rgba(255,255,255,0.9);
+              will-change-transform" style="border-color:rgba(255,255,255,0.9);
               box-shadow:0 0 0 1px rgba(255,255,255,1),
                          0 5px 0 rgba(197,200,202,1);
               transform:translateY(-4px);transform-style:preserve-3d;">
 
-<!-- Top Row -->
-<div class="flex flex-col sm:flex-row items-center sm:items-start
+      <!-- Top Row -->
+      <div class="flex flex-col sm:flex-row items-center sm:items-start
             justify-center sm:justify-between gap-3 z-20">
 
-  <!-- Avatar -->
-  <div class="mb-3 sm:ml-4 w-32 h-32 sm:w-28 sm:h-28 rounded-full
+        <!-- Avatar -->
+        <div class="mb-3 sm:ml-4 w-32 h-32 sm:w-28 sm:h-28 rounded-full
               overflow-hidden border border-white/20">
-    <img id="agent-img" src="/static/images/agent1.jpg" alt="Agent Avatar"
-         class="object-cover w-full h-full" />
-  </div>
-
-  <!-- Name + Role -->
-  <div class="flex flex-col items-center sm:mt-8">
-    <h4 class="-mt-6 sm:-mt-8 text-xl sm:text-2xl md:text-3xl font-extrabold
-               text-gray-100 text-center">
-      <span id="agent-name" class="block">
-        Data&nbsp;Visualization <span class="text-indigo-400">AI&nbsp;Agent</span>
-      </span>
-    </h4>
-
-    <!-- subtle divider only ≥ sm -->
-    <div class="hidden sm:block mt-1 w-full border-t border-white/10"></div>
-
-    <span id="agent-role"
-          class="block text-center text-[10px] sm:text-xs text-white-400 font-mono
-                 tracking-widest uppercase mt-1 mb-5 leading-tight">
-      Generate&nbsp;Interactive&nbsp;Plotly&nbsp;Objects
-    </span>
-  </div>
-
-      <div class="block sm:hidden -mt-5 mb-2 w-1/2 border-t border-white/10"></div>
-
-
-</div>
-
-    <!-- Typewriter -->
-    <div id="typewriter-container"
-         class="relative flex-1 min-h-0 overflow-y-auto px-4
-                max-w-xs sm:max-w-xl mx-auto custom-scrollbar sm:mt-2 md:mt-0">
-      <p id="agent-typewriter"
-         class="text-base max-[360px]:text-sm text-grey-900 font-light
-                leading-snug whitespace-pre-line"></p>
-    </div>
-
-
-
-    <!-- Footer -->
-    <div class="relative mt-6">
-      <div class="absolute inset-0 flex items-center justify-center">
-        <div class="w-full border-t border-white/10 relative">
-          <div class="absolute left-1/2 -translate-x-1/2 bg-transparent w-12 h-6"></div>
+          <img id="agent-img" src="/static/images/agent1.jpg" alt="Agent Avatar" class="object-cover w-full h-full" />
         </div>
+
+        <!-- Name + Role -->
+        <div class="flex flex-col items-center sm:mt-8">
+          <h4 class="-mt-6 sm:-mt-8 text-xl sm:text-2xl md:text-3xl font-extrabold
+               text-gray-100 text-center">
+            <span id="agent-name" class="block">
+              Data&nbsp;Visualization <span class="text-indigo-400">AI&nbsp;Agent</span>
+            </span>
+          </h4>
+
+          <!-- subtle divider only ≥ sm -->
+          <div class="hidden sm:block mt-1 w-full border-t border-white/10"></div>
+
+          <span id="agent-role" class="block text-center text-[10px] sm:text-xs text-white-400 font-mono
+                 tracking-widest uppercase mt-1 mb-5 leading-tight">
+            Generate&nbsp;Interactive&nbsp;Plotly&nbsp;Objects
+          </span>
+        </div>
+
+        <div class="block sm:hidden -mt-5 mb-2 w-1/2 border-t border-white/10"></div>
+
+
+      </div>
+
+      <!-- Typewriter -->
+      <div id="typewriter-container" class="relative flex-1 min-h-0 overflow-y-auto px-4
+                max-w-xs sm:max-w-xl mx-auto custom-scrollbar sm:mt-2 md:mt-0">
+        <p id="agent-typewriter" class="text-base max-[360px]:text-sm text-grey-900 font-light
+                leading-snug whitespace-pre-line"></p>
       </div>
 
 
-      <div class="relative z-20 flex items-center justify-between
-                  text-xs text-gray-400 font-mono px-4 pt-6">
-        <span>
-          <span class="inline sm:hidden">CARD-079</span>
-          <span class="hidden sm:inline">BUSINESS-CARD-079</span>
-        </span>
 
-        <!-- Chat button toggles the agent input -->
-        <button id="agent-chat-btn" type="button"
-          class="absolute left-1/2 -translate-x-1/2 -top-1
+      <!-- Footer -->
+      <div class="relative mt-6">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-full border-t border-white/10 relative">
+            <div class="absolute left-1/2 -translate-x-1/2 bg-transparent w-12 h-6"></div>
+          </div>
+        </div>
+
+
+        <div class="relative z-20 flex items-center justify-between
+                  text-xs text-gray-400 font-mono px-4 pt-6">
+          <span>
+            <span class="inline sm:hidden">CARD-079</span>
+            <span class="hidden sm:inline">BUSINESS-CARD-079</span>
+          </span>
+
+          <!-- Chat button toggles the agent input -->
+          <button id="agent-chat-btn" type="button" class="absolute left-1/2 -translate-x-1/2 -top-1
                 sm:translate-y-0
                 bg-white/10 backdrop-blur-xl
                 text-white rounded-full w-12 h-12
@@ -1108,459 +1137,574 @@ and spark curiosity.
                 focus:outline-none focus:ring-2 focus:ring-indigo-400/40
                 transition-all duration-300
 
-                hover:scale-105 active:scale-95"
-          aria-label="Chat with Agent"
-          title="Chat with Agent"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg"
-            class="w-7 h-7 transition-transform duration-300"
-            viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2">
-            <line x1="12" y1="6"  x2="12" y2="18" />
-            <line x1="6"  y1="12" x2="18" y2="12" />
-          </svg>
-        </button>
+                hover:scale-105 active:scale-95" aria-label="Chat with Agent" title="Chat with Agent">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 transition-transform duration-300"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="6" x2="12" y2="18" />
+              <line x1="6" y1="12" x2="18" y2="12" />
+            </svg>
+          </button>
 
-        <!-- Add the rotating text for agent button -->
-        <div class="agent-rotating-text">
-          <svg viewBox="0 0 120 120">
-            <!-- Change the radius from 50 to a smaller value, like 35 -->
-            <path id="agent-circle-path" d="M 60, 60 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" 
-                  fill="none" stroke="none"/>
-            <text>
-              <textPath href="#agent-circle-path" startOffset="0%">
-• CLICK ME • ASK AGENT OK
-              </textPath>
-            </text>
-          </svg>
-        </div>
+          <!-- Add the rotating text for agent button -->
+          <div class="agent-rotating-text">
+            <svg viewBox="0 0 120 120">
+              <!-- Change the radius from 50 to a smaller value, like 35 -->
+              <path id="agent-circle-path" d="M 60, 60 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"
+                stroke="none" />
+              <text>
+                <textPath href="#agent-circle-path" startOffset="0%">
+                  • CLICK ME • ASK AGENT OK
+                </textPath>
+              </text>
+            </svg>
+          </div>
 
           <span>
-          <span class="inline sm:hidden">DATA-OPS</span>
-          <span class="hidden sm:inline">SECTOR:&nbsp;DATA&nbsp;OPS</span>
-        </span>
+            <span class="inline sm:hidden">DATA-OPS</span>
+            <span class="hidden sm:inline">SECTOR:&nbsp;DATA&nbsp;OPS</span>
+          </span>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="agent-input-section"
-  class="transition-all duration-500 opacity-0 translate-y-6 pointer-events-none relative z-20 flex justify-center items-center px-8">
-  <div
-    class="w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl px-4 py-3 shadow-2xl"
-    style="border-color:rgba(255,255,255,0.9);
+  <section id="agent-input-section"
+    class="transition-all duration-500 opacity-0 translate-y-6 pointer-events-none relative z-20 flex justify-center items-center px-8">
+    <div class="w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl px-4 py-3 shadow-2xl"
+      style="border-color:rgba(255,255,255,0.9);
            box-shadow:0 0 0 1px rgba(255,255,255,1),0 5px 0 rgba(197,200,202,1);">
-    <div class="flex space-x-4">
-      <input
-        id="agent-query"
-        type="text"
-        placeholder="Chat with this agent..."
-        class="flex-1 bg-transparent border-none text-base sm:text-sm text-gray-100 placeholder-gray-400 focus:outline-none"
-      />
-      <button id="agent-send" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition">
-        Send
-      </button>
-    </div>
-  </div>
-</section>
-
-
-
-<section id="multi-agent-orchestration"
-  class="fade-in-up px-4 md:px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition mx-auto duration-700 mt-8">
-
-  <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 mt-16 text-white">
-    <span class="text-indigo-400">Distributed AI </span> Workflows
-  </h2>
-
-  <!-- Connection Text -->
-  <div class="max-w-4xl mx-auto text-center mb-12 md:mb-16 px-4">
-    <p class="mb-8 text-base md:text-lg text-gray-300 leading-relaxed">
-      Individual agents are powerful, but <span class="text-indigo-400 font-semibold">teams of agents</span>
-      solve complex business problems. Here's how I orchestrate specialized AI agents into
-      <span class="text-indigo-400 font-semibold">intelligent workflows</span> that deliver results.
-    </p>
-  </div>
-
-  <!-- Workflow Cards - 2x2 Grid on Desktop, 1 Column on Mobile -->
-  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-4">
-
-    <!-- Marketing Analytics Workflow -->
-    <div class="workflow-card active group relative w-full bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-4 md:p-8 shadow-2xl transition-all duration-500 ease-out hover:shadow-xl hover:border-white/30 cursor-pointer overflow-hidden">
-      
-
-      <!-- 🔥 ADD THIS GLOW ELEMENT -->
-      <div class="card-glow"></div>
-      
-      <!-- Subtle background glow -->
-      <div class="workflow-glow absolute inset-0 bg-gradient-to-r from-white/5 to-gray-500/5 rounded-2xl opacity-0 transition-opacity duration-500"></div>
-
-      <!-- Card Content -->
-      <div class="relative z-10 flex flex-col space-y-4">
-        <!-- Icon and Title Row -->
-        <div class="flex items-center space-x-4">
-          <div class="relative w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm flex-shrink-0">
-            <div class="icon-border-glow"></div>
-            <div class="icon-inner">
-              <img src="static/icons/market.svg" class="w-10 h-10 filter brightness-110 transition-all duration-300" alt="Marketing Analytics">
-            </div>
-          </div>
-          <div class="min-w-0">
-            <h3 class="text-lg font-bold text-white tracking-tight">
-              AI Business Intelligence Analyst Co-pilot
-            </h3>
-            <span class="agent-status text-xs text-gray-400 font-mono transition-colors duration-300 bg-gray-900/50 rounded-full px-2 py-1 inline-block mt-1">◉ 4 AGENTS ACTIVE</span>
-          </div>
-        </div>
-
-        <!-- Description -->
-        <p class="text-sm text-gray-300 leading-relaxed">
-      An interactive AI Copilot for business intelligence. Orchestrates natural language SQL agents, data validation, and visualization modules to let you query, analyze, and visualize any business database with plain English—no manual SQL required.
-
-        </p>
-
-        <!-- Process Flow -->
-        <div class="flex flex-wrap items-center gap-2 text-xs text-gray-400 font-mono">
-          <span>Data ingestion</span>
-          <span>→</span>
-          <span>Analysis</span>
-          <span>→</span>
-          <span>Insights</span>
-          <span>→</span>
-          <span>Visualization</span>
-        </div>
-
-            <!-- Agent Pills -->
-    <div class="space-y-2">
-      <div class="text-xs text-gray-300 font-mono tracking-wider">ORCHESTRATOR: LANNON</div>
-      <div class="flex flex-wrap gap-2">
-        <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-1">
-          <img src="static/images/agent4.jpg" class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300" alt="SQL Agent">
-          <span class="text-xs text-white font-medium">SQL Agent</span>
-          <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
-        </div>
-        <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform -rotate-1">
-          <img src="static/images/agent6.jpg" class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300" alt="Data Validation">
-          <span class="text-xs text-white font-medium">Validation</span>
-          <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
-        </div>
-
-
-
-          <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-2">
-            <img src="static/images/agent1.jpg" class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300" alt="Visualization Agent">
-            <span class="text-xs text-white font-medium">Charting</span>
-            <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
-          </div>
-        </div>
-      </div>
-
-        <!-- Status -->
-        <div class="workflow-border bg-gray-900/70 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/20 transition-all duration-300">
-          <div class="flex items-center justify-between">
-            <span class="workflow-status-text text-xs text-gray-300 font-bold tracking-wide transition-colors duration-300">WORKFLOW STATUS</span>
-            <div class="flex items-center space-x-2">
-              <span class="workflow-status-dot w-2 h-2 bg-white rounded-full animate-pulse transition-colors duration-300"></span>
-              <span class="workflow-status-text text-xs text-gray-300 font-mono transition-colors duration-300">ACTIVE</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="relative z-10 pt-4 mt-4 md:mt-6 border-t border-white/20
-                  text-xs text-gray-400 font-mono flex justify-center sm:justify-between">
-
-        <!-- hide on phones -->
-        <span class="hidden sm:inline">SYS-ID: TEAM-001</span>
-
-        <!-- always visible -->
-        <a 
-          href="/blog/marketing-analytics-team"
-          class="text-gray-400 hover:text-white transition-colors duration-200"
-          onclick="event.stopPropagation();">
-          [READ_PLAYBOOK]
-        </a>
-
-        <!-- hide on phones -->
-        <span class="hidden sm:inline">SECTOR: MARKETING</span>
-      </div>
-
-    </div>
-
-    <!-- Data Science Pipeline Workflow -->
-    <div class="workflow-card group relative w-full bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-4 md:p-8 shadow-2xl transition-all duration-500 ease-out hover:shadow-xl hover:border-white/30 cursor-pointer overflow-hidden">
-
-      <!-- 🔥 ADD THIS GLOW ELEMENT -->
-      <div class="card-glow"></div>
-
-      <!-- Subtle background glow -->
-      <div class="workflow-glow absolute inset-0 bg-gradient-to-r from-white/5 to-gray-500/5 rounded-2xl opacity-0 transition-opacity duration-500"></div>
-
-      <!-- Card Content -->
-      <div class="relative z-10 flex flex-col space-y-4">
-        <!-- Icon and Title Row -->
-        <div class="flex items-center space-x-4">
-          <div class="relative w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm flex-shrink-0">
-            <div class="icon-border-glow"></div>
-            <div class="icon-inner">
-              <img src="static/icons/datapip.svg" class="w-10 h-10 filter brightness-110 transition-all duration-300" alt="Data Science">
-            </div>
-          </div>
-          <div class="min-w-0">
-            <h3 class="text-lg font-bold text-white tracking-tight">AI Data Science Team</h3>
-            <span class="agent-status text-xs text-gray-400 font-mono transition-colors duration-300 bg-gray-900/50 rounded-full px-2 py-1 inline-block mt-1">◉ 6 AGENTS ACTIVE</span>
-          </div>
-        </div>
-
-        <!-- Description -->
-        <p class="text-sm text-gray-300 leading-relaxed">
-          End-to-end machine learning operations platform with automated model lifecycle management and production deployment.
-        </p>
-
-        <!-- Process Flow -->
-        <div class="flex flex-wrap items-center gap-2 text-xs text-gray-400 font-mono">
-          <span>Raw data</span>
-          <span>→</span>
-          <span>Feature engineering</span>
-          <span>→</span>
-          <span>Model training</span>
-          <span>→</span>
-          <span>Production</span>
-        </div>
-
-        <!-- Agent Pills -->
-        <div class="space-y-2">
-          <div class="text-xs text-gray-300 font-mono tracking-wider">ORCHESTRATOR: LANNON</div>
-          <div class="flex flex-wrap gap-2">
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform -rotate-1">
-              <img src="static/images/agent2.jpg" class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300" alt="Data Wrangling">
-              <span class="text-xs text-white font-medium">Wrangling</span>
-              <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-1">
-              <img src="static/images/agent3.jpg" class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300" alt="Feature Eng">
-              <span class="text-xs text-white font-medium">Feature Eng</span>
-              <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform -rotate-2">
-              <img src="static/images/agent7.jpg" class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300" alt="LLM Eval">
-              <span class="text-xs text-white font-medium">LLM Eval</span>
-              <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-2">
-              <img src="static/images/agent6.jpg" class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300" alt="ETL">
-              <span class="text-xs text-white font-medium">ETL</span>
-              <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform -rotate-1">
-              <img src="static/images/agent8.jpg" class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300" alt="Model Deploy">
-              <span class="text-xs text-white font-medium">Deploy</span>
-              <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-1">
-              <img src="static/images/agent1.jpg" class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300" alt="Monitor">
-              <span class="text-xs text-white font-medium">Monitor</span>
-              <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Status -->
-        <div class="workflow-border bg-gray-900/70 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/20 transition-all duration-300">
-          <div class="flex items-center justify-between">
-            <span class="workflow-status-text text-xs text-gray-300 font-bold tracking-wide transition-colors duration-300">WORKFLOW STATUS</span>
-            <div class="flex items-center space-x-2">
-              <span class="workflow-status-dot w-2 h-2 bg-white rounded-full animate-pulse transition-colors duration-300"></span>
-              <span class="workflow-status-text text-xs text-gray-300 font-mono transition-colors duration-300">ACTIVE</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <div class="relative z-10 pt-4 mt-4 md:mt-6 border-t border-white/20
-                  text-xs text-gray-400 font-mono flex justify-center sm:justify-between">
-
-        <!-- hide on phones -->
-        <span class="hidden sm:inline">SYS-ID: TEAM-001</span>
-
-        <!-- always visible -->
-        <a 
-          href="/blog/playbook2.html" 
-          class="text-gray-400 hover:text-white transition-colors duration-200"
-          onclick="event.stopPropagation();">
-          [READ_PLAYBOOK]
-        </a>
-
-        <!-- hide on phones -->
-        <span class="hidden sm:inline">SECTOR: MARKETING</span>
+      <div class="flex space-x-4">
+        <input id="agent-query" type="text" placeholder="Chat with this agent..."
+          class="flex-1 bg-transparent border-none text-base sm:text-sm text-gray-100 placeholder-gray-400 focus:outline-none" />
+        <button id="agent-send" class="text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition">
+          Send
+        </button>
       </div>
     </div>
-
-    <!-- Enterprise Security Workflow -->
-    <div class="workflow-card group relative w-full bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-4 md:p-8 shadow-2xl transition-all duration-500 ease-out hover:shadow-xl hover:border-white/30 cursor-pointer overflow-hidden">
+  </section>
 
 
-      <!-- 🔥 ADD THIS GLOW ELEMENT -->
-      <div class="card-glow"></div>
 
-      <!-- Subtle background glow -->
-      <div class="workflow-glow absolute inset-0 bg-gradient-to-r from-white/5 to-gray-500/5 rounded-2xl opacity-0 transition-opacity duration-500"></div>
+  <section id="multi-agent-orchestration"
+    class="fade-in-up px-4 md:px-8 pt-10 pb-16 space-y-0 opacity-0 translate-y-10 transition mx-auto duration-700 mt-8">
 
-      <!-- Card Content -->
-      <div class="relative z-10 flex flex-col space-y-4">
-        <!-- Icon and Title Row -->
-        <div class="flex items-center space-x-4">
-          <div class="relative w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm flex-shrink-0">
-            <div class="icon-border-glow"></div>
-            <div class="icon-inner">
-              <img src="static/icons/secure.svg" class="w-10 h-10 filter brightness-110 transition-all duration-300" alt="Security">
-            </div>
-          </div>
-          <div class="min-w-0">
-            <h3 class="text-lg font-bold text-white tracking-tight">AI Enterprise Security Team</h3>
-            <span class="agent-status text-xs text-gray-400 font-mono transition-colors duration-300 bg-gray-900/50 rounded-full px-2 py-1 inline-block mt-1">◉ 3 AGENTS ACTIVE</span>
-          </div>
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 mt-16 text-white">
+      <span class="text-indigo-400">Distributed AI </span> Workflows
+    </h2>
+
+    <div class="max-w-4xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <p class="mb-8 text-base md:text-lg text-gray-300 leading-relaxed">
+        Individual agents are powerful, but <span class="text-indigo-400 font-semibold">teams of agents</span>
+        solve complex business problems. Here's how I orchestrate specialized AI agents into
+        <span class="text-indigo-400 font-semibold">intelligent workflows</span> that deliver results.
+      </p>
+    </div>
+
+    <!-- Workflow Cards - 2x2 Grid on Desktop, 1 Column on Mobile -->
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-4">
+
+      <!-- Marketing Analytics Workflow Card -->
+      <div class="workflow-card 
+active 
+group 
+relative 
+w-full 
+bg-white/5 
+backdrop-blur-xl 
+border 
+border-white/20 
+rounded-2xl 
+p-4 
+md:p-8 
+shadow-2xl 
+transition-all 
+duration-500 
+ease-out 
+hover:shadow-xl 
+hover:border-white/30
+cursor-pointer 
+overflow-hidden
+h-[400px] 
+">
+
+
+
+        <!-- 🔥 Card Glow Effect -->
+        <div class="card-glow"></div>
+        <!-- Subtle Background Glow -->
+        <div
+          class="workflow-glow absolute inset-0 bg-gradient-to-r from-white/5 to-gray-500/5 rounded-2xl opacity-0 transition-opacity duration-500">
         </div>
 
-        <!-- Description -->
-        <p class="text-sm text-gray-300 leading-relaxed">
-          Zero-trust security orchestration platform with comprehensive identity and access management for enterprise environments.
-        </p>
-
-        <!-- Process Flow -->
-        <div class="flex flex-wrap items-center gap-2 text-xs text-gray-400 font-mono">
-          <span>Identity verification</span>
-          <span>→</span>
-          <span>Access control</span>
-          <span>→</span>
-          <span>Audit logging</span>
-        </div>
-
-        <!-- Agent Pills -->
-        <div class="space-y-2">
-          <div class="text-xs text-gray-300 font-mono tracking-wider">ORCHESTRATOR: LANNON</div>
-          <div class="flex flex-wrap gap-2">
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-1">
-              <img src="static/images/agent8.jpg" class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300" alt="User Auth">
-              <span class="text-xs text-white font-medium">User Auth</span>
-              <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform -rotate-1">
-              <img src="static/images/agent5.jpg" class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300" alt="RAG Agent">
-              <span class="text-xs text-white font-medium">RAG</span>
-              <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-2">
-              <img src="static/images/agent7.jpg" class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300" alt="LLM Eval">
-              <span class="text-xs text-white font-medium">LLM Eval</span>
-              <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 border-dashed transform -rotate-2">
-              <div class="w-4 h-4 rounded-full bg-gray-700/50 border border-white/30 flex items-center justify-center">
-                <span class="text-xs text-gray-400">+3</span>
+        <!-- Card Content -->
+        <div class="relative z-10 flex flex-col space-y-4">
+          <!-- Icon and Title Row -->
+          <div class="flex items-center space-x-4">
+            <div
+              class="relative w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm flex-shrink-0">
+              <div class="icon-border-glow"></div>
+              <div class="icon-inner">
+                <img src="static/icons/market.svg" class="w-10 h-10 filter brightness-110 transition-all duration-300"
+                  alt="Marketing Analytics">
               </div>
-              <span class="text-xs text-gray-400 font-medium">Expanding</span>
-              <span class="text-xs text-gray-500">●</span>
+            </div>
+            <div class="min-w-0">
+              <h3 class="text-lg font-bold text-white tracking-tight">
+                AI Business Intelligence Analyst Co-pilot
+              </h3>
+              <span
+                class="agent-status text-xs text-gray-400 font-mono transition-colors duration-300 bg-gray-900/50 rounded-full px-2 py-1 inline-block mt-1">
+                ◉ 4 AGENTS ACTIVE
+              </span>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="text-sm text-gray-300 leading-relaxed">
+            An interactive AI Copilot for business intelligence. Orchestrates natural language SQL agents, data
+            validation, and visualization modules to let you query, analyze, and visualize any business database with
+            plain English—no manual SQL required.
+          </p>
+
+          <!-- Process Flow -->
+          <div class="flex flex-wrap items-center gap-2 text-xs text-gray-400 font-mono">
+            <span>Data ingestion</span>
+            <span>→</span>
+            <span>Analysis</span>
+            <span>→</span>
+            <span>Insights</span>
+            <span>→</span>
+            <span>Visualization</span>
+          </div>
+
+          <!-- Agent Pills -->
+          <div class="space-y-2">
+            <div class="text-xs text-gray-300 font-mono tracking-wider">ORCHESTRATOR: LANNON</div>
+            <div class="flex flex-wrap gap-2">
+              <!-- SQL Agent -->
+              <div
+                class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-1">
+                <img src="static/images/agent4.jpg"
+                  class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300"
+                  alt="SQL Agent">
+                <span class="text-xs text-white font-medium">SQL Agent</span>
+                <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
+              </div>
+              <!-- Data Validation Agent -->
+              <div
+                class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform -rotate-1">
+                <img src="static/images/agent6.jpg"
+                  class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300"
+                  alt="Data Validation">
+                <span class="text-xs text-white font-medium">Validation</span>
+                <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
+              </div>
+              <!-- Visualization Agent -->
+              <div
+                class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-2">
+                <img src="static/images/agent1.jpg"
+                  class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300"
+                  alt="Visualization Agent">
+                <span class="text-xs text-white font-medium">Charting</span>
+                <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
+              </div>
+
+              <div
+                class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-2">
+                <img src="static/images/agent1.jpg"
+                  class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300"
+                  alt="Visualization Agent">
+                <span class="text-xs text-white font-medium">Visual</span>
+                <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
+              </div>
+            </div>
+
+
+          </div>
+
+          <!-- Status -->
+
+        </div>
+
+        <!-- Card Footer with Divider and Centered Circle Button -->
+        <div class="-mt-5 relative z-10 pt-4 flex items-center justify-center">
+          <!-- Left divider line -->
+          <div class="flex-1 border-t border-white/20"></div>
+
+          <!-- Centered Circle Button -->
+          <a href="/blog/marketing-analytics-team" class="
+      mx-3
+      flex items-center justify-center
+      w-12 h-12
+      rounded-full
+      border border-white/30
+      shadow-lg
+      backdrop-blur-xl
+      bg-white/5
+      text-indigo-400
+      hover:text-white
+      hover:bg-indigo-400/10
+      hover:border-white/80
+      hover:shadow-2xl
+      focus:outline-none
+      focus:ring-2 focus:ring-indigo-400/40
+      transition-all duration-300
+      hover:scale-110 active:scale-90
+      text-xs font-mono tracking-wider
+    " style="background: rgba(255,255,255,0.05);" aria-label="Read Playbook" title="Read Playbook"
+            onclick="event.stopPropagation();">
+            <!-- Book Icon (or your preferred icon) -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 20l-8-4V6l8 4m0 10l8-4V6l-8 4m0 10V10" />
+            </svg>
+          </a>
+
+          <!-- Right divider line -->
+          <div class="flex-1 border-t border-white/20"></div>
+        </div>
+      </div>
+
+      <div class="workflow-card 
+active 
+group 
+relative 
+w-full 
+bg-white/5 
+backdrop-blur-xl 
+border 
+border-white/20 
+rounded-2xl 
+p-4 
+md:p-8 
+shadow-2xl 
+transition-all 
+duration-500 
+ease-out 
+hover:shadow-xl 
+hover:border-white/30
+cursor-pointer 
+overflow-hidden
+h-[400px] 
+">
+
+
+
+        <!-- 🔥 Card Glow Effect -->
+        <div class="card-glow"></div>
+        <!-- Subtle Background Glow -->
+        <div
+          class="workflow-glow absolute inset-0 bg-gradient-to-r from-white/5 to-gray-500/5 rounded-2xl opacity-0 transition-opacity duration-500">
+        </div>
+
+        <!-- Card Content -->
+        <div class="relative z-10 flex flex-col space-y-4">
+          <!-- Icon and Title Row -->
+          <div class="flex items-center space-x-4">
+            <div
+              class="relative w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm flex-shrink-0">
+              <div class="icon-border-glow"></div>
+              <div class="icon-inner">
+                <img src="static/icons/market.svg" class="w-10 h-10 filter brightness-110 transition-all duration-300"
+                  alt="Marketing Analytics">
+              </div>
+            </div>
+            <div class="min-w-0">
+              <h3 class="text-lg font-bold text-white tracking-tight">
+                AI Business Intelligence Analyst Co-pilot
+              </h3>
+              <span
+                class="agent-status text-xs text-gray-400 font-mono transition-colors duration-300 bg-gray-900/50 rounded-full px-2 py-1 inline-block mt-1">
+                ◉ 4 AGENTS ACTIVE
+              </span>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="text-sm text-gray-300 leading-relaxed">
+            An interactive AI Copilot for business intelligence. Orchestrates natural language SQL agents, data
+            validation, and visualization modules to let you query, analyze, and visualize any business database with
+            plain English—no manual SQL required.
+          </p>
+
+          <!-- Process Flow -->
+          <div class="flex flex-wrap items-center gap-2 text-xs text-gray-400 font-mono">
+            <span>Data ingestion</span>
+            <span>→</span>
+            <span>Analysis</span>
+            <span>→</span>
+            <span>Insights</span>
+            <span>→</span>
+            <span>Visualization</span>
+          </div>
+
+          <!-- Agent Pills -->
+          <div class="space-y-2">
+            <div class="text-xs text-gray-300 font-mono tracking-wider">ORCHESTRATOR: LANNON</div>
+            <div class="flex flex-wrap gap-2">
+              <!-- SQL Agent -->
+              <div
+                class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-1">
+                <img src="static/images/agent4.jpg"
+                  class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300"
+                  alt="SQL Agent">
+                <span class="text-xs text-white font-medium">SQL Agent</span>
+                <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
+              </div>
+              <!-- Data Validation Agent -->
+              <div
+                class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform -rotate-1">
+                <img src="static/images/agent6.jpg"
+                  class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300"
+                  alt="Data Validation">
+                <span class="text-xs text-white font-medium">Validation</span>
+                <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
+              </div>
+              <!-- Visualization Agent -->
+              <div
+                class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-2">
+                <img src="static/images/agent1.jpg"
+                  class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300"
+                  alt="Visualization Agent">
+                <span class="text-xs text-white font-medium">Charting</span>
+                <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
+              </div>
+
+              <div
+                class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-2">
+                <img src="static/images/agent1.jpg"
+                  class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300"
+                  alt="Visualization Agent">
+                <span class="text-xs text-white font-medium">Visual</span>
+                <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
+              </div>
+            </div>
+
+
+          </div>
+
+          <!-- Status -->
+
+        </div>
+
+        <!-- Card Footer with Divider and Centered Circle Button -->
+        <div class="-mt-5 relative z-10 pt-4 flex items-center justify-center">
+          <!-- Left divider line -->
+          <div class="flex-1 border-t border-white/20"></div>
+
+          <!-- Centered Circle Button -->
+          <a href="/blog/marketing-analytics-team" class="
+      mx-3
+      flex items-center justify-center
+      w-12 h-12
+      rounded-full
+      border border-white/30
+      shadow-lg
+      backdrop-blur-xl
+      bg-white/5
+      text-indigo-400
+      hover:text-white
+      hover:bg-indigo-400/10
+      hover:border-white/80
+      hover:shadow-2xl
+      focus:outline-none
+      focus:ring-2 focus:ring-indigo-400/40
+      transition-all duration-300
+      hover:scale-110 active:scale-90
+      text-xs font-mono tracking-wider
+    " style="background: rgba(255,255,255,0.05);" aria-label="Read Playbook" title="Read Playbook"
+            onclick="event.stopPropagation();">
+            <!-- Book Icon (or your preferred icon) -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 20l-8-4V6l8 4m0 10l8-4V6l-8 4m0 10V10" />
+            </svg>
+          </a>
+
+          <!-- Right divider line -->
+          <div class="flex-1 border-t border-white/20"></div>
+        </div>
+      </div>
+
+      <div class="workflow-card 
+active 
+group 
+relative 
+w-full 
+bg-white/5 
+backdrop-blur-xl 
+border 
+border-white/20 
+rounded-2xl 
+p-4 
+md:p-8 
+shadow-2xl 
+transition-all 
+duration-500 
+ease-out 
+hover:shadow-xl 
+hover:border-white/30
+cursor-pointer 
+overflow-hidden
+h-[400px] 
+">
+
+
+
+        <!-- 🔥 Card Glow Effect -->
+        <div class="card-glow"></div>
+        <!-- Subtle Background Glow -->
+        <div
+          class="workflow-glow absolute inset-0 bg-gradient-to-r from-white/5 to-gray-500/5 rounded-2xl opacity-0 transition-opacity duration-500">
+        </div>
+
+        <!-- Card Content -->
+        <div class="relative z-10 flex flex-col space-y-4">
+          <!-- Icon and Title Row -->
+          <div class="flex items-center space-x-4">
+            <div
+              class="relative w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm flex-shrink-0">
+              <div class="icon-border-glow"></div>
+              <div class="icon-inner">
+                <img src="static/icons/market.svg" class="w-10 h-10 filter brightness-110 transition-all duration-300"
+                  alt="Marketing Analytics">
+              </div>
+            </div>
+            <div class="min-w-0">
+              <h3 class="text-lg font-bold text-white tracking-tight">
+                AI Business Intelligence Analyst Co-pilot
+              </h3>
+              <span
+                class="agent-status text-xs text-gray-400 font-mono transition-colors duration-300 bg-gray-900/50 rounded-full px-2 py-1 inline-block mt-1">
+                ◉ 4 AGENTS ACTIVE
+              </span>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="text-sm text-gray-300 leading-relaxed">
+            An interactive AI Copilot for business intelligence. Orchestrates natural language SQL agents, data
+            validation, and visualization modules to let you query, analyze, and visualize any business database with
+            plain English—no manual SQL required.
+          </p>
+
+          <!-- Process Flow -->
+          <div class="flex flex-wrap items-center gap-2 text-xs text-gray-400 font-mono">
+            <span>Data ingestion</span>
+            <span>→</span>
+            <span>Analysis</span>
+            <span>→</span>
+            <span>Insights</span>
+            <span>→</span>
+            <span>Visualization</span>
+          </div>
+
+          <!-- Agent Pills -->
+          <div class="space-y-2">
+            <div class="text-xs text-gray-300 font-mono tracking-wider">ORCHESTRATOR: LANNON</div>
+            <div class="flex flex-wrap gap-2">
+              <!-- SQL Agent -->
+              <div
+                class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-1">
+                <img src="static/images/agent4.jpg"
+                  class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300"
+                  alt="SQL Agent">
+                <span class="text-xs text-white font-medium">SQL Agent</span>
+                <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
+              </div>
+              <!-- Data Validation Agent -->
+              <div
+                class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform -rotate-1">
+                <img src="static/images/agent6.jpg"
+                  class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300"
+                  alt="Data Validation">
+                <span class="text-xs text-white font-medium">Validation</span>
+                <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
+              </div>
+              <!-- Visualization Agent -->
+              <div
+                class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-2">
+                <img src="static/images/agent1.jpg"
+                  class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300"
+                  alt="Visualization Agent">
+                <span class="text-xs text-white font-medium">Charting</span>
+                <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
+              </div>
+
+              <div
+                class="flex items-center space-x-2 bg-gray-900/70 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/20 transform rotate-2">
+                <img src="static/images/agent1.jpg"
+                  class="agent-border w-4 h-4 rounded-full border border-white/30 transition-all duration-300"
+                  alt="Visualization Agent">
+                <span class="text-xs text-white font-medium">Visual</span>
+                <span class="agent-status text-xs text-gray-400 transition-colors duration-300">●</span>
+              </div>
+            </div>
+
+
+          </div>
+
+          <!-- Status -->
+
+        </div>
+
+        <!-- Card Footer with Divider and Centered Circle Button -->
+        <div class="-mt-5 relative z-10 pt-4 flex items-center justify-center">
+          <!-- Left divider line -->
+          <div class="flex-1 border-t border-white/20"></div>
+
+          <!-- Centered Circle Button -->
+          <a href="/blog/marketing-analytics-team" class="
+      mx-3
+      flex items-center justify-center
+      w-12 h-12
+      rounded-full
+      border border-white/30
+      shadow-lg
+      backdrop-blur-xl
+      bg-white/5
+      text-indigo-400
+      hover:text-white
+      hover:bg-indigo-400/10
+      hover:border-white/80
+      hover:shadow-2xl
+      focus:outline-none
+      focus:ring-2 focus:ring-indigo-400/40
+      transition-all duration-300
+      hover:scale-110 active:scale-90
+      text-xs font-mono tracking-wider
+    " style="background: rgba(255,255,255,0.05);" aria-label="Read Playbook" title="Read Playbook"
+            onclick="event.stopPropagation();">
+            <!-- Book Icon (or your preferred icon) -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 20l-8-4V6l8 4m0 10l8-4V6l-8 4m0 10V10" />
+            </svg>
+          </a>
+
+          <!-- Right divider line -->
+          <div class="flex-1 border-t border-white/20"></div>
+        </div>
+      </div>
+
+          <!-- Status -->
+          <div
+            class="workflow-border bg-gray-900/70 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/20 transition-all duration-300">
+            <div class="flex items-center justify-between">
+              <span
+                class="workflow-status-text text-xs text-gray-300 font-bold tracking-wide transition-colors duration-300">WORKFLOW
+                STATUS</span>
+              <div class="flex items-center space-x-2">
+                <span
+                  class="workflow-status-dot w-2 h-2 bg-white rounded-full animate-pulse transition-colors duration-300"></span>
+                <span
+                  class="workflow-status-text text-xs text-gray-300 font-mono transition-colors duration-300">ACTIVE</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Status -->
-        <div class="workflow-border bg-gray-900/70 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/20 transition-all duration-300">
-          <div class="flex items-center justify-between">
-            <span class="workflow-status-text text-xs text-gray-300 font-bold tracking-wide transition-colors duration-300">WORKFLOW STATUS</span>
-            <div class="flex items-center space-x-2">
-              <span class="workflow-status-dot w-2 h-2 bg-white rounded-full animate-pulse transition-colors duration-300"></span>
-              <span class="workflow-status-text text-xs text-gray-300 font-mono transition-colors duration-300">ACTIVE</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <div class="relative z-10 pt-4 mt-4 md:mt-6 border-t border-white/20
-                  text-xs text-gray-400 font-mono flex justify-center sm:justify-between">
-
-        <!-- hide on phones -->
-        <span class="hidden sm:inline">SYS-ID: TEAM-001</span>
-
-        <!-- always visible -->
-        <a 
-          href="/blog/playbook3.html" 
-          class="text-gray-400 hover:text-white transition-colors duration-200"
-          onclick="event.stopPropagation();">
-          [READ_PLAYBOOK]
-        </a>
-
-        <!-- hide on phones -->
-        <span class="hidden sm:inline">SECTOR: MARKETING</span>
-      </div>
-
-    </div>
-
-    <!-- Fourth Card Placeholder (for future expansion) -->
-    <div class="workflow-card group relative w-full bg-white/5 backdrop-blur-xl border border-white/20 border-dashed rounded-2xl p-4 md:p-8 shadow-2xl transition-all duration-500 ease-out hover:shadow-xl hover:border-white/30 cursor-pointer overflow-hidden opacity-60">
-
-
-      <!-- 🔥 ADD THIS GLOW ELEMENT -->
-      <div class="card-glow"></div>
-
-      <!-- Subtle background glow -->
-      <div class="workflow-glow absolute inset-0 bg-gradient-to-r from-white/5 to-gray-500/5 rounded-2xl opacity-0 transition-opacity duration-500"></div>
-
-      <!-- Card Content -->
-      <div class="relative z-10 flex flex-col space-y-4">
-        <!-- Icon and Title Row -->
-        <div class="flex items-center space-x-4">
-          <div class="relative w-16 h-16 rounded-full bg-gray-700/50 border border-white/20 border-dashed flex items-center justify-center backdrop-blur-sm flex-shrink-0">
-            <div class="icon-border-glow"></div>
-            <div class="icon-inner">
-              <span class="text-2xl text-gray-400">+</span>
-            </div>
-          </div>
-          <div class="min-w-0">
-            <h3 class="text-lg font-bold text-gray-400 tracking-tight">More Teams Coming Soon</h3>
-            <span class="agent-status text-xs text-gray-500 font-mono transition-colors duration-300 bg-gray-900/50 rounded-full px-2 py-1 inline-block mt-1">◉ EXPANDING</span>
-          </div>
-        </div>
-
-        <!-- Description -->
-        <p class="text-sm text-gray-400 leading-relaxed">
-          Additional AI workflow teams are in development. Stay tuned for more specialized agent orchestrations.
-        </p>
-
-        <!-- Process Flow -->
-        <div class="flex flex-wrap items-center gap-2 text-xs text-gray-500 font-mono">
-          <span>Planning</span>
-          <span>→</span>
-          <span>Development</span>
-          <span>→</span>
-          <span>Testing</span>
-          <span>→</span>
-          <span>Launch</span>
-        </div>
-
-        <!-- Status -->
-        <div class="workflow-border bg-gray-900/70 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/20 transition-all duration-300">
-          <div class="flex items-center justify-between">
-            <span class="workflow-status-text text-xs text-gray-400 font-bold tracking-wide transition-colors duration-300">WORKFLOW STATUS</span>
-            <div class="flex items-center space-x-2">
-              <span class="workflow-status-dot w-2 h-2 bg-gray-500 rounded-full transition-colors duration-300"></span>
-              <span class="workflow-status-text text-xs text-gray-400 font-mono transition-colors duration-300">PLANNING</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <div class="relative z-10 pt-4 mt-4 md:mt-6 border-t border-white/20 text-xs text-gray-500 font-mono flex justify-between">
-        <span>SYS-ID: TEAM-004</span>
-        <span>SECTOR: TBD</span>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
 
   <!-- Contact Card Section -->
@@ -1575,7 +1719,8 @@ and spark curiosity.
     </div>
 
     <!-- Contact Card -->
-<div class="contact-card relative z-10 w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl p-8 shadow-2xl text-left space-y-6 transition-transform duration-300 ease-out will-change-transform">
+    <div
+      class="contact-card relative z-10 w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl p-8 shadow-2xl text-left space-y-6 transition-transform duration-300 ease-out will-change-transform">
 
       <!-- Header -->
       <div class="flex items-center justify-between">
@@ -1627,7 +1772,7 @@ and spark curiosity.
       <img src="/static/images/sat.png" alt="Futuristic Spaceship" class="max-w-md opacity-30" />
     </div>
 
-        <div
+    <div
       class="absolute translate-x-6/2 w-[620px] h-[620px] rounded-full bg-indigo-400/5 blur-[80px] z-10 pointer-events-none">
     </div>
   </section>
@@ -1655,131 +1800,131 @@ and spark curiosity.
   <script src="{{ url_for('static', filename='js/tilt.js') }}"></script>
   <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
   <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const typeTarget = document.getElementById("typewriter");
+    document.addEventListener("DOMContentLoaded", () => {
+      const typeTarget = document.getElementById("typewriter");
 
-  const states = [
-    `Good AI doesn't impress.\nIt gets out of the way.\nIt helps people think.`,
-    `Most products talk too much.\nThe best ones listen quietly.\nThat's where trust begins.`,
-    `Data isn't insight.\nIt's just weight.\nHow you shape it matters.`,
-    `Uptime is easy.\nClarity under pressure isn't.\nThat's what I build for.`,
-    `The more choices you give,\nthe less people choose.\nDesign should know that.`,
-    `Every system lies a little.\nIt's my job to know where.\nAnd fix it.`,
-    `Not every problem needs AI.\nSometimes it just needs care.\nI'm okay with that.`,
-    `I've learned to value silence.\nIn code, in UX,\nin how we ship.`,
-    `Frameworks change.\nTech stacks come and go.\nBut clarity stays.`,
-    `When people feel calm,\nthey think better.\nI design for that.`,
-    `Every tool makes tradeoffs.\nI just want to know mine.\nAnd own them.`,
-    `A model is only as useful\nas the questions it's built around.\nThat's where I start.`,
-    `An LLM isn't intelligence.\nIt's compression.\nUnderstanding lives upstream.`,
-    `I build with guardrails in mind.\nNot just for users,\nbut for future me.`,
-    `Most pipelines drift over time.\nI monitor behavior,\nnot just metrics.`,
-    `The backend isn't magic.\nIt's tradeoffs made quietly.\nAnd I own every one.`,
-    `Latency matters.\nBut confidence matters more.\nEspecially in AI.`,
-    `I've written code I no longer understand.\nNow I write less,\nand document more.`,
-    `Not all APIs are bridges.\nSome are landmines.\nI build the first kind.`,
-    `Most errors hide in edge cases.\nI go looking for them,\nbefore they find users.`,
-    `Logs are conversations.\nIf you know how to read them,\nthey tell you what's next.`,
-    `I used to deploy blindly.\nNow I deploy with observability.\nIt feels like maturity.`,
-    `You can't automate what you don't understand.\nSo I map before I build.\nEvery time.`,
-    `I work with models.\nBut I design the surrounding system\nto keep them honest.`,
-    `I don't just handle data.\nI listen to it.\nStructure tells a story.`,
-    `AI isn't the hard part.\nIntegration is.\nThat's where systems fail.`,
-    `I measure performance.\nBut I design for resilience.\nOne bad spike shouldn't sink you.`,
-    `Real scalability\nis about knowing when not to scale.\nAnd saying no.`,
-    `Data Forge taught me this:\nSpeed isn't power.\nClarity is.`,
-    `Latency is easy to track.\nConfusion isn't.\nThat's the harder bug.`,
-    `You can't scale noise.\nYou can only scale clarity.\nThat's product work.`,
-    `A system should teach you\nhow to use it.\nQuietly, in motion.`,
-    `If the feature needs explaining,\nit probably needs deleting.\nI've learned to let go.`,
-    `The best decisions I've made\nweren't clever.\nThey were honest.`,
-    `Users don't care about models.\nThey care about results.\nI never forget that.`,
-    `Most teams overbuild.\nThe best ones remove.\nSubtraction is design.`,
-    `I'd rather ship late\nthan ship forgettable.\nDeadlines don't remember.`,
-    `I test ideas with questions,\nnot code.\nCode comes second.`,
-    `Clean design isn't polish.\nIt's respect.\nFor the person using it.`,
-    `I don't chase perfect.\nI chase patterns.\nPatterns tell the truth.`,
-    `I've built for silence.\nWhen nothing breaks,\nyou did it right.`,
-    `Not everything needs AI.\nBut everything needs intention.\nThat's where I start.`,
-    `Sometimes I delete more than I ship.\nThat's progress too.\nThat's taste.`
-  ];
+      const states = [
+        `Good AI doesn't impress.\nIt gets out of the way.\nIt helps people think.`,
+        `Most products talk too much.\nThe best ones listen quietly.\nThat's where trust begins.`,
+        `Data isn't insight.\nIt's just weight.\nHow you shape it matters.`,
+        `Uptime is easy.\nClarity under pressure isn't.\nThat's what I build for.`,
+        `The more choices you give,\nthe less people choose.\nDesign should know that.`,
+        `Every system lies a little.\nIt's my job to know where.\nAnd fix it.`,
+        `Not every problem needs AI.\nSometimes it just needs care.\nI'm okay with that.`,
+        `I've learned to value silence.\nIn code, in UX,\nin how we ship.`,
+        `Frameworks change.\nTech stacks come and go.\nBut clarity stays.`,
+        `When people feel calm,\nthey think better.\nI design for that.`,
+        `Every tool makes tradeoffs.\nI just want to know mine.\nAnd own them.`,
+        `A model is only as useful\nas the questions it's built around.\nThat's where I start.`,
+        `An LLM isn't intelligence.\nIt's compression.\nUnderstanding lives upstream.`,
+        `I build with guardrails in mind.\nNot just for users,\nbut for future me.`,
+        `Most pipelines drift over time.\nI monitor behavior,\nnot just metrics.`,
+        `The backend isn't magic.\nIt's tradeoffs made quietly.\nAnd I own every one.`,
+        `Latency matters.\nBut confidence matters more.\nEspecially in AI.`,
+        `I've written code I no longer understand.\nNow I write less,\nand document more.`,
+        `Not all APIs are bridges.\nSome are landmines.\nI build the first kind.`,
+        `Most errors hide in edge cases.\nI go looking for them,\nbefore they find users.`,
+        `Logs are conversations.\nIf you know how to read them,\nthey tell you what's next.`,
+        `I used to deploy blindly.\nNow I deploy with observability.\nIt feels like maturity.`,
+        `You can't automate what you don't understand.\nSo I map before I build.\nEvery time.`,
+        `I work with models.\nBut I design the surrounding system\nto keep them honest.`,
+        `I don't just handle data.\nI listen to it.\nStructure tells a story.`,
+        `AI isn't the hard part.\nIntegration is.\nThat's where systems fail.`,
+        `I measure performance.\nBut I design for resilience.\nOne bad spike shouldn't sink you.`,
+        `Real scalability\nis about knowing when not to scale.\nAnd saying no.`,
+        `Data Forge taught me this:\nSpeed isn't power.\nClarity is.`,
+        `Latency is easy to track.\nConfusion isn't.\nThat's the harder bug.`,
+        `You can't scale noise.\nYou can only scale clarity.\nThat's product work.`,
+        `A system should teach you\nhow to use it.\nQuietly, in motion.`,
+        `If the feature needs explaining,\nit probably needs deleting.\nI've learned to let go.`,
+        `The best decisions I've made\nweren't clever.\nThey were honest.`,
+        `Users don't care about models.\nThey care about results.\nI never forget that.`,
+        `Most teams overbuild.\nThe best ones remove.\nSubtraction is design.`,
+        `I'd rather ship late\nthan ship forgettable.\nDeadlines don't remember.`,
+        `I test ideas with questions,\nnot code.\nCode comes second.`,
+        `Clean design isn't polish.\nIt's respect.\nFor the person using it.`,
+        `I don't chase perfect.\nI chase patterns.\nPatterns tell the truth.`,
+        `I've built for silence.\nWhen nothing breaks,\nyou did it right.`,
+        `Not everything needs AI.\nBut everything needs intention.\nThat's where I start.`,
+        `Sometimes I delete more than I ship.\nThat's progress too.\nThat's taste.`
+      ];
 
-  let currentState = 0;
-  let hasUserInteracted = false; // 🔥 Track user interaction
-  let rotationTimeout = null; // 🔥 Track the rotation timer
+      let currentState = 0;
+      let hasUserInteracted = false; // 🔥 Track user interaction
+      let rotationTimeout = null; // 🔥 Track the rotation timer
 
-  function simulateChatGPTStyleFadeMultiLine(textBlock, el) {
-    el.innerHTML = "";
-    const lines = textBlock.split("\n");
-    let delay = 0;
+      function simulateChatGPTStyleFadeMultiLine(textBlock, el) {
+        el.innerHTML = "";
+        const lines = textBlock.split("\n");
+        let delay = 0;
 
-    lines.forEach(line => {
-      const lineWrapper = document.createElement("div");
-      lineWrapper.className = "mb-1";
+        lines.forEach(line => {
+          const lineWrapper = document.createElement("div");
+          lineWrapper.className = "mb-1";
 
-      const words = line.split(" ");
-      words.forEach(word => {
-        const span = document.createElement("span");
-        span.textContent = word;
-        span.style.opacity = 0;
-        span.style.transform = "translateY(4px)";
-        span.style.display = "inline-block";
-        span.style.marginRight = "0.5ch";
-        span.style.transition = "opacity 0.9s ease, transform 0.5s ease";
+          const words = line.split(" ");
+          words.forEach(word => {
+            const span = document.createElement("span");
+            span.textContent = word;
+            span.style.opacity = 0;
+            span.style.transform = "translateY(4px)";
+            span.style.display = "inline-block";
+            span.style.marginRight = "0.5ch";
+            span.style.transition = "opacity 0.9s ease, transform 0.5s ease";
 
-        lineWrapper.appendChild(span);
+            lineWrapper.appendChild(span);
+
+            setTimeout(() => {
+              span.style.opacity = 1;
+              span.style.transform = "translateY(0)";
+            }, delay);
+
+            delay += 150;
+          });
+
+          el.appendChild(lineWrapper);
+        });
+      }
+
+      function updateText() {
+        // 🔥 STOP rotation if user has interacted
+        if (hasUserInteracted) return;
+
+        // Transition out
+        typeTarget.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
+        typeTarget.style.opacity = '0';
+        typeTarget.style.transform = 'translateY(10px)';
 
         setTimeout(() => {
-          span.style.opacity = 1;
-          span.style.transform = "translateY(0)";
-        }, delay);
+          // Reset animation target
+          typeTarget.style.opacity = '1';
+          typeTarget.style.transform = 'translateY(0)';
 
-        delay += 150;
-      });
+          // Fade in next block with word-by-word animation
+          simulateChatGPTStyleFadeMultiLine(states[currentState], typeTarget);
+          currentState = (currentState + 1) % states.length;
 
-      el.appendChild(lineWrapper);
+          // 🔥 Store the timeout so we can clear it later
+          rotationTimeout = setTimeout(updateText, 6000);
+        }, 400);
+      }
+
+      // 🔥 Function to stop rotation permanently
+      function stopRotation() {
+        hasUserInteracted = true;
+        if (rotationTimeout) {
+          clearTimeout(rotationTimeout);
+          rotationTimeout = null;
+        }
+      }
+
+      // 🔥 Make stopRotation available globally for the send button
+      window.stopTypewriterRotation = stopRotation;
+
+      // Start after 1 second
+      setTimeout(updateText, 1000);
     });
-  }
-
-  function updateText() {
-    // 🔥 STOP rotation if user has interacted
-    if (hasUserInteracted) return;
-
-    // Transition out
-    typeTarget.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
-    typeTarget.style.opacity = '0';
-    typeTarget.style.transform = 'translateY(10px)';
-
-    setTimeout(() => {
-      // Reset animation target
-      typeTarget.style.opacity = '1';
-      typeTarget.style.transform = 'translateY(0)';
-
-      // Fade in next block with word-by-word animation
-      simulateChatGPTStyleFadeMultiLine(states[currentState], typeTarget);
-      currentState = (currentState + 1) % states.length;
-
-      // 🔥 Store the timeout so we can clear it later
-      rotationTimeout = setTimeout(updateText, 6000);
-    }, 400);
-  }
-
-  // 🔥 Function to stop rotation permanently
-  function stopRotation() {
-    hasUserInteracted = true;
-    if (rotationTimeout) {
-      clearTimeout(rotationTimeout);
-      rotationTimeout = null;
-    }
-  }
-
-  // 🔥 Make stopRotation available globally for the send button
-  window.stopTypewriterRotation = stopRotation;
-
-  // Start after 1 second
-  setTimeout(updateText, 1000);
-});
-</script>
+  </script>
 
 
   <script>
@@ -1804,119 +1949,327 @@ document.addEventListener("DOMContentLoaded", () => {
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
-document.addEventListener("DOMContentLoaded", () => {
-  // Handle workflow card clicks
-  document.querySelectorAll(".workflow-card").forEach(card => {
-    card.addEventListener("click", () => {
-      // Remove active class from all workflow cards
-      document.querySelectorAll(".workflow-card").forEach(c => c.classList.remove("active"));
-      
-      // Add active class to clicked card
-      card.classList.add("active");
+    document.addEventListener("DOMContentLoaded", () => {
+      // Handle workflow card clicks
+      document.querySelectorAll(".workflow-card").forEach(card => {
+        card.addEventListener("click", () => {
+          // Remove active class from all workflow cards
+          document.querySelectorAll(".workflow-card").forEach(c => c.classList.remove("active"));
+
+          // Add active class to clicked card
+          card.classList.add("active");
+        });
+      });
     });
-  });
-});
 
 
-</script>
+  </script>
 
 
-<script>
-// 🔥 MOVE THIS ENTIRE BLOCK INSIDE DOMContentLoaded
-document.addEventListener("DOMContentLoaded", () => {
-  // 🔥 MAIN SEND BUTTON - Replace "Sending..." with dots
-  const sendButton = document.getElementById('query-send');
-  const inputField = document.getElementById('user-query');
+  <script>
+    // 🔥 MOVE THIS ENTIRE BLOCK INSIDE DOMContentLoaded
+    document.addEventListener("DOMContentLoaded", () => {
+      // 🔥 MAIN SEND BUTTON - Replace "Sending..." with dots
+      const sendButton = document.getElementById('query-send');
+      const inputField = document.getElementById('user-query');
 
-  if (!sendButton || !inputField) {
-    console.warn("Send button or input field not found!");
-    return;
-  }
+      if (!sendButton || !inputField) {
+        console.warn("Send button or input field not found!");
+        return;
+      }
 
-  sendButton.addEventListener('click', async () => {
-    const userInput = inputField.value.trim();
+      sendButton.addEventListener('click', async () => {
+        const userInput = inputField.value.trim();
 
-    if (!userInput) {
-      console.warn("Empty input. Not sending.");
-      return;
-    }
+        if (!userInput) {
+          console.warn("Empty input. Not sending.");
+          return;
+        }
 
-    // 🔥 STOP the rotation permanently when user interacts
-    if (window.stopTypewriterRotation) {
-      window.stopTypewriterRotation();
-    }
+        // 🔥 STOP the rotation permanently when user interacts
+        if (window.stopTypewriterRotation) {
+          window.stopTypewriterRotation();
+        }
 
-    // 🔥 REPLACE BUTTON TEXT WITH ANIMATED DOTS
-    sendButton.innerHTML = `
+        // 🔥 REPLACE BUTTON TEXT WITH ANIMATED DOTS
+        sendButton.innerHTML = `
       <div class="flex items-center justify-center space-x-1">
         <div class="typing-ball dot1"></div>
         <div class="typing-ball dot2"></div>
         <div class="typing-ball dot3"></div>
       </div>
     `;
-    sendButton.disabled = true;
+        sendButton.disabled = true;
 
-    try {
-      const response = await fetch("/ask", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ query: userInput })
+        try {
+          const response = await fetch("/ask", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ query: userInput })
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            console.error("AI Error:", data.error);
+            const typewriter = document.getElementById('typewriter');
+            simulateChatGPTStyleFadeMultiLine("Sorry, something went wrong. Please try again.", typewriter);
+            return;
+          }
+
+          console.log("AI Response:", data.response);
+
+          // 🔥 Show response with animation
+          const typewriter = document.getElementById('typewriter');
+          typewriter.style.transition = 'opacity 0.3s ease-in-out';
+          typewriter.style.opacity = '0';
+
+          setTimeout(() => {
+            simulateChatGPTStyleFadeMultiLine(data.response, typewriter);
+            typewriter.style.opacity = '1';
+          }, 300);
+
+          inputField.value = '';
+
+        } catch (err) {
+          console.error("Fetch failed:", err);
+          const typewriter = document.getElementById('typewriter');
+          simulateChatGPTStyleFadeMultiLine("Network error. Please check your connection.", typewriter);
+        } finally {
+          // 🔥 RESTORE ORIGINAL BUTTON TEXT
+          sendButton.innerHTML = "Send";
+          sendButton.disabled = false;
+        }
       });
 
-      const data = await response.json();
+      // Handle Enter key
+      inputField.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          sendButton.click();
+        }
+      });
 
-      if (!response.ok) {
-        console.error("AI Error:", data.error);
-        const typewriter = document.getElementById('typewriter');
-        simulateChatGPTStyleFadeMultiLine("Sorry, something went wrong. Please try again.", typewriter);
-        return;
+      // 🔥 Make sure this function is available globally
+      window.simulateChatGPTStyleFadeMultiLine = function (textBlock, el) {
+        el.innerHTML = "";
+        const lines = textBlock.split("\n");
+        let delay = 0;
+
+        lines.forEach(line => {
+          const lineWrapper = document.createElement("div");
+          lineWrapper.className = "mb-1";
+
+          const words = line.split(" ");
+          words.forEach(word => {
+            const span = document.createElement("span");
+            span.textContent = word;
+            span.style.opacity = 0;
+            span.style.transform = "translateY(4px)";
+            span.style.display = "inline-block";
+            span.style.marginRight = "0.5ch";
+            span.style.transition = "opacity 0.9s ease, transform 0.5s ease";
+
+            lineWrapper.appendChild(span);
+
+            setTimeout(() => {
+              span.style.opacity = 1;
+              span.style.transform = "translateY(0)";
+            }, delay);
+
+            delay += 150;
+          });
+
+          el.appendChild(lineWrapper);
+        });
+      };
+    });
+  </script>
+
+
+  <script>
+    // Handle Enter key
+    inputField.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendButton.click();
       }
+    });
 
-      console.log("AI Response:", data.response);
-      
-      // 🔥 Show response with animation
-      const typewriter = document.getElementById('typewriter');
-      typewriter.style.transition = 'opacity 0.3s ease-in-out';
-      typewriter.style.opacity = '0';
-      
-      setTimeout(() => {
-        simulateChatGPTStyleFadeMultiLine(data.response, typewriter);
-        typewriter.style.opacity = '1';
-      }, 300);
+    // 🔥 Make sure this function is available globally
+    function simulateChatGPTStyleFadeMultiLine(textBlock, el) {
+      el.innerHTML = "";
+      const lines = textBlock.split("\n");
+      let delay = 0;
 
-      inputField.value = '';
+      lines.forEach(line => {
+        const lineWrapper = document.createElement("div");
+        lineWrapper.className = "mb-1";
 
-    } catch (err) {
-      console.error("Fetch failed:", err);
-      const typewriter = document.getElementById('typewriter');
-      simulateChatGPTStyleFadeMultiLine("Network error. Please check your connection.", typewriter);
-    } finally {
-      // 🔥 RESTORE ORIGINAL BUTTON TEXT
-      sendButton.innerHTML = "Send";
-      sendButton.disabled = false;
+        const words = line.split(" ");
+        words.forEach(word => {
+          const span = document.createElement("span");
+          span.textContent = word;
+          span.style.opacity = 0;
+          span.style.transform = "translateY(4px)";
+          span.style.display = "inline-block";
+          span.style.marginRight = "0.5ch";
+          span.style.transition = "opacity 0.9s ease, transform 0.5s ease";
+
+          lineWrapper.appendChild(span);
+
+          setTimeout(() => {
+            span.style.opacity = 1;
+            span.style.transform = "translateY(0)";
+          }, delay);
+
+          delay += 150;
+        });
+
+        el.appendChild(lineWrapper);
+      });
     }
-  });
+  </script>
 
-  // Handle Enter key
-  inputField.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      sendButton.click();
-    }
-  });
+  <script>
+    let lastAgentResponses = {};
+    let isAgentChatOpen = false; // track the input open state globally
 
-  // 🔥 Make sure this function is available globally
-  window.simulateChatGPTStyleFadeMultiLine = function(textBlock, el) {
-    el.innerHTML = "";
-    const lines = textBlock.split("\n");
-    let delay = 0;
+    // === AGENT CARD CLICK HANDLER ===
+    document.querySelectorAll(".agent-card").forEach(card => {
+      card.addEventListener("click", () => {
+        const name = card.dataset.agentName;
+        const role = card.dataset.agentRole;
+        const image = card.dataset.agentImage;
 
-    lines.forEach(line => {
-      const lineWrapper = document.createElement("div");
-      lineWrapper.className = "mb-1";
+        // Card select
+        document.querySelectorAll(".agent-card").forEach(c => c.classList.remove("selected"));
+        card.classList.add("selected");
 
-      const words = line.split(" ");
+        // ==== CLOSE chat input and reset SVG on card change ====
+        const agentInputSection = document.getElementById('agent-input-section');
+        const agentChatButton = document.getElementById('agent-chat-btn');
+        const agentSvg = agentChatButton.querySelector('svg');
+        isAgentChatOpen = false;
+        agentInputSection.classList.remove('opacity-100', 'scale-y-100');
+        agentInputSection.classList.add('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
+        agentSvg.classList.remove('rotate-225', 'cross');
+
+        // Animate card change
+        const agentCard = document.getElementById('agent-display-card');
+        const agentNameEl = document.querySelector("#agent-name");
+        const agentRoleEl = document.querySelector("#agent-role");
+        const agentImgEl = document.getElementById("agent-img");
+        const agentTypewriterEl = document.getElementById("agent-typewriter");
+
+        agentCard.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+        agentCard.style.opacity = '0';
+        agentCard.style.transform = 'translateY(30px) scale(0.95)';
+
+        setTimeout(() => {
+          if (agentNameEl) agentNameEl.textContent = name;
+          if (agentRoleEl) agentRoleEl.textContent = role;
+          if (agentImgEl) agentImgEl.src = image;
+          if (agentTypewriterEl) agentTypewriterEl.textContent = "";
+
+          agentCard.style.opacity = '1';
+          agentCard.style.transform = 'translateY(-4px) scale(1)';
+
+          setTimeout(() => {
+            const messageToShow = lastAgentResponses[name] || getAgentIntro(name);
+            simulateChatGPTStyleFade(messageToShow);
+          }, 200);
+
+        }, 500);
+      });
+    });
+
+    // === AGENT CHAT BUTTON + SEND FUNCTIONALITY ===
+    document.addEventListener('DOMContentLoaded', () => {
+      const agentChatButton = document.getElementById('agent-chat-btn');
+      const agentSvg = agentChatButton.querySelector('svg');
+      const agentInputSection = document.getElementById('agent-input-section');
+      const agentRotatingText = document.querySelector('.agent-rotating-text'); // 🔥 ADD THIS
+
+      agentChatButton.addEventListener('click', () => {
+        isAgentChatOpen = !isAgentChatOpen;
+        agentSvg.classList.toggle('rotate-225');
+        agentSvg.classList.toggle('cross');
+
+        // 🔥 ADD ROTATING TEXT CONTROL
+        if (agentRotatingText) {
+          if (isAgentChatOpen) {
+            agentRotatingText.classList.add('hidden'); // Fade out when opening
+          } else {
+            agentRotatingText.classList.remove('hidden'); // Fade in when closing
+          }
+        }
+
+        agentInputSection.classList.toggle('opacity-0', !isAgentChatOpen);
+        agentInputSection.classList.toggle('pointer-events-none', !isAgentChatOpen);
+        agentInputSection.classList.toggle('opacity-100', isAgentChatOpen);
+        agentInputSection.classList.toggle('scale-y-100', isAgentChatOpen);
+
+        if (isAgentChatOpen) {
+          const agentName = document.querySelector("#agent-name").textContent;
+          const agentInput = document.getElementById('agent-query');
+          agentInput.placeholder = `Chat with ${agentName}...`;
+          setTimeout(() => agentInput.focus(), 300);
+        }
+      });
+
+      document.getElementById('agent-query').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') document.getElementById('agent-send').click();
+      });
+
+      document.getElementById('agent-send').addEventListener('click', async () => {
+        const agentQuery = document.getElementById('agent-query').value.trim();
+        const sendButton = document.getElementById('agent-send');
+        if (!agentQuery) return;
+        const agentName = document.querySelector("#agent-name").textContent;
+
+        sendButton.textContent = "Sending...";
+        sendButton.disabled = true;
+
+        try {
+          const response = await fetch("/ask_agent", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ query: agentQuery, agent_name: agentName })
+          });
+          const data = await response.json();
+
+          if (!response.ok) {
+            simulateChatGPTStyleFade("Sorry, something went wrong. Please try again.");
+            return;
+          }
+
+          const agentTypewriter = document.getElementById('agent-typewriter');
+          agentTypewriter.style.transition = 'opacity 0.3s ease-in-out';
+          agentTypewriter.style.opacity = '0';
+          setTimeout(() => {
+            simulateChatGPTStyleFade(data.response);
+            agentTypewriter.style.opacity = '1';
+          }, 300);
+
+          lastAgentResponses[agentName] = data.response;
+          document.getElementById('agent-query').value = '';
+        } catch (err) {
+          simulateChatGPTStyleFade("Network error. Please check your connection.");
+        } finally {
+          sendButton.textContent = "Send";
+          sendButton.disabled = false;
+        }
+      });
+    });
+
+    // === TYPEWRITER ANIMATION & AGENT INTRO ===
+    function simulateChatGPTStyleFade(text) {
+      const el = document.getElementById("agent-typewriter");
+      if (!el) return;
+      el.innerHTML = "";
+      const words = text.split(" ");
+      let delay = 0;
       words.forEach(word => {
         const span = document.createElement("span");
         span.textContent = word;
@@ -1924,9 +2277,8 @@ document.addEventListener("DOMContentLoaded", () => {
         span.style.transform = "translateY(4px)";
         span.style.display = "inline-block";
         span.style.marginRight = "0.5ch";
-        span.style.transition = "opacity 0.9s ease, transform 0.5s ease";
-
-        lineWrapper.appendChild(span);
+        span.style.transition = "opacity 0.9s ease, transform 0.9s ease";
+        el.appendChild(span);
 
         setTimeout(() => {
           span.style.opacity = 1;
@@ -1935,309 +2287,102 @@ document.addEventListener("DOMContentLoaded", () => {
 
         delay += 150;
       });
+    }
 
-      el.appendChild(lineWrapper);
-    });
-  };
-});
-</script>
+    function getAgentIntro(agentName) {
+      const intros = {
+        "Data Visualization AI Agent":
+          "Nova • Turns natural-language questions into interactive, drillable charts and dashboards your team can act on. Instantly spot trends and insights without writing code.",
 
+        "Data Wrangling AI Agent":
+          "Orion • Cleans, merges, validates, and reshapes messy, multi-source data into consistent, analysis-ready tables. Spend less time cleaning and more time analyzing.",
 
-<script>
-// Handle Enter key
-inputField.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    sendButton.click();
-  }
-});
+        "Feature Engineering AI Agent":
+          "Vega • Extracts high-signal features like encodings and aggregations to lift model performance. Quickly turn raw data into machine learning-ready inputs.",
 
-// 🔥 Make sure this function is available globally
-function simulateChatGPTStyleFadeMultiLine(textBlock, el) {
-  el.innerHTML = "";
-  const lines = textBlock.split("\n");
-  let delay = 0;
+        "Business SQL Agent":
+          "Cosmo • Translates business questions into optimized SQL and decision-ready summaries. Get fast, reliable data answers without knowing SQL.",
 
-  lines.forEach(line => {
-    const lineWrapper = document.createElement("div");
-    lineWrapper.className = "mb-1";
+        "Vector Store Q&A Agent":
+          "Luma • Retrieves grounded passages and synthesizes accurate, context-aware answers from your documents. Find what matters in large knowledge bases fast.",
 
-    const words = line.split(" ");
-    words.forEach(word => {
-      const span = document.createElement("span");
-      span.textContent = word;
-      span.style.opacity = 0;
-      span.style.transform = "translateY(4px)";
-      span.style.display = "inline-block";
-      span.style.marginRight = "0.5ch";
-      span.style.transition = "opacity 0.9s ease, transform 0.5s ease";
+        "ETL Automation Agent":
+          "Atlas • Orchestrates ingest, cleaning, schema alignment, and load jobs for reliable data pipelines. Automate and monitor ETL with minimal maintenance.",
 
-      lineWrapper.appendChild(span);
+        "LLM Evaluation Agent":
+          "Echo • Benchmarks prompts and model outputs for accuracy, regressions, and drift. Track LLM performance and spot issues before they impact users.",
 
-      setTimeout(() => {
-        span.style.opacity = 1;
-        span.style.transform = "translateY(0)";
-      }, delay);
+        "User Auth Agent":
+          "Synth • Delivers secure auth with RBAC, tokens, and sessions for your app. Scale access control and user management with peace of mind."
+      };
+      return intros[agentName] || `Hi, I'm ${agentName}, your intelligent assistant.`;
+    }
 
-      delay += 150;
+    // Select first agent card on page load
+    window.addEventListener("DOMContentLoaded", () => {
+      const firstCard = document.querySelector(".agent-card");
+      if (firstCard) firstCard.click();
     });
 
-    el.appendChild(lineWrapper);
-  });
-}
-</script>
+    // 🔥 DELETE ALL EXISTING add-thought-btn HANDLERS AND USE ONLY THIS ONE
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Setting up main button handler...'); // Debug log
 
-<script>
-let lastAgentResponses = {};
-let isAgentChatOpen = false; // track the input open state globally
+      const plusButton = document.getElementById('add-thought-btn');
+      const svg = plusButton.querySelector('svg');
+      const inputSection = document.getElementById('quote-input-section');
+      const rotatingText = document.querySelector('.rotating-text');
 
-// === AGENT CARD CLICK HANDLER ===
-document.querySelectorAll(".agent-card").forEach(card => {
-  card.addEventListener("click", () => {
-    const name = card.dataset.agentName;
-    const role = card.dataset.agentRole;
-    const image = card.dataset.agentImage;
+      console.log('Elements found:', {
+        plusButton: !!plusButton,
+        svg: !!svg,
+        inputSection: !!inputSection,
+        rotatingText: !!rotatingText
+      }); // Debug log
 
-    // Card select
-    document.querySelectorAll(".agent-card").forEach(c => c.classList.remove("selected"));
-    card.classList.add("selected");
+      let isOpen = false;
 
-    // ==== CLOSE chat input and reset SVG on card change ====
-    const agentInputSection = document.getElementById('agent-input-section');
-    const agentChatButton = document.getElementById('agent-chat-btn');
-    const agentSvg = agentChatButton.querySelector('svg');
-    isAgentChatOpen = false;
-    agentInputSection.classList.remove('opacity-100', 'scale-y-100');
-    agentInputSection.classList.add('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
-    agentSvg.classList.remove('rotate-225', 'cross');
+      if (plusButton) {
+        plusButton.addEventListener('click', () => {
+          console.log('🔥 BUTTON CLICKED! isOpen:', isOpen, 'rotatingText:', !!rotatingText);
+          isOpen = !isOpen;
 
-    // Animate card change
-    const agentCard = document.getElementById('agent-display-card');
-    const agentNameEl = document.querySelector("#agent-name");
-    const agentRoleEl = document.querySelector("#agent-role");
-    const agentImgEl = document.getElementById("agent-img");
-    const agentTypewriterEl = document.getElementById("agent-typewriter");
+          // 🔥 ICON ROTATION (plus → X)
+          if (svg) {
+            svg.classList.toggle('rotate-225');
+            svg.classList.toggle('cross');
+            console.log('Icon rotated');
+          }
 
-    agentCard.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-    agentCard.style.opacity = '0';
-    agentCard.style.transform = 'translateY(30px) scale(0.95)';
+          // 🔥 ROTATING TEXT FADE IN/OUT
+          if (rotatingText) {
+            if (isOpen) {
+              rotatingText.classList.add('hidden');
+              console.log('Rotating text hidden');
+            } else {
+              rotatingText.classList.remove('hidden');
+              console.log('Rotating text shown');
+            }
+          }
 
-    setTimeout(() => {
-      if (agentNameEl) agentNameEl.textContent = name;
-      if (agentRoleEl) agentRoleEl.textContent = role;
-      if (agentImgEl) agentImgEl.src = image;
-      if (agentTypewriterEl) agentTypewriterEl.textContent = "";
-
-      agentCard.style.opacity = '1';
-      agentCard.style.transform = 'translateY(-4px) scale(1)';
-
-      setTimeout(() => {
-        const messageToShow = lastAgentResponses[name] || getAgentIntro(name);
-        simulateChatGPTStyleFade(messageToShow);
-      }, 200);
-
-    }, 500);
-  });
-});
-
-// === AGENT CHAT BUTTON + SEND FUNCTIONALITY ===
-document.addEventListener('DOMContentLoaded', () => {
-  const agentChatButton = document.getElementById('agent-chat-btn');
-  const agentSvg = agentChatButton.querySelector('svg');
-  const agentInputSection = document.getElementById('agent-input-section');
-  const agentRotatingText = document.querySelector('.agent-rotating-text'); // 🔥 ADD THIS
-
-  agentChatButton.addEventListener('click', () => {
-    isAgentChatOpen = !isAgentChatOpen;
-    agentSvg.classList.toggle('rotate-225');
-    agentSvg.classList.toggle('cross');
-    
-    // 🔥 ADD ROTATING TEXT CONTROL
-    if (agentRotatingText) {
-      if (isAgentChatOpen) {
-        agentRotatingText.classList.add('hidden'); // Fade out when opening
-      } else {
-        agentRotatingText.classList.remove('hidden'); // Fade in when closing
-      }
-    }
-    
-    agentInputSection.classList.toggle('opacity-0', !isAgentChatOpen);
-    agentInputSection.classList.toggle('pointer-events-none', !isAgentChatOpen);
-    agentInputSection.classList.toggle('opacity-100', isAgentChatOpen);
-    agentInputSection.classList.toggle('scale-y-100', isAgentChatOpen);
-
-    if (isAgentChatOpen) {
-      const agentName = document.querySelector("#agent-name").textContent;
-      const agentInput = document.getElementById('agent-query');
-      agentInput.placeholder = `Chat with ${agentName}...`;
-      setTimeout(() => agentInput.focus(), 300);
-    }
-  });
-
-  document.getElementById('agent-query').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') document.getElementById('agent-send').click();
-  });
-
-  document.getElementById('agent-send').addEventListener('click', async () => {
-    const agentQuery = document.getElementById('agent-query').value.trim();
-    const sendButton = document.getElementById('agent-send');
-    if (!agentQuery) return;
-    const agentName = document.querySelector("#agent-name").textContent;
-
-    sendButton.textContent = "Sending...";
-    sendButton.disabled = true;
-
-    try {
-      const response = await fetch("/ask_agent", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ query: agentQuery, agent_name: agentName })
-      });
-      const data = await response.json();
-
-      if (!response.ok) {
-        simulateChatGPTStyleFade("Sorry, something went wrong. Please try again.");
-        return;
-      }
-
-      const agentTypewriter = document.getElementById('agent-typewriter');
-      agentTypewriter.style.transition = 'opacity 0.3s ease-in-out';
-      agentTypewriter.style.opacity = '0';
-      setTimeout(() => {
-        simulateChatGPTStyleFade(data.response);
-        agentTypewriter.style.opacity = '1';
-      }, 300);
-
-      lastAgentResponses[agentName] = data.response;
-      document.getElementById('agent-query').value = '';
-    } catch (err) {
-      simulateChatGPTStyleFade("Network error. Please check your connection.");
-    } finally {
-      sendButton.textContent = "Send";
-      sendButton.disabled = false;
-    }
-  });
-});
-
-// === TYPEWRITER ANIMATION & AGENT INTRO ===
-function simulateChatGPTStyleFade(text) {
-  const el = document.getElementById("agent-typewriter");
-  if (!el) return;
-  el.innerHTML = "";
-  const words = text.split(" ");
-  let delay = 0;
-  words.forEach(word => {
-    const span = document.createElement("span");
-    span.textContent = word;
-    span.style.opacity = 0;
-    span.style.transform = "translateY(4px)";
-    span.style.display = "inline-block";
-    span.style.marginRight = "0.5ch";
-    span.style.transition = "opacity 0.9s ease, transform 0.9s ease";
-    el.appendChild(span);
-
-    setTimeout(() => {
-      span.style.opacity = 1;
-      span.style.transform = "translateY(0)";
-    }, delay);
-
-    delay += 150;
-  });
-}
-
-function getAgentIntro(agentName) {
-const intros = {
-  "Data Visualization AI Agent":
-    "Nova • Turns natural-language questions into interactive, drillable charts and dashboards your team can act on. Instantly spot trends and insights without writing code.",
-
-  "Data Wrangling AI Agent":
-    "Orion • Cleans, merges, validates, and reshapes messy, multi-source data into consistent, analysis-ready tables. Spend less time cleaning and more time analyzing.",
-
-  "Feature Engineering AI Agent":
-    "Vega • Extracts high-signal features like encodings and aggregations to lift model performance. Quickly turn raw data into machine learning-ready inputs.",
-
-  "Business SQL Agent":
-    "Cosmo • Translates business questions into optimized SQL and decision-ready summaries. Get fast, reliable data answers without knowing SQL.",
-
-  "Vector Store Q&A Agent":
-    "Luma • Retrieves grounded passages and synthesizes accurate, context-aware answers from your documents. Find what matters in large knowledge bases fast.",
-
-  "ETL Automation Agent":
-    "Atlas • Orchestrates ingest, cleaning, schema alignment, and load jobs for reliable data pipelines. Automate and monitor ETL with minimal maintenance.",
-
-  "LLM Evaluation Agent":
-    "Echo • Benchmarks prompts and model outputs for accuracy, regressions, and drift. Track LLM performance and spot issues before they impact users.",
-
-  "User Auth Agent":
-    "Synth • Delivers secure auth with RBAC, tokens, and sessions for your app. Scale access control and user management with peace of mind."
-};
-  return intros[agentName] || `Hi, I'm ${agentName}, your intelligent assistant.`;
-}
-
-// Select first agent card on page load
-window.addEventListener("DOMContentLoaded", () => {
-  const firstCard = document.querySelector(".agent-card");
-  if (firstCard) firstCard.click();
-});
-
-// 🔥 DELETE ALL EXISTING add-thought-btn HANDLERS AND USE ONLY THIS ONE
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('Setting up main button handler...'); // Debug log
-  
-  const plusButton = document.getElementById('add-thought-btn');
-  const svg = plusButton.querySelector('svg');
-  const inputSection = document.getElementById('quote-input-section');
-  const rotatingText = document.querySelector('.rotating-text');
-
-  console.log('Elements found:', {
-    plusButton: !!plusButton,
-    svg: !!svg,
-    inputSection: !!inputSection,
-    rotatingText: !!rotatingText
-  }); // Debug log
-
-  let isOpen = false;
-
-  if (plusButton) {
-    plusButton.addEventListener('click', () => {
-      console.log('🔥 BUTTON CLICKED! isOpen:', isOpen, 'rotatingText:', !!rotatingText);
-      isOpen = !isOpen;
-
-      // 🔥 ICON ROTATION (plus → X)
-      if (svg) {
-        svg.classList.toggle('rotate-225');
-        svg.classList.toggle('cross');
-        console.log('Icon rotated');
-      }
-
-      // 🔥 ROTATING TEXT FADE IN/OUT
-      if (rotatingText) {
-        if (isOpen) {
-          rotatingText.classList.add('hidden');
-          console.log('Rotating text hidden');
-        } else {
-          rotatingText.classList.remove('hidden');
-          console.log('Rotating text shown');
-        }
-      }
-
-      // 🔥 INPUT BOX ANIMATION
-      if (inputSection) {
-        if (isOpen) {
-          inputSection.classList.remove('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
-          inputSection.classList.add('opacity-100', 'scale-y-100');
-        } else {
-          inputSection.classList.remove('opacity-100', 'scale-y-100');
-          inputSection.classList.add('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
-        }
+          // 🔥 INPUT BOX ANIMATION
+          if (inputSection) {
+            if (isOpen) {
+              inputSection.classList.remove('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
+              inputSection.classList.add('opacity-100', 'scale-y-100');
+            } else {
+              inputSection.classList.remove('opacity-100', 'scale-y-100');
+              inputSection.classList.add('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
+            }
+          }
+        });
       }
     });
-  }
-});
 
 
 
 
-</script>
+  </script>
 
 </body>
 
