@@ -1802,76 +1802,143 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <script>
-// 🔥 MAIN SEND BUTTON - Replace "Sending..." with dots
-const sendButton = document.getElementById('query-send');
-const inputField = document.getElementById('user-query');
+document.addEventListener("DOMContentLoaded", () => {
+  // Handle workflow card clicks
+  document.querySelectorAll(".workflow-card").forEach(card => {
+    card.addEventListener("click", () => {
+      // Remove active class from all workflow cards
+      document.querySelectorAll(".workflow-card").forEach(c => c.classList.remove("active"));
+      
+      // Add active class to clicked card
+      card.classList.add("active");
+    });
+  });
+});
+</script>
 
-sendButton.addEventListener('click', async () => {
-  const userInput = inputField.value.trim();
+<script>
+// 🔥 MOVE THIS ENTIRE BLOCK INSIDE DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => {
+  // 🔥 MAIN SEND BUTTON - Replace "Sending..." with dots
+  const sendButton = document.getElementById('query-send');
+  const inputField = document.getElementById('user-query');
 
-  if (!userInput) {
-    console.warn("Empty input. Not sending.");
+  if (!sendButton || !inputField) {
+    console.warn("Send button or input field not found!");
     return;
   }
 
-  // 🔥 STOP the rotation permanently when user interacts
-  if (window.stopTypewriterRotation) {
-    window.stopTypewriterRotation();
-  }
+  sendButton.addEventListener('click', async () => {
+    const userInput = inputField.value.trim();
 
-  // 🔥 REPLACE BUTTON TEXT WITH ANIMATED DOTS
-  sendButton.innerHTML = `
-    <div class="flex items-center justify-center space-x-1">
-      <div class="typing-ball dot1"></div>
-      <div class="typing-ball dot2"></div>
-      <div class="typing-ball dot3"></div>
-    </div>
-  `;
-  sendButton.disabled = true;
-
-  try {
-    const response = await fetch("/ask", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ query: userInput })
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.error("AI Error:", data.error);
-      const typewriter = document.getElementById('typewriter');
-      simulateChatGPTStyleFadeMultiLine("Sorry, something went wrong. Please try again.", typewriter);
+    if (!userInput) {
+      console.warn("Empty input. Not sending.");
       return;
     }
 
-    console.log("AI Response:", data.response);
-    
-    // 🔥 Show response with animation
-    const typewriter = document.getElementById('typewriter');
-    typewriter.style.transition = 'opacity 0.3s ease-in-out';
-    typewriter.style.opacity = '0';
-    
-    setTimeout(() => {
-      simulateChatGPTStyleFadeMultiLine(data.response, typewriter);
-      typewriter.style.opacity = '1';
-    }, 300);
+    // 🔥 STOP the rotation permanently when user interacts
+    if (window.stopTypewriterRotation) {
+      window.stopTypewriterRotation();
+    }
 
-    inputField.value = '';
+    // 🔥 REPLACE BUTTON TEXT WITH ANIMATED DOTS
+    sendButton.innerHTML = `
+      <div class="flex items-center justify-center space-x-1">
+        <div class="typing-ball dot1"></div>
+        <div class="typing-ball dot2"></div>
+        <div class="typing-ball dot3"></div>
+      </div>
+    `;
+    sendButton.disabled = true;
 
-  } catch (err) {
-    console.error("Fetch failed:", err);
-    const typewriter = document.getElementById('typewriter');
-    simulateChatGPTStyleFadeMultiLine("Network error. Please check your connection.", typewriter);
-  } finally {
-    // 🔥 RESTORE ORIGINAL BUTTON TEXT
-    sendButton.innerHTML = "Send";
-    sendButton.disabled = false;
-  }
+    try {
+      const response = await fetch("/ask", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ query: userInput })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error("AI Error:", data.error);
+        const typewriter = document.getElementById('typewriter');
+        simulateChatGPTStyleFadeMultiLine("Sorry, something went wrong. Please try again.", typewriter);
+        return;
+      }
+
+      console.log("AI Response:", data.response);
+      
+      // 🔥 Show response with animation
+      const typewriter = document.getElementById('typewriter');
+      typewriter.style.transition = 'opacity 0.3s ease-in-out';
+      typewriter.style.opacity = '0';
+      
+      setTimeout(() => {
+        simulateChatGPTStyleFadeMultiLine(data.response, typewriter);
+        typewriter.style.opacity = '1';
+      }, 300);
+
+      inputField.value = '';
+
+    } catch (err) {
+      console.error("Fetch failed:", err);
+      const typewriter = document.getElementById('typewriter');
+      simulateChatGPTStyleFadeMultiLine("Network error. Please check your connection.", typewriter);
+    } finally {
+      // 🔥 RESTORE ORIGINAL BUTTON TEXT
+      sendButton.innerHTML = "Send";
+      sendButton.disabled = false;
+    }
+  });
+
+  // Handle Enter key
+  inputField.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      sendButton.click();
+    }
+  });
+
+  // 🔥 Make sure this function is available globally
+  window.simulateChatGPTStyleFadeMultiLine = function(textBlock, el) {
+    el.innerHTML = "";
+    const lines = textBlock.split("\n");
+    let delay = 0;
+
+    lines.forEach(line => {
+      const lineWrapper = document.createElement("div");
+      lineWrapper.className = "mb-1";
+
+      const words = line.split(" ");
+      words.forEach(word => {
+        const span = document.createElement("span");
+        span.textContent = word;
+        span.style.opacity = 0;
+        span.style.transform = "translateY(4px)";
+        span.style.display = "inline-block";
+        span.style.marginRight = "0.5ch";
+        span.style.transition = "opacity 0.9s ease, transform 0.5s ease";
+
+        lineWrapper.appendChild(span);
+
+        setTimeout(() => {
+          span.style.opacity = 1;
+          span.style.transform = "translateY(0)";
+        }, delay);
+
+        delay += 150;
+      });
+
+      el.appendChild(lineWrapper);
+    });
+  };
 });
+</script>
 
+
+<script>
 // Handle Enter key
 inputField.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
