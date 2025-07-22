@@ -1801,20 +1801,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </script>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  // Handle workflow card clicks
-  document.querySelectorAll(".workflow-card").forEach(card => {
-    card.addEventListener("click", () => {
-      // Remove active class from all workflow cards
-      document.querySelectorAll(".workflow-card").forEach(c => c.classList.remove("active"));
-      
-      // Add active class to clicked card
-      card.classList.add("active");
-    });
-  });
-});
-</script>
 
 <script>
 // 🔥 MOVE THIS ENTIRE BLOCK INSIDE DOMContentLoaded
