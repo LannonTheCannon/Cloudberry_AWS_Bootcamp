@@ -1802,6 +1802,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <script>
+// 🔥 MAIN SEND BUTTON - Replace "Sending..." with dots
 const sendButton = document.getElementById('query-send');
 const inputField = document.getElementById('user-query');
 
@@ -1818,8 +1819,14 @@ sendButton.addEventListener('click', async () => {
     window.stopTypewriterRotation();
   }
 
-  // Show loading state
-  sendButton.textContent = "Sending...";
+  // 🔥 REPLACE BUTTON TEXT WITH ANIMATED DOTS
+  sendButton.innerHTML = `
+    <div class="flex items-center justify-center space-x-1">
+      <div class="typing-ball dot1"></div>
+      <div class="typing-ball dot2"></div>
+      <div class="typing-ball dot3"></div>
+    </div>
+  `;
   sendButton.disabled = true;
 
   try {
@@ -1836,35 +1843,31 @@ sendButton.addEventListener('click', async () => {
     if (!response.ok) {
       console.error("AI Error:", data.error);
       const typewriter = document.getElementById('typewriter');
-      // 🔥 Use the same fade animation for errors
       simulateChatGPTStyleFadeMultiLine("Sorry, something went wrong. Please try again.", typewriter);
       return;
     }
 
     console.log("AI Response:", data.response);
     
-    // 🔥 Show response with the SAME beautiful animation
+    // 🔥 Show response with animation
     const typewriter = document.getElementById('typewriter');
     typewriter.style.transition = 'opacity 0.3s ease-in-out';
     typewriter.style.opacity = '0';
     
     setTimeout(() => {
-      // 🔥 Use the same simulateChatGPTStyleFadeMultiLine function
       simulateChatGPTStyleFadeMultiLine(data.response, typewriter);
       typewriter.style.opacity = '1';
     }, 300);
 
-    // 🔥 ONLY clear input, DON'T close the input box
     inputField.value = '';
 
   } catch (err) {
     console.error("Fetch failed:", err);
     const typewriter = document.getElementById('typewriter');
-    // 🔥 Use the same fade animation for network errors
     simulateChatGPTStyleFadeMultiLine("Network error. Please check your connection.", typewriter);
   } finally {
-    // Reset button
-    sendButton.textContent = "Send";
+    // 🔥 RESTORE ORIGINAL BUTTON TEXT
+    sendButton.innerHTML = "Send";
     sendButton.disabled = false;
   }
 });
