@@ -33,6 +33,8 @@ except ImportError:
 app = Flask(__name__)
 app.secret_key = 'MySecretKey'
 
+
+
 try:
     if os.environ.get("FLASK_ENV") == "production":
         from utils.db_secrets import get_db_secret  # import only if needed
