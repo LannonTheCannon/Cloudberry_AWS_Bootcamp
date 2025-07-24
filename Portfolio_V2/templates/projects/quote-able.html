@@ -14,8 +14,7 @@
   <title>Octopus Books README</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-
-      .grain-overlay {
+    .grain-overlay {
       pointer-events: none;
       position: fixed;
       inset: 0;
@@ -61,8 +60,10 @@
 
     .floating-star {
       position: absolute;
-      top: -7rem;         /* Adjust vertical alignment */
-      right: -7rem;      /* Push out horizontally to "hover" next to the block */
+      top: -7rem;
+      /* Adjust vertical alignment */
+      right: -7rem;
+      /* Push out horizontally to "hover" next to the block */
       z-index: 10;
       pointer-events: none;
     }
@@ -76,18 +77,16 @@
 
       width: 240%;
       height: 240px;
-      background: radial-gradient(
-        ellipse at center,
-        rgba(173, 216, 255, 0.6),
-        rgba(173, 216, 255, 0.05) 70%,
-        transparent 100%
-      );
+      background: radial-gradient(ellipse at center,
+          rgba(173, 216, 255, 0.6),
+          rgba(173, 216, 255, 0.05) 70%,
+          transparent 100%);
       filter: blur(60px);
       opacity: 100.9;
       z-index: -1;
     }
 
-        @media (max-width: 540px) {
+    @media (max-width: 540px) {
       .floating-star {
         position: relative !important;
         top: 0 !important;
@@ -105,7 +104,6 @@
         transform: none !important;
       }
     }
-
   </style>
 
 </head>
@@ -116,7 +114,8 @@
 <body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white min-h-screen">
 
   <!-- Nav -->
-    <header class="w-full px-6 py-4 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-6">
+  <header
+    class="w-full px-6 py-4 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-6">
     <h1 class="text-xl font-bold tracking-tight"><a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
     </h1>
     <nav class="space-x-6 text-sm">
@@ -129,28 +128,26 @@
     </nav>
   </header>
 
-  
-<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center px-8 py-20 overflow-hidden" data-delay="200ms">
-  <div class="relative mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-3xl w-full">
-      
 
-    
+  <section
+    class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center px-8 py-20 overflow-hidden"
+    data-delay="200ms">
+    <div class="relative mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-3xl w-full">
+
+
+
       <!-- Header -->
       <div class="text-left relative">
         <h1 class="mt-16 font-serif text-4xl font-bold tracking-tight text-white md:text-6xl relative">
-          <span class="text-indigo-400">Octopus</span> Books 
+          <span class="text-indigo-400">Octopus</span> Books
         </h1>
 
 
         <!-- floating star element -->
         <div
-          class="absolute top-[-5rem] sm:right-[-3rem] right-0 z-10 flex justify-center sm:justify-end floating-star"
-        >
-          <img
-            src="/static/images/octo.png"
-            alt="Blue Scorpion"
-            class="w-48 sm:w-80 opacity-96 pointer-events-none select-none sm:rotate-[17deg]"
-          />
+          class="absolute top-[-5rem] sm:right-[-3rem] right-0 z-10 flex justify-center sm:justify-end floating-star">
+          <img src="/static/images/octo.png" alt="Blue Scorpion"
+            class="w-48 sm:w-80 opacity-96 pointer-events-none select-none sm:rotate-[17deg]" />
         </div>
 
 
@@ -169,23 +166,23 @@
           </div>
         </div>
 
-      <div class="z-0 mt-8 flex space-x-4">
-        <!-- GitHub -->
-        <a href="https://github.com/LannonTheCannon/Octopus_Books_V2" target="_blank" rel="noopener noreferrer">
-          <button type="button"
-            class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
-            GitHub
-          </button>
-        </a>
+        <div class="z-0 mt-8 flex space-x-4">
+          <!-- GitHub -->
+          <a href="https://github.com/LannonTheCannon/Octopus_Books_V2" target="_blank" rel="noopener noreferrer">
+            <button type="button"
+              class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
+              GitHub
+            </button>
+          </a>
 
-        <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank" rel="noopener noreferrer">
-          <button type="button"
-            class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
-            LinkedIn
-          </button>
-        </a>
-      </div>
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank" rel="noopener noreferrer">
+            <button type="button"
+              class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
+              LinkedIn
+            </button>
+          </a>
+        </div>
       </div>
 
       <div class="relative w-full pb-[56.25%] mt-12 rounded-lg overflow-hidden border border-white/10 shadow-md">
@@ -200,20 +197,29 @@
         <!-- LEFT COLUMN -->
         <div class="text-lg text-slate-300">
           <blockquote class="text-xl leading-8 text-slate-400">
-          <span class="font-serif text-8xl text-slate-100 float-left mr-2 leading-none">O</span>
-ctopus Books is an AI-powered reading companion that lets you upload any book, chapter, or manuscript and have a thoughtful, memory-rich conversation with it. Powered by GPT-4o, LangChain, and real-time document embeddings, the app remembers everything you've discussed and pulls context from across the pages so you can reflect, question, and explore ideas as deeply as you like.
+            <span class="font-serif text-8xl text-slate-100 float-left mr-2 leading-none">O</span>
+            ctopus Books is an AI-powered reading companion that lets you upload any book, chapter, or manuscript and
+            have a thoughtful, memory-rich conversation with it. Powered by GPT-4o, LangChain, and real-time document
+            embeddings, the app remembers everything you've discussed and pulls context from across the pages so you can
+            reflect, question, and explore ideas as deeply as you like.
 
             <hr class="mt-6 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
             <!-- 🧠 Architecture -->
             <h3 class="mt-6 text-2xl font-bold leading-6 text-white mb-4">🧠 Live Architecture</h3>
             <ul class="space-y-4 text-sm text-slate-300">
-              <li><span class="text-indigo-400 font-semibold">Streamlit Cloud</span>: Serves the conversational reading app with a sleek, reactive UI</li>
-              <li><span class="text-indigo-400 font-semibold">LangChain</span>: Orchestrates RAG pipeline and manages chat memory per session</li>
-              <li><span class="text-indigo-400 font-semibold">ChromaDB (Local)</span>: Stores embedded chunks from uploaded books for fast retrieval</li>
-              <li><span class="text-indigo-400 font-semibold">OpenAI GPT-4o</span>: Powers real-time, context-aware responses from your book</li>
-              <li><span class="text-indigo-400 font-semibold">Session Memory</span>: Maintains ongoing chat history to simulate deep, evolving conversations</li>
-              <li><span class="text-indigo-400 font-semibold">Temporary File Storage</span>: Uploaded PDFs processed securely and discarded after use</li>
+              <li><span class="text-indigo-400 font-semibold">Streamlit Cloud</span>: Serves the conversational reading
+                app with a sleek, reactive UI</li>
+              <li><span class="text-indigo-400 font-semibold">LangChain</span>: Orchestrates RAG pipeline and manages
+                chat memory per session</li>
+              <li><span class="text-indigo-400 font-semibold">ChromaDB (Local)</span>: Stores embedded chunks from
+                uploaded books for fast retrieval</li>
+              <li><span class="text-indigo-400 font-semibold">OpenAI GPT-4o</span>: Powers real-time, context-aware
+                responses from your book</li>
+              <li><span class="text-indigo-400 font-semibold">Session Memory</span>: Maintains ongoing chat history to
+                simulate deep, evolving conversations</li>
+              <li><span class="text-indigo-400 font-semibold">Temporary File Storage</span>: Uploaded PDFs processed
+                securely and discarded after use</li>
             </ul>
 
             <hr class="mt-6 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -222,84 +228,90 @@ ctopus Books is an AI-powered reading companion that lets you upload any book, c
 
               <div class="space-y-2">
 
-            <!-- Backend -->
-              <div class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
-                <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-2">Backend</h4>
-                <div class="flex flex-wrap gap-4 items-center">
-                  <div class="flex items-center space-x-2">
-                    <img src="/static/icons/python.svg" alt="Python" class="h-6" />
-                    <span class="text-white text-sm font-medium">Python</span>
-                  </div>
-                  <div class="flex items-center space-x-2">
-                    <img src="/static/icons/langchain.svg" alt="LangChain" class="h-6" />
-                    <span class="text-white text-sm font-medium">LangChain (RAG)</span>
-                  </div>
-                  <div class="flex items-center space-x-2">
-                    <img src="/static/icons/chroma.png" alt="ChromaDB" class="h-6" />
-                    <span class="text-white text-sm font-medium">Chroma (Vector Store)</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Frontend -->
-              <div class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
-                <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">Frontend</h4>
-                <div class="flex flex-wrap gap-6 items-center">
-                  <div class="inline-flex items-center space-x-2">
-                    <img src="/static/icons/streamlit.svg" alt="Streamlit" class="h-6" />
-                    <span class="text-white text-sm font-medium">Streamlit</span>
-                  </div>
-                  <div class="inline-flex items-center space-x-2">
-                    <img src="/static/icons/html-5.svg" alt="HTML" class="h-6" />
-                    <span class="text-white text-sm font-medium">Minimal HTML</span>
+                <!-- Backend -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-2">Backend</h4>
+                  <div class="flex flex-wrap gap-4 items-center">
+                    <div class="flex items-center space-x-2">
+                      <img src="/static/icons/python.svg" alt="Python" class="h-6" />
+                      <span class="text-white text-sm font-medium">Python</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                      <img src="/static/icons/langchain.svg" alt="LangChain" class="h-6" />
+                      <span class="text-white text-sm font-medium">LangChain (RAG)</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                      <img src="/static/icons/chroma.png" alt="ChromaDB" class="h-6" />
+                      <span class="text-white text-sm font-medium">Chroma (Vector Store)</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- AI Engine / Function Calling-->
-              <div class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
-                <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">AI Engine / Function Calling</h4>
-                <div class="flex flex-wrap gap-6 items-center">
-                  <div class="inline-flex items-center space-x-2">
-                    <img src="/static/icons/chatgpt.svg" alt="GPT-4o" class="h-6" />
-                    <span class="text-white text-sm font-medium">OpenAI GPT-4o</span>
-                  </div>
-                  <div class="inline-flex items-center space-x-2">
-                    <img src="/static/icons/langchain.svg" alt="LangChain" class="h-6" />
-                    <span class="text-white text-sm font-medium">Prompt + Output Parsers</span>
-                  </div>
-                  <div class="inline-flex items-center space-x-2">
-                    <img src="/static/icons/pypdf.png" alt="PyPDF" class="h-6" />
-                    <span class="text-white text-sm font-medium">PyPDFLoader</span>
+                <!-- Frontend -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">Frontend</h4>
+                  <div class="flex flex-wrap gap-6 items-center">
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/streamlit.svg" alt="Streamlit" class="h-6" />
+                      <span class="text-white text-sm font-medium">Streamlit</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/html-5.svg" alt="HTML" class="h-6" />
+                      <span class="text-white text-sm font-medium">Minimal HTML</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Infrastructure -->
-              <div class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
-                <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">Infrastructure</h4>
-                <div class="flex flex-wrap gap-6 items-center">
-                  <div class="inline-flex items-center space-x-2">
-                    <img src="/static/icons/streamlit.svg" alt="Streamlit Cloud" class="h-6" />
-                    <span class="text-white text-sm font-medium">Streamlit Cloud</span>
-                  </div>
-                  <div class="inline-flex items-center space-x-2">
-                    <img src="/static/icons/sqlite.svg" alt="SQLite" class="h-6" />
-                    <span class="text-white text-sm font-medium">SQLite3 (local logging)</span>
+                <!-- AI Engine / Function Calling-->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">AI Engine / Function
+                    Calling</h4>
+                  <div class="flex flex-wrap gap-6 items-center">
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/chatgpt.svg" alt="GPT-4o" class="h-6" />
+                      <span class="text-white text-sm font-medium">OpenAI GPT-4o</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/langchain.svg" alt="LangChain" class="h-6" />
+                      <span class="text-white text-sm font-medium">Prompt + Output Parsers</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/pypdf.png" alt="PyPDF" class="h-6" />
+                      <span class="text-white text-sm font-medium">PyPDFLoader</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- CI/CD -->
-              <div class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
-                <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">CI / CD</h4>
-                <div class="inline-flex items-center space-x-2">
-                  <img src="/static/icons/github-desktop.svg" alt="GitHub Actions" class="h-6" />
-                  <span class="text-white text-sm font-medium">GitHub Actions</span>
+                <!-- Infrastructure -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">Infrastructure</h4>
+                  <div class="flex flex-wrap gap-6 items-center">
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/streamlit.svg" alt="Streamlit Cloud" class="h-6" />
+                      <span class="text-white text-sm font-medium">Streamlit Cloud</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/sqlite.svg" alt="SQLite" class="h-6" />
+                      <span class="text-white text-sm font-medium">SQLite3 (local logging)</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
 
-            </div>
+                <!-- CI/CD -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">CI / CD</h4>
+                  <div class="inline-flex items-center space-x-2">
+                    <img src="/static/icons/github-desktop.svg" alt="GitHub Actions" class="h-6" />
+                    <span class="text-white text-sm font-medium">GitHub Actions</span>
+                  </div>
+                </div>
+
+              </div>
 
               <hr class="mb-4 mt-8 my-16 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
@@ -316,7 +328,8 @@ ctopus Books is an AI-powered reading companion that lets you upload any book, c
             <p class="text-sm text-gray-400 mb-1 ml-2">Step 1: Upload a Book</p>
             <h4 class="text-white font-semibold ml-2">Drop in any PDF to begin</h4>
             <p class="text-gray-400 text-sm mt-2 ml-2">
-              Start by uploading a PDF of a book, manuscript, or article. Octopus Books processes it instantly and prepares it for exploration.
+              Start by uploading a PDF of a book, manuscript, or article. Octopus Books processes it instantly and
+              prepares it for exploration.
             </p>
           </div>
 
@@ -326,7 +339,8 @@ ctopus Books is an AI-powered reading companion that lets you upload any book, c
             <p class="text-sm text-gray-400 mb-1 ml-2">Step 2: Slice & Embed</p>
             <h4 class="text-white font-semibold ml-2">Convert text into searchable memory</h4>
             <p class="text-gray-400 text-sm mt-2 ml-2">
-              The app splits your book into overlapping chunks and stores them as vector embeddings using ChromaDB for fast, meaningful retrieval.
+              The app splits your book into overlapping chunks and stores them as vector embeddings using ChromaDB for
+              fast, meaningful retrieval.
             </p>
           </div>
 
@@ -336,7 +350,8 @@ ctopus Books is an AI-powered reading companion that lets you upload any book, c
             <p class="text-sm text-gray-400 mb-1 ml-2">Step 3: Ask Anything</p>
             <h4 class="text-white font-semibold ml-2">Converse with your book</h4>
             <p class="text-gray-400 text-sm mt-2 ml-2">
-              Ask thoughtful or specific questions—per chapter, per theme, or across the entire text. GPT-4o generates responses using both your query and the retrieved context.
+              Ask thoughtful or specific questions—per chapter, per theme, or across the entire text. GPT-4o generates
+              responses using both your query and the retrieved context.
             </p>
           </div>
 
@@ -346,7 +361,8 @@ ctopus Books is an AI-powered reading companion that lets you upload any book, c
             <p class="text-sm text-gray-400 mb-1 ml-2">Step 4: Track the Thread</p>
             <h4 class="text-white font-semibold ml-2">Every chat deepens the narrative</h4>
             <p class="text-gray-400 text-sm mt-2 ml-2">
-              Each conversation is saved in session memory, so the more you ask, the richer and more context-aware your book becomes—like reading with a brilliant friend.
+              Each conversation is saved in session memory, so the more you ask, the richer and more context-aware your
+              book becomes—like reading with a brilliant friend.
             </p>
           </div>
 
@@ -356,7 +372,8 @@ ctopus Books is an AI-powered reading companion that lets you upload any book, c
             <p class="text-sm text-gray-400 mb-1 ml-2">Step 5: Reflect & Rediscover</p>
             <h4 class="text-white font-semibold ml-2">Unlock new layers in the text</h4>
             <p class="text-gray-400 text-sm mt-2 ml-2">
-              Use Octopus Books to reread, reframe, and reimagine your favorite works. Ask what you missed, test theories, or trace characters through the plot.
+              Use Octopus Books to reread, reframe, and reimagine your favorite works. Ask what you missed, test
+              theories, or trace characters through the plot.
             </p>
           </div>
 
@@ -364,7 +381,8 @@ ctopus Books is an AI-powered reading companion that lets you upload any book, c
 
           <div class="prose prose-lg prose-invert prose-indigo max-w-none mt-12">
             <blockquote class="border-l-4 pl-4 italic text-indigo-300">
-              "I always wanted a way to explore my favorite books more deeply. Octopus Books makes it feel like the story is thinking back." - Maya Zhou
+              "I always wanted a way to explore my favorite books more deeply. Octopus Books makes it feel like the
+              story is thinking back." - Maya Zhou
             </blockquote>
           </div>
 
@@ -375,7 +393,8 @@ ctopus Books is an AI-powered reading companion that lets you upload any book, c
           <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm hover:shadow-md transition">
             <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">📁 Repository Structure
             </h4>
-            <pre class="text-sm text-slate-300 font-mono leading-6 whitespace-pre overflow-x-auto bg-black rounded-md p-4 border border-white/5">
+            <pre
+              class="text-sm text-slate-300 font-mono leading-6 whitespace-pre overflow-x-auto bg-black rounded-md p-4 border border-white/5">
 Octopus_Books_V2/
 │
 ├── ebook_tutor.py           # Streamlit app for chatting with uploaded books
@@ -391,8 +410,8 @@ Octopus_Books_V2/
         </div>
       </div>
 
-        <div class="mt-6 bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm hover:shadow-md transition">
-          <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">📁 Run Locally</h4>
+      <div class="mt-6 bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+        <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">📁 Run Locally</h4>
         <pre class="mt-4 bg-black text-slate-300 text-sm p-4 rounded-md overflow-x-auto whitespace-pre">
 git clone https://github.com/LannonTheCannon/Octopus_Books_V2.git
 cd Octopus_Books_V2
@@ -400,7 +419,7 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 streamlit run ebook_tutor.py</pre>
-        </div>
+      </div>
 
       <!-- Call to Action -->
       <div class="mt-16 flex flex-col sm:flex-row justify-center items-center gap-4">
@@ -430,42 +449,42 @@ streamlit run ebook_tutor.py</pre>
     &copy; 2025 Lannon Khau. Welcome aboard, cadet.
   </footer>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const elements = document.querySelectorAll('.fade-in-up');
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const elements = document.querySelectorAll('.fade-in-up');
 
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.remove("opacity-0", "translate-y-10");
-            entry.target.classList.add("opacity-100", "translate-y-0");
-            entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.05 }); // LOWERED threshold for better triggering
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove("opacity-0", "translate-y-10");
+              entry.target.classList.add("opacity-100", "translate-y-0");
+              entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.05 }); // LOWERED threshold for better triggering
 
-      elements.forEach((el) => observer.observe(el));
+        elements.forEach((el) => observer.observe(el));
 
-      // 🔐 Fallback guarantee: force visibility after 1s if no animation triggered
-      setTimeout(() => {
+        // 🔐 Fallback guarantee: force visibility after 1s if no animation triggered
+        setTimeout(() => {
+          elements.forEach(el => {
+            if (el.classList.contains('opacity-0')) {
+              el.classList.remove('opacity-0', 'translate-y-10');
+              el.classList.add('opacity-100', 'translate-y-0');
+            }
+          });
+        }, 1000); // adjust to match your transition duration
+      } else {
+        // Older browsers fallback
         elements.forEach(el => {
-          if (el.classList.contains('opacity-0')) {
-            el.classList.remove('opacity-0', 'translate-y-10');
-            el.classList.add('opacity-100', 'translate-y-0');
-          }
+          el.classList.remove('opacity-0', 'translate-y-10');
+          el.classList.add('opacity-100', 'translate-y-0');
         });
-      }, 1000); // adjust to match your transition duration
-    } else {
-      // Older browsers fallback
-      elements.forEach(el => {
-        el.classList.remove('opacity-0', 'translate-y-10');
-        el.classList.add('opacity-100', 'translate-y-0');
-      });
-    }
-  });
-</script>
+      }
+    });
+  </script>
 
 </body>
 

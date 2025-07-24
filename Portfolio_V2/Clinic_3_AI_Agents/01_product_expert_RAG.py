@@ -5,7 +5,7 @@
 
 # GOAL: Make a product expert AI agent based on the RAG agent from Clinic #1
 
-# LIBRARIES
+
 
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
@@ -271,3 +271,5 @@ messages = [
 result = product_expert_agent.invoke({"messages": messages})
 
 Markdown(result['response'][0].content)
+
+# %%
