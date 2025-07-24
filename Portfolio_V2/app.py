@@ -422,7 +422,17 @@ blogs = {
         "image1": "static/images/ai_team.png",
         "icon": "static/icons/purp.svg",
         "template": "playbook1.html"
-    }
+    },
+    "jupyter-kernel-setup": {
+        "title": "Jupyter Kernel and Virtual Environment Setup",
+        "description": "How to set up a Jupyter kernel for your data science projects.",
+        "tech": ["Python", "Jupyter", "Docker"],
+        "content": "Step-by-step guide for configuring Jupyter kernels to streamline your data science workflow.",
+        "author": "Lannon Khau",
+        "image1": "static/images/jupiter_kernel.png",
+        "icon": "static/icons/jupiter.svg",
+        "template": "jupyter-kernel-setup.html"
+    },
 
 }
 

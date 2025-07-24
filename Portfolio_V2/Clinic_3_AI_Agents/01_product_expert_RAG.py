@@ -5,8 +5,6 @@
 
 # GOAL: Make a product expert AI agent based on the RAG agent from Clinic #1
 
-
-
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 # Rag Agents
