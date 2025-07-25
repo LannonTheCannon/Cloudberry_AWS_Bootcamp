@@ -23,3 +23,6 @@ __pycache__/
 
 .DS_Store
 .DS_Store
+
+# Credentials and sensitive files
+credentials.yml
