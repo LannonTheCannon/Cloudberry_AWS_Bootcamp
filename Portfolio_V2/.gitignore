@@ -25,4 +25,4 @@ __pycache__/
 .DS_Store
 
 # Credentials and sensitive files
-credentials.yml
+Clinic_3_AI_Agents/credentials.yml
