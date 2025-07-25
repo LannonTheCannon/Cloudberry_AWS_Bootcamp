@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en-US" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" type="text/css" href="./static/css/app.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <title>Data Forge Plus README</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .grain-overlay {
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            z-index: -1000;
+            background-image: url("/static/images/grain2.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* Covers entire viewport */
+            background-position: center;
+            mix-blend-mode: overlay;
+            opacity: 0.18;
+        }
+
+        @keyframes draw-border {
+            0% {
+                border-width: 0;
+                clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+            }
+
+            25% {
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+            }
+
+            50% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
+            }
+
+            75% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            100% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+        }
+
+        .border-animate {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: draw-border 1.2s ease-out forwards;
+            border-radius: 1rem;
+            clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+        }
+
+
+        .floating-star {
+            position: absolute;
+            top: -5rem;
+            /* Adjust vertical alignment */
+            right: -6rem;
+            /* Push out horizontally to "hover" next to the block */
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .floating-star::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 100%;
+            height: 200px;
+            background: radial-gradient(ellipse at center,
+                    rgba(173, 216, 255, 0.6),
+                    rgba(173, 216, 255, 0.05) 70%,
+                    transparent 100%);
+            filter: blur(40px);
+            opacity: 0.9;
+            z-index: -1;
+        }
+
+        @media (max-width: 640px) {
+            .fade-in-up {
+                opacity: 100 !important;
+                transform: none !important;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .floating-star {
+                position: relative !important;
+                top: 0 !important;
+                right: 0 !important;
+                margin: 0 auto 1.5rem auto !important;
+                width: 400px !important;
+                height: auto !important;
+                display: flex;
+                justify-content: center;
+            }
+
+            .floating-star img {
+                width: 100% !important;
+                height: auto !important;
+                transform: none !important;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .floating-star {
+                position: relative !important;
+                top: 0 !important;
+                right: 0 !important;
+                margin: 0 auto 1.5rem auto !important;
+                width: 300px !important;
+                height: auto !important;
+                display: flex;
+                justify-content: center;
+            }
+
+            .floating-star img {
+                width: 100% !important;
+                height: auto !important;
+                transform: none !important;
+            }
+        }
+    </style>
+
+</head>
+
+<div class="grain-overlay pointer-events-none fixed inset-0 z-0"></div>
+
+
+<body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white min-h-screen">
+
+    <!-- Nav -->
+    <header
+        class="w-full px-6 py-4 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-6">
+        <h1 class="text-xl font-bold tracking-tight"><a href="/" class="hover:text-indigo-400 transition">Lannon
+                Khau</a>
+        </h1>
+        <nav class="space-x-6 text-sm">
+            <a href="/" class="hover:text-indigo-400">Home</a>
+            <!-- <a href="/service" class="hover:text-indigo-400">Services</a> -->
+            <a href="/about" class="hover:text-indigo-400">Mission</a>
+            <a href="/projects" class="hover:text-indigo-400">Projects</a>
+            <a href="/blog" class="hover:text-indigo-400">Blog</a>
+            <a href="/contact" class="hover:text-indigo-400">Contact</a>
+        </nav>
+    </header>
+
+
+    <section
+        class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center px-8 py-20 overflow-hidden"
+        data-delay="200ms">
+        <div class="relative mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-3xl w-full">
+
+
+            <!-- Header -->
+            <div class="text-left relative">
+                <h1
+                    class="-mt-4 mb-8 font-serif text-4xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white relative">
+                    VENV and Jupyter Notebook Kernel<span class="text-indigo-400"> Playbook</span>
+                </h1>
+                <!-- floating star element -->
+                <div
+                    class="absolute top-[2rem] sm:right-[-10rem] -right-12 -z-10 flex justify-center sm:justify-end floating-star">
+                    <img src="/static/images/popcorn.png" alt="Marketing Analytics Team"
+                        class="w-64 sm:w-96 md:w-[18rem] opacity-96 pointer-events-none select-none sm:-rotate-[14deg]" />
+                </div>
+
+
+                <div class="flex items-center mt-6">
+                    <img class="w-10 h-10 rounded-full" src="/static/images/chill_guy.png" alt="Lannon Khau" />
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-300">
+                            <a href="#" class="hover:underline">By Lannon Khau</a>
+                        </p>
+                        <div class="flex space-x-1 text-sm text-gray-400">
+                            <time datetime="2025-06-13">Jun 13, 2025</time>
+                            <span>&middot;</span>
+                            <span>5 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="z-0 mt-8 flex space-x-4">
+                    <!-- GitHub -->
+                    <a href="https://github.com/LannonTheCannon/Cloudberry_AWS_Bootcamp" target="_blank"
+                        rel="noopener noreferrer">
+                        <button type="button"
+                            class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
+                            GitHub
+                        </button>
+                    </a>
+
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank" rel="noopener noreferrer">
+                        <button type="button"
+                            class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
+                            LinkedIn
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- <div class="flex justify-center mt-10">
+                <img src="/static/images/SQL_Business_Agent.png" alt="Analytics Team Orchestration Diagram"
+                    class="w-full max-w-3xl rounded-xl shadow-lg border border-white/10" />
+            </div> -->
+
+            <!-- <div class="relative w-full pb-[56.25%] mt-12 rounded-lg overflow-hidden border border-white/10 shadow-md">
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/DDOKRTiakno"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div> -->
+
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mt-12">
+            </div>
+
+            <div class="mt-20 text-lg text-slate-300">
+                <blockquote class="text-xl leading-8 text-slate-400">
+                    <span class="font-serif text-6xl text-slate-100 float-left mr-2 leading-none">W</span>
+                    ithout this foundational step of connecting your venv with an interactive jupyter notebook kernel,
+                    AI agents built with frameworks like LangChain,
+                    Streamlit, and OpenAI often fail silently or misbehave. You need consistency between the environment
+                    you develop in and the one your notebook executes in.
+                </blockquote>
+
+                <div class="mt-12 prose prose-lg prose-invert prose-indigo max-w-none">
+                    <h3 class="mt-4 mb-2 font-serif text-2xl font-bold leading-6 text-white">Why It Matters for AI Agents
+                    </h3>
+                    <p class="text-slate-400">
+                        When you're building autonomous agents that rely on APIs, vector stores, or chained reasoning,
+                        reproducibility becomes key. Registering your virtual environment as a Jupyter kernel ensures
+                        your notebooks run exactly the way your backend code does — same dependencies, same execution
+                        context, no surprises.
+                    </p>
+                    <p class="text-slate-400">
+                        Without this alignment, simple bugs can morph into silent failures, breaking embeddings,
+                        corrupting chains, or stalling vector lookups. Linking your kernel isn't flashy — but it's the
+                        kind of quiet infrastructure work that lets AI actually work.
+                    </p>
+
+                    <blockquote class="border-l-4 pl-4 italic text-indigo-300">
+                        "Set your environment right, and the agent will follow."
+                    </blockquote>
+
+                    <h3 class="mt-12 mb-2 font-serif text-2xl font-bold leading-6 text-white">Jupyter as a Test Bed</h3>
+                    <p class="text-slate-400">
+                        We use Jupyter to test reasoning patterns, prompt templates, and data pipelines in real-time. By
+                        binding it to the same environment that runs our production code, we reduce friction and
+                        increase our confidence — especially with LangChain and OpenAI’s evolving API behavior.
+                    </p>
+
+                    <h3 class="mt-12 mb-2 font-serif text-2xl font-bold leading-6 text-white">The Code</h3>
+                    <p class="text-slate-400">
+                        Below this section, you’ll find a full walkthrough for matching your virtual environment with
+                        your Jupyter kernel. It’s one of those dev tasks that only takes five minutes but pays dividends
+                        across every AI project you build.
+                    </p>
+
+                    <blockquote class="border-l-4 pl-4 italic text-indigo-300">Don’t just run notebooks. Align them with
+                        your tools. 🔧</blockquote>
+                </div>
+            </div>
+            <!-- Jupyter Kernel + Virtual Environment Setup -->
+            <div class="mt-6 bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+                <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">🧠 Match venv with
+                    Jupyter Kernel</h4>
+                <p class="text-sm text-slate-300 leading-relaxed mb-3">
+                    These steps will walk you through setting up a Python virtual environment and linking it to Jupyter
+                    so you can select it as a kernel in your notebooks.
+                </p>
+                <pre class="mt-4 bg-black text-slate-300 text-sm p-4 rounded-md overflow-x-auto whitespace-pre">
+# 1. Create a virtual environment (if you haven’t already)
+python3 -m venv venv
+
+# 2. Activate the virtual environment
+source venv/bin/activate
+
+# 3. Install required packages (optional)
+pip install -r requirements.txt
+
+# 4. Install Jupyter kernel support inside the venv
+pip install ipykernel
+
+# 5. Register the venv as a Jupyter kernel
+python -m ipykernel install --user --name=venv --display-name "Python (venv)"
+
+# 6. Launch VS Code and open your notebook
+code .
+
+# 7. Select the "Python (venv)" kernel in the top-right dropdown
+
+# 8. Press Shift+Enter to execute notebook cells
+  </pre>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
+        <div class="flex justify-center space-x-6 py-6">
+            <a href="https://github.com/LannonTheCannon" target="_blank" rel="noopener noreferrer"><img
+                    src="/static/icons/github.svg" alt="GitHub" class="h-6 w-6 hover:scale-110 transition" /></a>
+            <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank" rel="noopener noreferrer"><img
+                    src="/static/icons/linkedin.svg" alt="LinkedIn" class="h-6 w-6 hover:scale-110 transition" /></a>
+            <a href="https://www.youtube.com/@LannonKhau" target="_blank" rel="noopener noreferrer"><img
+                    src="/static/icons/youtube.svg" alt="YouTube" class="h-6 w-6 hover:scale-110 transition" /></a>
+            <a href="#"><img src="/static/icons/goog.svg" alt="Email" class="h-6 w-6 hover:scale-110 transition" /></a>
+        </div>
+        &copy; 2025 Lannon Khau. Welcome aboard, cadet.
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const elements = document.querySelectorAll('.fade-in-up');
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries, obs) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.remove("opacity-0", "translate-y-10");
+                            entry.target.classList.add("opacity-100", "translate-y-0");
+                            entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.05 }); // LOWERED threshold for better triggering
+
+                elements.forEach((el) => observer.observe(el));
+
+                // 🔐 Fallback guarantee: force visibility after 1s if no animation triggered
+                setTimeout(() => {
+                    elements.forEach(el => {
+                        if (el.classList.contains('opacity-0')) {
+                            el.classList.remove('opacity-0', 'translate-y-10');
+                            el.classList.add('opacity-100', 'translate-y-0');
+                        }
+                    });
+                }, 1000); // adjust to match your transition duration
+            } else {
+                // Older browsers fallback
+                elements.forEach(el => {
+                    el.classList.remove('opacity-0', 'translate-y-10');
+                    el.classList.add('opacity-100', 'translate-y-0');
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

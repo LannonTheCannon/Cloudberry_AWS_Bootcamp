@@ -31,8 +31,8 @@ llm = ChatOpenAI(
     openai_api_key=api_key
 )
 
-data_cleaning_agent = DataCleaningAgent(model=llm, n_samples=50, log=False)
-feature_engineering_agent = FeatureEngineeringAgent(model=llm, n_samples=50, log=False)
+# data_cleaning_agent = DataCleaningAgent(model=llm, n_samples=50, log=False)
+# feature_engineering_agent = FeatureEngineeringAgent(model=llm, n_samples=50, log=False)
 
 def run_clean_pipeline(df: pd.DataFrame) -> pd.DataFrame:
     try:
@@ -41,7 +41,6 @@ def run_clean_pipeline(df: pd.DataFrame) -> pd.DataFrame:
 
         if not api_key:
             raise RuntimeError("🛑 OpenAI API key could not be loaded.")
-
 
         print("🧹 Starting Cleaning Agent...")
         t1 = time.time()
