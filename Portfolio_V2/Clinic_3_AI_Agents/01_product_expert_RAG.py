@@ -19,7 +19,6 @@ from langchain_core.messages import HumanMessage
 import pandas as pd
 import joblib
 import re
-
 import os
 import yaml
 
@@ -34,7 +33,7 @@ MODEL = 'gpt-4.1-mini'
 EMBEDDING = 'text-embedding-ada-002'
 PATH_VECTORDB = "data/data-rag-product-information/products_clean.db"
 
-os.environ["OPENAI_API_KEY"] = yaml.safe_load(open('../credentials.yml'))['openai']
+os.environ["OPENAI_API_KEY"] = yaml.safe_load(open('credentials.yml'))['openai']
 
 # * STEP 1: CREATE THE VECTOR DATABASE
 
