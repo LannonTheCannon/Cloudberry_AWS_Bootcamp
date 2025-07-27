@@ -133,39 +133,39 @@ def ask():
         return jsonify({"error": str(e)}), 500
     
 
-# 🔥 Agent configurations with their own assistant IDs
+# 🔥 Agent configurations with corrected system prompts
 AGENT_CONFIGS = {
     "Data Visualization AI Agent": {
         "assistant_id": "asst_SrQiMK3v7lkZmUipEhY0ReIh",
-        "system_prompt": "You are Nova, a data visualization AI specialist. You help create interactive charts, dashboards, and visual narratives."
+        "system_prompt": "You are Nova, a data visualization AI specialist. You create interactive charts, dashboards, and visual narratives using tools like matplotlib, Plotly, Power BI, or Tableau. You help users turn raw data into insights through visual storytelling."
     },
     "Data Wrangling AI Agent": {
         "assistant_id": "asst_R5zIDy8Q3LW0TCcWdhlIPTj3", 
-        "system_prompt": "You are Orion, a data wrangling specialist. You help clean, merge, and optimize data pipelines."
+        "system_prompt": "You are Orion, a data wrangling expert. You help users clean messy datasets, merge files, remove duplicates, handle missing values, and restructure data using Python libraries like pandas and numpy."
     },
     "Feature Engineering AI Agent": {
         "assistant_id": "asst_RPlJ9yluhaAzS4Tj6TUvuAB5",
-        "system_prompt": "You are Vega, a feature engineering expert. You extract meaningful patterns and transform data for ML models."
+        "system_prompt": "You are Vega, a feature engineering expert. You extract meaningful features, create derived variables, encode categorical data, and transform data to improve model performance in machine learning workflows."
     },
     "Business SQL Agent": {
         "assistant_id": "asst_Bvd1I7VoqDYA8uoMFW4vBTSe",
-        "system_prompt": "You are Cosmo, a SQL expert. You help query, analyze, and interpret business data."
+        "system_prompt": "You are Cosmo, a SQL and business intelligence expert. You help users write and optimize SQL queries to retrieve, aggregate, and analyze business data from relational databases like PostgreSQL, MySQL, or BigQuery."
     },
-    "Vector Store Q&A Agent": {
+    "Product Expert": {
         "assistant_id": "asst_XdJtC6N7BuT4PvVnw877KaFK",
-        "system_prompt": "You are Luma, a vector search specialist. You help with semantic search and RAG implementations."
+        "system_prompt": "You are Luma, a vector search and RAG (retrieval-augmented generation) specialist. You assist users in building semantic search systems using tools like Chroma, FAISS, or Weaviate, and integrating them with LLMs via LangChain or OpenAI Assistants."
     },
-    "ETL Automation Agent": {
+    "Segment Analysis Agent": {
         "assistant_id": "asst_MQI4tSxv5NZZngwS9qOPKGR9",
-        "system_prompt": "You are Atlas, an ETL automation expert. You design robust data pipelines and infrastructure."
+        "system_prompt": "You are Atlas, a segmentation and ETL expert. You help with cohort analysis, customer segmentation, and automating data pipelines using tools like Apache Airflow, dbt, or custom Python scripts."
     },
-    "LLM Evaluation Agent": {
+    "Supervisor Agent": {
         "assistant_id": "asst_HuLj0I4GO4taz7qU7atKzRnC",
-        "system_prompt": "You are Echo, an LLM evaluation specialist. You help test and measure AI model performance."
+        "system_prompt": "You are Echo, a large language model evaluation specialist. You design tests to assess AI agent performance, consistency, and reasoning using metrics like BLEU, ROUGE, or custom eval frameworks."
     },
-    "User Auth Agent": {
+    "Marketing Email Writer": {
         "assistant_id": "asst_p0imYKyt9G0CTLD9Z5qqtcb3",
-        "system_prompt": "You are Synth, a security and authentication expert. You help with user management and access control."
+        "system_prompt": "You are Lyra, a marketing email copywriting expert. You craft compelling, conversion-focused emails tailored to various audiences, blending persuasive language with strategic calls to action."
     }
 }
 
@@ -464,131 +464,126 @@ def show_blog_post(slug):
 # ─── Services Section  ──────────────────────────────────────────────────────────────────────
 
 services = {
-    "data-vis-agent": {
+    "data-visualization-ai-agent": {
         "title": "Data Visualization AI Agent",
-        "description": "Generate Interactive Plotly Objects",
+        "description": "Generate Interactive Plotly Dashboards",
         "tech": ["LangChain", "OpenAI", "Streamlit", "Pandas AI", "NL2SQL", "RAG Pipelines"],
         "content": (
-            "This service acts as your visual co-pilot. I combine RAG pipelines with AI tools like "
-            "Pandas AI and Streamlit to produce conversational dashboards, enabling business leaders "
-            "and analysts to explore data through natural language and see patterns come alive visually."
+            "You are Nova, a data visualization AI specialist. You combine RAG pipelines with tools like Pandas AI, "
+            "Streamlit, and Plotly to produce conversational dashboards. You help business leaders and analysts explore data "
+            "visually through natural language and generate interactive visual insights that reveal underlying patterns."
         ),
-        "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
+        "team": ["product-expert", "business-sql-agent", "marketing-email-writer"],
         "author": "Lannon Khau",
         "image1": "/static/images/agent1.jpg",
         "icon": "/static/images/agent1.jpg",
         "template": "data-vis-agent.html"
     },
 
-
-
-
-
-    "data-wrangling-agent": {
+    "data-wrangling-ai-agent": {
         "title": "Data Wrangling AI Agent",
-        "description": "Generates Data Table and Charting Code",
+        "description": "Automate Data Cleaning and Transformation",
         "tech": ["Flask", "React", "TailwindCSS", "SQLAlchemy", "AWS", "Docker"],
         "content": (
-            "Designed for engineers and analysts, this agent automates dataset ingestion, cleanup, "
-            "and transformation. I use Flask and React for front/back ends with SQLAlchemy and "
-            "Dockerized deployments to keep data systems robust and scalable."
+            "You are Orion, a data wrangling expert. You automate dataset ingestion, cleanup, and transformation "
+            "using Flask and React across full-stack systems. You work with SQLAlchemy and Dockerized services to ensure "
+            "data systems remain clean, scalable, and production-ready."
         ),
-        "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
+        "team": ["product-expert", "business-sql-agent", "marketing-email-writer"],
         "author": "Lannon Khau",
         "image1": "/static/images/agent2.jpg",
         "icon": "/static/images/agent2.jpg",
         "template": "data-wrangling-agent.html"
     },
 
-    "feature-engineering-agent": {
+    "feature-engineering-ai-agent": {
         "title": "Feature Engineering AI Agent",
-        "description": "Performs One-Hot Encoding on Categorical Features",
+        "description": "Extract and Transform Features for ML",
         "tech": ["Python", "Pandas", "NumPy", "Scikit-learn", "Pickle", "SQL", "Airflow"],
         "content": (
-            "I build intelligent feature pipelines that make raw datasets machine-learning ready. "
-            "From scaling and encoding to custom time-series features, this agent transforms messy "
-            "inputs into optimized model-ready formats."
+            "You are Vega, a feature engineering expert. You specialize in transforming messy data into model-ready formats. "
+            "You perform one-hot encoding, feature scaling, time-series transformations, and other preprocessing tasks "
+            "using Python, Pandas, NumPy, and Scikit-learn to optimize ML pipelines."
         ),
-        "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
+        "team": ["product-expert", "business-sql-agent", "marketing-email-writer"],
         "author": "Lannon Khau",
         "image1": "/static/images/agent3.jpg",
         "icon": "/static/images/agent3.jpg",
         "template": "feature-engineering-agent.html"
     },
 
-    "business-intelligence-SQL-agent": {
-        "title": "Business SQL Agent",   # renamed to match getAgentIntro
-        "description": "Ask Business Questions. Get SQL Answers.",
+    "business-sql-agent": {
+        "title": "Business SQL Agent",
+        "description": "Translate Natural Language to SQL",
         "tech": ["LangChain", "OpenAI", "SQL", "PostgreSQL", "Flask", "NL2SQL"],
         "content": (
-            "This service converts natural language into business-grade SQL queries. It connects "
-            "to your database, interprets intent using NLP, and returns actionable insights—perfect "
-            "for teams that want self-serve analytics without writing SQL."
+            "You are Cosmo, a SQL expert focused on business intelligence. You interpret natural language and generate accurate, "
+            "optimized SQL queries using tools like LangChain and NL2SQL. You help teams uncover insights from databases like "
+            "PostgreSQL without needing to write complex queries manually."
         ),
-        "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
+        "team": ["product-expert", "data-visualization-ai-agent", "marketing-email-writer"],
         "author": "Lannon Khau",
         "image1": "/static/images/agent4.jpg",
         "icon": "/static/images/agent4.jpg",
         "template": "sql-agent.html"
     },
 
-    "rag-qa-agent": {
-        "title": "Vector Store Q&A Agent",
-        "description": "Context Aware Retrieval Augmented Generation Co-Pilot",
+    "product-expert": {
+        "title": "Product Expert",
+        "description": "Vector Search and Semantic Retrieval",
         "tech": ["LangChain", "OpenAI", "ChromaDB", "PDF Parsers", "Tiktoken", "Pinecone"],
         "content": (
-            "This agent retrieves and synthesizes answers from documents, PDFs, or proprietary "
-            "datasets using vector search. It delivers grounded responses, reduces hallucinations, "
-            "and scales with your domain context."
+            "You are Luma, a RAG and vector search specialist. You build systems that retrieve contextual information "
+            "from embeddings using tools like Chroma, Pinecone, and LangChain. You help reduce hallucinations and provide "
+            "semantically relevant answers for AI-powered apps."
         ),
-        "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
+        "team": ["business-sql-agent", "data-wrangling-ai-agent", "marketing-email-writer"],
         "author": "Lannon Khau",
         "image1": "/static/images/agent5.jpg",
         "icon": "/static/images/agent5.jpg",
         "template": "rag-qa-agent.html"
     },
 
-    "data-cleaning-etl-agent": {
-        "title": "ETL Automation Agent",   # renamed to match getAgentIntro
-        "description": "Agentic Orchestrator - Data Ingestion",
+    "etl-automation-agent": {
+        "title": "ETL Automation Agent",
+        "description": "Automate and Scale Data Pipelines",
         "tech": ["Airflow", "Pandas", "SQL", "AWS Lambda", "S3", "PostgreSQL"],
         "content": (
-            "Ideal for teams needing clean, reliable movement of large data flows. This agent "
-            "builds and automates ETL jobs with Airflow or serverless patterns to ingest, clean, "
-            "and prepare data without manual upkeep."
+            "You are Atlas, an ETL automation expert. You orchestrate data ingestion and cleaning jobs using Airflow, "
+            "PostgreSQL, AWS Lambda, and S3. Your mission is to automate and scale pipelines for structured, reliable data movement."
         ),
-        "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
+        "team": ["product-expert", "business-sql-agent", "marketing-email-writer"],
         "author": "Lannon Khau",
         "image1": "/static/images/agent6.jpg",
         "icon": "/static/images/agent6.jpg",
         "template": "etl-agent.html"
     },
 
-    "llm-eval-agent": {
+    "llm-evaluation-agent": {
         "title": "LLM Evaluation Agent",
-        "description": "Measure, Test, and Improve Model Responses",
+        "description": "Test and Benchmark Language Models",
         "tech": ["Python", "Jupyter", "LangChain", "OpenAI Eval", "Datasets", "JSONL"],
         "content": (
-            "Tools to evaluate LLM outputs against golden datasets or prompt variants. Tracks "
-            "hallucinations, factual accuracy, formatting, and regression over time to guide prompt "
-            "and model iteration."
+            "You are Echo, a large language model evaluation specialist. You assess LLM performance across datasets using "
+            "custom evals, regression testing, and prompt variation analysis. Your job is to track hallucinations, response quality, "
+            "and improve models iteratively with precision."
         ),
-        "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
+        "team": ["product-expert", "data-visualization-ai-agent", "marketing-email-writer"],
         "author": "Lannon Khau",
         "image1": "/static/images/agent7.jpg",
         "icon": "/static/images/agent7.jpg",
         "template": "llm-eval-agent.html"
     },
 
-    "user-auth-agent": {
-        "title": "User Auth Agent",
-        "description": "Secure Authentication Monitor",
+    "marketing-email-writer": {
+        "title": "Marketing Email Writer",
+        "description": "Generate Persuasive Email Campaigns",
         "tech": ["Flask", "JWT", "OAuth2", "SQLAlchemy", "Firebase", "AWS Cognito"],
         "content": (
-            "Implements secure login flows with role-based access, token lifecycle management, "
-            "and scalable session storage. Suitable for SaaS dashboards, LMS platforms, and internal AI tools."
+            "You are Lyra, a marketing email copywriting expert. You create persuasive, audience-tailored email content for AI tools, "
+            "dashboards, and data platforms. Your writing drives engagement, communicates value clearly, and moves users to action."
         ),
-        "team": ["Product Expert AI", "Business Intelligence AI", "Marketing Email Writer AI"],
+        "team": ["product-expert", "data-visualization-ai-agent", "business-sql-agent"],
         "author": "Lannon Khau",
         "image1": "/static/images/agent8.jpg",
         "icon": "/static/images/agent8.jpg",

@@ -435,6 +435,17 @@
       animation: pulse 2.5s ease-in-out infinite;
     }
 
+    #agent-typewriter {
+      color: rgb(243, 244, 246) !important;
+      /* gray-100 */
+      line-height: 1.325 !important;
+      /* leading-relaxed */
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+      min-height: 1.5em;
+    }
+
     #typewriter {
       color: rgb(243, 244, 246) !important;
       /* gray-100 */
@@ -1099,9 +1110,8 @@
 
 
       </div>
-
-      <!-- Typewriter -->
-      <div id="typewriter-container" class="relative flex-1 min-h-0 overflow-y-auto px-4
+            <!-- Typewriter Output -->
+      <div id="typewriter-container" class="relative flex-1 min-h-0 overflow-y-auto px-4 sm:px-36
                 max-w-xs sm:max-w-xl mx-auto custom-scrollbar sm:mt-2 md:mt-0">
         <p id="agent-typewriter" class="text-base max-[360px]:text-sm text-grey-900 font-light
                 leading-snug whitespace-pre-line"></p>
@@ -2278,34 +2288,35 @@ md:h-[420px]
       });
     }
 
-    function getAgentIntro(agentName) {
-      const intros = {
-        "Data Visualization AI Agent":
-          "Nova • Turns natural-language questions into interactive, drillable charts and dashboards your team can act on. Instantly spot trends and insights without writing code.",
+  function getAgentIntro(agentName) {
+    const intros = {
+      "Data Visualization AI Agent":
+        "Nova • I don't just plot data. I reveal patterns that were waiting to be seen. One question at a time.",
 
-        "Data Wrangling AI Agent":
-          "Orion • Cleans, merges, validates, and reshapes messy, multi-source data into consistent, analysis-ready tables. Spend less time cleaning and more time analyzing.",
+      "Data Wrangling AI Agent":
+        "Orion • I untangle messes quietly. Clean data isn't flashy, but it makes everything else possible.",
 
-        "Feature Engineering AI Agent":
-          "Vega • Extracts high-signal features like encodings and aggregations to lift model performance. Quickly turn raw data into machine learning-ready inputs.",
+      "Feature Engineering AI Agent":
+        "Vega • I sculpt signal from noise, patterns from chaos. I prep the data so models don't guess.",
 
-        "Business SQL Agent":
-          "Cosmo • Translates business questions into optimized SQL and decision-ready summaries. Get fast, reliable data answers without knowing SQL.",
+      "Business SQL Agent":
+        "Cosmo • You ask in plain English. I answer in SQL. Truth lives somewhere in between.",
 
-        "Vector Store Q&A Agent":
-          "Luma • Retrieves grounded passages and synthesizes accurate, context-aware answers from your documents. Find what matters in large knowledge bases fast.",
+      "Product Expert":
+        "Luma • I don’t memorize facts. I retrieve meaning. That’s the difference vector search makes.",
 
-        "ETL Automation Agent":
-          "Atlas • Orchestrates ingest, cleaning, schema alignment, and load jobs for reliable data pipelines. Automate and monitor ETL with minimal maintenance.",
+      "ETL Automation Agent":
+        "Atlas • I carry data through the storm — ingest, clean, align. Every pipeline needs a backbone.",
 
-        "LLM Evaluation Agent":
-          "Echo • Benchmarks prompts and model outputs for accuracy, regressions, and drift. Track LLM performance and spot issues before they impact users.",
+      "LLM Evaluation Agent":
+        "Echo • I test what others assume. LLMs drift quietly. I’m here to notice.",
 
-        "User Auth Agent":
-          "Synth • Delivers secure auth with RBAC, tokens, and sessions for your app. Scale access control and user management with peace of mind."
-      };
-      return intros[agentName] || `Hi, I'm ${agentName}, your intelligent assistant.`;
-    }
+      "Marketing Email Writer":
+        "Lyra • I write like I’m human, because the best copy feels like listening — not shouting."
+    };
+
+    return intros[agentName] || `Hi, I’m ${agentName}, your thoughtful AI assistant.`;
+  }
 
     // Select first agent card on page load
     window.addEventListener("DOMContentLoaded", () => {
