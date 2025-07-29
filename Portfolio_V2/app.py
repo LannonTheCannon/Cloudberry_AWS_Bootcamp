@@ -58,7 +58,9 @@ s3_client = boto3.client("s3", region_name="us-west-2")
 
 @app.route('/')
 def home():
-    return render_template('index.html', projects=projects, services=services)
+    # Get first 3 items as a dict
+    featured_projects = dict(list(projects.items())[:3])
+    return render_template('index.html', featured_projects=featured_projects, services=services)
 
 # ─── MODELS ─────────────────────────────────────────────────────────────────────
 
@@ -267,6 +269,27 @@ projects = {
         "icon": "static/images/bookstar.png",
         "template": "quote-able.html",
         "login_req": "False",
+    },
+    "SJ Services Expert": {
+        "title": "Sweet James Services Expert",
+        "description": (
+            "An AI-powered legal assistant that helps users understand and navigate Sweet James personal injury legal services."
+        ),
+        "tech": [
+            "LangChain", 
+            "LangGraph", 
+            "OpenAI", 
+            "Streamlit", 
+            "ChromaDB", 
+            "Vector Database", 
+            "YAML Config", 
+            "Session State"
+        ],
+        "author": "Lannon Khau",
+        "image1": "static/images/justice_robot.png",
+        "icon": "static/icons/sj_icon.svg",
+        "template": "services-expert.html",
+        "login_req": "False",
     }
 }
 @app.route('/projects')
@@ -284,7 +307,8 @@ def show_project(slug):
                 description=project["description"],
                 tech=project["tech"],
                 author=project["author"],
-                image=project["image1"]
+                image=project["image1"],
+                services=services
             )
         except TemplateNotFound:
             abort(404)

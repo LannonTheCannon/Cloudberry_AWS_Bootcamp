@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en-US" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="stylesheet" type="text/css" href="./static/css/app.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <title>SJ Services Expert README</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+
+  .grain-overlay {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: -1000;
+    background-image: url("/static/images/grain2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;  /* Covers entire viewport */
+    background-position: center;
+    mix-blend-mode: overlay;
+    opacity: 0.18;
+  }
+
+    @keyframes draw-border {
+      0% {
+        border-width: 0;
+        clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+      }
+
+      25% {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      }
+
+      50% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
+      }
+
+      75% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+
+    .border-animate {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: draw-border 1.2s ease-out forwards;
+      border-radius: 1rem;
+      clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+    }
+
+
+    .floating-star {
+      position: absolute;
+      top: -5rem;         /* Adjust vertical alignment */
+      right: -6rem;      /* Push out horizontally to "hover" next to the block */
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .floating-star::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 100%;
+      height: 200px;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(173, 216, 255, 0.6),
+        rgba(173, 216, 255, 0.05) 70%,
+        transparent 100%
+      );
+      filter: blur(40px);
+      opacity: 0.9;
+      z-index: -1;
+    }
+   @media (max-width: 640px) {
+      .fade-in-up {
+        opacity: 100 !important;
+        transform: none !important;
+      }
+    }
+
+    @media (max-width: 540px) {
+  .floating-star {
+    position: relative !important;
+    top: 0 !important;
+    right: 0 !important;
+    margin: 0 auto 1.5rem auto !important;
+    width: 400px !important;
+    height: auto !important;
+    display: flex;
+    justify-content: center;
+  }
+
+  .floating-star img {
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+  }
+}
+    @media (max-width: 540px) {
+      .floating-star {
+        position: relative !important;
+        top: 0 !important;
+        right: 0 !important;
+        margin: 0 auto 1.5rem auto !important;
+        width: 300px !important;
+        height: auto !important;
+        display: flex;
+        justify-content: center;
+      }
+
+      .floating-star img {
+        width: 100% !important;
+        height: auto !important;
+        transform: none !important;
+      }
+    }
+
+
+  </style>
+
+</head>
+
+  <div class="grain-overlay pointer-events-none fixed inset-0 z-0"></div>
+
+
+<body class="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white min-h-screen">
+
+  <!-- Nav -->
+  <header class="w-full px-6 py-4 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-6">
+  <h1 class="text-xl font-bold tracking-tight"><a href="/" class="hover:text-indigo-400 transition">Lannon Khau</a>
+    </h1>
+    <nav class="space-x-6 text-sm">
+      <a href="/" class="hover:text-indigo-400">Home</a>
+      <!-- <a href="/service" class="hover:text-indigo-400">Services</a> -->
+      <a href="/about" class="hover:text-indigo-400">Mission</a>
+      <a href="/projects" class="hover:text-indigo-400">Projects</a>
+      <a href="/blog" class="hover:text-indigo-400">Blog</a>
+      <a href="/contact" class="hover:text-indigo-400">Contact</a>
+    </nav>
+  </header>
+
+
+<section class="fade-in-up opacity-0 translate-y-10 transition duration-700 relative flex flex-row justify-center items-center px-8 py-20 overflow-hidden" data-delay="200ms">
+  <div class="relative mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-3xl w-full">
+      
+
+      <!-- Header -->
+      <div class="text-left relative">
+        <h1 class="mb-8 font-serif text-4xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white relative">
+        Sweet James <span class="text-indigo-400">Services Expert AI</span>
+        </h1>
+        <!-- floating star element -->
+        <div
+          class="absolute top-[2rem] sm:right-[-10rem] -right-12 z-10 flex justify-center sm:justify-end floating-star"
+        >
+            <img
+            src="/static/images/service_expert.png"
+            alt="Service Expert Team"
+            class="w-64 sm:w-96 md:w-[23rem] opacity-96 pointer-events-none select-none"
+            />
+        </div>
+
+
+        <div class="flex items-center mt-6">
+          <img class="w-10 h-10 rounded-full" src="/static/images/chill_guy.png" alt="Lannon Khau" />
+          <div class="ml-3">
+            <p class="text-sm font-medium text-gray-300">
+              <a href="#" class="hover:underline">By Lannon Khau</a>
+            </p>
+            <div class="flex space-x-1 text-sm text-gray-400">
+              <time datetime="2025-06-13">Jun 13, 2025</time>
+              <span>&middot;</span>
+              <span>5 min read</span>
+            </div>
+          </div>
+        </div>
+
+      <div class="z-0 mt-8 flex space-x-4">
+        <!-- GitHub -->
+        <a href="https://github.com/LannonTheCannon/Cloudberry_AWS_Bootcamp" target="_blank" rel="noopener noreferrer">
+          <button type="button"
+            class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
+            GitHub
+          </button>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank" rel="noopener noreferrer">
+          <button type="button"
+            class="inline-flex items-center px-4 py-2 text-sm font-medium rounded border border-white/10 bg-white/10 hover:bg-white/20 text-white transition">
+            LinkedIn
+          </button>
+        </a>
+      </div>
+      </div>
+
+      <div class="flex justify-center mt-10">
+        <img 
+            src="/static/images/SQL_Business_Agent.png" 
+            alt="Analytics Team Orchestration Diagram"
+            class="w-full max-w-3xl rounded-xl shadow-lg border border-white/10"
+        />
+        </div>
+
+      <!-- <div class="relative w-full pb-[56.25%] mt-12 rounded-lg overflow-hidden border border-white/10 shadow-md">
+        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/DDOKRTiakno"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div> -->
+
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mt-12">
+        <!-- LEFT COLUMN -->
+        <div class="text-slate-300">
+            <!-- Only the first intro is a blockquote -->
+            <blockquote class="leading-8 text-slate-300 mb-8">
+            <span class="font-serif text-[115px] text-gray-300 float-left mr-4 leading-none -mt-2">T</span>
+            <span class="block pl-2">
+                his playbook is your guide to building a fully AI-powered analytics system that transforms raw business data into fast, actionable insights. By leveraging a modular “AI Data Science Team” of SQL and visualization agents, this repo makes it easy to:
+            </span>
+            </blockquote>
+
+            <p class="mb-6 text-base text-slate-300 leading-relaxed" style="text-indent: 2em;">
+            </p>
+
+                <ul class="space-y-3 list-disc list-inside text-base leading-relaxed text-slate-300 font-light mb-6 pl-6">
+                <li>Query your business database in plain English, no SQL needed</li>
+                <li>Get instant answers, charts, and summaries from <span class="text-indigo-300">GPT-4o</span> and <span class="text-indigo-300">LangChain</span> agents</li>
+                <li>Visualize and explain your data with flexible, plug-and-play AI modules</li>
+                <li>Run the whole workflow in your own secure cloud, using <span class="text-indigo-300">Flask</span>, <span class="text-indigo-300">Streamlit</span>, and <span class="text-indigo-300">AWS</span></li>
+                </ul>
+
+            <hr class="mt-6 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+
+
+            <!-- 🧠 Architecture -->
+            <h3 class="mt-6 text-2xl font-bold leading-6 text-white mb-4">🌐 Live Architecture</h3>
+            <ul class="space-y-4 text-sm text-slate-300">
+              <li><span class="text-indigo-400 font-semibold">EC2</span>: Flask backend with Gunicorn and Nginx</li>
+              <li><span class="text-indigo-400 font-semibold">S3</span>: Secure file storage for datasets</li>
+              <li><span class="text-indigo-400 font-semibold">RDS (MySQL)</span>: Stores metadata and session logs</li>
+              <li><span class="text-indigo-400 font-semibold">Lambda</span>: Triggers OpenAI agents for data cleaning
+              </li>
+              <li><span class="text-indigo-400 font-semibold">Secrets Manager</span>: Secure API key management</li>
+              <li><span class="text-indigo-400 font-semibold">GitHub Actions</span>: Handles CI/CD deployment</li>
+            </ul>
+
+            <hr class="mt-6 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+            <div>
+
+              <div class="space-y-2">
+
+                <!-- Backend -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-2">Backend</h4>
+                  <div class="flex flex-wrap gap-4 items-center">
+                    <div class="flex items-center space-x-2">
+                      <img src="/static/icons/flask.svg" alt="Flask" class="h-6" />
+                      <span class="text-white text-sm font-medium">Flask</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                      <img src="/static/icons/python.svg" alt="Python" class="h-6" />
+                      <span class="text-white text-sm font-medium">Python</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                      <img src="/static/icons/gunicorn.svg" alt="Gunicorn" class="h-6" />
+                      <span class="text-white text-sm font-medium">Gunicorn</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Frontend -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">Frontend</h4>
+                  <div class="flex flex-wrap gap-6 items-center">
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/html-5.svg" alt="HTML" class="h-6" />
+                      <span class="text-white text-sm font-medium">HTML</span>
+                    </div>
+
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/streamlit.svg" alt="Streamlit" class="h-6" />
+                      <span class="text-white text-sm font-medium">Streamlit</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/jinja.svg" alt="Jinja2" class="h-6" />
+                      <span class="text-white text-sm font-medium">Jinja2</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/tailwind.svg" alt="TailwindCSS" class="h-6" />
+                      <span class="text-white text-sm font-medium">TailwindCSS</span>
+                    </div>
+
+
+                  </div>
+                </div>
+
+                <!-- AI Agents -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">AI Agents</h4>
+                  <div class="flex flex-wrap gap-6 items-center">
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/chatgpt.svg" alt="OpenAI" class="h-6" />
+                      <span class="text-white text-sm font-medium">GPT-4o</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/bus.png" alt="AI Data Science Team" class="h-6" />
+                      <span class="text-white text-sm font-medium">AI Data Science Team</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/langchain.svg" alt="LangChain" class="h-6" />
+                      <span class="text-white text-sm font-medium">LangChain</span>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- Infrastructure -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">Infrastructure</h4>
+                  <div class="flex flex-wrap gap-6 items-center">
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/s3.svg" alt="S3" class="h-6" />
+                      <span class="text-white text-sm font-medium">S3</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/ec2.svg" alt="EC2" class="h-6" />
+                      <span class="text-white text-sm font-medium">EC2</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/rds.svg" alt="RDS" class="h-6" />
+                      <span class="text-white text-sm font-medium">RDS</span>
+                    </div>
+
+
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/lambda.svg" alt="Lambda" class="h-6" />
+                      <span class="text-white text-sm font-medium">Lambda</span>
+                    </div>
+                    <div class="inline-flex items-center space-x-2">
+                      <img src="/static/icons/secrets.svg" alt="Secrets Manager" class="h-6" />
+                      <span class="text-white text-sm font-medium">Secrets Manager</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CI/CD -->
+                <div
+                  class="fade-in-up opacity-0 translate-y-10 transition duration-700 bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+                  <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">CI / CD</h4>
+                  <div class="inline-flex items-center space-x-2">
+                    <img src="/static/icons/github-desktop.svg" alt="GitHub Actions" class="h-6" />
+                    <span class="text-white text-sm font-medium">GitHub Actions</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <hr class="mb-4 mt-8 my-16 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+                <p class="mb-6 text-base text-slate-300 leading-relaxed first-line:pl-6" style="text-indent: 2em;">
+                    Each chapter guides you through designing and wiring up modular agents—so you can ask complex business questions in plain English and get back SQL, clean data, or beautiful visualizations instantly. Every step of the pipeline for your own business needs.
+                </p>
+
+
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: Timeline or Features -->
+        <div class="relative border-l border-white/10 pl-6 space-y-8 self-start">
+
+            {% set agent_keys = ['data-visualization-ai-agent', 'business-sql-agent', 'data-wrangling-ai-agent', 'feature-engineering-ai-agent'] %}
+
+            <h3 class="text-xl font-bold text-white mb-2">✅ AI Agent Task Force</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-2 gap-4 mb-8">
+            {% for key in agent_keys %}
+                {% set agent = services[key] %}
+                <div class="bg-white/10 border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center h-44 shadow-md hover:shadow-2xl transition-all duration-300">
+                <img src="{{ agent.image1 }}"
+                    alt="{{ agent.title }} Icon"
+                    class="w-14 h-14 object-cover bg-white/10 border border-black rounded-full mb-3" />
+                <h4 class="text-base font-bold text-white mb-1 text-center">{{ agent.title | replace(' AI Agent', '') }}</h4>
+                </div>
+            {% endfor %}
+            </div>
+
+            <h3 class="text-2xl font-bold leading-6 text-white mb-6">📚 Playbook Chapters</h3>
+
+            <!-- Chapter 1: ML Lead Scoring (H2O) -->
+            <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="100ms">
+                <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+                <h4 class="text-white font-semibold ml-2 mb-1">1. ML Lead Scoring (H2O)</h4>
+                <p class="text-gray-400 text-sm ml-2">
+                Kick off with automated machine learning: train and deploy an H2O AutoML model to score your leads, helping sales and marketing prioritize with real predictive power.
+                </p>
+            </div>
+
+            <!-- Chapter 2: Natural Language SQL Agent -->
+            <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="200ms">
+                <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+                <h4 class="text-white font-semibold ml-2 mb-1">2. Natural Language SQL Agent</h4>
+                <p class="text-gray-400 text-sm ml-2">
+                Use LangChain + OpenAI to ask questions in plain English and get optimized SQL queries with real answers—no manual SQL needed.
+                </p>
+            </div>
+
+            <!-- Chapter 3: Orchestrating Agents with LangGraph -->
+            <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="300ms">
+                <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+                <h4 class="text-white font-semibold ml-2 mb-1">3. Orchestrating Agents with LangGraph</h4>
+                <p class="text-gray-400 text-sm ml-2">
+                Build modular workflows as Directed Acyclic Graphs (DAGs), connecting agents together so your system is transparent, debuggable, and scalable.
+                </p>
+            </div>
+
+            <!-- Chapter 4: From SQL to DataFrames and Visualization -->
+            <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="400ms">
+                <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+                <h4 class="text-white font-semibold ml-2 mb-1">4. From SQL to DataFrames and Visualization</h4>
+                <p class="text-gray-400 text-sm ml-2">
+                Teach your agents to transform SQL results into Pandas DataFrames, and automatically decide when to display a chart or a table.
+                </p>
+            </div>
+
+            <!-- Chapter 5: Charting Agent (Plotly + AI) -->
+            <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="500ms">
+                <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+                <h4 class="text-white font-semibold ml-2 mb-1">5. Charting Agent (Plotly + AI)</h4>
+                <p class="text-gray-400 text-sm ml-2">
+                Let AI write and execute Python code that turns data into beautiful, interactive Plotly charts—on the fly, based on the user’s intent.
+                </p>
+            </div>
+
+            <!-- Chapter 6: Modularization & Production Readiness -->
+            <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="600ms">
+                <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+                <h4 class="text-white font-semibold ml-2 mb-1">6. Modularization & Production</h4>
+                <p class="text-gray-400 text-sm ml-2">
+                Wrap up all agents and workflows into reusable Python modules—plug and play for any future data pipeline or product.
+                </p>
+            </div>
+
+            <!-- Chapter 7: Live Copilot Dashboard (Streamlit + Flask) -->
+            <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="700ms">
+                <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+                <h4 class="text-white font-semibold ml-2 mb-1">7. Live Copilot Dashboard</h4>
+                <p class="text-gray-400 text-sm ml-2">
+                Deliver a user-friendly, live dashboard with Streamlit—powered by your agentic backend, with authentication, history, and live analytics.
+                </p>
+            </div>
+
+            <!-- Chapter 8: Multi-Agent Teamwork & Extensions -->
+            <div class="relative fade-in-up opacity-0 translate-y-10 transition duration-700" data-delay="800ms">
+                <div class="absolute -left-3 top-1 w-3 h-3 bg-indigo-400 border-2 border-gray-900 rounded-full"></div>
+                <h4 class="text-white font-semibold ml-2 mb-1">8. Multi-Agent Teamwork</h4>
+                <p class="text-gray-400 text-sm ml-2">
+                See how specialized agents (SQL, EDA, Charting) work as a team—ready to be extended with more business logic, analytics, or LLM-powered features.
+                </p>
+            </div>
+
+            <hr class="my-16 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+            <div class="prose prose-lg prose-invert prose-indigo max-w-none mt-4">
+                <blockquote class="border-l-4 pl-4 italic text-indigo-300">
+                "This is super cool! I remember struggling to bridge that gap between insights and code. A tool that shows
+                the 'how' is a total game-changer for learning." - Tran Tien Van
+                </blockquote>
+            </div>
+
+          <hr class="my-16 h-px border-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+
+
+        </div>
+      </div>
+
+
+
+          <!-- Repo Structure -->
+          <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+            <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">📁 Repository Structure
+            </h4>
+                <pre class="text-sm text-slate-300 font-mono leading-6 whitespace-pre overflow-x-auto bg-black rounded-md p-4 border border-white/5">
+sql_agent_orchestration/
+│
+├── 01_machine_learning_h2o.py
+├── 02_sql_agent.py
+├── 03_sql_agent_langgraph.py
+├── 04_add_pandas_langgraph.py
+├── 05_add_routing_langgraph.py
+├── 06_add_plotting_langgraph.py
+├── 07_modular_bi_agent.py
+├── 08_streamlit_app_persistant_plot_and_df.py
+├── 09_streamlit_app_bi_copilot.py
+├── 10_ai_data_science_team.py
+│
+├── additional-requirements.txt
+├── credentials.yml
+├── README.md
+│
+├── business_intelligence_agent/       # BI agent Python package
+├── database/
+│   ├── leads_scored.db                # SQLite database
+│   ├── leads_scored.db-shm
+│   └── leads_scored.db-wal
+├── models/                            # ML models
+├── notebooks/                         # Jupyter notebooks
+└── project2_architecture.drawio       # Project architecture diagram
+                </pre>
+          </div>
+
+
+        <div class="mt-6 bg-white/5 border border-white/10 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+          <h4 class="text-indigo-400 uppercase text-xs font-semibold tracking-widest mb-3">📁 Run Locally</h4>
+          <pre class="mt-4 bg-black text-slate-300 text-sm p-4 rounded-md overflow-x-auto whitespace-pre">
+git clone https://github.com/LannonTheCannon/Cloudberry_AWS_Bootcamp.git
+cd Cloudberry_AWS_Bootcamp/Portfolio_V2
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python3 app.py
+          </pre>
+        </div>
+
+      <!-- Call to Action -->
+      <div class="mt-16 flex flex-col sm:flex-row justify-center items-center gap-4">
+        <a href="/dashboard"
+          class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-xl font-semibold text-white transition">🚀 Launch
+          the Demo</a>
+        <a href="https://github.com/LannonTheCannon/Cloudberry_AWS_Bootcamp" target="_blank"
+          class="text-indigo-400 hover:underline">📦 View Source on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 text-sm text-gray-500 border-t border-white/10 mt-12">
+    <div class="flex justify-center space-x-6 py-6">
+      <a href="https://github.com/LannonTheCannon" target="_blank" rel="noopener noreferrer"><img
+          src="/static/icons/github.svg" alt="GitHub" class="h-6 w-6 hover:scale-110 transition" /></a>
+      <a href="https://www.linkedin.com/in/lannon-khau/" target="_blank" rel="noopener noreferrer"><img
+          src="/static/icons/linkedin.svg" alt="LinkedIn" class="h-6 w-6 hover:scale-110 transition" /></a>
+      <a href="https://www.youtube.com/@LannonKhau" target="_blank" rel="noopener noreferrer"><img
+          src="/static/icons/youtube.svg" alt="YouTube" class="h-6 w-6 hover:scale-110 transition" /></a>
+      <a href="#"><img src="/static/icons/goog.svg" alt="Email" class="h-6 w-6 hover:scale-110 transition" /></a>
+    </div>
+    &copy; 2025 Lannon Khau. Welcome aboard, cadet.
+  </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll('.fade-in-up');
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("opacity-0", "translate-y-10");
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            entry.target.style.transitionDelay = entry.target.dataset.delay || '0ms';
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.05 }); // LOWERED threshold for better triggering
+
+      elements.forEach((el) => observer.observe(el));
+
+      // 🔐 Fallback guarantee: force visibility after 1s if no animation triggered
+      setTimeout(() => {
+        elements.forEach(el => {
+          if (el.classList.contains('opacity-0')) {
+            el.classList.remove('opacity-0', 'translate-y-10');
+            el.classList.add('opacity-100', 'translate-y-0');
+          }
+        });
+      }, 1000); // adjust to match your transition duration
+    } else {
+      // Older browsers fallback
+      elements.forEach(el => {
+        el.classList.remove('opacity-0', 'translate-y-10');
+        el.classList.add('opacity-100', 'translate-y-0');
+      });
+    }
+  });
+</script>
+
+</body>
+
+</html>
