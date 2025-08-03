@@ -131,3 +131,7 @@ xxhash==3.5.0
 yarl==1.20.0
 zstandard==0.23.0
 pymysql
+flask
+flask_sqlalchemy
+boto3
+pandas
