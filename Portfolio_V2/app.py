@@ -33,6 +33,9 @@ except ImportError:
 app = Flask(__name__)
 app.secret_key = 'MySecretKey'
 
+# Add these lines to increase upload limits
+app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 100MB limit
+
 try:
     if os.environ.get("FLASK_ENV") == "production":
         from utils.db_secrets import get_db_secret  # import only if needed
