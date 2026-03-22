@@ -528,11 +528,131 @@
       max-width: calc(100vw - var(--expand-gutter) * 2) !important;
     }
 
-    /* Typewriter grows to fill space when expanded */
+    /* Typewriter container grows to fill space when expanded */
     .tilt-card.expanded #typewriter-container {
       flex: 1;
-      max-width: 100%;
+      max-width: 100% !important;
+      width: 100% !important;
+      margin: 0 !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
       overflow-y: auto;
+    }
+
+    /* ── Chat UI (expanded card) ── */
+
+    #typewriter {
+      transition: opacity 0.35s ease;
+    }
+
+    #chat-area {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      overflow-y: auto;
+      flex: 1;
+      min-height: 0;
+      padding: 0.5rem 0;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      z-index: 2;
+      transition: opacity 0.3s ease;
+    }
+
+    .tilt-card.expanded #typewriter {
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      z-index: 0;
+      visibility: hidden;
+    }
+
+    .tilt-card.expanded #chat-area {
+      display: flex !important;
+      opacity: 1;
+      pointer-events: auto;
+      position: relative;
+    }
+
+    .tilt-card:not(.expanded) #typewriter {
+      opacity: 1;
+    }
+
+    /* During close: chat fades out while card is still full-size */
+    .tilt-card.chat-fading #chat-area {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .chat-agent-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .chat-avatar {
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      object-fit: cover;
+    }
+
+    .chat-bubble {
+      max-width: 85%;
+      padding: 0.625rem 0.875rem;
+      border-radius: 1rem;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      animation: chat-fade-in 0.35s ease forwards;
+    }
+
+    .chat-bubble--agent {
+      align-self: flex-start;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgb(229, 231, 235);
+    }
+
+    .chat-bubble--user {
+      align-self: flex-end;
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: rgb(224, 231, 255);
+    }
+
+    .chat-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-self: flex-start;
+      padding-left: 2.25rem;
+      animation: chat-fade-in 0.4s ease forwards;
+    }
+
+    .chat-chip {
+      padding: 0.375rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: rgb(165, 180, 252);
+      transition: all 0.2s;
+    }
+
+    .chat-chip:hover {
+      background: rgba(99, 102, 241, 0.25);
+      border-color: rgba(99, 102, 241, 0.5);
+      transform: translateY(-1px);
+    }
+
+    @keyframes chat-fade-in {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes rotate {
@@ -739,6 +859,7 @@
                 max-w-xs sm:max-w-xl mx-auto custom-scrollbar sm:mt-2 md:mt-0">
         <p id="typewriter" class="text-base max-[360px]:text-sm text-grey-900 font-light
                 leading-snug whitespace-pre-line"></p>
+        <div id="chat-area" class="custom-scrollbar"></div>
       </div>
 
       <!-- Footer -->
@@ -2010,8 +2131,13 @@ md:h-[420px]
       sendButton.addEventListener('click', async () => {
         const userInput = inputField.value.trim();
 
-        if (!userInput) {
-          console.warn("Empty input. Not sending.");
+        if (!userInput) return;
+
+        // If card is expanded, use chat bubble UI instead
+        const tiltCard = document.querySelector('.tilt-card');
+        if (tiltCard && tiltCard.classList.contains('expanded')) {
+          if (window.stopTypewriterRotation) window.stopTypewriterRotation();
+          sendChatMessage(userInput);
           return;
         }
 
@@ -2380,23 +2506,33 @@ md:h-[420px]
             rotatingText.classList.toggle('hidden', isOpen);
           }
 
-          // Card expand / collapse
-          if (tiltCard) {
-            tiltCard.classList.toggle('expanded', isOpen);
-            // Reset to flat when expanding, restore base when collapsing
-            tiltCard.style.transform = isOpen
-              ? 'perspective(600px) rotateX(0) rotateY(0) scale3d(1,1,1)'
-              : 'translateY(-4px)';
-          }
-
-          // Bottom input: show/hide + expand width to match card
-          if (inputSection) {
-            if (isOpen) {
+          if (isOpen) {
+            // ── EXPAND: card grows, then chat fades in ──
+            if (tiltCard) {
+              tiltCard.classList.add('expanded');
+              tiltCard.style.transform = 'perspective(600px) rotateX(0) rotateY(0) scale3d(1,1,1)';
+            }
+            if (inputSection) {
               inputSection.classList.remove('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
               inputSection.classList.add('opacity-100', 'input-expanded');
-              // Focus without scrolling
               setTimeout(() => { if (userQuery) userQuery.focus({ preventScroll: true }); }, 500);
-            } else {
+            }
+            if (!window._chatInitialized) {
+              setTimeout(runOnboardingSequence, 900);
+            }
+          } else {
+            // ── COLLAPSE: fade chat out first, THEN shrink card ──
+            if (tiltCard) {
+              // Step 1 — fade chat content instantly (card stays full-size)
+              tiltCard.classList.add('chat-fading');
+
+              // Step 2 — after chat has faded, shrink the card
+              setTimeout(() => {
+                tiltCard.classList.remove('expanded', 'chat-fading');
+                tiltCard.style.transform = 'translateY(-4px)';
+              }, 320);  // matches #chat-area transition: 0.3s + small buffer
+            }
+            if (inputSection) {
               inputSection.classList.remove('opacity-100', 'input-expanded');
               inputSection.classList.add('opacity-0', 'pointer-events-none');
             }
@@ -2404,6 +2540,157 @@ md:h-[420px]
         });
       }
     });
+
+    // ── Chat UI Functions ──
+    const CHAT_AVATAR_SRC = '/static/images/space_commander.png';
+
+    function scrollChatToBottom() {
+      const area = document.getElementById('chat-area');
+      if (area) area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
+    }
+
+    function appendAgentBubble(html, animated) {
+      const area = document.getElementById('chat-area');
+      const row = document.createElement('div');
+      row.className = 'chat-agent-row';
+
+      const avatar = document.createElement('img');
+      avatar.className = 'chat-avatar';
+      avatar.src = CHAT_AVATAR_SRC;
+      avatar.alt = 'AI';
+
+      const bubble = document.createElement('div');
+      bubble.className = 'chat-bubble chat-bubble--agent';
+
+      row.appendChild(avatar);
+      row.appendChild(bubble);
+      area.appendChild(row);
+
+      if (animated && window.simulateChatGPTStyleFadeMultiLine) {
+        window.simulateChatGPTStyleFadeMultiLine(html, bubble);
+        // Estimate animation duration: ~150ms per word
+        const wordCount = html.split(/\s+/).length;
+        const duration = wordCount * 150 + 400;
+        setTimeout(scrollChatToBottom, duration);
+        return duration;
+      } else {
+        bubble.textContent = html;
+        scrollChatToBottom();
+        return 0;
+      }
+    }
+
+    function appendUserBubble(text) {
+      const area = document.getElementById('chat-area');
+      const bubble = document.createElement('div');
+      bubble.className = 'chat-bubble chat-bubble--user';
+      bubble.textContent = text;
+      area.appendChild(bubble);
+      scrollChatToBottom();
+    }
+
+    function showTypingIndicator() {
+      const area = document.getElementById('chat-area');
+      const row = document.createElement('div');
+      row.className = 'chat-agent-row';
+      row.id = 'chat-typing';
+
+      const avatar = document.createElement('img');
+      avatar.className = 'chat-avatar';
+      avatar.src = CHAT_AVATAR_SRC;
+      avatar.alt = 'AI';
+
+      const bubble = document.createElement('div');
+      bubble.className = 'chat-bubble chat-bubble--agent';
+      bubble.innerHTML = `
+        <div class="flex items-center space-x-1">
+          <div class="typing-ball dot1"></div>
+          <div class="typing-ball dot2"></div>
+          <div class="typing-ball dot3"></div>
+        </div>`;
+
+      row.appendChild(avatar);
+      row.appendChild(bubble);
+      area.appendChild(row);
+      scrollChatToBottom();
+    }
+
+    function removeTypingIndicator() {
+      const el = document.getElementById('chat-typing');
+      if (el) el.remove();
+    }
+
+    function appendChips(labels) {
+      const area = document.getElementById('chat-area');
+      const container = document.createElement('div');
+      container.className = 'chat-chips';
+
+      labels.forEach(label => {
+        const chip = document.createElement('button');
+        chip.className = 'chat-chip';
+        chip.textContent = label;
+        chip.addEventListener('click', () => {
+          container.remove();
+          sendChatMessage(label);
+        });
+        container.appendChild(chip);
+      });
+
+      area.appendChild(container);
+      scrollChatToBottom();
+    }
+
+    async function runOnboardingSequence() {
+      window._chatInitialized = true;
+      const area = document.getElementById('chat-area');
+      area.innerHTML = '';
+
+      // Message 1
+      const d1 = appendAgentBubble("Hey — I'm the AI behind Lannon's portfolio. Ask me anything about his work.", true);
+      await new Promise(r => setTimeout(r, d1 + 800));
+
+      // Message 2
+      const d2 = appendAgentBubble("Here are a few things I can help with:", true);
+      await new Promise(r => setTimeout(r, d2 + 400));
+
+      // Suggestion chips
+      appendChips([
+        "What's your tech stack?",
+        "Show me your projects",
+        "Tell me about Data Forge",
+        "What AI systems have you built?"
+      ]);
+    }
+
+    async function sendChatMessage(text) {
+      appendUserBubble(text);
+      showTypingIndicator();
+
+      const sendButton = document.getElementById('query-send');
+      const inputField = document.getElementById('user-query');
+
+      try {
+        const response = await fetch('/ask', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: text })
+        });
+        const data = await response.json();
+        removeTypingIndicator();
+
+        if (!response.ok) {
+          appendAgentBubble("Sorry, something went wrong. Please try again.", false);
+          return;
+        }
+
+        appendAgentBubble(data.response, true);
+      } catch (err) {
+        removeTypingIndicator();
+        appendAgentBubble("Network error. Please check your connection.", false);
+      }
+
+      if (inputField) inputField.value = '';
+    }
 
 
 
