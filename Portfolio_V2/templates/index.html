@@ -495,6 +495,46 @@
       opacity: 0;
     }
 
+    /* ── Expanded card + input — shared gutter per breakpoint ── */
+    :root {
+      --expand-gutter: 1.5rem;   /* mobile */
+      --expand-input-h: 4rem;    /* input bar height + gap */
+    }
+    @media (min-width: 640px)  { :root { --expand-gutter: 2.5rem; } }
+    @media (min-width: 768px)  { :root { --expand-gutter: 3.5rem; } }
+    @media (min-width: 1024px) { :root { --expand-gutter: 5rem; } }
+    @media (min-width: 1280px) { :root { --expand-gutter: 6rem; } }
+
+    .tilt-card {
+      transition: max-width 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+                  height 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+                  padding 0.6s ease,
+                  border-radius 0.6s ease,
+                  transform 0.3s ease-out;
+    }
+
+    .tilt-card.expanded {
+      max-width: calc(100vw - var(--expand-gutter) * 2) !important;
+      height: calc(100vh - var(--expand-gutter) * 2 - var(--expand-input-h)) !important;
+      border-radius: 1.5rem;
+    }
+
+    /* Bottom input section expands to match card width */
+    #quote-input-section > div {
+      transition: max-width 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    #quote-input-section.input-expanded > div {
+      max-width: calc(100vw - var(--expand-gutter) * 2) !important;
+    }
+
+    /* Typewriter grows to fill space when expanded */
+    .tilt-card.expanded #typewriter-container {
+      flex: 1;
+      max-width: 100%;
+      overflow-y: auto;
+    }
+
     @keyframes rotate {
       from {
         transform: rotate(0deg);
@@ -645,27 +685,24 @@
 
     <!-- ───────────────  Tilt Card  ─────────────── -->
     <div class="
-    tilt-card 
-    relative 
-    z-20 
-    flex 
-    flex-col 
-    w-full 
-    max-w-xs 
+    tilt-card
+    relative
+    z-20
+    flex
+    flex-col
+    w-full
+    max-w-xs
 
-    bg-white/10 
-    backdrop-blur-xl 
-    border 
-    border-white/30 
+    bg-white/10
+    backdrop-blur-xl
+    border
+    border-white/30
     rounded-2xl
-    p-4 
-    shadow-2xl 
-    transition-transform 
-    duration-300 
-    ease-out 
+    p-4
+    shadow-2xl
     will-change-transform
-    
-    h-[445px] 
+
+    h-[445px]
     sm:max-w-xl
     sm:h-[355px]
     md:max-w-2xl
@@ -764,17 +801,16 @@
   </section>
 
 
-  <section id="quote-input-section" class="transition-all 
-  duration-500 
-  opacity-0 
-  translate-y-6 
-  pointer-events-none 
+  <section id="quote-input-section" class="transition-opacity
+  duration-500
+  opacity-0
+  pointer-events-none
   mt-0
-  relative 
-  z-20 
-  flex 
-  justify-center 
-  items-center 
+  relative
+  z-20
+  flex
+  justify-center
+  items-center
   px-8
   ">
     <div
@@ -2320,53 +2356,49 @@ md:h-[420px]
 
     // 🔥 DELETE ALL EXISTING add-thought-btn HANDLERS AND USE ONLY THIS ONE
     document.addEventListener('DOMContentLoaded', () => {
-      console.log('Setting up main button handler...'); // Debug log
-
       const plusButton = document.getElementById('add-thought-btn');
       const svg = plusButton.querySelector('svg');
       const inputSection = document.getElementById('quote-input-section');
       const rotatingText = document.querySelector('.rotating-text');
-
-      console.log('Elements found:', {
-        plusButton: !!plusButton,
-        svg: !!svg,
-        inputSection: !!inputSection,
-        rotatingText: !!rotatingText
-      }); // Debug log
+      const tiltCard = document.querySelector('.tilt-card');
+      const userQuery = document.getElementById('user-query');
 
       let isOpen = false;
 
       if (plusButton) {
         plusButton.addEventListener('click', () => {
-          console.log('🔥 BUTTON CLICKED! isOpen:', isOpen, 'rotatingText:', !!rotatingText);
           isOpen = !isOpen;
 
-          // 🔥 ICON ROTATION (plus → X)
+          // Icon rotation (plus → X)
           if (svg) {
             svg.classList.toggle('rotate-225');
             svg.classList.toggle('cross');
-            console.log('Icon rotated');
           }
 
-          // 🔥 ROTATING TEXT FADE IN/OUT
+          // Rotating text fade in/out
           if (rotatingText) {
-            if (isOpen) {
-              rotatingText.classList.add('hidden');
-              console.log('Rotating text hidden');
-            } else {
-              rotatingText.classList.remove('hidden');
-              console.log('Rotating text shown');
-            }
+            rotatingText.classList.toggle('hidden', isOpen);
           }
 
-          // 🔥 INPUT BOX ANIMATION
+          // Card expand / collapse
+          if (tiltCard) {
+            tiltCard.classList.toggle('expanded', isOpen);
+            // Reset to flat when expanding, restore base when collapsing
+            tiltCard.style.transform = isOpen
+              ? 'perspective(600px) rotateX(0) rotateY(0) scale3d(1,1,1)'
+              : 'translateY(-4px)';
+          }
+
+          // Bottom input: show/hide + expand width to match card
           if (inputSection) {
             if (isOpen) {
               inputSection.classList.remove('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
-              inputSection.classList.add('opacity-100', 'scale-y-100');
+              inputSection.classList.add('opacity-100', 'input-expanded');
+              // Focus without scrolling
+              setTimeout(() => { if (userQuery) userQuery.focus({ preventScroll: true }); }, 500);
             } else {
-              inputSection.classList.remove('opacity-100', 'scale-y-100');
-              inputSection.classList.add('opacity-0', 'scale-y-0', 'translate-y-6', 'pointer-events-none');
+              inputSection.classList.remove('opacity-100', 'input-expanded');
+              inputSection.classList.add('opacity-0', 'pointer-events-none');
             }
           }
         });
