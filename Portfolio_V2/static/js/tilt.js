@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function handleMove(e) {
     const card = e.currentTarget;
+    if (card.classList.contains('expanded')) return;
     const rect = card.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width  - 0.5;
     const y = (e.clientY - rect.top)  / rect.height - 0.5;
@@ -15,6 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function handleLeave(e) {
-    e.currentTarget.style.transform = 'perspective(600px) rotateX(0) rotateY(0) scale3d(1,1,1)';
+    const card = e.currentTarget;
+    if (card.classList.contains('expanded')) return;
+    card.style.transform = 'perspective(600px) rotateX(0) rotateY(0) scale3d(1,1,1)';
   }
 });
