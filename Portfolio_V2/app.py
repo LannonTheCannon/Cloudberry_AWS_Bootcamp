@@ -240,38 +240,47 @@ def about():
 # ─── Projects Section  ──────────────────────────────────────────────────────────────────────
 
 projects = {
-    "data-forge-plus": {
-        "title": "Data Forge Plus",
-        "description": "Data Forge helps you ask the right questions on your dataset AND helps you visualize them.",
-        "tech": ["Flask", "Streamlit", "AWS Lambda", "S3", "RDS", "OpenAI"],
+    "ai-check-validation": {
+        "title": "AI Check Validation System",
+        "description": (
+            "Enterprise-grade financial check validation powered by Azure Document Intelligence. "
+            "Automates OCR processing of settlement checks with batch validation pipelines, "
+            "n8n workflow orchestration, and Azure Entra ID authentication — deployed to production on Azure."
+        ),
+        "tech": ["Flask", "Azure Document Intelligence", "Supabase", "n8n", "Azure AD", "OpenAI"],
         "author": "Lannon Khau",
         "image1": "static/images/magma.png",
         "icon": "static/images/forge_icon.svg",
-        "template": "data-forge-plus.html",
+        "template": "ai-check-validation.html",
         "login_req": "True",
     },
-    "exo-land": {
-        "title": "Exo-Explorer",
-        "description": "Ever wanted to see what the surface of our nearest exoplanet, Kepler 22B, looked like?",
-        "tech": ["Pandas", "Scikit-Learn", "OpenAI", "DALL·E", "Streamlit", "Flask"],
+    "sj-chatter-box": {
+        "title": "SJ Chatter Box",
+        "description": (
+            "AI-powered demand letter generator that streams multi-section legal documents via Claude, "
+            "with citation verification against source PDFs, side-by-side review, "
+            "and native Word/PDF export. Backed by 1,200+ tests."
+        ),
+        "tech": ["Flask", "Anthropic Claude", "Supabase", "Azure DI", "Salesforce", "RAG"],
         "author": "Lannon Khau",
         "image1": "static/images/ship.jpg",
         "icon": "static/images/planet_icon.svg",
-        "template": "exo-land.html",
-        "login_req": "False",
-
+        "template": "sj-chatter-box.html",
+        "login_req": "True",
     },
-    "Octopus Books": {
-        "title": "Octopus Books",
+    "sj-docs-classifier": {
+        "title": "Custom Document Classifier",
         "description": (
-            "Generate a thorough and detailed summary of any book! This web app is for those who occasionally forget what they read and would like a summary of their current place in the book (no spoilers)!"
+            "Intelligent document classification system that automatically organizes 40+ legal document types "
+            "into a 12-category filing taxonomy with smart naming, Azure Cognitive Search for semantic retrieval, "
+            "and OneDrive/SharePoint routing."
         ),
-        "tech": ["OCR", "LangChain", "OpenAI", "Streamlit / Discord", "Pinecone", "PDF Parsing"],
+        "tech": ["Flask", "Azure OpenAI", "Azure Cognitive Search", "Supabase", "Azure Blob", "MSAL"],
         "author": "Lannon Khau",
         "image1": "static/images/octo.svg",
         "icon": "static/images/bookstar.png",
-        "template": "quote-able.html",
-        "login_req": "False",
+        "template": "sj-docs-classifier.html",
+        "login_req": "True",
     },
     "SJ Services Expert": {
         "title": "Sweet James Services Expert",
@@ -279,13 +288,13 @@ projects = {
             "An AI-powered legal assistant that helps users understand and navigate Sweet James personal injury legal services."
         ),
         "tech": [
-            "LangChain", 
-            "LangGraph", 
-            "OpenAI", 
-            "Streamlit", 
-            "ChromaDB", 
-            "Vector Database", 
-            "YAML Config", 
+            "LangChain",
+            "LangGraph",
+            "OpenAI",
+            "Streamlit",
+            "ChromaDB",
+            "Vector Database",
+            "YAML Config",
             "Session State"
         ],
         "author": "Lannon Khau",
@@ -491,126 +500,129 @@ def show_blog_post(slug):
 # ─── Services Section  ──────────────────────────────────────────────────────────────────────
 
 services = {
-    "data-visualization-ai-agent": {
-        "title": "Data Visualization AI Agent",
-        "description": "Generate Interactive Plotly Dashboards",
-        "tech": ["LangChain", "OpenAI", "Streamlit", "Pandas AI", "NL2SQL", "RAG Pipelines"],
+    "demand-generation-engine": {
+        "title": "Demand Generation Engine",
+        "description": "Stream Multi-Section Legal Documents",
+        "tech": ["Anthropic Claude", "SSE Streaming", "Flask", "Supabase", "Citations API"],
         "content": (
-            "You are Nova, a data visualization AI specialist. You combine RAG pipelines with tools like Pandas AI, "
-            "Streamlit, and Plotly to produce conversational dashboards. You help business leaders and analysts explore data "
-            "visually through natural language and generate interactive visual insights that reveal underlying patterns."
+            "I'm the flagship agent — I stream fully-formatted demand letter sections via Claude Sonnet "
+            "with real-time citation tracking. I handle parallel section generation, heartbeat management, "
+            "and graceful error isolation across 13 structured sections. Each section is dynamically composed "
+            "from case-specific prompts and source documents."
         ),
-        "team": ["product-expert", "business-sql-agent", "marketing-email-writer"],
+        "team": ["citation-verification-agent", "rag-search-agent", "needs-resolver-agent"],
         "author": "Lannon Khau",
         "image1": "/static/images/agent1.jpg",
         "icon": "/static/images/agent1.jpg",
         "template": "data-vis-agent.html"
     },
 
-    "data-wrangling-ai-agent": {
-        "title": "Data Wrangling AI Agent",
-        "description": "Automate Data Cleaning and Transformation",
-        "tech": ["Flask", "React", "TailwindCSS", "SQLAlchemy", "AWS", "Docker"],
+    "citation-verification-agent": {
+        "title": "Citation Verification Agent",
+        "description": "Map Citations to Source PDFs",
+        "tech": ["Anthropic Citations API", "Azure Document Intelligence", "PyMuPDF", "OCR"],
         "content": (
-            "You are Orion, a data wrangling expert. You automate dataset ingestion, cleanup, and transformation "
-            "using Flask and React across full-stack systems. You work with SQLAlchemy and Dockerized services to ensure "
-            "data systems remain clean, scalable, and production-ready."
+            "I extract citation markers from generated demand text, map each one back to its source document, "
+            "and resolve the exact PDF page using keyword matching on dates, dollar amounts, and provider names. "
+            "I power the side-by-side verification UX where attorneys confirm every cited claim against the original record."
         ),
-        "team": ["product-expert", "business-sql-agent", "marketing-email-writer"],
+        "team": ["demand-generation-engine", "ocr-load-balancer", "rag-search-agent"],
         "author": "Lannon Khau",
         "image1": "/static/images/agent2.jpg",
         "icon": "/static/images/agent2.jpg",
         "template": "data-wrangling-agent.html"
     },
 
-    "feature-engineering-ai-agent": {
-        "title": "Feature Engineering AI Agent",
-        "description": "Extract and Transform Features for ML",
-        "tech": ["Python", "Pandas", "NumPy", "Scikit-learn", "Pickle", "SQL", "Airflow"],
+    "needs-resolver-agent": {
+        "title": "NEEDS Resolver Agent",
+        "description": "Auto-Fill Placeholder Tags in Drafts",
+        "tech": ["Claude Haiku", "Concurrent Threads", "Supabase", "Salesforce Data"],
         "content": (
-            "You are Vega, a feature engineering expert. You specialize in transforming messy data into model-ready formats. "
-            "You perform one-hot encoding, feature scaling, time-series transformations, and other preprocessing tasks "
-            "using Python, Pandas, NumPy, and Scikit-learn to optimize ML pipelines."
+            "I find all [NEEDS: <field>] placeholder tags in demand drafts and auto-resolve them using Claude Haiku "
+            "by matching against structured case data from Salesforce. I process tags concurrently with a 7-15 second "
+            "resolution SLA, turning incomplete drafts into submission-ready documents."
         ),
-        "team": ["product-expert", "business-sql-agent", "marketing-email-writer"],
+        "team": ["demand-generation-engine", "case-facts-agent", "rag-search-agent"],
         "author": "Lannon Khau",
         "image1": "/static/images/agent3.jpg",
         "icon": "/static/images/agent3.jpg",
         "template": "feature-engineering-agent.html"
     },
 
-    "business-sql-agent": {
-        "title": "Business SQL Agent",
-        "description": "Translate Natural Language to SQL",
-        "tech": ["LangChain", "OpenAI", "SQL", "PostgreSQL", "Flask", "NL2SQL"],
+    "rag-search-agent": {
+        "title": "RAG Search Agent",
+        "description": "Semantic Search Across Case Documents",
+        "tech": ["Azure OpenAI Embeddings", "pgvector", "Supabase", "3072-dim Vectors"],
         "content": (
-            "You are Cosmo, a SQL expert focused on business intelligence. You interpret natural language and generate accurate, "
-            "optimized SQL queries using tools like LangChain and NL2SQL. You help teams uncover insights from databases like "
-            "PostgreSQL without needing to write complex queries manually."
+            "I embed natural language queries using Azure OpenAI text-embedding-3-large and perform semantic vector search "
+            "across 8+ source types — medical records, Salesforce data, transcripts, and more. I deduplicate results by "
+            "source type and record ID, and format context for both attorney popovers and demand generation prompts."
         ),
-        "team": ["product-expert", "data-visualization-ai-agent", "marketing-email-writer"],
+        "team": ["demand-generation-engine", "citation-verification-agent", "case-facts-agent"],
         "author": "Lannon Khau",
         "image1": "/static/images/agent4.jpg",
         "icon": "/static/images/agent4.jpg",
         "template": "sql-agent.html"
     },
 
-    "product-expert": {
-        "title": "Product Expert",
-        "description": "Vector Search and Semantic Retrieval",
-        "tech": ["LangChain", "OpenAI", "ChromaDB", "PDF Parsers", "Tiktoken", "Pinecone"],
+    "document-classifier-agent": {
+        "title": "Document Classifier Agent",
+        "description": "Classify Legal Documents by Type",
+        "tech": ["Azure Document Intelligence", "Custom ML Model", "Flask", "Supabase"],
         "content": (
-            "You are Luma, a RAG and vector search specialist. You build systems that retrieve contextual information "
-            "from embeddings using tools like Chroma, Pinecone, and LangChain. You help reduce hallucinations and provide "
-            "semantically relevant answers for AI-powered apps."
+            "I classify uploaded documents into 40+ legal document types across a 12-category filing taxonomy "
+            "using Azure Document Intelligence custom classifiers. I detect multi-document PDFs, assign confidence scores, "
+            "and route files to the correct SharePoint/OneDrive folders with smart naming conventions."
         ),
-        "team": ["business-sql-agent", "data-wrangling-ai-agent", "marketing-email-writer"],
+        "team": ["check-field-extractor", "ocr-load-balancer", "case-facts-agent"],
         "author": "Lannon Khau",
         "image1": "/static/images/agent5.jpg",
         "icon": "/static/images/agent5.jpg",
         "template": "rag-qa-agent.html"
     },
 
-    "etl-automation-agent": {
-        "title": "ETL Automation Agent",
-        "description": "Automate and Scale Data Pipelines",
-        "tech": ["Airflow", "Pandas", "SQL", "AWS Lambda", "S3", "PostgreSQL"],
+    "check-field-extractor": {
+        "title": "Check Field Extractor",
+        "description": "Extract Financial Data from Checks",
+        "tech": ["Claude Vision", "Azure OCR", "ThreadPoolExecutor", "Polygon Matching"],
         "content": (
-            "You are Atlas, an ETL automation expert. You orchestrate data ingestion and cleaning jobs using Airflow, "
-            "PostgreSQL, AWS Lambda, and S3. Your mission is to automate and scale pipelines for structured, reliable data movement."
+            "I extract check fields — amount, payee, date, routing number — using Claude Vision combined with "
+            "Azure OCR word indexing. I match extracted values to precise bounding polygons for on-screen highlighting, "
+            "processing up to 8 pages concurrently with ThreadPoolExecutor."
         ),
-        "team": ["product-expert", "business-sql-agent", "marketing-email-writer"],
+        "team": ["document-classifier-agent", "ocr-load-balancer", "case-facts-agent"],
         "author": "Lannon Khau",
         "image1": "/static/images/agent6.jpg",
         "icon": "/static/images/agent6.jpg",
         "template": "etl-agent.html"
     },
 
-    "llm-evaluation-agent": {
-        "title": "LLM Evaluation Agent",
-        "description": "Test and Benchmark Language Models",
-        "tech": ["Python", "Jupyter", "LangChain", "OpenAI Eval", "Datasets", "JSONL"],
+    "ocr-load-balancer": {
+        "title": "OCR Load Balancer",
+        "description": "Distribute OCR Across Azure Instances",
+        "tech": ["Azure Document Intelligence", "Round-Robin", "Thread-Safe", "Failover"],
         "content": (
-            "You are Echo, a large language model evaluation specialist. You assess LLM performance across datasets using "
-            "custom evals, regression testing, and prompt variation analysis. Your job is to track hallucinations, response quality, "
-            "and improve models iteratively with precision."
+            "I load-balance OCR requests across 3 Azure Document Intelligence instances using thread-safe round-robin "
+            "distribution. I track per-instance request counts and failures, handle automatic failover, and cache OCR results "
+            "per PDF to avoid redundant processing. I'm the backbone of both the check validation and demand builder systems."
         ),
-        "team": ["product-expert", "data-visualization-ai-agent", "marketing-email-writer"],
+        "team": ["citation-verification-agent", "check-field-extractor", "document-classifier-agent"],
         "author": "Lannon Khau",
         "image1": "/static/images/agent7.jpg",
         "icon": "/static/images/agent7.jpg",
         "template": "llm-eval-agent.html"
     },
 
-    "marketing-email-writer": {
-        "title": "Marketing Email Writer",
-        "description": "Generate Persuasive Email Campaigns",
-        "tech": ["Flask", "JWT", "OAuth2", "SQLAlchemy", "Firebase", "AWS Cognito"],
+    "case-facts-agent": {
+        "title": "Case Facts Processor",
+        "description": "Extract Structured Data from Salesforce",
+        "tech": ["Supabase RPC", "Salesforce Sync", "Thread-Safe Cache", "Regex"],
         "content": (
-            "You are Lyra, a marketing email copywriting expert. You create persuasive, audience-tailored email content for AI tools, "
-            "dashboards, and data platforms. Your writing drives engagement, communicates value clearly, and moves users to action."
+            "I fetch authoritative case facts from Salesforce-synced Postgres tables via a single RPC call — "
+            "client info, incident date, damages, insurance details. I derive pronouns automatically, classify accident types "
+            "via regex, and serve cached results with a 5-minute TTL and thread-safe locking."
         ),
-        "team": ["product-expert", "data-visualization-ai-agent", "business-sql-agent"],
+        "team": ["demand-generation-engine", "needs-resolver-agent", "rag-search-agent"],
         "author": "Lannon Khau",
         "image1": "/static/images/agent8.jpg",
         "icon": "/static/images/agent8.jpg",
